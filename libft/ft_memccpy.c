@@ -6,12 +6,11 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 11:36:43 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 14:23:39 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 15:53:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)

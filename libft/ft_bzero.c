@@ -6,12 +6,11 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 13:39:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 15:53:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
