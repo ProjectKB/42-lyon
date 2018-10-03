@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_bzero.c                                       .::    .:/ .      .::   */
+/*   ft_memccpy.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 11:07:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 11:36:43 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 14:23:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../includes/my.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	ft_memset(s, '\0', n);
-}
+	int	i;
 
-int	main(void)
-{
-	char str[] = "abcde";
-
-	printf("%s\n", str);
-	//bzero(str, n);
-	ft_bzero(str, 3);
-	write(1, &str[3], 1);
-	return (0);
+	i = 0;
+	while (n--)
+	{
+		(((unsigned char *)dst)[i]) = (((unsigned char *)src)[i]);
+		if ((((unsigned char *)dst)[i]) == c)
+			return (&dst[i + 1]);
+		i++;
+	}
+	return (NULL);
 }

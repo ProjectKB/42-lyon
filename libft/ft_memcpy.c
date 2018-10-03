@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_bzero.c                                       .::    .:/ .      .::   */
+/*   ft_memcpy.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 11:07:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 11:20:52 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 14:03:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../includes/my.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	ft_memset(s, '\0', n);
-}
+	char		*d;
+	const char	*s;
 
-int	main(void)
-{
-	char str[] = "abcde";
-
-	printf("%s\n", str);
-	//bzero(str, n);
-	ft_bzero(str, 3);
-	write(1, &str[3], 1);
-	return (0);
+	d = dest;
+	s = src;
+	while (n--)
+		*d++ = *s++;
+	return (dest);
 }

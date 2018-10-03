@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_bzero.c                                       .::    .:/ .      .::   */
+/*   ft_memmove.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 11:07:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 14:24:36 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 14:51:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
-#include "../includes/my.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	ft_memset(s, '\0', n);
+	char		*d;
+	const char	*s;
+
+	d = dst;
+	s = src;
+	while (len--)
+		*d++ = *s++;
+	return (d);
 }
 
-int	main(void)
+int main()
 {
-	char str[] = "abcde";
+	char s[] = "lorem ipsum dolor sit amet";
+	char s2[] = "lorem ipsum dolor sit amet";
+	char *d = s + 1;
+	char *d2 = s + 1;
 
-	printf("%s\n", str);
-	//bzero(str, n);
-	ft_bzero(str, 3);
-	write(1, &str[3], 1);
+	printf("%s\n", d);
+	printf("%s\n", d2);
+	memmove(d, s, 4);
+	ft_memmove(d2, s2, 4);
+	printf("%s\n", d);
+	printf("%s\n", d2);
 	return (0);
 }

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_bzero.c                                       .::    .:/ .      .::   */
+/*   ft_memmove.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 11:07:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 14:24:36 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 15:14:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "../includes/my.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	ft_memset(s, '\0', n);
-}
+	void	*tmp;
 
-int	main(void)
-{
-	char str[] = "abcde";
-
-	printf("%s\n", str);
-	//bzero(str, n);
-	ft_bzero(str, 3);
-	write(1, &str[3], 1);
-	return (0);
+	if (!(tmp = (void*)malloc(sizeof(*tmp) * ft_strlen(dst))))
+		return (NULL);
+	ft_memcpy(tmp, src, len);
+	ft_memcpy(dst, tmp, len);
+	return (dst);
 }

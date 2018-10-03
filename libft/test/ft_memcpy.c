@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_bzero.c                                       .::    .:/ .      .::   */
+/*   ft_memcpy.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 18:20:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 11:07:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 11:20:52 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 12:17:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
-#include "../includes/my.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	ft_memset(s, '\0', n);
+	while (n--)
+		(*(unsigned char *)dest++) = (*(unsigned char *)src++);
+	return (dest);
 }
 
-int	main(void)
+int main(void)
 {
-	char str[] = "abcde";
-
-	printf("%s\n", str);
-	//bzero(str, n);
-	ft_bzero(str, 3);
-	write(1, &str[3], 1);
+	char src[] = "hello";
+	char dest[] = "coucou";
+	memcpy(dest, src, 5);
+	printf("%s", dest);
 	return (0);
 }
