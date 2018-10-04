@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   memchr.c                                         .::    .:/ .      .::   */
+/*   ft_strstr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:28:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:26:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 14:54:36 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 14:57:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (n--)
+	if (!to_find[i])
+		return (str);
+	while (str[i])
 	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+		j = 0;
+		while (to_find[j] == str[i + j])
+		{
+			if (!to_find[j + 1])
+				return (str + i);
+			j++;
+		}
 		i++;
 	}
-	return (NULL);
+	return (0);
 }

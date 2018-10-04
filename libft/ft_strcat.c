@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   memchr.c                                         .::    .:/ .      .::   */
+/*   ft_strcat.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:28:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:26:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 17:57:46 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 17:58:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (n--)
-	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+	j = 0;
+	while (dest[i])
 		i++;
+	while (src[j])
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (NULL);
+	dest[i + j] = '\0';
+	return (dest);
 }

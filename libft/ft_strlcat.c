@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   memchr.c                                         .::    .:/ .      .::   */
+/*   ft_strlcat.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:28:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:26:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 18:01:56 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 13:20:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	j;
+	int				length;
 
 	i = 0;
-	while (n--)
-	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+	j = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (dest[i])
 		i++;
+	while (src[j])
+		j++;
+	length = size < i ? j + size : i + j;
+	j = 0;
+	while (src[j] && j + i < size - 1)
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (NULL);
+	dest[i + j] = '\0';
+	return (length);
 }

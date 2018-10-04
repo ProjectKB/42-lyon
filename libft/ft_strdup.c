@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   memchr.c                                         .::    .:/ .      .::   */
+/*   ft_strdup.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:28:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:26:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 17:48:48 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/03 17:50:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strdup(char *src)
 {
-	int	i;
+	char	*copy;
+	int		i;
+	int		s;
 
 	i = 0;
-	while (n--)
+	s = 0;
+	while (src[s])
+		s++;
+	if (!(copy = (char*)malloc(sizeof(*copy) * s)))
+		return (NULL);
+	while (src[i])
 	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+		copy[i] = src[i];
 		i++;
 	}
-	return (NULL);
+	copy[i] = '\0';
+	return (copy);
 }
