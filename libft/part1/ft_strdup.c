@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlcat.c                                     .::    .:/ .      .::   */
+/*   ft_strdup.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 18:01:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:20:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 17:48:48 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 17:35:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+char	*ft_strdup(const char *src)
 {
-	unsigned int	i;
-	unsigned int	j;
-	int				length;
+	char	*copy;
+	int		i;
+	int		s;
 
 	i = 0;
-	j = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	while (dest[i])
-		i++;
-	while (src[j])
-		j++;
-	length = size < i ? j + size : i + j;
-	j = 0;
-	while (src[j] && j + i < size - 1)
+	s = 0;
+	while (src[s])
+		s++;
+	if (!(copy = (char*)malloc(sizeof(*copy) * s)))
+		return (NULL);
+	while (src[i])
 	{
-		dest[i + j] = src[j];
-		j++;
+		copy[i] = src[i];
+		i++;
 	}
-	dest[i + j] = '\0';
-	return (length);
+	copy[i] = '\0';
+	return (copy);
 }

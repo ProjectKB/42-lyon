@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strdup.c                                      .::    .:/ .      .::   */
+/*   ft_strncpy.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 17:48:48 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:50:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 17:56:28 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 17:41:30 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strdup(char *src)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	char	*copy;
-	int		i;
-	int		s;
+	size_t	i;
 
 	i = 0;
-	s = 0;
-	while (src[s])
-		s++;
-	if (!(copy = (char*)malloc(sizeof(*copy) * s)))
-		return (NULL);
-	while (src[i])
+	while (src[i] && i < n)
 	{
-		copy[i] = src[i];
+		dst[i] = src[i];
 		i++;
 	}
-	copy[i] = '\0';
-	return (copy);
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
 }

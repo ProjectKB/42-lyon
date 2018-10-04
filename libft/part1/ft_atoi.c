@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strcpy.c                                      .::    .:/ .      .::   */
+/*   ft_atoi.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 17:52:59 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:54:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 16:27:10 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 16:37:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_strcpy(char *dest, char *src)
+int	ft_atoi(const char *str)
 {
-	int	i;
+	int	r;
+	int	n;
+	int	p;
 
-	i = 0;
-	while (src[i])
+	r = 0;
+	n = 0;
+	p = 0;
+	while (str[p] == '\t' || str[p] == '\n' || str[p] == '\r' ||
+			str[p] == '\v' || str[p] == '\f' || str[p] == ' ' ||
+			(str[p] == '+' && (str[p + 1] != '+' &&
+					str[p + 1] != '-')))
+		p++;
+	if (str[p] == '-')
 	{
-		dest[i] = src[i];
-		i++;
+		n = -1;
+		p++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	while (str[p] >= '0' && str[p] <= '9')
+	{
+		r = r * 10 + str[p] - '0';
+		p++;
+	}
+	if (n)
+		r = -r;
+	return (r);
 }

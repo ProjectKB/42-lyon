@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strncpy.c                                     .::    .:/ .      .::   */
+/*   ft_tolower.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:57:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 17:28:59 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 17:30:47 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int	ft_tolower(int c)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	if (c >= 'A' && c <= 'Z')
+		return (c += 32);
+	return (c);
 }
