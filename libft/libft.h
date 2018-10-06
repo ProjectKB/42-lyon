@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/06 16:40:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/06 17:12:52 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,5 +60,6 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
+char			**ft_strsplit(char const *s, char c);
 
 #endif
