@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strcmp.c                                      .::    .:/ .      .::   */
+/*   ft_memdel.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 16:39:55 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:40:47 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 18:58:01 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/06 11:50:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+#include "libft.h"
+#include <stdlib.h>
+
+void	ft_memdel(void **ap)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	if (!(*ap))
+		return ;
+	free(ap);
+	ap = ft_memalloc(0);
+}
+
+int main()
+{
+	char str[] = "bonjour";
+	ft_memdel((void*)&str);
+	return (0);
 }

@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   memchr.c                                         .::    .:/ .      .::   */
+/*   ft_strclr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:28:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 15:42:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 11:52:48 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/06 11:59:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
-#include <stdio.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_strclr(char *s)
 {
 	int i;
 
 	i = 0;
-	while (n--)
+	while (s[i])
 	{
-		if ((((unsigned char *)s)[i]) == (unsigned char)c)
-			return ((void *)&s[i]);
+		s[i] = '\0';
 		i++;
 	}
-	return (NULL);
-}
-
-int main()
-{
-	char str[] = "hello";
-
-	printf("%s", ft_memchr(str, 'e', 4));
-	return (0);
 }

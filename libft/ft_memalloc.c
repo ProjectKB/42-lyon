@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strchr.c                                      .::    .:/ .      .::   */
+/*   ft_memalloc.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 18:27:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 18:40:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 18:08:17 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/06 11:51:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memalloc(size_t size)
 {
-	int i;
+	void	*str;
+	int		i;
 
 	i = 0;
-	while (s[i])
+	if (!(str = (void*)malloc(sizeof(*str) * size)))
+		return (NULL);
+	while (size--)
 	{
-		if (s[i] == c)
-			return ((char *)&s[i]);
+		(*(unsigned char*)(str + i)) = 0;
 		i++;
 	}
-	return (NULL);
-}
-
-int main()
-{
-	char str[] = "hello";
-	printf("%s", ft_strchr(str, 'e'));
-	return (0);
+	return (str);
 }

@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_memccpy.c                                     .::    .:/ .      .::   */
+/*   ft_strequ.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 11:36:43 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 12:15:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 13:24:37 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/06 14:17:15 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	while (n--)
-	{
-		(*(unsigned char *)dst++) = (*(unsigned char *)src++);
-		if ((*(unsigned char *)dst) == (unsigned char)c)
-			return (dst++);
-	}
-	return (NULL);
-}
-
-int main()
-{
-	char str[] = "abcdef";
-	char dest[] = "coucoupetit";
-
-	ft_memccpy(dest, str, 0, 2);
-	printf("%s", dest);
+	if (!(ft_strcmp(s1, s2)))
+		return (1);
 	return (0);
 }

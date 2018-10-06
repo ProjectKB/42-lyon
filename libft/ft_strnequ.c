@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strstr.c                                      .::    .:/ .      .::   */
+/*   ft_strnequ.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/04 14:54:36 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 14:57:49 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 14:17:50 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/06 14:19:50 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	if (!to_find[i])
-		return (str);
-	while (str[i])
-	{
-		j = 0;
-		while (to_find[j] == str[i + j])
-		{
-			if (!to_find[j + 1])
-				return (str + i);
-			j++;
-		}
-		i++;
-	}
+	if (!(ft_strncmp(s1, s2, n)))
+		return (1);
 	return (0);
 }
