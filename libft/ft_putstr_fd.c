@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlen.c                                      .::    .:/ .      .::   */
+/*   ft_putstr_fd.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 15:02:34 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/07 12:00:52 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/07 12:24:28 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/07 12:26:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (*s)
+		ft_putchar_fd(*s++, fd);
 }
