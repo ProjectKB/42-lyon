@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/07 14:07:27 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/07 17:19:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 11:51:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,36 +14,34 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list	*preElem;
-	t_list	*L2;
-	t_list	*elem;
+	t_list	*maillon;
 
-	preElem = NULL;
-	L2 = NULL;
-	while (lst != NULL)
+	maillon = *alst;
+	if (maillon)
 	{
-		if (!(elem = (t_list*)malloc(sizeof(*elem))))
-			return (NULL);
-		f(lst);
-		elem->content = lst->content;
-		elem->content_size = lst->content_size;
-		elem->next = NULL;
-		if (L2 == NULL)
-		{
-			L2 = elem;
-			preElem = elem;
-		}
-		else
-		{
-			L2->next = elem;
-			preElem = elem;
-		}
-		lst = lst->next;
+		while (maillon->next)
+			maillon = maillon->next;
+		maillon->next = new;
 	}
-	return (L2);
+	else
+		*alst = new;
 }
 
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+{
+	t_list	*maillon;
+	t_list	*new;
 
-
+	new = NULL;
+	while (lst)
+	{
+		if (!(maillon = (t_list*)malloc(sizeof(*maillon))))
+			return (NULL);
+		maillon = f(lst);
+		ft_lstadd_back(&new, maillon);
+		lst = lst->next;
+	}
+	return (new);
+}
