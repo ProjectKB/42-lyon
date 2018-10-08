@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 13:43:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 19:35:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int		ft_count_number(int n)
+static int		ft_count_number(int n)
 {
 	int		count;
 
@@ -29,7 +29,7 @@ int		ft_count_number(int n)
 	return (count);
 }
 
-void	ft_reverse_str(char *str)
+static void		ft_reverse_str(char *str)
 {
 	int		start;
 	int		end;
@@ -51,7 +51,7 @@ void	ft_reverse_str(char *str)
 	}
 }
 
-int		ft_particular_case(char *str, int i, long *nb)
+static int		ft_particular_case(char *str, int i, long *nb)
 {
 	if (*nb < 0)
 	{
@@ -62,7 +62,7 @@ int		ft_particular_case(char *str, int i, long *nb)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		i;
 	char	*str;

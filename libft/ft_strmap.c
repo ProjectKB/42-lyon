@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 12:16:50 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 13:21:47 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 20:13:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 			ptr_tab[i] = f(s[i]);
 			i++;
 		}
+		ptr_tab[i] = '\0';
 	}
-	ptr_tab[i] = '\0';
 	return (ptr_tab);
 }

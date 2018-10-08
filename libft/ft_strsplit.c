@@ -6,19 +6,18 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 16:43:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 17:36:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 19:34:14 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-int		ft_count_word(char const *s, char c)
+static int		ft_count_word(char const *s, char c)
 {
-	int	i;
-	int	n;
+	int		i;
+	int		n;
 
 	i = 0;
 	n = 0;
@@ -32,9 +31,9 @@ int		ft_count_word(char const *s, char c)
 	return (n);
 }
 
-int		ft_l_w(char const *s, int p, char w)
+static int		ft_l_w(char const *s, int p, char w)
 {
-	int	c;
+	int		c;
 
 	c = 0;
 	while ((!(s[p] == w) && s[p]))
@@ -45,7 +44,7 @@ int		ft_l_w(char const *s, int p, char w)
 	return (c);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -62,7 +61,7 @@ char	**ft_strsplit(char const *s, char c)
 	{
 		while (s[p] == c)
 			p++;
-		if (!(tab[i] = (char*)malloc(sizeof(tab) *	(ft_l_w(s, p, c) + 1))))
+		if (!(tab[i] = (char*)malloc(sizeof(tab) * (ft_l_w(s, p, c) + 1))))
 			return (NULL);
 		j = -1;
 		while (++j < ft_l_w(s, p, c))

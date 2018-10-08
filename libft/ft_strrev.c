@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnew.c                                      .::    .:/ .      .::   */
+/*   ft_strrev.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/07 13:05:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 20:17:20 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/08 18:58:53 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/08 19:02:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+char	*ft_strrev(char *str)
 {
-	t_list	*maillon;
+	int	start;
+	int	end;
+	int	swap;
 
-	if (!(maillon = (t_list*)malloc(sizeof(*maillon))))
-		return (NULL);
-	if (content != NULL)
+	start = 0;
+	end = 0;
+	if (str)
 	{
-		if (!(maillon->content = (void*)malloc(sizeof(content_size) + 1)))
-			return (NULL);
-		ft_memcpy(maillon->content, (void*)content, content_size);
+		while (str[end + 1])
+			end++;
+		while (start < end)
+		{
+			swap = str[start];
+			str[start] = str[end];
+			str[end] = swap;
+			start++;
+			end--;
+		}
 	}
-	else
-		maillon->content = NULL;
-	maillon->content_size = !content ? 0 : content_size;
-	maillon->next = NULL;
-	return (maillon);
+	return (str);
 }

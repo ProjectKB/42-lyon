@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 14:22:16 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 13:31:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 20:20:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 			return (NULL);
 		while (i < len)
 			tr[i++] = s[start++];
+		tr[i] = '\0';
 	}
-	tr[i] = '\0';
 	return (tr);
 }

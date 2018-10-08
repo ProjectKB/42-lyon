@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 17:06:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 19:33:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,12 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
+int					ft_recursive_power(int nb, int power);
+char				*ft_strupcase(char *str);
+char				*ft_lowercase(char *str);
+char				*ft_strcapitalize(char *str);
+void				ft_swap(int *a, int *b);
+char				*ft_strrev(char *str);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
