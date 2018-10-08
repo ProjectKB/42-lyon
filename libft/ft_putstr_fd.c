@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/07 12:24:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/07 12:26:48 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 17:38:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	if (s)
+		while (*s)
+			ft_putchar_fd(*s++, fd);
 }

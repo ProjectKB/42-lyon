@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 16:43:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/06 17:51:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 17:36:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ int		ft_count_word(char const *s, char c)
 	return (n);
 }
 
-int		ft_length_word(char const *s, int p, char w)
+int		ft_l_w(char const *s, int p, char w)
 {
 	int	c;
 
@@ -54,20 +54,21 @@ char	**ft_strsplit(char const *s, char c)
 
 	i = -1;
 	p = 0;
+	if (!s)
+		return (NULL);
 	if (!(tab = (char**)malloc(sizeof(*tab) * (ft_count_word(s, c) + 1))))
 		return (NULL);
 	while (++i < ft_count_word(s, c))
 	{
 		while (s[p] == c)
 			p++;
-		if (!(tab[i] = (char*)malloc(sizeof(tab) *
-		(ft_length_word(s, p, c) + 1))))
+		if (!(tab[i] = (char*)malloc(sizeof(tab) *	(ft_l_w(s, p, c) + 1))))
 			return (NULL);
 		j = -1;
-		while (++j < ft_length_word(s, p, c))
+		while (++j < ft_l_w(s, p, c))
 			tab[i][j] = s[j + p];
 		tab[i][j] = '\0';
-		p += ft_length_word(s, p, c);
+		p += ft_l_w(s, p, c);
 	}
 	tab[ft_count_word(s, c)] = 0;
 	return (tab);
