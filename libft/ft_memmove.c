@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 14:24:36 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:31:51 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 16:36:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,11 +16,20 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*tmp;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if (!(tmp = (void*)malloc(sizeof(*tmp) * ft_strlen(dst))))
-		return (NULL);
-	ft_memcpy(tmp, src, len);
-	ft_memcpy(dst, tmp, len);
+	d = dst;
+	s = (unsigned char*)src;
+	if (s < d)
+	{
+		s += len;
+		d += len;
+		while (len--)
+			*--d = *--s;
+	}
+	else
+		while (len--)
+			*d++ = *s++;
 	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 16:39:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/06 16:40:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 13:09:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ void	*ft_strnew(size_t size)
 	int		i;
 
 	i = 0;
+	size++;
 	if (!(str = (void*)malloc(sizeof(*str) * size)))
 		return (NULL);
 	while (size--)

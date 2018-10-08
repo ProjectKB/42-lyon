@@ -6,19 +6,18 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 16:27:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:37:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 14:56:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
-	int	r;
-	int	n;
-	int	p;
+	long long	r;
+	long long	n;
+	long long	p;
 
 	r = 0;
 	n = 0;

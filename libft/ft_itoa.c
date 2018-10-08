@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/07 11:47:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/08 13:43:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,14 +19,12 @@ int		ft_count_number(int n)
 	int		count;
 
 	count = 0;
-	if (!n)
-		return (1);
 	while (n)
 	{
 		n /= 10;
 		count++;
 	}
-	if (n < 0)
+	if (n <= 0)
 		count++;
 	return (count);
 }
@@ -72,7 +70,7 @@ char	*ft_itoa(int n)
 
 	i = 0;
 	nb = n;
-	if (!(str = (char*)malloc(sizeof(*str) * ft_count_number(nb))))
+	if (!(str = (char*)malloc(sizeof(*str) * ft_count_number(nb) + 1)))
 		return (NULL);
 	if (!nb)
 	{
