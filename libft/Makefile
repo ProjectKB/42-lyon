@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/03 12:49:27 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/09 12:44:38 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/09 13:03:40 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,6 +20,7 @@ CFlAGS = -Wall -Wextra -Werror
 SRC = ./ft_lstiter.c \
 		./ft_putendl_fd.c \
 		./ft_strequ.c \
+		./ft_sort_integer_table.c \
 		./ft_strrchr.c \
 		./ft_lstmap.c \
 		./ft_putnbr.c \
@@ -87,8 +88,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ ar rc $@ $?
-	@ ranlib $@
+	@ ar rcs $@ $?
 
 clean:
 	@ /bin/rm -f $(OBJ)
