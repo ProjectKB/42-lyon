@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 17:15:54 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 19:05:27 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,67 +44,70 @@ char	*ft_transform_line(char *line)
 	return (line);
 }
 
-char	*ft_read(const int fd, char **line)
+int	ft_read(const int fd, char **line)
 {
-	static int	rt = 0;
 	char		*buf;
+	static int	rt = 0;
 	static char	*rest = NULL;
 
 	if (!(*line = ft_strnew(0)) || !(buf = ft_strnew(BUFF_SIZE + 1)))
-		return (NULL);
-
-
-
-
-
-
+		return (-1);
 	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[rt] = '\0';
 		*line = ft_strjoin(*line, buf);
 		if (ft_strchr(*line, '\n'))
 		{
-			//printf("Ligne lue = '%s' ||\n ", *line);
 			if (rest)
 				*line = ft_strjoin(rest, *line);
-			//printf("Ligne lue + reste  = '%s' ||\n ", *line);
 			break ;
 		}
 	}
-		if (rt > 0)
-		{
-			rest = ft_strdup(ft_return_rest(*line));
-			*line = ft_transform_line(*line);
-		}
-		else
-		{
-			*line = ft_strdup(ft_transform_line(rest));
-			rest = ft_return_rest(rest);
-		}
-		printf("Ligne transfo  = '%s' ||\n ", *line);
-		//printf("A rest = '%s' ||\n\n ", rest);
-		return (*line);
+	if (rt > 0 && (rest = ft_strdup(ft_return_rest(*line))))
+	{
+		*line = ft_transform_line(*line);
+		return (1);
+	}
+	else if (rt == 0 && ft_strlen(rest))
+	{
+		*line = ft_strdup(ft_transform_line(rest));
+		rest = ft_return_rest(rest);
+		if (!(ft_strlen(rest)))
+			return (0);
+		return (1);
+	}
+	return (0);
+	return (-1);
 }
 
 int	main(int argc, char **argv)
 {
-	int	fd;
-	int	i;
+	int		fd;
+	int		i;
 	char	*line;
 
 	fd = open(argv[1], O_RDONLY);
 	//ft_putstr(ft_read(fd, &line));
 	//ft_putstr(ft_read(fd, &line));
 	//ft_putstr(ft_read(fd, &line));
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
-	ft_read(fd, &line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
+	printf("fd = %d, line = '%s'\n", ft_read(fd, &line), line);
 	close(fd);
 	return (0);
 }
