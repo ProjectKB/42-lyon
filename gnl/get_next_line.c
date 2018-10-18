@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 11:01:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 14:59:37 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 
 char	*ft_return_rest(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (ft_strchr(str, '\n'))
@@ -36,15 +36,15 @@ char	*ft_return_rest(char *str)
 
 char	*ft_get_line(char *to_transform, char *rest)
 {
-	int	i;
+	int		i;
 
 	if (ft_strchr(to_transform, '\n'))
 	{
 		i = ft_strlen(to_transform) - ft_strlen(ft_strchr(to_transform, '\n'));
 		to_transform = ft_strsub(to_transform, 0, i);
-			return (to_transform);
+		return (to_transform);
 	}
-	rest = ft_strjoin(to_transform, rest); // case without line feed '\n'
+	rest = ft_strjoin(to_transform, rest);
 	ft_bzero(to_transform, ft_strlen(to_transform));
 	return (rest);
 }
@@ -75,39 +75,22 @@ int		get_next_line(const int fd, char **line)
 	static char		*rest = NULL;
 	int				rt;
 
-	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)))
+	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)) || (!rest &&
+				!(rest = ft_strnew(0))))
 		return (-1);
-	if (!rest)
-		if (!(rest = ft_strnew(0)))
-			return (-1);
 	rt = ft_read_and_get_rt(fd, line, rest);
 	if (rt == -1)
 		return (-1);
 	else if (rt > 0)
 	{
-		//printf("|||A|||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		rest = ft_return_rest(*line);
-		//printf("|||||||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		*line = ft_get_line(*line, rest);
-		//printf("|||||||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
-		//printf("|||A|||\n\n");
 		return (1);
 	}
 	else if (!rt && ft_strlen(rest))
 	{
-		//printf("|||B|||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
-		////*line = ft_strjoin(rest, *line);
-		//printf("|||||||\n");
 		*line = ft_get_line(rest, *line);
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		rest = ft_return_rest(rest);
-		//printf("|||||||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
-		//printf("|||B|||\n\n");
 		return (1);
 	}
 	else if (!rt && ft_strlen(*line))
@@ -115,37 +98,29 @@ int		get_next_line(const int fd, char **line)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+/*int		main(int argc, char **argv)
 {
 	int		fd;
 	int		i;
 	char	*line;
+	char	*str;
+	int		len = 50;
+
 
 	fd = open(argv[1], O_RDONLY);
 	i = 1;
+	str = (char*)malloc(1000 * 1000);
+	*str = '\0';
+	while (len--)
+	{
+		strcat(str, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in leo dignissim, gravida leo id, imperdiet urna. Aliquam magna nunc, maximus quis eleifend et, scelerisque non dolor. Suspendisse augue augue, tempus");
+	}
 	while (i == 1)
 	{
 		i = get_next_line(fd, &line);
-		printf("rt = '%d'", i);
+		printf("rt = %d line = '%s'\n", i, line);
 	}
-	/*i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);
-	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);*/
 	close(fd);
+	printf("\ndiff = || %d || strlen(str) = || %d || ft_strlen(line) = || %d ||\n", ft_strcmp(str, line), ft_strlen(str), ft_strlen(line));
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:51:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 10:53:38 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 14:24:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@
 #include <fcntl.h>
 
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 1
+# define BUFF_SIZE 5
 
 int		get_next_line(const int fd, char **line);
 
