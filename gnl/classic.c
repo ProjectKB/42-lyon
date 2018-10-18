@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/17 19:26:54 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/17 13:40:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,54 +26,70 @@ char	*ft_return_rest(char *str)
 			return (NULL);
 		i++;
 	}
-	return (&str[i]);
+	if (*str == '\n')
+		return (&str[i + 1]);
+	return (&str[i + 1]);
 }
 
-char	*ft_transform_line(char *str, char *rest)
+char	*ft_get_line(char **line)
 {
-	int			i;
+	int	i;
 
-	i = ft_strlen(str) - ft_strlen(ft_strchr(str, '\n'));
-	str = ft_strsub(str, 0, i);
-	if (rest)
-		str = ft_strjoin(rest, str);
-	return (str);
-}
-
-char	*ft_read(const int fd, char **line)
-{
-	static int	rt = 0;
-	static char	*rest = NULL;
-	char		*copy_rest;
-	char		buf[BUFF_SIZE + 1];
-
-	if (!(*line = ft_strnew(0)))
-		return (NULL);
-	while (!(ft_strchr(buf, '\n')) && (rt = read(fd, buf, BUFF_SIZE)) > 0)
-	{
-		buf[rt] = '\0';
-		*line = ft_strjoin(*line, buf);
-	}
-	if (rt > 0)
-	{
-		copy_rest = rest;
-		rest = ft_return_rest(*line);
-		*line = ft_transform_line(*line, copy_rest);
-	}
+	i = ft_strlen(*line) - ft_strlen(ft_strchr(*line, '\n'));
+	*line = ft_strsub(*line, 0, i);
 	return (*line);
 }
 
-int	main(int argc, char **argv)
+int		ft_read_and_get_rt(const int fd, char **line, char *rest)
 {
-	int	fd;
-	int	i;
+	int		rt;
+	char	*buf;
+
+	if (!(buf = ft_strnew(BUFF_SIZE + 1)))
+		return (-1);
+	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[rt] = '\0';
+		*line = ft_strjoin(*line, buf);
+		if (ft_strchr(*line, '\n'))
+		{
+			if (rest)
+				*line = ft_strjoin(rest, *line);
+			break ;
+		}
+	}
+	return (rt);
+}
+
+int		get_next_line(const int fd, char **line)
+{
+	static char		*rest = NULL;
+	int				rt;
+
+	if (!(*line = ft_strnew(0)))
+		return (-1);
+	rt = ft_read_and_get_rt(fd, line, rest);
+	rest = ft_return_rest(*line);
+	*line = ft_get_line(line);
+	return (0);
+}
+
+int		main(int argc, char **argv)
+{
+	int		fd;
+	int		i;
 	char	*line;
 
 	fd = open(argv[1], O_RDONLY);
-	printf("%s", ft_read(fd, &line));
-	printf("%s", ft_read(fd, &line));
-	printf("%s", ft_read(fd, &line));
-	printf("%s", ft_read(fd, &line));
-	close(fd);
+	get_next_line(fd, &line);
+	printf("%s", line);
+	get_next_line(fd, &line);
+	printf("%s", line);
+	get_next_line(fd, &line);
+	printf("%s", line);
+	get_next_line(fd, &line);
+	printf("%s", line);
+	get_next_line(fd, &line);
+	printf("%s", line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 11:01:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 10:18:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,28 +75,21 @@ int		get_next_line(const int fd, char **line)
 	static char		*rest = NULL;
 	int				rt;
 
-	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)))
+	if (!(*line = ft_strnew(0)))
 		return (-1);
-	if (!rest)
-		if (!(rest = ft_strnew(0)))
-			return (-1);
 	rt = ft_read_and_get_rt(fd, line, rest);
-	if (rt == -1)
-		return (-1);
-	else if (rt > 0)
+	if (rt > 0)
 	{
 		//printf("|||A|||\n");
 		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		rest = ft_return_rest(*line);
-		//printf("|||||||\n");
-		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		*line = ft_get_line(*line, rest);
+		return (1);
 		//printf("|||||||\n");
 		//printf("rest = '%s' line = '%s'\n", rest, *line);
 		//printf("|||A|||\n\n");
-		return (1);
 	}
-	else if (!rt && ft_strlen(rest))
+	else if (rt == 0 && ft_strlen(rest))
 	{
 		//printf("|||B|||\n");
 		//printf("rest = '%s' line = '%s'\n", rest, *line);
@@ -110,7 +103,7 @@ int		get_next_line(const int fd, char **line)
 		//printf("|||B|||\n\n");
 		return (1);
 	}
-	else if (!rt && ft_strlen(*line))
+	else if (rt == 0 && ft_strlen(*line))
 		return (1);
 	return (0);
 }
@@ -121,13 +114,14 @@ int		main(int argc, char **argv)
 	int		i;
 	char	*line;
 
-	fd = open(argv[1], O_RDONLY);
 	i = 1;
+	fd = open(argv[1], O_RDONLY);
 	while (i == 1)
 	{
 		i = get_next_line(fd, &line);
-		printf("rt = '%d'", i);
+		printf("rt = '%d' line = '%s'\n", i, line);
 	}
+	close(fd);
 	/*i = get_next_line(fd, &line);
 	printf("line = '%s' rt = '%d'\n", line, i);
 	i = get_next_line(fd, &line);
@@ -145,7 +139,7 @@ int		main(int argc, char **argv)
 	i = get_next_line(fd, &line);
 	printf("line = '%s' rt = '%d'\n", line, i);
 	i = get_next_line(fd, &line);
-	printf("line = '%s' rt = '%d'\n", line, i);*/
-	close(fd);
+	printf("line = '%s' rt = '%d'\n", line, i);
+	//printf("line = '%s'\n", line);*/
 	return (0);
 }
