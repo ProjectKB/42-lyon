@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 14:59:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 14:25:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,7 @@ char	*ft_return_rest(char *str)
 char	*ft_get_line(char *to_transform, char *rest)
 {
 	int		i;
+	char	*tmp;
 
 	if (ft_strchr(to_transform, '\n'))
 	{
@@ -44,7 +45,9 @@ char	*ft_get_line(char *to_transform, char *rest)
 		to_transform = ft_strsub(to_transform, 0, i);
 		return (to_transform);
 	}
-	rest = ft_strjoin(to_transform, rest);
+	tmp = ft_strjoin(to_transform, rest);
+	free(rest);
+	rest = tmp;
 	ft_bzero(to_transform, ft_strlen(to_transform));
 	return (rest);
 }
@@ -53,44 +56,53 @@ int		ft_read_and_get_rt(const int fd, char **line, char *rest)
 {
 	int		rt;
 	char	*buf;
+	char	*tmp;
 
 	if (!(buf = ft_strnew(BUFF_SIZE + 1)))
-		return (-1);
+			return (-1);
 	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[rt] = '\0';
-		*line = ft_strjoin(*line, buf);
+		tmp = ft_strjoin(*line, buf);
+		free(*line);
+		*line = tmp;
 		if (ft_strchr(*line, '\n'))
 		{
 			if (rest)
-				*line = ft_strjoin(rest, *line);
+			{
+				tmp = ft_strjoin(rest, *line);
+				free(*line);
+				*line = tmp;
+			}
 			break ;
 		}
 	}
+	free(buf);
 	return (rt);
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char		*rest = NULL;
+	static char		*rest[256];
+	char			*tab[256];
 	int				rt;
 
-	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)) || (!rest &&
-				!(rest = ft_strnew(0))))
+	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)) || (!(rest[fd]) &&
+	!(rest[fd] = ft_strnew(0))))
 		return (-1);
-	rt = ft_read_and_get_rt(fd, line, rest);
+	tab[fd] = *line;
+	rt = ft_read_and_get_rt(fd, line, (rest[fd]));
 	if (rt == -1)
 		return (-1);
-	else if (rt > 0)
+	else if (rt > 0 && (rest[fd] = ft_return_rest(*line)))
 	{
-		rest = ft_return_rest(*line);
-		*line = ft_get_line(*line, rest);
+		*line = ft_get_line(*line, rest[fd]);
 		return (1);
 	}
-	else if (!rt && ft_strlen(rest))
+	else if (!rt && ft_strlen(rest[fd]))
 	{
-		*line = ft_get_line(rest, *line);
-		rest = ft_return_rest(rest);
+		*line = ft_get_line(rest[fd], *line);
+		rest[fd] = ft_return_rest(rest[fd]);
 		return (1);
 	}
 	else if (!rt && ft_strlen(*line))
@@ -101,26 +113,14 @@ int		get_next_line(const int fd, char **line)
 /*int		main(int argc, char **argv)
 {
 	int		fd;
-	int		i;
 	char	*line;
-	char	*str;
-	int		len = 50;
-
+	int i;
 
 	fd = open(argv[1], O_RDONLY);
 	i = 1;
-	str = (char*)malloc(1000 * 1000);
-	*str = '\0';
-	while (len--)
-	{
-		strcat(str, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in leo dignissim, gravida leo id, imperdiet urna. Aliquam magna nunc, maximus quis eleifend et, scelerisque non dolor. Suspendisse augue augue, tempus");
-	}
 	while (i == 1)
 	{
 		i = get_next_line(fd, &line);
-		printf("rt = %d line = '%s'\n", i, line);
 	}
 	close(fd);
-	printf("\ndiff = || %d || strlen(str) = || %d || ft_strlen(line) = || %d ||\n", ft_strcmp(str, line), ft_strlen(str), ft_strlen(line));
-	return (0);
 }*/
