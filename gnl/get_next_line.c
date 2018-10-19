@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 14:25:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 22:15:15 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,17 +55,15 @@ char	*ft_get_line(char *to_transform, char *rest)
 int		ft_read_and_get_rt(const int fd, char **line, char *rest)
 {
 	int		rt;
-	char	*buf;
+	char	buf[BUFF_SIZE + 1];
 	char	*tmp;
 
-	if (!(buf = ft_strnew(BUFF_SIZE + 1)))
-			return (-1);
 	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[rt] = '\0';
-		tmp = ft_strjoin(*line, buf);
-		free(*line);
-		*line = tmp;
+		tmp = *line;
+		*line = ft_strjoin(*line, buf);
+		free(tmp);
 		if (ft_strchr(*line, '\n'))
 		{
 			if (rest)
@@ -77,25 +75,22 @@ int		ft_read_and_get_rt(const int fd, char **line, char *rest)
 			break ;
 		}
 	}
-	free(buf);
 	return (rt);
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char		*rest[256];
-	char			*tab[256];
+	static char		*rest[65536];
 	int				rt;
 
 	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)) || (!(rest[fd]) &&
 	!(rest[fd] = ft_strnew(0))))
+			return (-1);
+	if ((rt = ft_read_and_get_rt(fd, line, (rest[fd]))) == -1)
 		return (-1);
-	tab[fd] = *line;
-	rt = ft_read_and_get_rt(fd, line, (rest[fd]));
-	if (rt == -1)
-		return (-1);
-	else if (rt > 0 && (rest[fd] = ft_return_rest(*line)))
+	else if (rt > 0)
 	{
+		rest[fd] = ft_return_rest(*line);
 		*line = ft_get_line(*line, rest[fd]);
 		return (1);
 	}
@@ -116,6 +111,7 @@ int		get_next_line(const int fd, char **line)
 	char	*line;
 	int i;
 
+	(void)argc;
 	fd = open(argv[1], O_RDONLY);
 	i = 1;
 	while (i == 1)
