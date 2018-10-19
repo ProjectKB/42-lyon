@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 22:15:15 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 22:40:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ char	*ft_get_line(char *to_transform, char *rest)
 		return (to_transform);
 	}
 	tmp = ft_strjoin(to_transform, rest);
-	free(rest);
+	ft_strdel(&rest);
 	rest = tmp;
 	ft_bzero(to_transform, ft_strlen(to_transform));
 	return (rest);
@@ -61,15 +61,15 @@ int		ft_read_and_get_rt(const int fd, char **line, char *rest)
 	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[rt] = '\0';
-		tmp = *line;
-		*line = ft_strjoin(*line, buf);
-		free(tmp);
+		tmp = ft_strjoin(*line, buf);
+		ft_strdel(line);
+		*line = tmp;
 		if (ft_strchr(*line, '\n'))
 		{
 			if (rest)
 			{
 				tmp = ft_strjoin(rest, *line);
-				free(*line);
+				ft_strdel(line);
 				*line = tmp;
 			}
 			break ;
@@ -117,6 +117,7 @@ int		get_next_line(const int fd, char **line)
 	while (i == 1)
 	{
 		i = get_next_line(fd, &line);
+		ft_strdel(&line);
 	}
 	close(fd);
 }*/
