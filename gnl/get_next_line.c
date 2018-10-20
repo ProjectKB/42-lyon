@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/10 12:53:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 22:40:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/20 15:08:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,8 +84,8 @@ int		get_next_line(const int fd, char **line)
 	int				rt;
 
 	if (fd < 0 || line == NULL || !(*line = ft_strnew(0)) || (!(rest[fd]) &&
-	!(rest[fd] = ft_strnew(0))))
-			return (-1);
+	!(rest[fd] = "")))
+		return (-1);
 	if ((rt = ft_read_and_get_rt(fd, line, (rest[fd]))) == -1)
 		return (-1);
 	else if (rt > 0)
