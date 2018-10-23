@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 17:48:48 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 14:47:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 #include <stdlib.h>
 
 char	*ft_strdup(const char *src)

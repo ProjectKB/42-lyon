@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 16:27:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/09 12:17:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:08:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_atoi(const char *str)
 {

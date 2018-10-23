@@ -6,10 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 16:39:55 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:05:47 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:27 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
+#include "./includes/libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

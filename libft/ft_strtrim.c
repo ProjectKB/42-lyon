@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 15:09:19 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 17:03:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:19:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 #include <stdlib.h>
 
 char	*ft_strtrim(char const *s)

@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 13:24:37 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 16:44:47 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int		ft_strequ(char const *s1, char const *s2)
 {

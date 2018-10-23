@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 16:53:43 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 17:19:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:17:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_isdigit(int c)
 {

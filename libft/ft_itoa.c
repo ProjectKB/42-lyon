@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 19:35:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:17:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 #include <stdlib.h>
 
 static int		ft_count_number(int n)

@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/08 19:17:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 19:18:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:19:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_strupcase(char *str)
 {

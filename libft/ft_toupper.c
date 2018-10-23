@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 17:24:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 20:02:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:16:37 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_toupper(int c)
 {

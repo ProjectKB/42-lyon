@@ -6,16 +6,14 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/03 12:49:27 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/09 13:03:40 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 17:06:09 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
-
-CFlAGS = -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror
 
 SRC = ./ft_lstiter.c \
 		./ft_putendl_fd.c \

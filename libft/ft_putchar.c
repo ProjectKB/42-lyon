@@ -6,13 +6,13 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/07 11:49:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 18:39:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_putchar(char c)
 {

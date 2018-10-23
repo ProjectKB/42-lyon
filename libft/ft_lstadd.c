@@ -6,12 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/07 13:48:47 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 19:57:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:17:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
