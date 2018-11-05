@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/30 16:45:13 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/01 11:34:15 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 17:19:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ static void	ft_stock_the_piece(char *piece, char ***tab)
 	int			j;
 
 
-	i = 0;
+	i = 1;
 	j = 0;
 	while (piece[i - 1] != '|')
 		i++;

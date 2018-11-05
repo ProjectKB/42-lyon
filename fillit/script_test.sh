@@ -56,17 +56,16 @@ printf "$GREEN invalid_bullshit$WHITE\n\t"
 printf "$GREEN invalid_mjalenqu$WHITE\n\t"
 ./fillit MAPS/invalid_mjalenqu
 printf "\t\033[1;33m ======CHECK_VALIDS======\n$WHITE\n"
-# printf "$GREEN valid_1$WHITE\n"
-# ./fillit MAPS/valid_1
-# printf "$GREEN valid_2$WHITE\n"
-# ./fillit MAPS/valid_2
-# printf "$GREEN valid_3$WHITE\n"
-# ./fillit MAPS/valid_3
-# printf "$GREEN valid_4$WHITE\n"
-# ./fillit MAPS/valid_4
+ printf "$GREEN valid_1$WHITE\n"
+ ./fillit MAPS/valid_1
+ printf "$GREEN valid_2$WHITE\n"
+ ./fillit MAPS/valid_2
+ printf "$GREEN valid_3$WHITE\n"
+ ./fillit MAPS/valid_3
+ printf "$GREEN valid_4$WHITE\n"
+ ./fillit MAPS/valid_4
 printf "$GREEN valid_5$WHITE\n"
 ./fillit MAPS/valid_5
 printf "$GREEN valid_6$WHITE\n"
 ./fillit MAPS/valid_6
 # printf "$GREEN long_test_1$WHITE\n"
-./fillit MAPS/long_test_1 | grep real
