@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/31 22:51:15 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 16:48:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 17:28:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,42 +87,23 @@ int 	ft_resolve(char ***canva, char ***tab, int count, int position)
 {
 	int y;
 	int x;
-	//int piece;
 	int size_canva;
-	count = 0;
-//	printf("\n\n%d pieces have been place. pos : %d\n", count, position);
-	static int nb_piece = 0;
 
 	size_canva = ft_strlen(*canva[0]);
-	y = position / size_canva;
-	x = position % size_canva;
-
 	if (!(*tab))
 		return (1);
-	//printf("START\n");
-	//printf("position A: %d\n", position);
 	while (position < size_canva * size_canva)
 	{
-//	printf("position B: %d\n", position);
 		y = position / size_canva;
-	//getchar();
-	//ft_cool_display(*canva);
-//	ft_putdbstr(*tab, '\n');
-	//ft_putendl("\n");
-	x = position % size_canva;
+		x = position % size_canva;
 		if (!ft_exceed_canva(*canva, y, x, *tab) && !ft_occupied(*canva, y, x, *tab))
 		{
-		//printf("position C : %d\n", position);
-		//	printf("PLACE THE PIECE BECAUSE IT CAN");
 			ft_piece_to_canva(canva, y, x, *tab);
-			if ((ft_resolve(canva, tab + 1, ++nb_piece, 0)))
+			if ((ft_resolve(canva, tab + 1, ++count, 0)))
 				return (1);
-		//	printf("lalahihou\n");
-			ft_clean_canva_bis(*canva, --nb_piece);
+			ft_clean_canva_bis(*canva, --count);
 		}
 		position++;
-	//	printf("position D : %d\n", position);
 	}
-//	printf("EOF CLEAN IN PROGRESS\n");
 	return (0);
 }

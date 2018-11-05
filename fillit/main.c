@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/29 14:28:09 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 17:02:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 17:27:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	tab = ft_stock_pieces(file, models, nb_pieces, tructab);
 	int size = 2;
 	canva = ft_create_canva(nb_pieces * 4, size);
-	while (!ft_resolve(&canva, tab, nb_pieces, 0))
+	while (!ft_resolve(&canva, tab, 0, 0))
 	{
 		ft_freedbtab((void*)canva);
 		canva = ft_create_canva(nb_pieces * 4, ++size);
