@@ -6,27 +6,20 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/31 15:17:37 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 11:36:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 15:15:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_create_canva(int nb, char ***tab)
+char	**ft_create_canva(int nb, int size)
 {
-	int		size;
 	char	**canva;
 	int		i;
 	int		j;
 
-	size = 2;
-	i = 0;
 	while (size * size < nb)
-		size++;
-	while ((*tab)[i])
-		i++;
-	if (nb / 4 == 1 && (ft_strlen(*tab[0]) == 4 || i == 4))
 		size++;
 	i = -1;
 	if (!(canva = ft_dbstrnew(size)))

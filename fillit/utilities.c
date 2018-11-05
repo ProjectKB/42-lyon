@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/30 12:50:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/01 08:10:39 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 15:22:06 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ int		ft_count_pieces(char *file)
 
 void	ft_error(void)
 {
-	ft_putstr("\033[0;31merror\n");
+	ft_putstr("error\n");
 	exit(1);
 }
 
@@ -45,10 +45,6 @@ void	ft_display_canva(char **canva)
 	{
 		while (canva[i][j])
 		{
-			if (canva[i][j] >= 'A' && canva[i][j] <= 'Z')
-				ft_putcolor("", 1, canva[i][j] - 'A' + 3);
-			else
-				ft_putstr("\033[1;30m");
 			ft_putchar(canva[i][j]);
 			j++;
 		}
@@ -56,7 +52,6 @@ void	ft_display_canva(char **canva)
 		ft_putchar('\n');
 		i++;
 	}
-	ft_putstr("\n\033[0;29m");
 }
 
 char	**ft_get_tetriminos(void)
@@ -65,7 +60,7 @@ char	**ft_get_tetriminos(void)
 
 	if (!(s = (char**)malloc(sizeof(*s) * 19)))
 		ft_error();
-	s[0] = ".##.##..|2x3";
+	s[0] = ".##.##.|2x3";
 	s[1] = "#...##...#|3x2";
 	s[2] = "##...##.|2x3";
 	s[3] = ".#..##..#|3x2";
@@ -75,7 +70,7 @@ char	**ft_get_tetriminos(void)
 	s[7] = "###..#..|2x3";
 	s[8] = ".#..##...#|3x2";
 	s[9] = "#...#...##|3x2";
-	s[10] = "###.#|2x3";
+	s[10] = "###.#.|2x3";
 	s[11] = "##...#...#|3x2";
 	s[12] = "..#.###|2x3";
 	s[13] = ".#...#..##|3x2";

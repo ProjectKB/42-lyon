@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/29 11:51:22 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/02 15:43:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 15:15:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ char	*ft_get_piece(const char *file, char *needle);
 /*
 ** CANVA:
 */
-char	**ft_create_canva(int nb, char ***tab);
+char	**ft_create_canva(int nb, int size);
 int		ft_piece_to_canva(char ***canva, int width, int height, char **piece);
 /*
 ** ALGORITHM:

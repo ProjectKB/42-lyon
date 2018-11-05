@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/29 14:28:09 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 13:45:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 15:16:09 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,62 +39,10 @@ int	main(int argc, char **argv)
 
 	ft_check_errors(file, models);
 	tab = ft_stock_pieces(file, models, nb_pieces, get_tab(nb_pieces));
-
-
-	canva = ft_create_canva(nb_pieces * 4, tab);
-
-///////////////////////////////////TEST/////////////////////////////////////////
-	// if (!(ft_exceed_canva(canva, 0, 0, *tab)))
-	// 	printf("piece exceed canva size\n");
-	// else if(ft_occupied(canva, 0, 0, *tab))
-	// 	printf("emplacement is occupied\n");
-	// else
-	// 	ft_piece_to_canva(&canva, 0, 0, *tab);
-    //
-	// tab++;
-	// if (!(ft_exceed_canva(canva, 4 , 4, *tab)))
-	// 	printf("piece exceed canva size\n");
-	// else if(ft_occupied(canva, 4, 4, *tab))
-	// 	printf("emplacement is occupied\n");
-	// else
-	// 	ft_piece_to_canva(&canva, 4, 4, *tab);
-    //
-	// tab++;
-	// if (!(ft_exceed_canva(canva, 0, 0, *tab)))
-	// 	printf("piece exceed canva size\n");
-	// else if(ft_occupied(canva, 0, 0, *tab))
-	// 	printf("emplacement is occupied\n");
-	// else
-	// 	ft_piece_to_canva(&canva, 0, 0, *tab);
-    //
-	// tab++;
-	// if (!(ft_exceed_canva(canva, 6, 1, *tab)))
-	// 	printf("piece exceed canva size\n");
-	// else if(ft_occupied(canva, 6, 1, *tab))
-	// 	printf("emplacement is occupied\n");
-	// else
-	// 	ft_piece_to_canva(&canva, 6, 1, *tab);
-    //
-	//  if (!ft_clean_canva(&canva, 6, 1, *tab))
-	//  	printf("ft_clean_canva: nothing to clean\n");
-	//  else
-	//  	printf("ft_clean_canva: clean ok\n");
-
-
-	ft_resolve(&canva, tab, nb_pieces, 0);
-	
-	/*ft_piece_to_canva(&canva, 0, 0, *tab++);
-	ft_cool_display(canva);
-	ft_piece_to_canva(&canva, 1, 2, *tab++);
-	ft_cool_display(canva);
-	ft_piece_to_canva(&canva, 2, 0, *tab++);
-	ft_cool_display(canva);
-	if (!ft_occupied(canva, 0, 2, *tab))
-	{
-		ft_piece_to_canva(&canva, 0, 2, *tab);
-		ft_putstr("FUCK\n");
-	}*/
-	ft_cool_display(canva);
+	int size = 2;
+	canva = ft_create_canva(nb_pieces * 4, size);
+	while (!ft_resolve(&canva, tab, nb_pieces, 0))
+		canva = ft_create_canva(nb_pieces * 4, ++size);
 	
 	ft_display_canva(canva);
 ///////////////////////////////////////////////////////////////////////////////
