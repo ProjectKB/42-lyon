@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/30 12:50:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 15:22:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 20:59:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,4 +80,29 @@ char	**ft_get_tetriminos(void)
 	s[17] = "#...#...#...#|4x1";
 	s[18] = "####|1x4";
 	return (s);
+}
+
+t_init	*ft_init_vars(const int fd)
+{
+	t_init	*vars;
+
+	if (!(vars = (t_init*)malloc(sizeof(*vars))))
+		ft_error();
+	vars->file = ft_read_file(fd);
+	vars->nb_pieces = ft_count_pieces(vars->file);
+	vars->models = ft_get_tetriminos();
+	vars->init_tab = get_tab(vars->nb_pieces);
+	vars->canva_side_min = 2;
+	vars->canva = ft_create_canva(vars->nb_pieces * 4, vars->canva_side_min);
+	return (vars);
+}
+
+void	ft_global_free(t_init *vars, char ***tab)
+{
+	free(vars->models);
+	ft_freedbtab((void*)vars->canva);
+	while (*tab)
+		ft_freedbtab((void*)*tab++);
+	free(vars->init_tab);
+	free(vars);
 }

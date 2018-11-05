@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/29 14:28:09 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 17:27:49 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 21:21:14 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,47 +16,45 @@
 int	main(int argc, char **argv)
 {
 	int		fd;
-	char	**models;
-	char	*file;
-	int		i;
-	int		nb_pieces;
 	char	***tab;
-	char	**canva;
+	t_init	*vars;
 
-	i = 0;
 	if (argc != 2)
 	{
 		ft_putendl("usage: ./fillit tetriminos_list");
 		return (0);
 	}
-
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error();
-	file = ft_read_file(fd);
-
-	nb_pieces = ft_count_pieces(file);
-	models = ft_get_tetriminos();
-
-	ft_check_errors(file, models);
-	char ***tructab = get_tab(nb_pieces);
-	tab = ft_stock_pieces(file, models, nb_pieces, tructab);
-	int size = 2;
-	canva = ft_create_canva(nb_pieces * 4, size);
-	while (!ft_resolve(&canva, tab, 0, 0))
+	vars = ft_init_vars(fd);
+	ft_check_errors(vars->file, vars->models);
+	tab = ft_stock_pieces(vars->file, vars->models, vars->nb_pieces, \
+															vars->init_tab);
+	while (!ft_resolve(&vars->canva, tab, 0, 0))
 	{
-		ft_freedbtab((void*)canva);
-		canva = ft_create_canva(nb_pieces * 4, ++size);
+		ft_freedbtab((void*)vars->canva);
+		vars->canva = ft_create_canva(vars->nb_pieces * 4, \
+													++vars->canva_side_min);
 	}
-	
-	ft_display_canva(canva);
-///////////////////////////////////////////////////////////////////////////////
-	
-
-	free(models);
-	ft_freedbtab((void*)canva);
-	while (*tab != NULL)
-		ft_freedbtab((void*)*tab++);
-	free(tructab);
-
+	ft_display_canva(vars->canva);
+	ft_global_free(vars, tab);
+	close(fd);
 	return (0);
 }
+
+/*
+**--> BONJOUR BONJOUR <--
+**
+**1. Alors en gros j'ai cree une structure pour mettre les variables du main,
+**j'aurais bien voulu y mettre ***tab aussi mais le programme bug avec,
+**je n'ai pas reussi a comprendre pourquoi.
+**
+**structure -> t_init
+**fonction d'initialisation -> ft_init_vars
+**
+**2. Pour gagner les quelques lignes qu'il manquait j'ai fait une fonction
+**ft_global_free qui nous libere tout ce qui restait a liberer.
+**
+**3. Norminette OK (sauf un fichier a 7 fonctions, je me suis dis qu'on
+**redecouperai ensemble.
+*/

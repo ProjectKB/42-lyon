@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/31 22:51:15 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 17:28:49 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 21:14:15 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ int		ft_exceed_canva(char **canva, int y, int x, char **piece)
 	high = 0;
 	len = ft_strlen(piece[0]);
 	while (piece[high])
-			high++;
+		high++;
 	while (canva[canva_h])
 		canva_h++;
 	if ((canva_h - y < high) || (ft_strlen(canva[0]) - x < len))
@@ -83,11 +83,11 @@ void	ft_clean_canva_bis(char **canva, int letter_hint)
 	}
 }
 
-int 	ft_resolve(char ***canva, char ***tab, int count, int position)
+int		ft_resolve(char ***canva, char ***tab, int count, int position)
 {
-	int y;
-	int x;
-	int size_canva;
+	int		y;
+	int		x;
+	int		size_canva;
 
 	size_canva = ft_strlen(*canva[0]);
 	if (!(*tab))
@@ -96,7 +96,8 @@ int 	ft_resolve(char ***canva, char ***tab, int count, int position)
 	{
 		y = position / size_canva;
 		x = position % size_canva;
-		if (!ft_exceed_canva(*canva, y, x, *tab) && !ft_occupied(*canva, y, x, *tab))
+		if (!ft_exceed_canva(*canva, y, x, *tab) && \
+											!ft_occupied(*canva, y, x, *tab))
 		{
 			ft_piece_to_canva(canva, y, x, *tab);
 			if ((ft_resolve(canva, tab + 1, ++count, 0)))

@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/31 21:41:40 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 13:38:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/05 21:16:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,9 +15,8 @@
 
 int	ft_piece_to_canva(char ***canva, int y, int x, char **piece)
 {
-
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
