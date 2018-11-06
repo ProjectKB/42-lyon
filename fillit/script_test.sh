@@ -2,7 +2,7 @@ GREEN='\033[0;32m'
 WHITE='\033[0;29m'
 ORANGE='\033[1;33m'
 
-make
+make re GRAPHIC=yes
 
 	printf "\t\033[1;33m ======CHECK_ERRORS======\n$WHITE\n"
 
@@ -68,4 +68,3 @@ printf "$GREEN valid_5$WHITE\n"
 ./fillit MAPS/valid_5
 printf "$GREEN valid_6$WHITE\n"
 ./fillit MAPS/valid_6
-# printf "$GREEN long_test_1$WHITE\n"

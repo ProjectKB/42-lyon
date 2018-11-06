@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_check_char.c                                  .::    .:/ .      .::   */
+/*   ft_getchar.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/30 10:55:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/06 15:45:43 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/06 14:02:19 by rcepre       #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/06 18:43:06 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_check_char(const char *str, char c)
+char	ft_getchar(void)
 {
-	int	count;
+	char	c;
 
-	count = 0;
-	while (*str)
-		if (*str++ == c)
-			count++;
-	return (count);
+	read(0, &c, 1);
+	return (c);
 }

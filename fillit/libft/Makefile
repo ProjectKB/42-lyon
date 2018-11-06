@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/11/05 14:53:19 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/06 17:14:02 by rcepre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -84,8 +84,9 @@ SRC = 	ft_atoi.c\
 		ft_putdbstr.c \
 		ft_dbstrnew.c \
 		ft_strfsub.c \
+		ft_getchar.c \
 
-HEADER_PATH = .
+HEADER = ./libft.h
 
 all: $(NAME)
 
@@ -100,18 +101,18 @@ OBJECT = $(SRC:.c=.o)
 $(NAME): $(OBJECT)
 	@ar ruc $(NAME) $(OBJECT)
 	@ranlib $(NAME)
-	@echo $(COMPILING)
+#	@echo $(COMPILING)
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $(SRC) -I $(HEADER_PATH)
+%.o: %.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $(SRC) -I $<
 
 clean:
 	@rm -rf $(OBJECT)
-#	@echo $(RM_OBJ)
+	@echo $(RM_OBJ)
 
 fclean: clean
 	@rm -rf $(NAME)
-#	@echo $(RM_LIB)
+	@echo $(RM_LIB)
 
 re: fclean all
 

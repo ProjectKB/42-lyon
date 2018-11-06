@@ -5,40 +5,44 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/11/05 14:58:50 by loiberti    ###    #+. /#+    ###.fr      #
+#    Created: 2018/11/06 15:19:15 by rcepre            #+#    #+#              #
+#    Updated: 2018/11/06 19:25:35 by rcepre      ###    #+. /#+    ###.fr      #
 #                                                                              #
-# **************************************************************************** #
 # **************************************************************************** #
 
 NAME = fillit
 
+GRAPHIC = no
+
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror -g 
+ifeq ($(GRAPHIC), yes)
+	CFLAGS= -Wall -Wextra -Werror -DGRAPHIC=1
+else ifeq ($(GRAPHIC), step)
+	CFLAGS= -Wall -Wextra -Werror -DGRAPHIC=2
+else
+	CFLAGS= -Wall -Wextra -Werror
+endif
 
-SRC = ft_check_errors.c\
-	ft_check_global.c\
-	ft_check_tetriminos.c\
-	ft_create_canva.c\
-	ft_get_piece.c\
-	ft_piece_to_canva.c\
-	ft_read_file.c\
-	ft_resolve.c\
-	ft_stock_pieces.c\
-	debug_tools.c\
+SRC = check_errors.c\
+	create_canva.c\
+	get_piece.c\
+	piece_to_canva.c\
+	read_file.c\
+	resolve.c\
+	stock_pieces.c\
+	dynamic_display.c\
 	main.c\
 	utilities.c\
+	display.c\
 
-
-HEADER_PATH = .
+HEADER = ./fillit.h
 
 OBJECT = $(SRC:.c=.o)
 
 all: $(NAME)
 
-
-LIBFT_PATH = ./libft/.
+LIBFT_PATH = ./libft
 
 #TEXT
 
@@ -46,26 +50,25 @@ LIBFT_PATH = ./libft/.
 		RM_LIB = "\t\033[1;35mrm libft.a\t\t\033[1;32m[OK]\033[1m"
 		RM_EXEC = "\t\033[1;35mrm fillit\t\t\033[1;32m[OK]\033[1m"
 		COMPILING = "\t\033[1;34mfillit compilation\t\033[1;32m[OK]\033[1m"
+		USAGE = "\033[0;29m\tFor a colored static display, use make [...] GRAPHIC=yes\n\
+		\tFor a step by step animation of the algorithm, use make [...] GRAPHIC=step\n"
 
-$(NAME): $(OBJECT)
-	@(cd $(LIBFT_PATH) && $(MAKE))
-	@$(CC) $(CFLAGS)  -L $(LIBFT_PATH) -lft  -o $(NAME)  $?
-	@echo $(COMPILING)
+$(NAME): $(OBJECT) $(HEADER)
+	@(cd $(LIBFT_PATH) && make) > /dev/null
+	@$(CC) $(CFLAGS) $(OBJECT) -I $< -L $(LIBFT_PATH) -lft -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $(SRC) -I $(HEADER_PATH)
+	@$(CC) -c $(CFLAGS) -I $(HEADER) $?
 
 clean:
-	@(cd $(LIBFT_PATH) && $(MAKE) $@)
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
 	@rm -rf $(OBJECT)
-	@echo $(RM_OBJ)
 
 fclean: clean
-	@(cd $(LIBFT_PATH) && $(MAKE) $@)
-	@rm -fr $(NAME)
-	@echo $(RM_EXEC)
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
+	@rm -rf $(NAME)
 
 re: fclean all
-	@(cd $(LIBFT_PATH) && $(MAKE) $@)
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
 
 .PHONY: clean fclean

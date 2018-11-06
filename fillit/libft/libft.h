@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/01 11:16:42 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/06 18:43:35 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,6 +99,7 @@ int					ft_check_char(const char *str, char c);
 
 void				ft_freedbtab(void **tab);
 void				ft_putdbstr(char **dbstr, char c);
-char 				**ft_dbstrnew(int size);
+char				**ft_dbstrnew(int size);
+char				ft_getchar();
 
 #endif

@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_check_char.c                                  .::    .:/ .      .::   */
+/*   piece_to_canva.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/30 10:55:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/06 15:45:43 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/31 21:41:40 by rcepre       #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/06 15:55:40 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-int	ft_check_char(const char *str, char c)
+int		piece_to_canva(char ***canva, int y, int x, char **piece)
 {
-	int	count;
+	int	i;
+	int	j;
 
-	count = 0;
-	while (*str)
-		if (*str++ == c)
-			count++;
-	return (count);
+	i = 0;
+	while (piece[i] != NULL)
+	{
+		j = 0;
+		while (piece[i][j])
+		{
+			if ((*canva)[y + i][x + j] == '.')
+				(*canva)[y + i][x + j] = piece[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

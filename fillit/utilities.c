@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/30 12:50:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/05 20:59:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/06 16:50:42 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,91 +18,65 @@ char	***get_tab(int size)
 	char	***tab;
 
 	if (!(tab = (char***)malloc(sizeof(char**) * (size + 1))))
-		ft_error();
+		display_error();
 	tab[size] = NULL;
 	return (tab);
 }
 
-int		ft_count_pieces(char *file)
+int		count_pieces(char *file)
 {
 	return ((ft_strlen(file + 1) / 21) + 1);
 }
 
-void	ft_error(void)
+char	**get_tetriminos(void)
 {
-	ft_putstr("error\n");
-	exit(1);
+	char	**models;
+
+	if (!(models = (char**)malloc(sizeof(*models) * 19)))
+		display_error();
+	models[0] = ".##.##.|2x3";
+	models[1] = "#...##...#|3x2";
+	models[2] = "##...##|2x3";
+	models[3] = ".#..##..#|3x2";
+	models[4] = "##..##|2x2";
+	models[5] = ".#..###.|2x3";
+	models[6] = "#...##..#|3x2";
+	models[7] = "###..#..|2x3";
+	models[8] = ".#..##...#|3x2";
+	models[9] = "#...#...##|3x2";
+	models[10] = "###.#.|2x3";
+	models[11] = "##...#...#|3x2";
+	models[12] = "..#.###|2x3";
+	models[13] = ".#...#..##|3x2";
+	models[14] = "###...#|2x3";
+	models[15] = "##..#...#|3x1";
+	models[16] = "#...###|2x3";
+	models[17] = "#...#...#...#|4x1";
+	models[18] = "####|1x4";
+	return (models);
 }
 
-void	ft_display_canva(char **canva)
+t_init	*init_vars(const int fd)
 {
-	int i;
-	int j;
+	t_init	*data;
 
-	i = 0;
-	j = 0;
-	while (canva[i] != NULL)
-	{
-		while (canva[i][j])
-		{
-			ft_putchar(canva[i][j]);
-			j++;
-		}
-		j = 0;
-		ft_putchar('\n');
-		i++;
-	}
+	if (!(data = (t_init*)malloc(sizeof(*data))))
+		display_error();
+	data->file = read_file(fd);
+	data->nb_pieces = count_pieces(data->file);
+	data->models = get_tetriminos();
+	data->init_tab = get_tab(data->nb_pieces);
+	data->canva_side_min = 2;
+	data->canva = create_canva(data->nb_pieces * 4, data->canva_side_min);
+	return (data);
 }
 
-char	**ft_get_tetriminos(void)
+void	global_free(t_init *data, char ***tab)
 {
-	char	**s;
-
-	if (!(s = (char**)malloc(sizeof(*s) * 19)))
-		ft_error();
-	s[0] = ".##.##.|2x3";
-	s[1] = "#...##...#|3x2";
-	s[2] = "##...##.|2x3";
-	s[3] = ".#..##..#|3x2";
-	s[4] = "##..##|2x2";
-	s[5] = ".#..###.|2x3";
-	s[6] = "#...##..#|3x2";
-	s[7] = "###..#..|2x3";
-	s[8] = ".#..##...#|3x2";
-	s[9] = "#...#...##|3x2";
-	s[10] = "###.#.|2x3";
-	s[11] = "##...#...#|3x2";
-	s[12] = "..#.###|2x3";
-	s[13] = ".#...#..##|3x2";
-	s[14] = "###...#|2x3";
-	s[15] = "##..#...#|3x1";
-	s[16] = "#...###|2x3";
-	s[17] = "#...#...#...#|4x1";
-	s[18] = "####|1x4";
-	return (s);
-}
-
-t_init	*ft_init_vars(const int fd)
-{
-	t_init	*vars;
-
-	if (!(vars = (t_init*)malloc(sizeof(*vars))))
-		ft_error();
-	vars->file = ft_read_file(fd);
-	vars->nb_pieces = ft_count_pieces(vars->file);
-	vars->models = ft_get_tetriminos();
-	vars->init_tab = get_tab(vars->nb_pieces);
-	vars->canva_side_min = 2;
-	vars->canva = ft_create_canva(vars->nb_pieces * 4, vars->canva_side_min);
-	return (vars);
-}
-
-void	ft_global_free(t_init *vars, char ***tab)
-{
-	free(vars->models);
-	ft_freedbtab((void*)vars->canva);
+	free(data->models);
+	ft_freedbtab((void*)data->canva);
 	while (*tab)
 		ft_freedbtab((void*)*tab++);
-	free(vars->init_tab);
-	free(vars);
+	free(data->init_tab);
+	free(data);
 }
