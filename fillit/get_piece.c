@@ -21,7 +21,7 @@ char		*get_piece(const char *file, char *needle)
 
 	i = 0;
 	if (!file || !needle)
-		display_error();
+		fillit_error();
 	if (ft_check_char(file, '#') != 4)
 		return (0);
 	while (file[i])

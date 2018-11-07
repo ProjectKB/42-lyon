@@ -44,7 +44,7 @@ static void	piece_to_tab(char *piece, char ***tab)
 	high = piece[i] - '0';
 	len = piece[i + 2] - '0';
 	if (!(*tab = ft_dbstrnew(high)))
-		display_error();
+		fillit_error();
 	while (j < high)
 	{
 		(*tab)[j] = clean_piece(ft_strsub(piece, 0, len), letter);

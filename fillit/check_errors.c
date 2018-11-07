@@ -41,7 +41,7 @@ void			check_global(char *file)
 		while (file[i + 1] && nl != 4)
 		{
 			if (!is_valid(file, length, i))
-				display_error();
+				fillit_error();
 			if (length == 4 && file[i++] == '\n')
 			{
 				nl++;
@@ -53,7 +53,7 @@ void			check_global(char *file)
 		nl = 0;
 	}
 	if (i > 548 || (i + 1) % 21)
-		display_error();
+		fillit_error();
 }
 
 /*
@@ -72,7 +72,7 @@ int				check_tetriminos(char *file, char **models)
 	{
 		found = 0;
 		if (!(tmp = ft_strsub(file, 0, 20)))
-			display_error();
+			fillit_error();
 		while (i < 19)
 			if (get_piece(tmp, models[i++]))
 				found = 1;
@@ -81,7 +81,7 @@ int				check_tetriminos(char *file, char **models)
 		l = ft_strlen(file);
 		file = ft_strfsub(&file, l < 21 ? 20 : 21, l < 21 ? l - 20 : l - 21);
 		if (!found)
-			display_error();
+			fillit_error();
 		free(tmp);
 	}
 	free(file);
@@ -93,7 +93,7 @@ void			check_errors(char *file, char **models)
 	char	*tmp;
 
 	if (!(tmp = ft_strdup(file)))
-		display_error();
+		fillit_error();
 	check_global(file);
 	check_tetriminos(tmp, models);
 }

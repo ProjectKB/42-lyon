@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/11/06 17:14:02 by rcepre           ###   ########.fr        #
+#    Updated: 2018/11/07 08:15:27 by rcepre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -101,7 +101,7 @@ OBJECT = $(SRC:.c=.o)
 $(NAME): $(OBJECT)
 	@ar ruc $(NAME) $(OBJECT)
 	@ranlib $(NAME)
-#	@echo $(COMPILING)
+	@echo $(COMPILING)
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $(SRC) -I $<

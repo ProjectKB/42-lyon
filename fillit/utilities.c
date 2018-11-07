@@ -18,7 +18,7 @@ char	***get_tab(int size)
 	char	***tab;
 
 	if (!(tab = (char***)malloc(sizeof(char**) * (size + 1))))
-		display_error();
+		fillit_error();
 	tab[size] = NULL;
 	return (tab);
 }
@@ -33,7 +33,7 @@ char	**get_tetriminos(void)
 	char	**models;
 
 	if (!(models = (char**)malloc(sizeof(*models) * 19)))
-		display_error();
+		fillit_error();
 	models[0] = ".##.##.|2x3";
 	models[1] = "#...##...#|3x2";
 	models[2] = "##...##|2x3";
@@ -61,7 +61,7 @@ t_init	*init_vars(const int fd)
 	t_init	*data;
 
 	if (!(data = (t_init*)malloc(sizeof(*data))))
-		display_error();
+		fillit_error();
 	data->file = read_file(fd);
 	data->nb_pieces = count_pieces(data->file);
 	data->models = get_tetriminos();

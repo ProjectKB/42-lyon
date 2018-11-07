@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/29 11:51:22 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/06 18:42:18 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 12:15:54 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,20 +70,21 @@ int				piece_to_canva(char ***canva, int width, int height, \
 void			fillit(t_init *data, char ***tab);
 
 /*
-** UTILITIES & DISPLAY:
+** UTILITIES:
 */
+void			fillit_error(void);
 char			**get_tetriminos(void);
-void			display_error(void);
 int				count_pieces(char *file);
 char			***get_tab(int size);
-void			classic_display(char **canva);
 t_init			*init_vars(const int fd);
 void			global_free(t_init *data, char ***tab);
 
 /*
-** !!!!!!!!!!!!!!!!!!!!DEEBUG!!!!!!!!!!!!!!!!!!!!!!!!!
+** DISPLAY:
 */
+void			classic_display(char **canva);
 void			display(char ***tab);
 void			dynamic_display(char **canva);
+void			crazy_display(char **canva);
 
 #endif

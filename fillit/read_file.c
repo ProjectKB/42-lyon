@@ -21,14 +21,14 @@ char	*read_file(const int fd)
 	int		rt;
 
 	if (!(buf = ft_strnew(BUFF_SIZE + 1)))
-		display_error();
+		fillit_error();
 	if (!(file = ft_strnew(546)))
-		display_error();
+		fillit_error();
 	while ((rt = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[rt] = '\0';
 		if (!(tmp = ft_strjoin(file, buf)))
-			display_error();
+			fillit_error();
 		ft_strdel(&file);
 		file = tmp;
 	}

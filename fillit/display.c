@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/06 15:24:40 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/06 18:39:44 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 07:56:37 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,7 @@ void	display_usage(int argc)
 	}
 }
 
-void	display_error(void)
+void	fillit_error(void)
 {
 	ft_putstr("error\n");
 	exit(1);
