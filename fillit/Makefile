@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/07 12:11:15 by rcepre      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/07 16:14:27 by rcepre      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -61,7 +61,8 @@ LIBFT_PATH = ./libft
 	LINK = "\t$(PINK)fillit\t\t\t$(WHITE)"
 	MAKE_LIB =  "$(YELLOW)libft:\t$(RED)make $(YELLOW)libft\t\t$(WHITE)"
 	USAGE = "\033[0;29m\tFor a colored static display, use make [...] GRAPHIC=yes\n\
-	\tFor a step by step animation of the algorithm, use make [...] GRAPHIC=step\n"
+	\tFor a step by step animation of the algorithm, use make [...] GRAPHIC=step\n\
+	\tFor an awesome,  tasty and crispy display, use  make [...] GRAPHIC=crazy\n"
 
 ####################################RULES######################################
 
@@ -72,6 +73,7 @@ $(NAME): $(OBJECT) $(HEADER)
 	@printf $(LINK)
 	@$(CC) $(CFLAGS) $(OBJECT) -I $< -L $(LIBFT_PATH) -lft -o $(NAME)
 	@printf "$(OK)"
+	@printf $(USAGE)
 %.o: %.c
 	@printf "\033[0;36m>>>\tCompiling: $? ..."
 	@$(CC) -c $(CFLAGS) -I $(HEADER) $?

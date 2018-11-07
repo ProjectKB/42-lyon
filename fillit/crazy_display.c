@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/07 12:10:44 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 12:17:29 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 17:18:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,7 @@ static void		return_unicode_one(int code)
 	if (!(unicode = (char**)malloc(sizeof(*unicode) * 13)))
 		fillit_error();
 	unicode[0] = "\u26FA  ";
-	unicode[1] = "\u26A1  ";
+	unicode[1] = "\u2618  ";
 	unicode[2] = "\u269C  ";
 	unicode[3] = "\u2699  ";
 	unicode[4] = "\u2614  ";
@@ -107,7 +107,7 @@ static void		return_unicode_two(int code)
 	unicode[23] = "\u26F0  ";
 	unicode[24] = "\u26F1  ";
 	unicode[25] = "\u26B1  ";
-	unicode[26] = "\u2618  ";
+	unicode[26] = "   ";
 	while (code != i)
 		i++;
 	ft_putstr(unicode[i]);
