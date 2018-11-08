@@ -3,7 +3,13 @@ WHITE='\033[0;29m'
 ORANGE='\033[1;33m'
 
 echo "Fillit Compilation ....\n"
-make re GRAPHIC=yes
+echo "For a classic display $GREEN [press enter] $WHITE"
+echo "For a color static display $GREEN [tape yes] $WHITE"
+echo "For a step by step animation of the algorithm $GREEN [tape step] $WHITE"
+echo "For an awesome, tasty and crispy display $GREEN [tape crazy] $WHITE\n"
+echo "Choose your type of display : "
+read typeof_display
+make re GRAPHIC=$typeof_display
 
 	printf "\n\t\033[1;33m ======CHECK_ERRORS======\n$WHITE\n"
 
