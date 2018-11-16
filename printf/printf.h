@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/15 21:12:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 21:17:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,46 +23,53 @@
 # include "libft/libft.h"
 
 typedef enum {
+	WOAW,
 	CHAR,
 	INT,
 	DOUBLE,
-	SIGNED_CHAR,
-	UNSIGNED_CHAR,
-	UNSIGNED_INT,
-	SHORT_INT,
+	SIGNED_UNSIGNED_CHAR,
+	SHORT_UNSIGNED_SHORT_INT,
 	LONG_DOUBLE,
-	LONG_INT,
-	LONG_LONG_INT,
+	LONG_UNSIGNED_LONG_INT,
+	LONG_LONG_UNSIGNED_LONG_LONG_INT,
+	L_N_OR_F,
 	P_CHAR,
 	P_VOID
-} e_LM;
+} e_lm;
 
 typedef enum {
 	c,
 	s,
 	p,
-	d,
-	i,
+	di,
 	o,
 	u,
 	x,
 	X,
 	f
-} e_CI;
+} e_ci;
 
 typedef struct s_arg {
 	struct s_arg	*next;
 	char	*flag;
-	int		width;
+	int		field;
 	int		precision;
-	e_LM	length_modifier;
-	e_CI	conversion_indicator;
-	void	*content;
-	int		size_content;
+	e_lm	length_modifier;
+	e_ci	conversion_indicator;
+	char	*content;
+	int		len_print;
 } t_arg;
 
+/*
+** TOOLS
+*/
+char	*charjoin(char *str, char c);
+
+/*
+** LISTS TOOLS
+*/
 t_arg	*create_elem(void);
-void	push_back(t_arg **param);
+void	display_list_content(t_arg *list);
 
 t_arg	*parse_string(const char *format);
 
