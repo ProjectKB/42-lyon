@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 22:56:15 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 23:09:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,7 +89,7 @@ void	stock_precision(int *precision, char *format, int *i)
 			*i += 1;
 		}
 	}
-}
+}*/
 
 void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
 {
@@ -97,20 +97,28 @@ void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
 	{
 		*length_modifier = SIGNED_UNSIGNED_CHAR;
 		*i += 2;
-		return ;
 	}
 	else if (format[*i] == 'l' && format[*i + 1] == 'l')
 	{
 		*length_modifier = LONG_LONG_UNSIGNED_LONG_LONG_INT;
 		*i += 2;
-		return ;
 	}
 	else if (format[*i] == 'h')
+	{
 		*length_modifier = SHORT_UNSIGNED_SHORT_INT;
+		*i += 1;
+	}
+	else if (format[*i] == 'L')
+	{
+		*length_modifier = LONG_DOUBLE;
+		*i += 1;
+	}
 	else if (format[*i] == 'l')
+	{
 		*length_modifier = L_N_OR_F;
-	*i += 1;
-}*/
+		*i += 1;
+	}
+}
 
 void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i)
 {
@@ -141,7 +149,7 @@ int	stock_arg_description(t_arg *param, char *format, int *i)
 	//stock_flag(param->flag, format, i);
 	//stock_field(&param->field, format, i);
 	//stock_precision(&param->precision, format, i);
-	//stock_length_modifier(&param->length_modifier, format, i);
+	stock_length_modifier(&param->length_modifier, format, i);
 	stock_conversion_indicator(&param->conversion_indicator, format, i);
 	if (param->conversion_indicator == woaw)
 		return (1);
@@ -185,7 +193,7 @@ int main()
 {
 	t_arg *test;
 
-	test = parse_string("%d%%%d%%%%%d%%%d");
+	test = parse_string("bonjour%lldbon%hcjour");
 	display_list_content(test);
 	return (0);
 }
