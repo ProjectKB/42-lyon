@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 23:09:48 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 23:57:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ int	stock_ordinary_char(char **str, char *format, int *i)
 	return (1);
 }
 
-/*void	stock_flag(char *flag, char *format, int *i)
+void	stock_flag(char **flag, char *format, int *i)
 {
 	int	k;
 	int count;
@@ -56,12 +56,14 @@ int	stock_ordinary_char(char **str, char *format, int *i)
 		format[count] == '-' || format[count] == '+' || format[count] == ' ')
 		count++;
 	count -= *i;
-	if (!(flag = (char*)malloc(sizeof(*flag) * count + 1)))
+	ft_putnbr(count);
+	if (!(*flag = (char*)malloc(sizeof(*flag) * (count + 1))))
 		return ;
+	ft_putstr("coucou\n");
 	while (format[*i] == '#' || format[*i] == '0' || format[*i] == '-' || \
 										format[*i] == '+' || format[*i] == ' ')
 	{
-		flag[k] = format[*i];
+		*(flag)[k] = format[*i];
 		*i += 1;
 		k++;
 	}
@@ -81,15 +83,13 @@ void	stock_precision(int *precision, char *format, int *i)
 	if (format[*i] == '.')
 	{
 		*i += 1;
-		while (!(format[*i] >= '0' && format[*i] <= '9'))
-			*i += 1;
 		while (format[*i] >= '0' && format[*i] <= '9')
 		{
 			*precision = *precision * 10 + format[*i] - '0';
 			*i += 1;
 		}
 	}
-}*/
+}
 
 void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
 {
@@ -146,9 +146,9 @@ void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i
 
 int	stock_arg_description(t_arg *param, char *format, int *i)
 {
-	//stock_flag(param->flag, format, i);
-	//stock_field(&param->field, format, i);
-	//stock_precision(&param->precision, format, i);
+	stock_flag(&param->flag, format, i);
+	stock_field(&param->field, format, i);
+	stock_precision(&param->precision, format, i);
 	stock_length_modifier(&param->length_modifier, format, i);
 	stock_conversion_indicator(&param->conversion_indicator, format, i);
 	if (param->conversion_indicator == woaw)
@@ -173,7 +173,7 @@ t_arg	*parse_string(const char *format)
 		{
 			param->next = create_elem();
 			param = param->next;
-			printf("char : %c || i : %d\n", format[i], i);
+			//printf("char : %c || i : %d\n", format[i], i);
 		}
 		if (format[i])
 		{
@@ -193,7 +193,7 @@ int main()
 {
 	t_arg *test;
 
-	test = parse_string("bonjour%lldbon%hcjour");
+	test = parse_string("%%%+-s%%bonjour%85.lldbon%.1809hcjour%%%%");
 	display_list_content(test);
 	return (0);
 }
