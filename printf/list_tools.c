@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 21:16:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 22:25:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,20 +20,29 @@ t_arg	*create_elem(void)
 	if (!(param = (t_arg*)malloc(sizeof(*param))))
 		return (NULL);
 	param->next = NULL;
-	param->content = ft_strdup("");
+	param->content = ft_strdup("\0");
 	/*param->field = 0;
 	param->precision = 0;
 	param->length_modifier = WOAW;*/
+	param->conversion_indicator = woaw;
 
 	return (param);
 }
 
 void	display_list_content(t_arg *list)
 {
+	int i;
+
+	i = 1;
 	while (list)
 	{
-		printf("content : %s\n", list->content);
+		if (list->content[0] != '\0')
+			printf("content : %s\n", list->content);
+		if (list->conversion_indicator != woaw)
+			printf("conversion indicator : %d\n", list->conversion_indicator);
 		list = list->next;
+		printf("maillon %d\n\n", i);
+		i++;
 	}
 }
 

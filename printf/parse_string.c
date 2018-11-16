@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 21:21:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 22:33:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,10 @@ int	stock_ordinary_char(char **str, char *format, int *i)
 	while (format[*i])
 	{
 		if (format[*i] == '%' && format[*i + 1] != '%' && format[*i - 1] != '%')
-			break ;
+		{
+			*i += 1;
+			break;
+		}
 		//printf("%c\n", format[*i]);
 		*str = charjoin(*str, format[*i]);
 		//printf("%s\n", *str);
@@ -98,7 +101,7 @@ void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
 	else if (format[*i] == 'l')
 		*length_modifier = L_N_OR_F;
 	*i += 1;
-}
+}*/
 
 void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i)
 {
@@ -122,7 +125,6 @@ void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i
 		*conversion_indicator = X;
 	if (format[*i] == 'f')
 		*conversion_indicator = f;
-	*i += 1;
 }
 
 void	stock_arg_description(t_arg *param, char *format, int *i)
@@ -131,8 +133,8 @@ void	stock_arg_description(t_arg *param, char *format, int *i)
 	//stock_field(&param->field, format, i);
 	//stock_precision(&param->precision, format, i);
 	//stock_length_modifier(&param->length_modifier, format, i);
-	//stock_conversion_indicator(&param->conversion_indicator, format, i);
-}*/
+	stock_conversion_indicator(&param->conversion_indicator, format, i);
+}
 
 
 t_arg	*parse_string(const char *format)
@@ -150,11 +152,15 @@ t_arg	*parse_string(const char *format)
 		{
 			param->next = create_elem();
 			param = param->next;
+			printf("char : %c || i : %d\n", format[i], i);
 		}
-		//stock_arg_description(param, (char*)format, &i);
-		//param->next = create_elem();
-		//param = param->next;
-		i++;
+		if (format[i])
+		{
+			stock_arg_description(param, (char*)format, &i);
+			param->next = create_elem();
+			param = param->next;
+			i++;
+		}
 	}
 	return (begin_list);
 }
@@ -163,7 +169,7 @@ int main()
 {
 	t_arg *test;
 
-	test = parse_string("bonjour comment va la famille ?");
+	test = parse_string("bonjour%dcomment %dva la famille ?");
 	display_list_content(test);
 	return (0);
 }
