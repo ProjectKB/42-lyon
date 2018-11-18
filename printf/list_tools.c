@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 23:48:50 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/18 12:18:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ void	display_list_content(t_arg *list)
 			printf("content : %s\n", list->content);
 		if (list->content[0] == '\0')
 		{
-			printf("flag : %s\n", list->flag);
+			printf("flag : '%s'\n", list->flag);
 			printf("field : %d\n", list->field);
 			printf("precision : %d\n", list->precision);
 		}
@@ -53,14 +53,3 @@ void	display_list_content(t_arg *list)
 		i++;
 	}
 }
-
-
-/*void	push_back(t_arg **param)
-{
-	t_arg	*maillon;
-
-	maillon = *param;
-	while (maillon->next)
-		maillon = maillon->next;
-	maillon->next = create_elem();
-}*/

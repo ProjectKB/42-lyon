@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 23:57:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/18 13:53:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,16 +29,14 @@ int	stock_ordinary_char(char **str, char *format, int *i)
 	{
 		if (format[*i] == '%')
 			count++;
-		if (count == 3)
+		if (count != 1 && (count % 2) && format[*i] == '%' && format[*i + 1] != '%')
 			break;
 		if (format[*i] == '%' && format[*i + 1] != '%' && format[*i - 1] != '%')
 		{
 			*i += 1;
 			break;
 		}
-		//printf("%c\n", format[*i]);
 		*str = charjoin(*str, format[*i]);
-		//printf("%s\n", *str);
 		*i += 1;
 		k++;
 	}
@@ -56,17 +54,15 @@ void	stock_flag(char **flag, char *format, int *i)
 		format[count] == '-' || format[count] == '+' || format[count] == ' ')
 		count++;
 	count -= *i;
-	ft_putnbr(count);
 	if (!(*flag = (char*)malloc(sizeof(*flag) * (count + 1))))
 		return ;
-	ft_putstr("coucou\n");
-	while (format[*i] == '#' || format[*i] == '0' || format[*i] == '-' || \
-										format[*i] == '+' || format[*i] == ' ')
+	while (k < count)
 	{
-		*(flag)[k] = format[*i];
+		(*flag)[k] = format[*i];
 		*i += 1;
 		k++;
 	}
+	(*flag)[k] = '\0';
 }
 
 void	stock_field(int *field, char *format, int *i)
@@ -144,19 +140,33 @@ void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i
 		*conversion_indicator = f;
 }
 
-int	stock_arg_description(t_arg *param, char *format, int *i)
+void	double_to_one_pourcent(char **str)
+{
+	int		i;
+	char	*first_part;
+	char	*second_part;
+
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == '%' && (*str)[i + 1] == '%')
+		{
+			first_part = ft_strsub(*str, 0, i);
+			second_part = ft_strsub(*str, i + 1, ft_strlen(*str));
+			*str = ft_strjoin(first_part, second_part);
+		}
+		i++;
+	}
+}
+
+void	stock_arg_description(t_arg *param, char *format, int *i)
 {
 	stock_flag(&param->flag, format, i);
 	stock_field(&param->field, format, i);
 	stock_precision(&param->precision, format, i);
 	stock_length_modifier(&param->length_modifier, format, i);
 	stock_conversion_indicator(&param->conversion_indicator, format, i);
-	if (param->conversion_indicator == woaw)
-		return (1);
-	return (0);
-
 }
-
 
 t_arg	*parse_string(const char *format)
 {
@@ -171,19 +181,19 @@ t_arg	*parse_string(const char *format)
 	{
 		if ((stock_ordinary_char(&param->content, (char*)format, &i)))
 		{
-			param->next = create_elem();
-			param = param->next;
-			//printf("char : %c || i : %d\n", format[i], i);
-		}
-		if (format[i])
-		{
-			stock_arg_description(param, (char*)format, &i);
-			if (param->conversion_indicator != woaw)
+			double_to_one_pourcent(&param->content);
+			if (i < ft_strlen(format))
 			{
 				param->next = create_elem();
 				param = param->next;
-				i++;
 			}
+		}
+		stock_arg_description(param, (char*)format, &i);
+		if (param->conversion_indicator != woaw && i + 1 < ft_strlen(format))
+		{
+			param->next = create_elem();
+			param = param->next;
+			i++;
 		}
 	}
 	return (begin_list);
@@ -193,7 +203,8 @@ int main()
 {
 	t_arg *test;
 
-	test = parse_string("%%%+-s%%bonjour%85.lldbon%.1809hcjour%%%%");
+	test = parse_string("%%%#+s%%bo%%%d%dnjour%0 85.lldb%%%%o%%%%%%n%-+.1809hcjour%%%d");
+	//test = parse_string("%%%%%%%d%%");
 	display_list_content(test);
 	return (0);
 }
