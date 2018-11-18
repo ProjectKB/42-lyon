@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/18 16:38:25 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/18 18:14:01 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,6 +19,7 @@ SRC = ./list_tools.c \
 	./parse_string.c \
 	./parse_to_struct.c \
 	./tools.c \
+	./arg.c \
 	./main.c \
 
 HEADER = ./printf.h
