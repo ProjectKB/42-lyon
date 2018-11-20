@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 17:42:50 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 18:09:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ int main()
 
 	test = create_elem();
 	test->flag = flagada;
-	test->conversion_indicator = x;
+	test->conversion_indicator = c;
 	//test = parse_string("%dbonjour%d%%%%%dyalalahihou%%%d");
 	//print_args(test, 129, 42, 684, 101);
 	//display_list_content(test);
