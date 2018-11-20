@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 18:18:39 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 20:33:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,11 @@
 void	my_print(t_arg *param, void* to_display)
 {
 	if (param->conversion_indicator == di)
-		printf("%d\n", (int)to_display);
+		param->content = ft_itoa((int)to_display);
+	else if (param->conversion_indicator == s)
+		param->content = ft_strdup((char*)to_display);
+	else if (param->conversion_indicator == c)
+		param->content = charjoin(param->content, (char)to_display);
 }
 
 void	print_args(t_arg *param, ...)
@@ -37,5 +41,4 @@ void	print_args(t_arg *param, ...)
 	}
 
 	va_end(va);
-	return;
 }
