@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 17:31:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 18:13:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ int		str_are_equal(char *ref, char *to_compare)
 	return (1);
 }
 
-char	*remove_char_from_str(char **to_transform, char c)
+void	remove_char_from_str(char **to_transform, char c)
 {
 	char	*tmp;
 	int		i;
@@ -71,7 +71,7 @@ char	*remove_char_from_str(char **to_transform, char c)
 	i = 0;
 	j = 0;
 	if (!(tmp = (char*)malloc(sizeof(*tmp) * ft_strlen(*to_transform))))
-		return (NULL);
+		return ;
 	while ((*to_transform)[i])
 	{
 		if ((*to_transform)[i] != c)
@@ -79,5 +79,5 @@ char	*remove_char_from_str(char **to_transform, char c)
 		else
 			i++;
 	}
-	return (tmp);
+	*to_transform = tmp;
 }

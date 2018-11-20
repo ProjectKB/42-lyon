@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/18 15:46:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 19:36:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,13 +35,19 @@ void	stock_flag(char **flag, char *format, int *i)
 	(*flag)[k] = '\0';
 }
 
-void	stock_field(int *field, char *format, int *i)
+void	stock_field(char **field, char *format, int *i)
 {
+	int	f_size;
+	int	count;
+
+	f_size = 0;
+	count = 0;
 	while (format[*i] >= '1' && format[*i] <= '9')
 	{
-		*field = *field * 10 + format[*i] - '0';
+		f_size = f_size * 10 + format[*i] - '0';
 		*i += 1;
 	}
+	*field = ft_itoa(f_size);
 }
 
 void	stock_precision(int *precision, char *format, int *i)

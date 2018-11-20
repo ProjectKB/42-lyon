@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 17:31:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 19:08:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ typedef enum {
 typedef struct s_arg {
 	struct s_arg	*next;
 	char	*flag;
-	int		field;
+	char	*field;
 	int		precision;
 	e_lm	length_modifier;
 	e_ci	conversion_indicator;
@@ -67,7 +67,7 @@ typedef struct s_arg {
 char	*charjoin(char *str, char c);
 int		str_are_equal(char *ref, char *to_compare);
 int		str_is_equal(char *ref);
-char	*remove_char_from_str(char **to_transform, char c);
+void	remove_char_from_str(char **to_transform, char c);
 
 /*
 ** LISTS TOOLS
@@ -82,7 +82,7 @@ void	create_and_move_forward(t_arg **param);
 int		stock_ordinary_char(char **str, char *format, int *i);
 void	double_to_one_pourcent(char **str);
 void	stock_flag(char **flag, char *format, int *i);
-void	stock_field(int *field, char *format, int *i);
+void	stock_field(char **field, char *format, int *i);
 void	stock_precision(int *precision, char *format, int *i);
 void	stock_length_modifier(e_lm *length_modifier, char *format, int *i);
 void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i);
@@ -95,6 +95,11 @@ t_arg	*parse_string(const char *format);
 void	fix_impossible_comb(char **flag);
 void	fix_impossible_flag(char **flag,  e_ci c_i);
 void	transform_flag(t_arg *param);
+
+/*
+** MANAGE FIELD
+*/
+void	fill_field(char **field, char *flag);
 
 /*
 ** PRINT ARGS

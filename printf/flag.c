@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   flag.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 20:02:03 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/20 19:05:53 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int main()
+void	plus_comportement(char **flag, e_ci c_i, int content)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	if ((c_i == di || c_i == f) && content >= 0)
+		ft_strjoin(*flag, "+");
+}
 
-	/*test = create_elem();
-	test->flag = flagada;
-	test->conversion_indicator = c;*/
-	test = parse_string("%#4dbonjour%d%%%%%dyalalahihou%%%d");
-	transform_flag(test);
-	fill_field(&test->field, test->flag);
-	display_list_content(test);
-	//print_args(test, 129, 42, 684, 101);
-	//printf("%s", test->flag);
-	//printf("%#042x", 50);
-	return (0);
+void	hash_tag_comportement(char **flag, e_ci c_i)
+{
+	if (c_i == x)
+		ft_strjoin(*flag, "0x");
+	else if (c_i == X)
+		ft_strjoin(*flag, "0X");
+	else if (c_i == f)
+		ft_strjoin(*flag, ".");
 }
