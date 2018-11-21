@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_lstdel.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/07 13:37:36 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:17:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int main()
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	t_list	*maillon;
+	t_list	*tmp;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	maillon = *alst;
+	while (maillon)
+	{
+		tmp = maillon->next;
+		del(maillon->content, maillon->content_size);
+		free(maillon);
+		maillon = tmp;
+	}
+	*alst = NULL;
 }

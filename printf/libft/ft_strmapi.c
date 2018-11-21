@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strmapi.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 12:25:07 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main()
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	unsigned int	i;
+	char			*ptr_tab;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = 0;
+	ptr_tab = NULL;
+	if (s && f)
+	{
+		if (!(ptr_tab = (char*)malloc(sizeof(*ptr_tab) * ft_strlen(s) + 1)))
+			return (NULL);
+		while (i < (unsigned int)(ft_strlen(s)))
+		{
+			ptr_tab[i] = f(i, s[i]);
+			i++;
+		}
+		ptr_tab[i] = '\0';
+	}
+	return (ptr_tab);
 }

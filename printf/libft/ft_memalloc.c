@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_memalloc.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 18:08:17 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:17:52 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main()
+void	*ft_memalloc(size_t size)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	void	*str;
+	int		i;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = 0;
+	if (!(str = (void*)malloc(sizeof(*str) * size)))
+		return (NULL);
+	while (size--)
+	{
+		(*(unsigned char*)(str + i)) = 0;
+		i++;
+	}
+	return (str);
 }

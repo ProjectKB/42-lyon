@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_check_char.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/30 10:55:06 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/06 15:45:43 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+int	ft_check_char(const char *str, char c)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	int	count;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	count = 0;
+	while (*str)
+		if (*str++ == c)
+			count++;
+	return (count);
 }

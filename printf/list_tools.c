@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 20:27:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 22:48:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,12 +38,9 @@ void	display_list_content(t_arg *list)
 	{
 		if (list->content[0] != '\0')
 			printf("content : %s\n", list->content);
-		if (list->content[0] == '\0')
-		{
-			printf("flag : '%s'\n", list->flag);
-			printf("field : '%s'\n", list->field);
-			printf("precision : %d\n", list->precision);
-		}
+		printf("flag : '%s'\n", list->flag);
+		printf("field : '%s'\n", list->field);
+		printf("precision : %d\n", list->precision);
 		if (list->length_modifier != WOAW)
 			printf("length modifier : %d\n", list->length_modifier);
 		if (list->conversion_indicator != woaw)

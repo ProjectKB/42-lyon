@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_putchar_fd.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/07 12:22:54 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <unistd.h>
 
-int main()
+void	ft_putchar_fd(char c, int fd)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
-
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	write(fd, &c, 1);
 }

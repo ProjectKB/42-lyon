@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strstr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 14:54:36 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:19:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	int	i;
+	int	j;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
+	i = 0;
+	if (!needle[i])
+		return ((char *)haystack);
+	while (haystack[i])
+	{
+		j = 0;
+		while (needle[j] == haystack[i + j])
+		{
+			if (!needle[j + 1])
+				return ((char *)haystack + i);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }

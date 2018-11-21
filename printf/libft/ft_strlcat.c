@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strlcat.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 18:01:56 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+unsigned int	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	size_t	i;
+	size_t	j;
+	int		length;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = ft_strlen(dst);
+	j = ft_strlen(src);
+	if (!size)
+		return (ft_strlen(src));
+	length = size < i ? j + size : i + j;
+	j = 0;
+	while (src[j] && j + i < size - 1)
+	{
+		dst[i + j] = src[j];
+		j++;
+	}
+	dst[i + j] = '\0';
+	return (length);
 }

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_memccpy.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 11:36:43 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:17:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	int	i;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = 0;
+	while (n--)
+	{
+		(((unsigned char *)dst)[i]) = (((unsigned char *)src)[i]);
+		if ((((unsigned char *)dst)[i]) == (unsigned char)c)
+			return ((unsigned char*)&dst[i + 1]);
+		i++;
+	}
+	return (NULL);
 }

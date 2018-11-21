@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strchr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/03 18:27:52 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strchr(const char *s, int c)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	int	i;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return (&((char *)s)[i]);
+		i++;
+	}
+	if (!c)
+		return (&((char *)s)[i]);
+	return (NULL);
 }

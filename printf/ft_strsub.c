@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strsub.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 14:22:16 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/29 21:35:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main()
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	char		*tr;
+	size_t		i;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	i = 0;
+	tr = NULL;
+	if (s)
+	{
+		if (!(tr = (char*)malloc(sizeof(*tr) * len + 1)))
+			return (NULL);
+		while (i < len)
+			tr[i++] = s[start++];
+		tr[i] = '\0';
+	}
+	return (tr);
 }

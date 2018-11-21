@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_atoi.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/04 16:27:10 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/29 13:00:50 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+int	ft_atoi(const char *str)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	long long	r;
+	long long	n;
+	long long	p;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	r = 0;
+	n = 0;
+	p = 0;
+	while (str[p] == '\t' || str[p] == '\n' || str[p] == '\r' ||
+			str[p] == '\v' || str[p] == '\f' || str[p] == ' ' ||
+			(str[p] == '+' && (str[p + 1] != '+' &&
+					str[p + 1] != '-')))
+		p++;
+	if (str[p] == '-')
+	{
+		n = -1;
+		p++;
+	}
+	while (str[p] >= '0' && str[p] <= '9')
+	{
+		r = r * 10 + str[p] - '0';
+		p++;
+	}
+	if (n)
+		r = -r;
+	return (r);
 }

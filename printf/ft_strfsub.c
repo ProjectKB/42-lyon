@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strfsub.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/01 11:13:59 by rcepre       #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/05 21:12:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strfsub(char **s, unsigned int start, size_t len)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	char	*tmp;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	if (!(tmp = ft_strsub(*s, start, len)))
+		return (NULL);
+	free(*s);
+	*s = ft_strdup(tmp);
+	free(tmp);
+	return (*s);
 }

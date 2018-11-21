@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_dbstrnew.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/01 01:19:02 by rcepre       #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/05 21:15:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	**ft_dbstrnew(int size)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	char	**tab;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
+		return (NULL);
+	tab[size] = NULL;
+	return (tab);
 }

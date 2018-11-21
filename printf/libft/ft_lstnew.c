@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_lstnew.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 22:57:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/07 13:05:04 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:17:50 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main()
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_arg *test;
-	int i = 42;
-	char flagada[] = "#0-+ ";
+	t_list	*maillon;
 
-	test = create_elem();
-	test = parse_string("%+-s%+-c%+-s");
-	//print_args(test, "coucou", 'c', 129);
-	display_list_content(test);
-	//printf("%s", test->flag);
-	//printf("%p", (void*)65536);
-	return (0);
+	if (!(maillon = (t_list*)malloc(sizeof(*maillon))))
+		return (NULL);
+	if (content != NULL)
+	{
+		if (!(maillon->content = (void*)malloc(sizeof(content_size) + 1)))
+			return (NULL);
+		ft_memcpy(maillon->content, (void*)content, content_size);
+	}
+	else
+		maillon->content = NULL;
+	maillon->content_size = !content ? 0 : content_size;
+	maillon->next = NULL;
+	return (maillon);
 }
