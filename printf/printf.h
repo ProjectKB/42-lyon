@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 23:22:57 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 04:18:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,6 +105,12 @@ void	fill_field(char **field, char *flag);
 ** PRINT ARGS
 */
 void	my_print(t_arg *param, void *to_display);
-void	print_args(t_arg *param, ...);
+void	parse_args(t_arg *param, ...);
+
+/*
+** FLOAT
+*/
+void	ftoa(long double nb, char *s, int precision);
+int		flt_len(long double n);
 
 #endif

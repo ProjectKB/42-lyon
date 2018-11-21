@@ -6,43 +6,115 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/16 13:31:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 05:03:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "./libft/libft.h"
+#include "printf.h"
 
-// overflow float : 2147483583 ?
-
-int main()
+int		flt_len(long double n)
 {
-	char test[] = "123.456";
-	int dec;
-	float f = 123.456;
-	int frc;
-	char *dp;
-	int i;
+	int				count;
+
+	count = 0;
+	while (n >= 10)
+	{
+		n /= 10;
+		count++;
+	}
+	count++;
+	return (count);
+}
+
+static void		int_part_to_str(long double *nb, char **s)
+{
+	long double		tmp;
+	int				len;
+	int				delta;
+
+	if (*nb < 1)
+		*(*s)++ = '0';
+	while (!(*nb < 1))
+	{
+		len =  0;
+		tmp = *nb;
+		while (!(tmp < 10) && ++len)
+			tmp /= 10;
+		tmp = (int)tmp;
+		*(*s)++ = (int)tmp + '0';
+		while (len--)
+			tmp *= 10;
+		*nb = *nb - tmp;
+		if ((delta = flt_len(tmp) - flt_len(*nb) - 1) > 0)
+			while (delta--)
+				*(*s)++ = '0';
+	}
+	if ((flt_len(tmp) - flt_len(*nb)) > 0)
+		*(*s)++ = '0';
+}
+
+static double	get_rounder(int precision)
+{
+	long double		rounder;
+
+	rounder = 0.5;
+	while (precision--)
+		rounder /= 10;
+	return (rounder);
+}
+
+static void		dec_part_to_str(long double *nb, char **s, int precision)
+{
+	long double		rounder;
+
+	rounder = get_rounder(precision);
+	*nb += rounder;
+	while (precision--)
+	{
+		*nb *= 10;
+		*(*s)++ = (int)*nb + '0';
+		*nb -= (int)*nb;
+	}
+}
+
+void			special_get_rounder(long double nb, char **s)
+{
+	char	*tmp;
+	int		i;
 
 	i = 0;
-
-	dp = ft_strchr(test, '.');
-	dec = ft_atoi(test);
-	frc = (dp) ? ft_atoi(dp + 1) : 0;
-
-
-	printf ("\nString Values:\n");
-	printf (" string   : %s\n whole    : %d\n fraction : %d\n\n", test, dec, frc);
-	while (i < 31)
-	{
-		printf (" double  : %-40.*f  float : %-40.*f precision : %d\n", i, 123.99999999999999999, i, 123.789789789123, i);
+	tmp = ft_strdup("");
+	ftoa(nb, tmp, 1);
+	while (tmp[i] != '.')
 		i++;
+	if (tmp[i + 1] - '0' > 5)
+		(*s)[i - 2] = tmp[i - 1] + 1;
+}
+
+void			ftoa(long double nb, char *s, int precision)
+{
+	int				neg;
+	int				i;;
+
+	neg = 0;
+	i = 0;
+	if (nb < 0)
+	{
+		neg = 1;
+		nb *= -1;
+		s[0] = '-';
+		s++;
 	}
-	float f1 = 520.02;
-	float f2 = 520.04;
-	float result = f1 - f2;
-	printf("%f", result);
-	return (0);
+	int_part_to_str(&nb, &s);
+	if (precision)
+	{
+		*s++ = '.';
+		dec_part_to_str(&nb, &s, precision);
+	}
+	if (!precision)
+	{
+		special_get_rounder(nb, &s);
+	}
+
 }

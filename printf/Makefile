@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/20 19:18:23 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/21 03:01:34 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,6 +24,7 @@ SRC = ./list_tools.c \
 	./fix_impossible_flag.c \
 	./flag.c \
 	./field.c \
+	./float.c \
 
 HEADER = ./printf.h
 

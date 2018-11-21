@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 02:19:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 02:46:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,15 +89,11 @@ t_arg	*parse_string(const char *format)
 				param = param->next;
 		}
 		stock_arg_description(param, (char*)format, &i);
-		printf("blublu : %c i : %d len : %d\n\n", format[i], i, ft_strlen(format));
 		if (param->conversion_indicator != woaw && i < ft_strlen(format))
 		{
-			printf("bloblo : %c i : %d len : %d\n\n", format[i], i, ft_strlen(format));
 			param->next = create_elem();
 			param = param->next;
-			//i++;
 		}
-		printf("blabla : %c i : %d len : %d\n\n", format[i], i, ft_strlen(format));
 	}
 	return (begin_list);
 }

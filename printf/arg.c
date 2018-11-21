@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 01:53:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 04:40:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,20 +25,21 @@ void	my_print(t_arg *param, void* to_display)
 		param->content = ft_itoa((unsigned int)to_display);
 }
 
-void	print_args(t_arg *param, ...)
+void	parse_args(t_arg *param, ...)
 {
 	va_list va;
 	int i;
 	e_lm length_modifier;
+	char *s;
 
 	i = 0;
 	va_start(va, param);
 	while (param)
 	{
-		if (param->conversion_indicator != woaw)
+		if (param->conversion_indicator == f)
+			ftoa((long double)(va_arg(va, double)), param->content, param->precision);
+		else if (param->conversion_indicator != woaw)
 			my_print(param, va_arg(va, void*));
-		else
-			printf("%s\n", param->content);
 		param = param->next;
 	}
 
