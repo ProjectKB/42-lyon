@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 20:33:18 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 01:53:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@ void	my_print(t_arg *param, void* to_display)
 		param->content = ft_strdup((char*)to_display);
 	else if (param->conversion_indicator == c)
 		param->content = charjoin(param->content, (char)to_display);
+	else if (param->conversion_indicator == u)
+		param->content = ft_itoa((unsigned int)to_display);
 }
 
 void	print_args(t_arg *param, ...)

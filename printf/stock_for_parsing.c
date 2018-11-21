@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 19:36:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 01:39:17 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,7 @@ void	stock_field(char **field, char *format, int *i)
 
 	f_size = 0;
 	count = 0;
-	while (format[*i] >= '1' && format[*i] <= '9')
+	while (format[*i] >= '0' && format[*i] <= '9')
 	{
 		f_size = f_size * 10 + format[*i] - '0';
 		*i += 1;

@@ -1,119 +1,81 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/11/07 08:15:27 by rcepre           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
+#    Updated: 2018/11/20 19:18:23 by loiberti    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = printf
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror
+SRC = ./list_tools.c \
+	./parse_string.c \
+	./stock_for_parsing.c \
+	./tools.c \
+	./arg.c \
+	./main.c \
+	./fix_impossible_flag.c \
+	./flag.c \
+	./field.c \
 
-SRC = 	ft_atoi.c\
-		ft_bzero.c\
-		ft_isalnum.c\
-		ft_isalpha.c\
-		ft_isascii.c\
-		ft_isdigit.c\
-		ft_isprint.c\
-		ft_itoa.c\
-		ft_lstadd.c\
-		ft_lstdel.c\
-		ft_lstdelone.c\
-		ft_lstiter.c\
-		ft_lstmap.c\
-		ft_lstnew.c\
-		ft_memalloc.c\
-		ft_memccpy.c\
-		ft_memchr.c\
-		ft_memcmp.c\
-		ft_memcpy.c\
-		ft_memdel.c\
-		ft_memmove.c\
-		ft_memset.c\
-		ft_putchar.c\
-		ft_putchar_fd.c\
-		ft_putendl.c\
-		ft_putendl_fd.c\
-		ft_putnbr.c\
-		ft_putnbr_fd.c\
-		ft_putstr.c\
-		ft_putstr_fd.c\
-		ft_strcat.c\
-		ft_strchr.c\
-		ft_strclr.c\
-		ft_strcmp.c\
-		ft_strcpy.c\
-		ft_strdel.c\
-		ft_strdup.c\
-		ft_strequ.c\
-		ft_striter.c\
-		ft_striteri.c\
-		ft_strjoin.c\
-		ft_strlcat.c\
-		ft_strlen.c\
-		ft_strmap.c\
-		ft_strmapi.c\
-		ft_strncat.c\
-		ft_strncmp.c\
-		ft_strncpy.c\
-		ft_strnequ.c\
-		ft_strnew.c\
-		ft_strnstr.c\
-		ft_strrchr.c\
-		ft_strsplit.c\
-		ft_strstr.c\
-		ft_strsub.c\
-		ft_strtrim.c\
-		ft_tolower.c\
-		ft_toupper.c\
-		ft_strcapitalize.c \
-		ft_sort_integer_table.c \
-		ft_recursive_power.c \
-		ft_putcolor.c \
-		ft_check_char.c \
-		ft_freedbtab.c \
-		ft_putdbstr.c \
-		ft_dbstrnew.c \
-		ft_strfsub.c \
-		ft_getchar.c \
-
-HEADER = ./libft.h
-
-all: $(NAME)
+HEADER = ./printf.h
 
 OBJECT = $(SRC:.c=.o)
 
-#TEXT
+all: $(NAME)
 
-		RM_OBJ = "\t\033[1;32mrm objects\t\t\033[1;32m[OK]\033[1m"
-		RM_LIB = "\t\033[1;35mrm libft.a\t\t\033[1;32m[OK]\033[1m"
-		COMPILING = "\t\033[1;34mlibft.a compilation\t\033[1;32m[OK]\033[1m"
+LIBFT_PATH = ./libft
 
-$(NAME): $(OBJECT)
-	@ar ruc $(NAME) $(OBJECT)
-	@ranlib $(NAME)
-	@echo $(COMPILING)
+####################################TEXT########################################
+	RED = \033[1;31m
+	OK  = \033[1;32m[OK]\n
+	WHITE = \033[0;29m
+	YELLOW = \033[1;33m
+	PINK = \033[1;35m
+	RM_PRINTF_OBJ = "$(PINK)printf :\t$(RED)rm $(PINK)objects\t\t$(WHITE)"
+	RM_LIB_OBJ = "\n$(YELLOW)libft:\t\t$(RED)rm $(YELLOW)objects\t\t$(WHITE)"
+	RM_LIB = "\t$(PINK)rm libft.a\t\)$(WHITE)"
+	RM_EXEC = "\t\t$(RED)rm $(PINK)exec\t\t\t$(WHITE)"
+	MAKE_PRINTF = "$(PINK)printf :\t$(RED)make $(PINK)printf\t\t$(WHITE)"
+	MAKE_LIB =  "\n$(YELLOW)libft :\t\t$(RED)make $(YELLOW)libft\t\t$(WHITE)"
+####################################RULES######################################
 
-%.o: %.c $(HEADER)
-	@$(CC) $(CFLAGS) -c $(SRC) -I $<
+$(NAME): $(OBJECT) $(HEADER)
+	@(cd $(LIBFT_PATH) && make) > /dev/null
+	@printf  $(MAKE_LIB)
+	@printf "$(OK)"
+	@$(CC) $(CFLAGS) $(OBJECT) -I $< -L $(LIBFT_PATH) -lft -o $(NAME)
+	@printf $(MAKE_PRINTF)
+	@printf "$(OK)\n"
+	
+%.o: %.c
+	@printf "\033[0;36m>>>\tCompiling: $? ..."
+	@$(CC) -c $(CFLAGS) -I $(HEADER) $?
+	@printf "   [ok]$(WHITE)\n"
+
 
 clean:
+	@printf $(RM_LIB_OBJ)
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
+	@printf "$(OK)"
+	@printf $(RM_PRINTF_OBJ)
 	@rm -rf $(OBJECT)
-	@echo $(RM_OBJ)
+	@printf "$(OK)"
 
 fclean: clean
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
+	@printf $(RM_EXEC)
 	@rm -rf $(NAME)
-	@echo $(RM_LIB)
+	@printf "$(OK)\n"
 
 re: fclean all
+	@(cd $(LIBFT_PATH) && make $@) > /dev/null
 
 .PHONY: clean fclean
