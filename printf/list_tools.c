@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 02:03:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 02:13:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ void	display_list_content(t_arg *list)
 		}
 		if (list->length_modifier != WOAW)
 			printf("length modifier : %d\n", list->length_modifier);
-		if (list->conversion_indicator != woaw)
+		//if (list->conversion_indicator != woaw)
 			printf("conversion indicator : %d\n", list->conversion_indicator);
 		list = list->next;
 		printf("maillon %d\n\n", i);
