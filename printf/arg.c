@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 04:40:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 19:15:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,12 @@ void	my_print(t_arg *param, void* to_display)
 		param->content = charjoin(param->content, (char)to_display);
 	else if (param->conversion_indicator == u)
 		param->content = ft_itoa((unsigned int)to_display);
+	else if (param->conversion_indicator == x)
+		param->content = ft_itoa_base((unsigned int)to_display, 16, x);
+	else if (param->conversion_indicator == X)
+		param->content = ft_itoa_base((unsigned int)to_display, 16, X);
+	else if (param->conversion_indicator == o)
+		param->content = ft_itoa_base((unsigned int)to_display, 8, o);
 }
 
 void	parse_args(t_arg *param, ...)
