@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 18:36:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 19:42:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,6 +69,8 @@ char	*charrjoin(char *str, char c);
 int		str_are_equal(char *ref, char *to_compare);
 int		str_is_equal(char *ref);
 void	remove_char_from_str(char **to_transform, char c);
+void	remove_one_char_from_str(char **to_transform, char c);
+char	nb_char_occur(char *str);
 
 /*
 ** LISTS TOOLS

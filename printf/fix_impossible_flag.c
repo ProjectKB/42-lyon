@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 01:45:57 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 19:46:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,8 +45,17 @@ void	fix_impossible_flag(char **flag, e_ci c_i)
 		remove_char_from_str(flag, '0');
 }
 
+void	del_flag_repetition(char **flag)
+{
+	char	c;
+
+	while ((c = nb_char_occur(*flag)) != '|')
+		remove_one_char_from_str(flag, c);
+}
+
 void	transform_flag(t_arg *param)
 {
 	fix_impossible_flag(&param->flag, param->conversion_indicator);
 	fix_impossible_comb(&param->flag);
+	del_flag_repetition(&param->flag);
 }

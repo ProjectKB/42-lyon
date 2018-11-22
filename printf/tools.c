@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 18:04:20 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 19:45:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,4 +98,50 @@ void	remove_char_from_str(char **to_transform, char c)
 			i++;
 	}
 	*to_transform = tmp;
+}
+
+void	remove_one_char_from_str(char **to_transform, char c)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!(tmp = (char*)malloc(sizeof(*tmp) * ft_strlen(*to_transform) - 1)))
+		return ;
+	while ((*to_transform)[i])
+	{
+		if ((*to_transform)[i] != c)
+			tmp[j++] = (*to_transform)[i++];
+		if ((*to_transform)[i] == c)
+			tmp[j++] = (*to_transform)[++i];
+	}
+	tmp[j] = '\0';
+	*to_transform = tmp;
+}
+
+char	nb_char_occur(char *str)
+{
+	int		i;
+	int		j;
+	char	is_repeat;
+
+	j = 0;
+	is_repeat = '|';
+	while (str[j])
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (i != j && str[i] == str[j])
+			{
+				is_repeat = str[i];
+				return (is_repeat);
+			}
+			i++;
+		}
+		j++;
+	}
+	return (is_repeat);
 }
