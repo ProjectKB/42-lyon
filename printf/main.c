@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 20:05:27 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 21:57:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,13 +16,12 @@
 int main()
 {
 	t_arg *test;
-	char *s;
 
-	printf("content : '%010.4d'\n", 5);
-	/*s = (char*)malloc(sizeof(*s));
-	test = create_elem();
-	test = parse_string("%+d");
-	parse_args(test, 42);
+	ft_printf("coucou%+d", 42);
+
+	/*test = create_elem();
+	test = parse_string("bonjour");
+	//parse_args(test, 42);
 	display_list_content(test);*/
 	return (0);
 }
