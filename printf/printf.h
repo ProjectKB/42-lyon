@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 17:53:20 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 18:36:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -102,7 +102,7 @@ void	transform_flag(t_arg *param);
 /*
 ** MANAGE FIELD
 */
-void	fill_field(char **field, char *flag, int precision);
+void	fill_field(char **field, char *flag, int precision, e_ci c_i);
 
 /*
 ** MANAGE PRECISION
