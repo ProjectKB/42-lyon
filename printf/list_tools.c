@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 02:51:03 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 18:30:21 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ t_arg	*create_elem(void)
 	param->next = NULL;
 	param->content = ft_strdup("\0");
 	param->field = ft_strdup("\0");
-	param->precision = 0;
+	param->precision = -1;
 	param->length_modifier = WOAW;
 	param->conversion_indicator = woaw;
 	return (param);

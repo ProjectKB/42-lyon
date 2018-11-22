@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 13:59:33 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 18:27:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,11 @@ int main()
 	t_arg *test;
 	char *s;
 
-	printf("content : '%p'\n", (void*)"coucou");
+	printf("content : '%042.19x'\n", 42);
 	s = (char*)malloc(sizeof(*s));
 	test = create_elem();
-	test = parse_string("%p");
-	parse_args(test, (void*)"coucou");
-	//printf("content : '%p'\n", (void*)"coucou");
+	test = parse_string("%042.19x");
+	parse_args(test, 42);
 	display_list_content(test);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 19:26:33 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 17:53:20 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,6 +65,7 @@ typedef struct s_arg {
 ** TOOLS
 */
 char	*charjoin(char *str, char c);
+char	*charrjoin(char *str, char c);
 int		str_are_equal(char *ref, char *to_compare);
 int		str_is_equal(char *ref);
 void	remove_char_from_str(char **to_transform, char c);
@@ -88,6 +89,8 @@ void	stock_length_modifier(e_lm *length_modifier, char *format, int *i);
 void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i);
 void	stock_arg_description(t_arg *param, char *format, int *i);
 t_arg	*parse_string(const char *format);
+void	my_print(t_arg *param, void *to_display);
+void	parse_args(t_arg *param, ...);
 
 /*
 ** MANAGE FLAG
@@ -99,13 +102,12 @@ void	transform_flag(t_arg *param);
 /*
 ** MANAGE FIELD
 */
-void	fill_field(char **field, char *flag);
+void	fill_field(char **field, char *flag, int precision);
 
 /*
-** PRINT ARGS
+** MANAGE PRECISION
 */
-void	my_print(t_arg *param, void *to_display);
-void	parse_args(t_arg *param, ...);
+char	*precision_tr(char *content, int precision, e_ci c_i);
 
 /*
 ** FLOAT

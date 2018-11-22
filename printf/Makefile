@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/21 03:01:34 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/22 17:33:57 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,12 +19,13 @@ SRC = ./list_tools.c \
 	./parse_string.c \
 	./stock_for_parsing.c \
 	./tools.c \
-	./arg.c \
+	./parse_args.c \
 	./main.c \
 	./fix_impossible_flag.c \
 	./flag.c \
 	./field.c \
 	./float.c \
+	./precision.c \
 
 HEADER = ./printf.h
 

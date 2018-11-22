@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 02:14:33 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 17:39:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,7 @@ void	stock_precision(int *precision, char *format, int *i)
 	if (format[*i] == '.')
 	{
 		*i += 1;
+		*precision = 0;
 		while (format[*i] >= '0' && format[*i] <= '9')
 		{
 			*precision = *precision * 10 + format[*i] - '0';
