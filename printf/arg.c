@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 11:55:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 14:00:09 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,8 @@ void	my_print(t_arg *param, void* to_display)
 		param->content = ft_strupcase(ft_itoa_base((unsigned int)to_display, 16));
 	else if (param->conversion_indicator == o)
 		param->content = ft_itoa_base((unsigned int)to_display, 8);
+	else if (param->conversion_indicator == p)
+		param->content = ft_strjoin("0x", ft_itoa_base((unsigned long)to_display, 16));
 }
 
 void	parse_args(t_arg *param, ...)
