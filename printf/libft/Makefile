@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/11/07 08:15:27 by rcepre           ###   ########.fr        #
+#    Updated: 2018/11/22 11:36:09 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -25,6 +25,7 @@ SRC = 	ft_atoi.c\
 		ft_isdigit.c\
 		ft_isprint.c\
 		ft_itoa.c\
+		ft_itoa_base.c\
 		ft_lstadd.c\
 		ft_lstdel.c\
 		ft_lstdelone.c\
@@ -85,6 +86,11 @@ SRC = 	ft_atoi.c\
 		ft_dbstrnew.c \
 		ft_strfsub.c \
 		ft_getchar.c \
+		ft_strupcase.c \
+		ft_lowercase.c \
+		ft_swap.c \
+		ft_strcapitalize.c \
+		ft_strrev.c \
 
 HEADER = ./libft.h
 
