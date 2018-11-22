@@ -6,25 +6,30 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 20:18:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/22 20:15:33 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	plus_comportement(char **flag, e_ci c_i, int content)
+void	plus_comportement(char **flag, e_ci c_i, char *content)
 {
-	if ((c_i == di || c_i == f) && content >= 0)
-		ft_strjoin(*flag, "+");
+	if ((c_i == di || c_i == f) && ft_atoi(content) >= 0)
+		*flag = ft_strjoin(*flag, "+");
 }
 
 void	hash_tag_comportement(char **flag, e_ci c_i)
 {
 	if (c_i == x)
-		ft_strjoin(*flag, "0x");
+		*flag = ft_strjoin(*flag, "0x");
 	else if (c_i == X)
-		ft_strjoin(*flag, "0X");
+		*flag = ft_strjoin(*flag, "0X");
 	else if (c_i == f)
-		ft_strjoin(*flag, ".");
+		*flag = charjoin(*flag, '.');
+}
+
+void	aq_comportement(char **flag)
+{
+	*flag = charjoin(*flag, ' ');
 }
