@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 21:58:33 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/23 17:04:59 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,11 +70,15 @@ int        ft_printf(const char *format, ...)
 	{
 		if (param->conversion_indicator == f)
 			ftoa((long double)(va_arg(va, double)), param->content, param->precision);
-		else if (param->conversion_indicator != woaw)
+		else if (param->conversion_indicator != woaw && param->length_modifier == WOAW)
 			stock_content(param, &param->content, va_arg(va, void*));
+		else
+			stock_content_lm(param, &param->content, va_arg(va, void*));
 		param = param->next;
 	}
 	va_end(va);
-	display_list_content(begin_params);
+	param = begin_params;
+	//printf("%s\n", param->content);
+	display_list_content(param);
 	return (0);
 }

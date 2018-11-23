@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 17:39:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/23 13:06:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,27 +68,27 @@ void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
 {
 	if (format[*i] == 'h' && format[*i + 1] == 'h')
 	{
-		*length_modifier = SIGNED_UNSIGNED_CHAR;
+		*length_modifier = hh;
 		*i += 2;
 	}
 	else if (format[*i] == 'l' && format[*i + 1] == 'l')
 	{
-		*length_modifier = LONG_LONG_UNSIGNED_LONG_LONG_INT;
+		*length_modifier = ll;
 		*i += 2;
 	}
 	else if (format[*i] == 'h')
 	{
-		*length_modifier = SHORT_UNSIGNED_SHORT_INT;
+		*length_modifier = h;
 		*i += 1;
 	}
 	else if (format[*i] == 'L')
 	{
-		*length_modifier = LONG_DOUBLE;
+		*length_modifier = L;
 		*i += 1;
 	}
 	else if (format[*i] == 'l')
 	{
-		*length_modifier = L_N_OR_F;
+		*length_modifier = l;
 		*i += 1;
 	}
 }

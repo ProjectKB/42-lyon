@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 21:53:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/23 17:04:27 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,17 +24,11 @@
 
 typedef enum {
 	WOAW,
-	CHAR,
-	INT,
-	DOUBLE,
-	SIGNED_UNSIGNED_CHAR,
-	SHORT_UNSIGNED_SHORT_INT,
-	LONG_DOUBLE,
-	LONG_UNSIGNED_LONG_INT,
-	LONG_LONG_UNSIGNED_LONG_LONG_INT,
-	L_N_OR_F,
-	P_CHAR,
-	P_VOID
+	hh,
+	h,
+	l,
+	ll,
+	L
 } e_lm;
 
 typedef enum {
@@ -114,6 +108,11 @@ void	fill_field(char **field, char *flag, int precision, e_ci c_i);
 ** MANAGE PRECISION
 */
 char	*precision_tr(char *content, int precision, e_ci c_i);
+
+/*
+** MANAGE LENGTH MODIFIER
+*/
+void	stock_content_lm(t_arg *param, char **content, void *to_stock);
 
 /*
 ** FLOAT
