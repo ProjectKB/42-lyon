@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/04 16:27:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/09 12:17:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/26 21:56:47 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/26 21:57:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,9 +15,9 @@
 
 int	ft_atoi(const char *str)
 {
-	long long	r;
-	long long	n;
-	long long	p;
+	int	r;
+	int	n;
+	int	p;
 
 	r = 0;
 	n = 0;

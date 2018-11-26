@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 14:22:16 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 20:20:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/29 21:35:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	size_t		i;
 
 	i = 0;
+	tr = NULL;
 	if (s)
 	{
 		if (!(tr = (char*)malloc(sizeof(*tr) * len + 1)))

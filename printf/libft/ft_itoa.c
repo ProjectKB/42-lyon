@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 19:35:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/23 17:56:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,9 +62,9 @@ static int		ft_particular_case(char *str, int i, long *nb)
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(size_t n)
 {
-	int		i;
+	size_t		i;
 	char	*str;
 	long	nb;
 

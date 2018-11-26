@@ -3,22 +3,41 @@
 /*                                                              /             */
 /*   ft_strlen.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 15:02:34 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/07 12:00:52 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 10:49:51 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen(const char *s)
 {
-	int i;
+	size_t i;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (42)
+	{
+		if (s[i] == '\0')
+			return (i);
+		if (s[i + 1] == '\0')
+			return (i + 1);
+		if (s[i + 2] == '\0')
+			return (i + 2);
+		if (s[i + 3] == '\0')
+			return (i + 3);
+		if (s[i + 4] == '\0')
+			return (i + 4);
+		if (s[i + 5] == '\0')
+			return (i + 5);
+		if (s[i + 6] == '\0')
+			return (i + 6);
+		if (s[i + 7] == '\0')
+			return (i + 7);
+		if (s[i + 8] == '\0')
+			return (i + 8);
+		i = i + 8;
+	}
 }

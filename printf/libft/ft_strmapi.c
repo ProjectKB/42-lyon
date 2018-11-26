@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 12:25:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 20:13:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*ptr_tab;
 
 	i = 0;
+	ptr_tab = NULL;
 	if (s && f)
 	{
 		if (!(ptr_tab = (char*)malloc(sizeof(*ptr_tab) * ft_strlen(s) + 1)))

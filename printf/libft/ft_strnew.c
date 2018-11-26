@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 16:39:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 13:09:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 17:18:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,19 +14,19 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_strnew(size_t size)
+char	*ft_strnew(size_t size)
 {
-	void	*str;
-	int		i;
+	char	*str;
+	size_t	i;
 
-	i = 0;
-	size++;
-	if (!(str = (void*)malloc(sizeof(*str) * size)))
+	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	while (size--)
+	i = 0;
+	while (str && i < size)
 	{
-		(*(unsigned char*)(str + i)) = 0;
+		str[i] = '\0';
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
