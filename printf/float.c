@@ -6,26 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/26 22:00:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/26 22:49:14 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-int		flt_len(long double n)
-{
-	int				count;
-
-	count = 0;
-	while (n >= 10)
-	{
-		n /= 10;
-		count++;
-	}
-	count++;
-	return (count);
-}
 
 static char		*int_part_to_str(long double *nb, char *s)
 {
@@ -37,9 +23,8 @@ static char		*int_part_to_str(long double *nb, char *s)
 	i = 0;
 	if (*nb < 1)
 		s[i++] = '0';
-	while (!(*nb < 1))
+	while (!(*nb < 1) && (len = 0))
 	{
-		len =  0;
 		tmp = *nb;
 		while (!(tmp < 10) && ++len)
 			tmp /= 10;
@@ -48,11 +33,11 @@ static char		*int_part_to_str(long double *nb, char *s)
 		while (len--)
 			tmp *= 10;
 		*nb = *nb - tmp;
-		if ((delta = flt_len(tmp) - flt_len(*nb) - 1) > 0)
+		if ((delta = ft_floatlen(tmp) - ft_floatlen(*nb) - 1) > 0)
 			while (delta--)
 				s[i++] = '0';
 	}
-	if ((flt_len(tmp) - flt_len(*nb)) > 0)
+	if ((ft_floatlen(tmp) - ft_floatlen(*nb)) > 0)
 		s[i++] = '0';
 	return (s);
 }
@@ -86,10 +71,10 @@ static char		*dec_part_to_str(long double *nb, char *s, int precision)
 	return (s);
 }
 
-char			*s_get_rounder(long double nb, long double c_nb, char *s)
+static char		*s_get_rounder(long double nb, long double c_nb, char *s)
 {
-	char		*tmp;
-	long double	rounder;
+	char			*tmp;
+	long double		rounder;
 	unsigned long	arr;
 	unsigned long	arr_s;
 	int				i;
@@ -97,14 +82,13 @@ char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	i = 0;
 	rounder = get_rounder(0);
 	if (c_nb < 0)
-		c_nb = - c_nb;
+		c_nb = -c_nb;
 	c_nb += rounder;
 	arr_s = (unsigned long)c_nb;
 	arr = (ft_utoi(s));
 	s = dec_part_to_str(&nb, s, 2);
 	while (s[i] != '.')
 		i++;
-	//printf("arr : %lu arr_s : %lu s : %s c : %c\n", arr, arr_s, s, s[i + 1]);
 	if (s[i + 1] - '0' == 5 && (arr % 2))
 		s = ft_itoa(arr_s);
 	else if (s[i + 1] - '0' > 5)
@@ -139,6 +123,5 @@ char			*ftoa(long double nb, char *s, int precision)
 		s = dec_part_to_str(&nb, s, precision + 1);
 	if (neg)
 		s = charrjoin(s, '-');
-
 	return (s);
 }

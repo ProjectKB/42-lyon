@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/26 22:03:23 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/26 22:35:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,8 +16,8 @@
 
 int main()
 {
-	printf("p_content : '%.100f'\n", -180000000001.533333333333333);
-	ft_printf("%.100f", -180000000001.533333333333333);
+	printf("p_content : '%.100Lf'\n", -0);
+	ft_printf("%.100Lf", -0);
 	//printf("%.100f\n", pow(2,-46));
 	//printf("%.100f\n", ft_recursive_npower(-46));
 	//printf("%llu\n", (unsigned long long)ft_atoi_base("1EF33333333333", 16));
