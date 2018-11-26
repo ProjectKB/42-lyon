@@ -6,13 +6,13 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/07 13:37:36 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 17:17:42 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/07 13:43:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {

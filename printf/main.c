@@ -6,18 +6,21 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/23 17:27:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/26 22:03:23 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <math.h>
 
 int main()
 {
-	t_arg *test;
-
-	printf("p_content : '%lX'\n", -321321321321);
-	ft_printf("%lX", -321321321321);
+	printf("p_content : '%.100f'\n", -180000000001.533333333333333);
+	ft_printf("%.100f", -180000000001.533333333333333);
+	//printf("%.100f\n", pow(2,-46));
+	//printf("%.100f\n", ft_recursive_npower(-46));
+	//printf("%llu\n", (unsigned long long)ft_atoi_base("1EF33333333333", 16));
+	//printf("%ld\n", d);
 	return (0);
 }

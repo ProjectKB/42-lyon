@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/23 17:04:27 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/26 14:48:57 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -117,7 +117,7 @@ void	stock_content_lm(t_arg *param, char **content, void *to_stock);
 /*
 ** FLOAT
 */
-void	ftoa(long double nb, char *s, int precision);
+char	*ftoa(long double nb, char *s, int precision);
 int		flt_len(long double n);
 
 #endif

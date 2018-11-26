@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libft.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 13:55:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/09 12:57:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,11 +16,8 @@
 # define LIBFT_H
 
 # include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
 
 void				*ft_memset(void *b, int c, size_t len);
-void				ft_putcolor(char *s, int type, int color);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				ft_sort_integer_table(int *tab, int size);
@@ -58,7 +55,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
-char				*ft_strnew(size_t size);
+void				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
@@ -68,12 +65,10 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
-char				*ft_strfsub(char **s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-char				*ft_itoa_base(unsigned long n, int base);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
@@ -82,25 +77,17 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-
 typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int					ft_check_char(const char *str, char c);
-
-void				ft_freedbtab(void **tab);
-void				ft_putdbstr(char **dbstr, char c);
-char				**ft_dbstrnew(int size);
-char				ft_getchar();
 
 #endif
