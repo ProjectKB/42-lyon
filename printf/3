@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 22:32:23 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 19:07:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,22 +22,7 @@ int main()
 	printf("%+02d\n", 4);
 	printf("%#x\n", 4);*/
 	//printf("%s\n", "coucou");
-	/*printf("%d\n", 4);
-	printf("%0+5.2d\n", 4);
-	printf("%05.2d\n", 4);
-	ft_printf("%d", 4);
-	ft_printf("%0+5.2d", 4);
-	ft_printf("%05.2d", 4);*/
-	ft_printf("%+d", 4);
-	ft_printf("%+d", -4);
-	ft_printf("%0+d", 4);
-	ft_printf("%0+d", -4);
-	ft_printf("%+5d", 4);
-	ft_printf("%+d", 4);
-	ft_printf("%0+45d", 4);
-	//ft_printf("%0+5d", 4);
-	//ft_printf("%-+d", 4);
-	//ft_printf("%0+-d", 4);
+	printf("%d\n", "coucou");
 	//printf("%5s\n", "coucou");
 	return (0);
 }

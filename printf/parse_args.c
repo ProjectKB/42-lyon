@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 18:20:23 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 21:26:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,18 +70,23 @@ int        ft_printf(const char *format, ...)
 	{
 		if (param->conversion_indicator == f && (param->length_modifier == WOAW
 											|| param->length_modifier == l))
-			param->content = ftoa((long double)(va_arg(va, double)), param->content, param->precision);
+			param->content = ftoa((long double)(va_arg(va, double)),\
+											param->content, param->precision);
 		else if (param->conversion_indicator == f && param->length_modifier == L)
-			param->content = ftoa((long double)(va_arg(va, long double)), param->content, param->precision);
-		else if (param->conversion_indicator != woaw && param->length_modifier == WOAW)
+			param->content = ftoa((long double)(va_arg(va, long double)), \
+											param->content, param->precision);
+		else if (param->conversion_indicator != \
+										woaw && param->length_modifier == WOAW)
 			stock_content(param, &param->content, va_arg(va, void*));
 		else
 			stock_content_lm(param, &param->content, va_arg(va, void*));
+		fill_field(&param->field, param);
+		transform_chain(&param);
 		param = param->next;
 	}
 	va_end(va);
 	param = begin_params;
-	//printf("%s\n", param->content);
+
 	display_list_content(param);
 	return (0);
 }
