@@ -6,19 +6,19 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 16:28:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 18:00:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char        *int_part_to_str(long double *nb, char *s)
+static char		*int_part_to_str(long double *nb, char *s)
 {
-	long double        tmp;
-	int                len;
-	int                delta;
-	int                i;
+	long double	tmp;
+	int			len;
+	int			delta;
+	int			i;
 
 	i = 0;
 	if (*nb < 1)
@@ -100,22 +100,21 @@ static char		*s_get_rounder(long double nb, long double c_nb, char *s)
 }
 
 int	check_errors(long double nb, char **s)
-  {
-  uint64_t *tmp;
+{
+	uint64_t *to_check;
 
-  tmp = (uint64_t*)&nb;
-  tmp[1] = (tmp[1] << 48) >> 48;
-  if (*tmp == 0x8000000000000000 && tmp[1] >= 0xfff)
- *s = ft_strdup("inf");
- if (*tmp == 0x8000000000000000 && tmp[1] >= 0xffff)
- *s = ft_strdup("-inf");
- if (*tmp == 0xc000000000000000)
- *s = ft_strdup("nan");
- if (ft_strlen(*s))
- return (1);
- return (0);
- }
-
+	to_check = (uint64_t*)&nb;
+	to_check[1] = (to_check[1] << 48) >> 48;
+	if (*to_check == 0x8000000000000000 && to_check[1] >= 0xfff)
+		*s = ft_strdup("inf");
+	if (*to_check == 0x8000000000000000 && to_check[1] >= 0xffff)
+		*s = ft_strdup("-inf");
+	if (*to_check == 0xc000000000000000)
+		*s = ft_strdup("nan");
+	if (ft_strlen(*s))
+		return (1);
+	return (0);
+}
 
 char			*ftoa(long double nb, char *s, int precision)
 {
@@ -137,13 +136,13 @@ char			*ftoa(long double nb, char *s, int precision)
 		}
 		s = charjoin(int_part_to_str(&nb, s), '.');
 		if (!precision)
-		  s = s_get_rounder(nb, c_nb, s);
-		  else if (precision == -1)
-		  s = dec_part_to_str(&nb, s, 7);
-		  else if (precision != -1)
-		  s = dec_part_to_str(&nb, s, precision + 1);
-		  if (neg)
-		  s = charrjoin(s, '-');
+			s = s_get_rounder(nb, c_nb, s);
+		else if (precision == -1)
+			s = dec_part_to_str(&nb, s, 7);
+		else if (precision != -1)
+			s = dec_part_to_str(&nb, s, precision + 1);
+		if (neg)
+			s = charrjoin(s, '-');
 	}
 	return (s);
 }

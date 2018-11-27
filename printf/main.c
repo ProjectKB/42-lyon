@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 16:28:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 18:21:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,11 +19,11 @@ int main()
 	/*uint64_t *tmp;
 	uint64_t *tmp2;
 	uint64_t *tmp3;
-	uint64_t *tmp4;
+	uint64_t *tmp4;*/
 	long double nb = sqrt(-1);
 	long double nb2 = 1.0 / 0.0;
 	long double nb3 = -1.0 / 0.0;
-	long double nb4 = 0;
+	/*long double nb4 = 0;
 
 	tmp = (uint64_t*)&nb;
 	tmp2 = (uint64_t*)&nb2;
@@ -37,8 +37,22 @@ int main()
 	//ft_printf("%f", (double)nb);
 	//ft_printf("%f", (double)nb2);
 	//ft_printf("%f", (double)nb3);
-	ft_printf("%f", sqrt(-1));
-	printf("\n%.4f", 10.85);
+	//ft_printf("%Lf", -5555555555555555.0);
+	ft_printf("%Lf", (long double)nb);
+	ft_printf("%Lf", (long double)nb2);
+	ft_printf("%Lf", (long double)nb3);
+	//ft_printf("%lf", -5555555555555555.0);
+	ft_printf("%lf", (double)nb);
+	ft_printf("%lf", (double)nb2);
+	ft_printf("%lf", (double)nb3);
+	//printf("%lf\n", -5555555555555555.0);
+	printf("%Lf\n", (long double)nb);
+	printf("%Lf\n", (long double)nb2);
+	printf("%Lf\n", (long double)nb3);
+	//printf("%lf\n", -5555555555555555.0);
+	printf("%lf\n", (double)nb);
+	printf("%lf\n", (double)nb2);
+	printf("%lf\n", (double)nb3);
 	//printf("%lu", (unsigned long)0);
 	//ft_printf("%.100Lf", -0);
 	//printf("%.100f\n", pow(2,-46));

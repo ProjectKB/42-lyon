@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/26 14:57:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 18:20:23 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,8 +68,11 @@ int        ft_printf(const char *format, ...)
 	va_start(va, format);
 	while (param)
 	{
-		if (param->conversion_indicator == f)
+		if (param->conversion_indicator == f && (param->length_modifier == WOAW
+											|| param->length_modifier == l))
 			param->content = ftoa((long double)(va_arg(va, double)), param->content, param->precision);
+		else if (param->conversion_indicator == f && param->length_modifier == L)
+			param->content = ftoa((long double)(va_arg(va, long double)), param->content, param->precision);
 		else if (param->conversion_indicator != woaw && param->length_modifier == WOAW)
 			stock_content(param, &param->content, va_arg(va, void*));
 		else
