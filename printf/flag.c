@@ -6,20 +6,43 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 13:37:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 18:25:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	hash_tag_comportement(char **flag, e_ci c_i)
+void	hash_tag_comportement(t_arg **param)
 {
-	remove_char_from_str(flag, '#');
-	if (c_i == x)
-		*flag = ft_strjoin(*flag, "0x");
-	else if (c_i == X)
-		*flag = ft_strjoin(*flag, "0X");
+	if (ft_strchr((*param)->flag, '#'))
+	{
+		if (!ft_strchr((*param)->flag, '-'))
+		{
+			if (ft_strchr((*param)->field, '0'))
+			{
+				if ((*param)->conversion_indicator == x)
+					(*param)->field = ft_strjoin("0x", (*param)->field);
+				else if ((*param)->conversion_indicator == X)
+					(*param)->field = ft_strjoin("0x", (*param)->field);
+			}
+			else
+			{
+				if ((*param)->conversion_indicator == x)
+					(*param)->content = ft_strjoin("0x", (*param)->content);
+				else if ((*param)->conversion_indicator == X)
+					(*param)->content = ft_strjoin("0X", (*param)->content);
+			}
+		}
+		else if (ft_strchr((*param)->flag, '-'))
+		{
+			if ((*param)->conversion_indicator == x)
+				(*param)->content = ft_strjoin("0x", (*param)->content);
+			else if ((*param)->conversion_indicator == X)
+				(*param)->content = ft_strjoin("0X", (*param)->content);
+		}
+		remove_char_from_str(&(*param)->flag, '#');
+	}
 }
 
 void	plus_comportement(t_arg **param)
