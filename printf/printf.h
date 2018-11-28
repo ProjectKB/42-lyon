@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 21:30:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 12:59:57 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,9 +95,9 @@ int		ft_printf(const char *format, ...);
 void	fix_impossible_comb(char **flag);
 void	fix_impossible_flag(char **flag,  e_ci c_i);
 void	transform_flag(t_arg *param);
-void	sort_flags(char **flag, e_ci c_i, char *content);
 void	hash_tag_comportement(char **flag, e_ci c_i);
 void	plus_comportement(t_arg **param);
+void	aq_comportement(t_arg **param);
 
 /*
 ** MANAGE FIELD
