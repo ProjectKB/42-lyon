@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/27 18:53:37 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/11/28 19:09:37 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -28,6 +28,7 @@ SRC = ./list_tools.c \
 	./precision.c \
 	./length_modifier.c \
 	./transform_chain.c \
+	./final_display.c \
 
 HEADER = ./printf.h
 

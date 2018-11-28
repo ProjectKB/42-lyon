@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 17:55:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 19:19:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,6 +98,7 @@ void	transform_flag(t_arg *param);
 void	hash_tag_comportement(t_arg **param);
 void	plus_comportement(t_arg **param);
 void	aq_comportement(t_arg **param);
+void	zero_comportement(t_arg **param);
 
 /*
 ** MANAGE FIELD
@@ -124,5 +125,11 @@ int		flt_len(long double n);
 ** TRANSFORM CHAIN
 */
 void	transform_chain(t_arg **param);
+
+
+/*
+** DISPLAY CHAIN
+*/
+void	final_display(t_arg *param);
 
 #endif
