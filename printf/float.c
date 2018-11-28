@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 18:00:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:37:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,6 @@ static double	get_rounder(int precision)
 static char		*dec_part_to_str(long double *nb, char *s, int precision)
 {
 	long double		rounder;
-	int				i;
 
 	rounder = get_rounder(precision);
 	*nb += rounder;
@@ -74,7 +73,6 @@ static char		*dec_part_to_str(long double *nb, char *s, int precision)
 
 static char		*s_get_rounder(long double nb, long double c_nb, char *s)
 {
-	char			*tmp;
 	long double		rounder;
 	unsigned long	arr;
 	unsigned long	arr_s;

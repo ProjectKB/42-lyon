@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 19:07:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:31:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,22 +41,6 @@ void	stock_content(t_arg *param, char **content, void* to_display)
 				ft_itoa_base((unsigned long)to_display, 16));
 }
 
-/*void	parse_args(t_arg *param, ...)
-{
-	va_list va;
-
-	va_start(va, param);
-	while (param)
-	{
-		if (param->conversion_indicator == f)
-			ftoa((long double)(va_arg(va, double)), param->content, param->precision);
-		else if (param->conversion_indicator != woaw)
-			stock_content(param, va_arg(va, void*));
-		param = param->next;
-	}
-	va_end(va);
-}*/
-
 int        ft_printf(const char *format, ...)
 {
 	va_list	va;
@@ -78,15 +62,19 @@ int        ft_printf(const char *format, ...)
 		else if (param->conversion_indicator != \
 										woaw && param->length_modifier == WOAW)
 			stock_content(param, &param->content, va_arg(va, void*));
-		else
+		else if (param->conversion_indicator != woaw && param->length_modifier != WOAW)
 			stock_content_lm(param, &param->content, va_arg(va, void*));
-		fill_field(&param->field, param);
-		transform_chain(&param);
+		if (param->conversion_indicator != woaw)
+		{
+			fill_field(&param->field, param);
+			transform_chain(&param);
+		}
+		final_display(param);
 		param = param->next;
 	}
 	va_end(va);
-	param = begin_params;
-
-	display_list_content(param);
+	//param = begin_params;
+	
+	//display_list_content(param);
 	return (0);
 }

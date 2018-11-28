@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 19:19:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:26:48 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
+int		ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 
 typedef enum {
 	WOAW,
@@ -41,7 +43,8 @@ typedef enum {
 	u,
 	x,
 	X,
-	f
+	f,
+	none,
 } e_ci;
 
 typedef struct s_arg {

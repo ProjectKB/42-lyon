@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 20:01:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:37:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,6 @@
 
 void	fix_impossible_comb(char **flag)
 {
-	int	i;
-
 	if (ft_strchr(*flag, '0') && ft_strchr(*flag, '-'))
 		remove_char_from_str(flag, '0');
 	if (ft_strchr(*flag, '+') && ft_strchr(*flag, ' '))

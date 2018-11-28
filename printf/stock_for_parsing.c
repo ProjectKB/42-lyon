@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/23 13:06:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:05:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,12 +42,17 @@ void	stock_field(char **field, char *format, int *i)
 
 	f_size = 0;
 	count = 0;
-	while (format[*i] >= '0' && format[*i] <= '9')
+	if (format[*i] >= '0' && format[*i] <= '9')
 	{
-		f_size = f_size * 10 + format[*i] - '0';
-		*i += 1;
+		while (format[*i] >= '0' && format[*i] <= '9')
+		{
+			f_size = f_size * 10 + format[*i] - '0';
+			*i += 1;
+		}
+		*field = ft_itoa(f_size);
 	}
-	*field = ft_itoa(f_size);
+	else
+		*field = ft_strdup("\0");
 }
 
 void	stock_precision(int *precision, char *format, int *i)
@@ -98,22 +103,22 @@ void	stock_conversion_indicator(e_ci *conversion_indicator, \
 {
 	if (format[*i] == 'c')
 		*conversion_indicator = c;
-	if (format[*i] == 's')
+	else if (format[*i] == 's')
 		*conversion_indicator = s;
-	if (format[*i] == 'p')
+	else if (format[*i] == 'p')
 		*conversion_indicator = p;
-	if (format[*i] == 'd' || format[*i] == 'i')
+	else if (format[*i] == 'd' || format[*i] == 'i')
 		*conversion_indicator = di;
-	if (format[*i] == 'o')
+	else if (format[*i] == 'o')
 		*conversion_indicator = o;
-	if (format[*i] == 'u')
+	else if (format[*i] == 'u')
 		*conversion_indicator = u;
-	if (format[*i] == 'c')
+	else if (format[*i] == 'c')
 		*conversion_indicator = c;
-	if (format[*i] == 'x')
+	else if (format[*i] == 'x')
 		*conversion_indicator = x;
-	if (format[*i] == 'X')
+	else if (format[*i] == 'X')
 		*conversion_indicator = X;
-	if (format[*i] == 'f')
+	else if (format[*i] == 'f')
 		*conversion_indicator = f;
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 18:39:23 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/28 21:08:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,7 +66,6 @@ void	stock_arg_description(t_arg *param, char *format, int *i)
 	stock_length_modifier(&param->length_modifier, format, i);
 	stock_conversion_indicator(&param->conversion_indicator, format, i);
 	transform_flag(param);
-	//fill_field(&param->field, param->flag, param->precision, param->conversion_indicator);
 	if (param->conversion_indicator != woaw)
 		*i += 1;
 }
