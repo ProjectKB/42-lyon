@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 19:32:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 00:46:41 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,25 +21,31 @@ void	hash_tag_comportement(t_arg **param)
 		{
 			if (ft_strchr((*param)->field, '0'))
 			{
-				if ((*param)->conversion_indicator == x)
+				if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
 					(*param)->field = ft_strjoin("0x", (*param)->field);
-				else if ((*param)->conversion_indicator == X)
+				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 					(*param)->field = ft_strjoin("0x", (*param)->field);
+				else if ((*param)->conversion_indicator == o)
+					(*param)->content = ft_strjoin("0", (*param)->content);
 			}
 			else
 			{
-				if ((*param)->conversion_indicator == x)
+				if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0x", (*param)->content);
-				else if ((*param)->conversion_indicator == X)
+				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0X", (*param)->content);
+				else if ((*param)->conversion_indicator == o)
+					(*param)->content = ft_strjoin("0", (*param)->content);
 			}
 		}
 		else if (ft_strchr((*param)->flag, '-'))
 		{
-			if ((*param)->conversion_indicator == x)
+			if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
 				(*param)->content = ft_strjoin("0x", (*param)->content);
-			else if ((*param)->conversion_indicator == X)
+			else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 				(*param)->content = ft_strjoin("0X", (*param)->content);
+				else if ((*param)->conversion_indicator == o)
+					(*param)->content = ft_strjoin("0", (*param)->content);
 		}
 		if ((*param)->conversion_indicator == f && !((*param)->precision))
 			(*param)->content = charjoin((*param)->content, '.');
@@ -69,7 +75,7 @@ void	plus_comportement(t_arg **param)
 
 void	aq_comportement(t_arg **param)
 {
-	if (ft_strchr((*param)->flag, ' '))
+	if (ft_strchr((*param)->flag, ' ') && ft_atoi((*param)->content) >= 0)
 	{
 		(*param)->content = charrjoin((*param)->content, ' ');
 		remove_char_from_str(&(*param)->flag, ' ');
