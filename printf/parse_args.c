@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 21:31:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 21:51:06 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ void	stock_content(t_arg *param, char **content, void* to_display)
 		*content = precision_tr(ft_itoa((int)to_display), \
 				param->precision, param->conversion_indicator);
 	else if (param->conversion_indicator == s)
-		*content = precision_tr(ft_strdup((char*)to_display), \
+		*content = precision_tr(ft_strdup(string_null((char*)to_display)), \
 				param->precision, param->conversion_indicator);
 	else if (param->conversion_indicator == c)
 		*content = charjoin(param->content, (char)to_display);
@@ -44,12 +44,15 @@ void	stock_content(t_arg *param, char **content, void* to_display)
 int        ft_printf(const char *format, ...)
 {
 	va_list	va;
+	char	*tmp;
 	t_arg	*param;
 	t_arg	*begin_params;
+	int		len_print;
 
 	param = parse_string(format);
 	begin_params = param;
 	va_start(va, format);
+	len_print = 0;
 	while (param)
 	{
 		if (param->conversion_indicator == f && (param->length_modifier == WOAW
@@ -69,12 +72,13 @@ int        ft_printf(const char *format, ...)
 			fill_field(&param->field, param);
 			transform_chain(&param);
 		}
+		len_print += (ft_strlen(param->content) + ft_strlen(param->field));
 		final_display(param);
 		param = param->next;
 	}
 	va_end(va);
-	//param = begin_params;
+	param = begin_params;
 	
 	//display_list_content(param);
-	return (0);
+	return (len_print);
 }

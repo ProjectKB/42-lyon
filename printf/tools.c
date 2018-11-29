@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 19:45:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 21:37:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -144,4 +144,11 @@ char	nb_char_occur(char *str)
 		j++;
 	}
 	return (is_repeat);
+}
+
+char	*string_null(char *str)
+{
+	if (!str)
+		return (ft_strdup("(null)"));
+	return (str);
 }

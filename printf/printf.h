@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 21:26:48 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 21:51:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,6 @@ typedef struct s_arg {
 	e_lm	length_modifier;
 	e_ci	conversion_indicator;
 	char	*content;
-	int		len_print;
 } t_arg;
 
 /*
@@ -68,6 +67,7 @@ int		str_is_equal(char *ref);
 void	remove_char_from_str(char **to_transform, char c);
 void	remove_one_char_from_str(char **to_transform, char c);
 char	nb_char_occur(char *str);
+char	*string_null(char *str);
 
 /*
 ** LISTS TOOLS

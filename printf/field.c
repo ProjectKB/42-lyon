@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 19:31:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 20:53:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ void	fill_field(char **field, t_arg *param)
 {
 	int	i;
 	int	count;
+	char	*tmp;
 
 	i = 0;
 	if (param->precision == -1 || param->conversion_indicator == c || param->conversion_indicator == p)

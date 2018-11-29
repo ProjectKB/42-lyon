@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/23 12:56:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/27 18:19:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 20:44:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,10 @@ void	di_length_modifier(t_arg *param, char **content, void *to_stock)
 		*content = precision_tr((ft_itoa((long int)to_stock)), \
 				param->precision, param->conversion_indicator);
 	else if (param->length_modifier == ll)
+	{
 		*content = precision_tr((ft_itoa((long long int)to_stock)), \
 				param->precision, param->conversion_indicator);
+	}
 }
 
 char	*oxX_length_modifier(t_arg *param, char *content, void *to_stock, int base)
