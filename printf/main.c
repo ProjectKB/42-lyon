@@ -6,18 +6,18 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 03:44:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 06:45:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <math.h>
+#include <limits.h>
 
 int main()
 {
-	//ft_printf("m @moulitest: %c\n", 0);
-	printf("%c\n", 0);
-	ft_putchar(0);
+	printf("'%10s' is a string\n", "");
+	ft_printf("'%10s' is a string", "");
 	return (0);
 }

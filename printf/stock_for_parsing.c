@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/28 21:05:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 06:06:50 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -121,4 +121,6 @@ void	stock_conversion_indicator(e_ci *conversion_indicator, \
 		*conversion_indicator = X;
 	else if (format[*i] == 'f')
 		*conversion_indicator = f;
+	else if (format[*i] == '%')
+		*conversion_indicator = spe;
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 03:45:51 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 06:38:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void	stock_content(t_arg *param, char **content, void* to_display)
 		*content = precision_tr(ft_strdup(string_null((char*)to_display)), \
 				param->precision, param->conversion_indicator);
 	else if (param->conversion_indicator == c)
-		*content = charjoin(param->content, (char)to_display);
+		*content = ft_itoa((int)to_display);
 	else if (param->conversion_indicator == u)
 		*content = precision_tr(ft_itoa((unsigned int)to_display), \
 				param->precision, param->conversion_indicator);
@@ -72,6 +72,12 @@ int        ft_printf(const char *format, ...)
 			fill_field(&param->field, param);
 			transform_chain(&param);
 		}
+		if (param->conversion_indicator == spe)
+			param->content = ft_strdup("%");;
+		if (param->conversion_indicator == c && ft_strlen(param->content) == 2)
+			len_print -= 1;
+		if (param->conversion_indicator == c && ft_strlen(param->content) == 3)
+			len_print -= 2;
 		len_print += (ft_strlen(param->content) + ft_strlen(param->field));
 		final_display(param);
 		param = param->next;
