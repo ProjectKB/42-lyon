@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 00:17:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 03:09:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,12 +24,14 @@ void	fill_field(char **field, t_arg *param)
 		count = ft_atoi(*field) - ft_strlen(param->content);
 	else
 		count = ft_atoi(*field) - param->precision;
-	if (ft_strchr(param->flag, '+') || ft_strchr(param->flag, ' '))
+	if ((ft_strchr(param->flag, '+') || ft_strchr(param->flag, ' ')) && !ft_strchr(param->content, '-'))
 		count -= 1;
 	if ((param->conversion_indicator == x || param->conversion_indicator == X)
 												&& ft_strchr(param->flag, '#'))
 		count -= 2;
 	if ((param->conversion_indicator == o) && ft_strchr(param->flag, '#'))
+		count -= 1;
+	if (ft_strchr(param->content, '-') && param->precision != -1)
 		count -= 1;
 	*field = ft_strdup("");
 	while (i < count)

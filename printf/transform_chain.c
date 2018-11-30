@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 18:41:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/29 21:17:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/30 02:53:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,4 +19,9 @@ void	transform_chain(t_arg **param)
 	hash_tag_comportement(param);
 	aq_comportement(param);
 	zero_comportement(param);
+	if (ft_strchr((*param)->content, '-') && (*param)->content[0] != '-')
+	{
+		remove_char_from_str(&(*param)->content, '-');
+		(*param)->content = charrjoin((*param)->content, '-');
+	}
 }
