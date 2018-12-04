@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 18:10:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/04 19:10:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void	fill_field(char **field, t_arg *param)
 	i = 0;
 	if (param->precision == -1 || param->conversion_indicator == c || param->conversion_indicator == p || param->conversion_indicator == x || param->conversion_indicator == X || param->conversion_indicator == o || param->conversion_indicator == u)
 		count = ft_atoi(*field) - ft_strlen(param->content);
-	else if (ft_strlen(param->content) > param->precision && !ft_strchr(param->content, '-') && param->conversion_indicator != s)
+	else if (ft_strlen(param->content) > param->precision && param->conversion_indicator != s)
 		count = ft_atoi(*field) - ft_strlen(param->content);
 	else if (param->conversion_indicator == s && ft_strlen(param->content) < param->precision && ft_strlen(param->content))
 		count = ft_atoi(*field) - ft_strlen(param->content);
@@ -34,8 +34,6 @@ void	fill_field(char **field, t_arg *param)
 												&& ft_strchr(param->flag, '#'))
 		count -= 2;
 	if ((param->conversion_indicator == o) && ft_strchr(param->flag, '#'))
-		count -= 1;
-	if (ft_strchr(param->content, '-') && param->precision != -1 && param->conversion_indicator != s)
 		count -= 1;
 	*field = ft_strdup("");
 	if (param->conversion_indicator == c && ft_strlen(param->content) == 2)
