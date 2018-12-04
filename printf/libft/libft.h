@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/26 22:47:18 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/29 20:49:37 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,7 +76,7 @@ char				*ft_strfsub(char **s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(size_t n);
+char				*ft_itoa(long long n);
 char				*ft_utoa(size_t n);
 char				*ft_itoa_base(unsigned long n, int base);
 void				ft_putchar(char c);

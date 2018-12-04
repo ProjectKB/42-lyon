@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/23 18:13:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/04 12:23:12 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,9 +14,9 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int		ft_count_number(int n)
+static size_t	ft_count_number(size_t n)
 {
-	int		count;
+	size_t	count;
 
 	count = 0;
 	while (n)
