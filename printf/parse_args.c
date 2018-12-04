@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 14:17:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/04 17:15:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,12 +79,12 @@ int        ft_printf(const char *format, ...)
 		if (param->conversion_indicator == c && ft_strlen(param->content) == 3)
 			len_print -= 2;
 		len_print += (ft_strlen(param->content) + ft_strlen(param->field));
-	//	final_display(param);
+		final_display(param);
 		param = param->next;
 	}
 	va_end(va);
 	param = begin_params;
 	
-	display_list_content(param);
+	//display_list_content(param);
 	return (len_print);
 }
