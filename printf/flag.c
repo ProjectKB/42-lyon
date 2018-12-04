@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 00:46:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/04 12:42:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	hash_tag_comportement(t_arg **param)
 					(*param)->field = ft_strjoin("0x", (*param)->field);
 				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 					(*param)->field = ft_strjoin("0x", (*param)->field);
-				else if ((*param)->conversion_indicator == o)
+				else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0", (*param)->content);
 			}
 			else
@@ -34,7 +34,7 @@ void	hash_tag_comportement(t_arg **param)
 					(*param)->content = ft_strjoin("0x", (*param)->content);
 				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0X", (*param)->content);
-				else if ((*param)->conversion_indicator == o)
+				else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0", (*param)->content);
 			}
 		}
@@ -44,7 +44,7 @@ void	hash_tag_comportement(t_arg **param)
 				(*param)->content = ft_strjoin("0x", (*param)->content);
 			else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
 				(*param)->content = ft_strjoin("0X", (*param)->content);
-				else if ((*param)->conversion_indicator == o)
+			else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content)))
 					(*param)->content = ft_strjoin("0", (*param)->content);
 		}
 		if ((*param)->conversion_indicator == f && !((*param)->precision))
