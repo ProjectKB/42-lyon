@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 14:39:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 13:26:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -117,6 +117,7 @@ char	*precision_tr(char *content, int precision, e_ci c_i);
 ** MANAGE LENGTH MODIFIER
 */
 void	stock_content_lm(t_arg *param, char **content, void *to_stock);
+void	special_case_lm(t_arg *param);
 
 /*
 ** FLOAT

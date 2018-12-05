@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/23 12:56:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 14:40:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 13:27:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,4 +76,11 @@ void	stock_content_lm(t_arg *param, char **content, void *to_stock)
 		*content = ft_strupcase(oxX_length_modifier(param, *content, to_stock, 16));
 	else if (param->conversion_indicator == u)
 		u_length_modifier(param, content, to_stock);
+}
+
+void	special_case_lm(t_arg *param)
+{
+	if (param->conversion_indicator == p || param->conversion_indicator == s \
+										|| param->conversion_indicator == c)
+		param->length_modifier = WOAW;
 }
