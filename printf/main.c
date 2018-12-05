@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 15:28:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 15:39:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 
 int main()
 {
-	ft_printf("toto%.0d et %+.i !!!\n", 0, 0);
-	printf("toto%.0d et %+.i !!!\n", 0, 0);
+	ft_printf("%05.1u %3.4hu\n", 45, (unsigned short)-1789);
+	printf("%05.1u %3.4hu\n", 45, (unsigned short)-1789);
 	return (0);
 }
