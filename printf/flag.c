@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 18:40:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 15:24:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,7 +75,7 @@ void	plus_comportement(t_arg **param)
 
 void	aq_comportement(t_arg **param)
 {
-	if (ft_strchr((*param)->flag, ' ') && ft_atoi((*param)->content) >= 0)
+	if (ft_strchr((*param)->flag, ' ') && !ft_strchr((*param)->content, '-'))
 	{
 		(*param)->content = charrjoin((*param)->content, ' ');
 		remove_char_from_str(&(*param)->flag, ' ');
