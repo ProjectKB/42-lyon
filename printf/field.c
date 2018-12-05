@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 20:13:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 21:24:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,8 @@ void	fill_field(char **field, t_arg *param)
 		count = ft_atoi(*field) - ft_strlen(param->content);
 	else if (ft_strlen(param->content) > param->precision && param->conversion_indicator != s)
 		count = ft_atoi(*field) - ft_strlen(param->content);
-	else if (param->conversion_indicator == s && ft_strlen(param->content) < param->precision && ft_strlen(param->content))
+	else if ((param->conversion_indicator == s || param->conversion_indicator == spe)
+	&& ft_strlen(param->content) < param->precision && ft_strlen(param->content))
 		count = ft_atoi(*field) - ft_strlen(param->content);
 	else
 		count = ft_atoi(*field) - param->precision;
@@ -40,8 +41,8 @@ void	fill_field(char **field, t_arg *param)
 		count += 1;
 	if (param->conversion_indicator == c && ft_strlen(param->content) == 3)
 		count += 2;
-	if (param->conversion_indicator == spe)
-		count -= 1;
+	//if (param->conversion_indicator == spe)
+	//	count -= 1;
 	if (param->conversion_indicator == s && !ft_strlen(param->content) && param->precision != -1)
 		count += param->precision;
 	while (i < count)

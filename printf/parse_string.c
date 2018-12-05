@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 06:06:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 22:24:41 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,11 +39,12 @@ int		stock_ordinary_char(char **str, char *format, int *i)
 	return (1);
 }
 
-void	double_to_one_pourcent(char **str)
+void	double_to_one_pourcent(char **str, int *j, char *format)
 {
 	int		i;
 	char	*first_part;
 	char	*second_part;
+	int		count = 0;
 
 	i = 0;
 	while ((*str)[i])
@@ -53,9 +54,13 @@ void	double_to_one_pourcent(char **str)
 			first_part = ft_strsub(*str, 0, i);
 			second_part = ft_strsub(*str, i + 1, ft_strlen(*str));
 			*str = ft_strjoin(first_part, second_part);
+			if (!count)
+				count++;
 		}
 		i++;
 	}
+	if (count && format[*j])
+		*j += 1;
 }
 
 void	stock_arg_description(t_arg *param, char *format, int *i)
@@ -83,7 +88,7 @@ t_arg	*parse_string(const char *format)
 	{
 		if ((stock_ordinary_char(&param->content, (char*)format, &i)))
 		{
-			double_to_one_pourcent(&param->content);
+			double_to_one_pourcent(&param->content, &i, (char*)format);
 			if (i < ft_strlen(format) && (param->next = create_elem()))
 				param = param->next;
 		}

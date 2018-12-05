@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 00:48:01 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 21:09:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,9 +35,9 @@ void	fix_impossible_flag(char **flag, e_ci c_i)
 		remove_char_from_str(flag, '+');
 	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, '#'))
 		remove_char_from_str(flag, '#');
-	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, '+'))
+	if ((c_i == c || c_i == s || c_i == p || c_i == spe) && ft_strchr(*flag, '+'))
 		remove_char_from_str(flag, '+');
-	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, ' '))
+	if ((c_i == c || c_i == s || c_i == p || c_i == spe) && ft_strchr(*flag, ' '))
 		remove_char_from_str(flag, ' ');
 	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, '0'))
 		remove_char_from_str(flag, '0');

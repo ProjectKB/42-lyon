@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 19:43:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 22:23:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ void	create_and_move_forward(t_arg **param);
 ** FILL STRUCT
 */
 int		stock_ordinary_char(char **str, char *format, int *i);
-void	double_to_one_pourcent(char **str);
+void	double_to_one_pourcent(char **str, int *i, char *format);
 void	stock_flag(char **flag, char *format, int *i);
 void	stock_field(char **field, char *format, int *i);
 void	stock_precision(int *precision, char *format, int *i);
