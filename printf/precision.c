@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/22 16:44:18 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 18:44:27 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 19:56:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ char	*precision_tr(char *content, t_arg *param)
 	param->conversion_indicator != f && param->conversion_indicator != p && !ft_atoi(content))
 		remove_char_from_str(&content, '0');
 
-	if (ft_strchr(param->flag, '#') && param->precision > 0 && ft_atoi(content))
+	if (ft_strchr(param->flag, '#') && param->precision > 0 && ft_atoi(content)) // o only ?
 		param->precision -= 1;
 
 	if (param->precision > ft_strlen(content))

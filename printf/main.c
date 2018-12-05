@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 18:09:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 20:40:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,41 +17,16 @@
 
 int main()
 {
-	printf("'%o'\n", 0);
-	ft_printf("'%o'\n", 0);
-	printf("'%o'\n", 1);
-	ft_printf("'%o'\n", 1);
-	printf("'%2o'\n", 0);
-	ft_printf("'%2o'\n", 0);
-	printf("'%2o'\n", 1);
-	ft_printf("'%2o'\n", 1);
-	printf("'%#o'\n", 0);
-	ft_printf("'%#o'\n", 0);
-	printf("'%#o'\n", 1);
-	ft_printf("'%#o'\n", 1);
-	printf("'%#2o'\n", 0);
-	ft_printf("'%#2o'\n", 0);
-	printf("'%#2o'\n", 1);
-	ft_printf("'%#2o'\n", 1);
-	printf("c '%.1o'\n", 0);
-	ft_printf("c '%.1o'\n", 0);
-	printf("'%.o'\n", 1);
-	ft_printf("'%.o'\n", 1);
-	printf("'%#.o'\n", 0);
-	ft_printf("'%#.o'\n", 0);
-	printf("'%#.o'\n", 1);
-	ft_printf("'%#.o'\n\n", 1);
+	/*ft_printf("cc%#.4X et %#012x %#04X !!\n", 0xaef, 0xe, 0);
+	printf("cc%#.4X et %#012x %#04X !!\n", 0xaef, 0xe, 0);
+	ft_printf("t %#7.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
+	printf("t %#7.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
+	ft_printf("%#.22X et %020.14x\n", 0xff, 0xff);
+	printf("%#.22X et %020.14x\n", 0xff, 0xff);*/
+	//ft_printf("%d\n", ft_printf("osef ! %#9llX et %-12hhx\n", (unsigned long long)-1248759650, (unsigned char)-1478223695));
+	//printf("%d\n", printf("osef ! %#9llX et %-12hhx\n", (unsigned long long)-1248759650, (unsigned char)-1478223695));
+	ft_printf("%0#10.0x\n", 0);
+	printf("%0#10.0x\n", 0);
 
-	printf("'%o'\n", 012);
-	ft_printf("'%o'\n", 012);
-	printf("'%#o'\n", 012);
-	ft_printf("'%#o'\n", 012);
-	printf("p : '%#.4o'\n", 12);
-	ft_printf("m : '%#.4o'\n\n", 12);
-
-	ft_printf("m : toto %###.0o%#.o et %#.1o !\n", 0, 0, 0);
-	printf("p : toto %###.0o%#.o et %#.1o !\n", 0, 0, 0);
-	ft_printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
-	printf("test%#.4o et %02o %0#14.0o!!\n", 012, 036, 12587499);
 	return (0);
 }

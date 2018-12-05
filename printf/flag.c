@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 16:10:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 19:51:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,18 +21,18 @@ void	hash_tag_comportement(t_arg **param)
 		{
 			if (ft_strchr((*param)->field, '0'))
 			{
-				if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
+				if ((*param)->conversion_indicator == x && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
 					(*param)->field = ft_strjoin("0x", (*param)->field);
-				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
-					(*param)->field = ft_strjoin("0x", (*param)->field);
+				else if ((*param)->conversion_indicator == X && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
+					(*param)->field = ft_strjoin("0X", (*param)->field);
 				else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content) || !(*param)->precision))
 					(*param)->content = ft_strjoin("0", (*param)->content);
 			}
 			else
 			{
-				if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
+				if ((*param)->conversion_indicator == x && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
 					(*param)->content = ft_strjoin("0x", (*param)->content);
-				else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
+				else if ((*param)->conversion_indicator == X && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
 					(*param)->content = ft_strjoin("0X", (*param)->content);
 				else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content) || !(*param)->precision))
 					(*param)->content = ft_strjoin("0", (*param)->content);
@@ -40,9 +40,9 @@ void	hash_tag_comportement(t_arg **param)
 		}
 		else if (ft_strchr((*param)->flag, '-'))
 		{
-			if ((*param)->conversion_indicator == x && (ft_atoi((*param)->content)))
+			if ((*param)->conversion_indicator == x && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
 				(*param)->content = ft_strjoin("0x", (*param)->content);
-			else if ((*param)->conversion_indicator == X && (ft_atoi((*param)->content)))
+			else if ((*param)->conversion_indicator == X && ((ft_atoi((*param)->content)) || is_hexa((*param)->content)))
 				(*param)->content = ft_strjoin("0X", (*param)->content);
 			else if ((*param)->conversion_indicator == o && (ft_atoi((*param)->content) || !(*param)->precision))
 					(*param)->content = ft_strjoin("0", (*param)->content);

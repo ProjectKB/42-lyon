@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 16:49:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 19:43:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,6 +68,7 @@ void	remove_char_from_str(char **to_transform, char c);
 void	remove_one_char_from_str(char **to_transform, char c);
 char	nb_char_occur(char *str);
 char	*string_null(char *str);
+int		is_hexa(char *str);
 
 /*
 ** LISTS TOOLS
