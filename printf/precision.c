@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/22 16:44:18 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 14:42:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 18:44:27 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,11 +22,17 @@ char	*precision_tr(char *content, t_arg *param)
 		return (content);
 	if (param->conversion_indicator == s)
 		return (ft_strsub(content, 0, param->precision));
-	if (!param->precision && param->conversion_indicator != c && param->conversion_indicator != f && param->conversion_indicator != p && !ft_atoi(content))
+	if (!param->precision && param->conversion_indicator != c &&
+	param->conversion_indicator != f && param->conversion_indicator != p && !ft_atoi(content))
 		remove_char_from_str(&content, '0');
+
+	if (ft_strchr(param->flag, '#') && param->precision > 0 && ft_atoi(content))
+		param->precision -= 1;
+
 	if (param->precision > ft_strlen(content))
 		while (ft_strlen(content) != param->precision)
 			content = charrjoin(content, '0');
+
 	if (param->precision == ft_strlen(content) && ft_strchr(content, '-'))
 		content = charrjoin(content, '0');
 	if (param->conversion_indicator == p && param->precision == -1)

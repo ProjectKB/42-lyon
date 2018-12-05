@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/01 13:22:28 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 16:49:33 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ char	*charrjoin(char *str, char c)
 	new_string[j++] = c;
 	while (str[++i])
 		new_string[j++] = str[i];
-		i++;
+	i++;
 	new_string[j] = '\0';
 	return (new_string);
 }
