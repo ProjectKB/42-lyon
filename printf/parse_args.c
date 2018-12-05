@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 13:28:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 14:57:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,29 +16,21 @@
 void	stock_content(t_arg *param, char **content, void* to_display)
 {
 	if (param->conversion_indicator == di)
-		*content = precision_tr(ft_itoa((int)to_display), \
-				param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_itoa((int)to_display), param);
 	else if (param->conversion_indicator == s)
-		*content = precision_tr(ft_strdup(string_null((char*)to_display)), \
-				param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_strdup(string_null((char*)to_display)), param);
 	else if (param->conversion_indicator == c)
 		*content = ft_itoa((int)to_display);
 	else if (param->conversion_indicator == u)
-		*content = precision_tr(ft_itoa((unsigned int)to_display), \
-				param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_itoa((unsigned int)to_display), param);
 	else if (param->conversion_indicator == x)
-		*content = precision_tr(ft_itoa_base((unsigned int)to_display, \
-					16), param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 16), param);
 	else if (param->conversion_indicator == X)
-		*content = precision_tr(ft_strupcase(ft_itoa_base( \
-						(unsigned int)to_display, 16)), \
-				param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_strupcase(ft_itoa_base((unsigned int)to_display, 16)), param);
 	else if (param->conversion_indicator == o)
-		*content = precision_tr(ft_itoa_base((unsigned int)to_display, \
-					8), param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 8), param);
 	else if (param->conversion_indicator == p)
-		*content = precision_tr(ft_itoa_base((unsigned long)to_display, 16), \
-								param->precision, param->conversion_indicator);
+		*content = precision_tr(ft_itoa_base((unsigned long)to_display, 16), param);
 }
 
 int        ft_printf(const char *format, ...)

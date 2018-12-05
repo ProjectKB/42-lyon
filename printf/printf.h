@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 13:26:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 14:39:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -111,7 +111,7 @@ void	fill_field(char **field, t_arg *param);
 /*
 ** MANAGE PRECISION
 */
-char	*precision_tr(char *content, int precision, e_ci c_i);
+char	*precision_tr(char *content, t_arg *param);
 
 /*
 ** MANAGE LENGTH MODIFIER

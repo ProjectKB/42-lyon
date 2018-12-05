@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 19:10:29 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/05 14:27:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,9 @@ void	fill_field(char **field, t_arg *param)
 	if ((param->conversion_indicator == x || param->conversion_indicator == X)
 												&& ft_strchr(param->flag, '#'))
 		count -= 2;
-	if ((param->conversion_indicator == o) && ft_strchr(param->flag, '#'))
+	//if ((param->conversion_indicator == di || param->conversion_indicator == f) && ft_strchr(param->content, '-'))
+	//	count += 1;
+	if ((param->conversion_indicator == o) && ft_strchr(param->flag, '#') && ft_atoi(param->content))
 		count -= 1;
 	*field = ft_strdup("");
 	if (param->conversion_indicator == c && ft_strlen(param->content) == 2)
