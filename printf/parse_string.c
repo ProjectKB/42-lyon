@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 22:24:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:38:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,15 +63,15 @@ void	double_to_one_pourcent(char **str, int *j, char *format)
 		*j += 1;
 }
 
-void	stock_arg_description(t_arg *param, char *format, int *i)
+void	stock_arg_description(t_arg *arg, char *format, int *i)
 {
-	stock_flag(&param->flag, format, i);
-	stock_field(&param->field, format, i);
-	stock_precision(&param->precision, format, i);
-	stock_length_modifier(&param->length_modifier, format, i);
-	stock_conversion_indicator(&param->conversion_indicator, format, i);
-	transform_flag(param);
-	if (param->conversion_indicator != woaw)
+	stock_flag(&arg->flag, format, i);
+	stock_field(&arg->field, format, i);
+	stock_precision(&arg->pre, format, i);
+	stock_length_modifier(&arg->l_m, format, i);
+	stock_conversion_indicator(&arg->c_i, format, i);
+	transform_flag(arg);
+	if (arg->c_i != woaw)
 		*i += 1;
 }
 
@@ -79,24 +79,24 @@ t_arg	*parse_string(const char *format)
 {
 	int		i;
 	t_arg	*begin_list;
-	t_arg	*param;
+	t_arg	*arg;
 
 	i = 0;
-	param = create_elem();
-	begin_list = param;
+	arg = create_elem();
+	begin_list = arg;
 	while (format[i])
 	{
-		if ((stock_ordinary_char(&param->content, (char*)format, &i)))
+		if ((stock_ordinary_char(&arg->content, (char*)format, &i)))
 		{
-			double_to_one_pourcent(&param->content, &i, (char*)format);
-			if (i < ft_strlen(format) && (param->next = create_elem()))
-				param = param->next;
+			double_to_one_pourcent(&arg->content, &i, (char*)format);
+			if (i < ft_strlen(format) && (arg->next = create_elem()))
+				arg = arg->next;
 		}
-		stock_arg_description(param, (char*)format, &i);
-		if (param->conversion_indicator != woaw && i < ft_strlen(format))
+		stock_arg_description(arg, (char*)format, &i);
+		if (arg->c_i != woaw && i < ft_strlen(format))
 		{
-			param->next = create_elem();
-			param = param->next;
+			arg->next = create_elem();
+			arg = arg->next;
 		}
 	}
 	return (begin_list);

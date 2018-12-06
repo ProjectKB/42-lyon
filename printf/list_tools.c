@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/29 20:18:27 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:33:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,18 +15,18 @@
 
 t_arg	*create_elem(void)
 {
-	t_arg	*param;
+	t_arg	*arg;
 
-	if (!(param = (t_arg*)malloc(sizeof(*param))))
+	if (!(arg = (t_arg*)malloc(sizeof(*arg))))
 		return (NULL);
-	param->next = NULL;
-	param->content = ft_strdup("\0");
-	param->field = ft_strdup("\0");
-	param->flag = ft_strdup("\0");
-	param->precision = -1;
-	param->length_modifier = WOAW;
-	param->conversion_indicator = woaw;
-	return (param);
+	arg->next = NULL;
+	arg->content = ft_strdup("\0");
+	arg->field = ft_strdup("\0");
+	arg->flag = ft_strdup("\0");
+	arg->pre = -1;
+	arg->l_m = WOAW;
+	arg->c_i = woaw;
+	return (arg);
 }
 
 void	display_list_content(t_arg *list)
@@ -39,9 +39,9 @@ void	display_list_content(t_arg *list)
 		printf("m_content : '%s'\n", list->content);
 			printf("flag : '%s'\n", list->flag);
 			printf("field : '%s'\n", list->field);
-			printf("precision : %d\n", list->precision);
-			printf("length modifier : %d\n", list->length_modifier);
-		printf("conversion indicator : %d\n", list->conversion_indicator);
+			printf("pre : %d\n", list->pre);
+			printf("length modifier : %d\n", list->l_m);
+		printf("conversion indicator : %d\n", list->c_i);
 		list = list->next;
 		printf("maillon %d\n\n", i);
 		i++;

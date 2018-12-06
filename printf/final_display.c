@@ -6,29 +6,29 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/28 19:09:49 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/30 04:57:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:26:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	final_display(t_arg *param)
+void	final_display(t_arg *arg)
 {
-	if ((param->flag) && ft_strchr(param->flag, '-'))
+	if ((arg->flag) && ft_strchr(arg->flag, '-'))
 	{
-		if (param->conversion_indicator == c)
-			ft_putchar(ft_atoi(param->content));
+		if (arg->c_i == c)
+			ft_putchar(ft_atoi(arg->content));
 		else
-			ft_putstr(param->content);
-		ft_putstr(param->field);
+			ft_putstr(arg->content);
+		ft_putstr(arg->field);
 	}
 	else
 	{
-		ft_putstr(param->field);
-		if (param->conversion_indicator == c)
-			ft_putchar(ft_atoi(param->content));
+		ft_putstr(arg->field);
+		if (arg->c_i == c)
+			ft_putchar(ft_atoi(arg->content));
 		else
-			ft_putstr(param->content);
+			ft_putstr(arg->content);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 21:57:42 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:41:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,58 +69,57 @@ void	stock_precision(int *precision, char *format, int *i)
 	}
 }
 
-void	stock_length_modifier(e_lm *length_modifier, char *format, int *i)
+void	stock_length_modifier(e_lm *l_m, char *format, int *i)
 {
 	if (format[*i] == 'h' && format[*i + 1] == 'h')
 	{
-		*length_modifier = hh;
+		*l_m = hh;
 		*i += 2;
 	}
 	else if (format[*i] == 'l' && format[*i + 1] == 'l')
 	{
-		*length_modifier = ll;
+		*l_m = ll;
 		*i += 2;
 	}
 	else if (format[*i] == 'h')
 	{
-		*length_modifier = h;
+		*l_m = h;
 		*i += 1;
 	}
 	else if (format[*i] == 'L')
 	{
-		*length_modifier = L;
+		*l_m = L;
 		*i += 1;
 	}
 	else if (format[*i] == 'l')
 	{
-		*length_modifier = l;
+		*l_m = l;
 		*i += 1;
 	}
 }
 
-void	stock_conversion_indicator(e_ci *conversion_indicator, \
-														char *format, int *i)
+void	stock_conversion_indicator(e_ci *c_i, char *format, int *i)
 {
 	if (format[*i] == 'c')
-		*conversion_indicator = c;
+		*c_i = c;
 	else if (format[*i] == 's')
-		*conversion_indicator = s;
+		*c_i = s;
 	else if (format[*i] == 'p')
-		*conversion_indicator = p;
+		*c_i = p;
 	else if (format[*i] == 'd' || format[*i] == 'i')
-		*conversion_indicator = di;
+		*c_i = di;
 	else if (format[*i] == 'o')
-		*conversion_indicator = o;
+		*c_i = o;
 	else if (format[*i] == 'u')
-		*conversion_indicator = u;
+		*c_i = u;
 	else if (format[*i] == 'c')
-		*conversion_indicator = c;
+		*c_i = c;
 	else if (format[*i] == 'x')
-		*conversion_indicator = x;
+		*c_i = x;
 	else if (format[*i] == 'X')
-		*conversion_indicator = X;
+		*c_i = X;
 	else if (format[*i] == 'f')
-		*conversion_indicator = f;
+		*c_i = f;
 	else if (format[*i] == '%')
-		*conversion_indicator = spe;
+		*c_i = spe;
 }

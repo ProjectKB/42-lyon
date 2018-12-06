@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 22:23:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:23:06 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,9 +51,9 @@ typedef struct s_arg {
 	struct s_arg	*next;
 	char	*flag;
 	char	*field;
-	int		precision;
-	e_lm	length_modifier;
-	e_ci	conversion_indicator;
+	int		pre;
+	e_lm	l_m;
+	e_ci	c_i;
 	char	*content;
 } t_arg;
 

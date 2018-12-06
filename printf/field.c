@@ -6,46 +6,46 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 22:31:01 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:25:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	fill_field(char **field, t_arg *param)
+void	fill_field(char **field, t_arg *arg)
 {
 	int	i;
 	int	count;
 	char	*tmp;
 
 	i = 0;
-	if (param->precision == -1 || param->conversion_indicator == c || param->conversion_indicator == p || param->conversion_indicator == x || param->conversion_indicator == X || param->conversion_indicator == o || param->conversion_indicator == u)
-		count = ft_atoi(*field) - ft_strlen(param->content);
-	else if (ft_strlen(param->content) > param->precision && param->conversion_indicator != s)
-		count = ft_atoi(*field) - ft_strlen(param->content);
-	else if ((param->conversion_indicator == s || param->conversion_indicator == spe)
-	&& ft_strlen(param->content) < param->precision && ft_strlen(param->content))
-		count = ft_atoi(*field) - ft_strlen(param->content);
+	if (arg->pre == -1 || arg->c_i == c || arg->c_i == p || arg->c_i == x || arg->c_i == X || arg->c_i == o || arg->c_i == u)
+		count = ft_atoi(*field) - ft_strlen(arg->content);
+	else if (ft_strlen(arg->content) > arg->pre && arg->c_i != s)
+		count = ft_atoi(*field) - ft_strlen(arg->content);
+	else if ((arg->c_i == s || arg->c_i == spe)
+	&& ft_strlen(arg->content) < arg->pre && ft_strlen(arg->content))
+		count = ft_atoi(*field) - ft_strlen(arg->content);
 	else
-		count = ft_atoi(*field) - param->precision;
-	if ((ft_strchr(param->flag, '+') || ft_strchr(param->flag, ' ')) && !ft_strchr(param->content, '-') && param->conversion_indicator != s)
+		count = ft_atoi(*field) - arg->pre;
+	if ((ft_strchr(arg->flag, '+') || ft_strchr(arg->flag, ' ')) && !ft_strchr(arg->content, '-') && arg->c_i != s)
 		count -= 1;
-	if ((param->conversion_indicator == x || param->conversion_indicator == X)
-	&& ft_strchr(param->flag, '#') && is_hexa(param->content))
+	if ((arg->c_i == x || arg->c_i == X)
+	&& ft_strchr(arg->flag, '#') && is_hexa(arg->content))
 		count -= 2;
-	if ((param->conversion_indicator == o) && ft_strchr(param->flag, '#') && ft_atoi(param->content))
+	if ((arg->c_i == o) && ft_strchr(arg->flag, '#') && ft_atoi(arg->content))
 		count -= 1;
 	*field = ft_strdup("");
-	if (param->conversion_indicator == c && ft_strlen(param->content) == 2)
+	if (arg->c_i == c && ft_strlen(arg->content) == 2)
 		count += 1;
-	if (param->conversion_indicator == c && ft_strlen(param->content) == 3)
+	if (arg->c_i == c && ft_strlen(arg->content) == 3)
 		count += 2;
-	if (param->conversion_indicator == s && !ft_strlen(param->content) && param->precision != -1)
-		count += param->precision;
+	if (arg->c_i == s && !ft_strlen(arg->content) && arg->pre != -1)
+		count += arg->pre;
 	while (i < count)
 	{
-		if (ft_strchr(param->flag, '0') && param->precision == -1)
+		if (ft_strchr(arg->flag, '0') && arg->pre == -1)
 			*field = charjoin(*field, '0');
 		else
 			*field = charjoin(*field, ' ');

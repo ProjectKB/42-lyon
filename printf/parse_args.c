@@ -6,78 +6,78 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 22:26:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:35:59 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	stock_content(t_arg *param, char **content, void* to_display)
+void	stock_content(t_arg *arg, char **content, void* to_display)
 {
-	if (param->conversion_indicator == di)
-		*content = precision_tr(ft_itoa((int)to_display), param);
-	else if (param->conversion_indicator == s)
-		*content = precision_tr(ft_strdup(string_null((char*)to_display)), param);
-	else if (param->conversion_indicator == c)
+	if (arg->c_i == di)
+		*content = precision_tr(ft_itoa((int)to_display), arg);
+	else if (arg->c_i == s)
+		*content = precision_tr(ft_strdup(string_null((char*)to_display)), arg);
+	else if (arg->c_i == c)
 		*content = ft_itoa((int)to_display);
-	else if (param->conversion_indicator == u)
-		*content = precision_tr(ft_itoa((unsigned int)to_display), param);
-	else if (param->conversion_indicator == x)
-		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 16), param);
-	else if (param->conversion_indicator == X)
-		*content = precision_tr(ft_strupcase(ft_itoa_base((unsigned int)to_display, 16)), param);
-	else if (param->conversion_indicator == o)
-		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 8), param);
-	else if (param->conversion_indicator == p)
-		*content = precision_tr(ft_itoa_base((unsigned long)to_display, 16), param);
+	else if (arg->c_i == u)
+		*content = precision_tr(ft_itoa((unsigned int)to_display), arg);
+	else if (arg->c_i == x)
+		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 16), arg);
+	else if (arg->c_i == X)
+		*content = precision_tr(ft_strupcase(ft_itoa_base((unsigned int)to_display, 16)), arg);
+	else if (arg->c_i == o)
+		*content = precision_tr(ft_itoa_base((unsigned int)to_display, 8), arg);
+	else if (arg->c_i == p)
+		*content = precision_tr(ft_itoa_base((unsigned long)to_display, 16), arg);
 }
 
 int        ft_printf(const char *format, ...)
 {
 	va_list	va;
 	char	*tmp;
-	t_arg	*param;
-	t_arg	*begin_params;
+	t_arg	*arg;
+	t_arg	*begin_args;
 	int		len_print;
 
-	param = parse_string(format);
-	begin_params = param;
+	arg = parse_string(format);
+	begin_args = arg;
 	va_start(va, format);
 	len_print = 0;
-	while (param)
+	while (arg)
 	{
-		special_case_lm(param);
-		if (param->conversion_indicator == f && (param->length_modifier == WOAW
-					|| param->length_modifier == l))
-			param->content = ftoa((long double)(va_arg(va, double)),\
-					param->content, param->precision);
-		else if (param->conversion_indicator == f && param->length_modifier == L)
-			param->content = ftoa((long double)(va_arg(va, long double)), \
-					param->content, param->precision);
-		else if (param->conversion_indicator != \
-				woaw && param->length_modifier == WOAW)
-			stock_content(param, &param->content, va_arg(va, void*));
-		else if (param->conversion_indicator != woaw && param->length_modifier != WOAW)
-			stock_content_lm(param, &param->content, va_arg(va, void*));
+		special_case_lm(arg);
+		if (arg->c_i == f && (arg->l_m == WOAW
+					|| arg->l_m == l))
+			arg->content = ftoa((long double)(va_arg(va, double)),\
+					arg->content, arg->pre);
+		else if (arg->c_i == f && arg->l_m == L)
+			arg->content = ftoa((long double)(va_arg(va, long double)), \
+					arg->content, arg->pre);
+		else if (arg->c_i != \
+				woaw && arg->l_m == WOAW)
+			stock_content(arg, &arg->content, va_arg(va, void*));
+		else if (arg->c_i != woaw && arg->l_m != WOAW)
+			stock_content_lm(arg, &arg->content, va_arg(va, void*));
 	
-		if (param->conversion_indicator != woaw)
+		if (arg->c_i != woaw)
 		{
-			if (param->conversion_indicator == spe)
-				param->content = ft_strdup("%");
-			fill_field(&param->field, param);
-			transform_chain(&param);
+			if (arg->c_i == spe)
+				arg->content = ft_strdup("%");
+			fill_field(&arg->field, arg);
+			transform_chain(&arg);
 		}
-		if (param->conversion_indicator == c && ft_strlen(param->content) == 2)
+		if (arg->c_i == c && ft_strlen(arg->content) == 2)
 			len_print -= 1;
-		if (param->conversion_indicator == c && ft_strlen(param->content) == 3)
+		if (arg->c_i == c && ft_strlen(arg->content) == 3)
 			len_print -= 2;
-		len_print += (ft_strlen(param->content) + ft_strlen(param->field));
-		final_display(param);
-		param = param->next;
+		len_print += (ft_strlen(arg->content) + ft_strlen(arg->field));
+		final_display(arg);
+		arg = arg->next;
 	}
 	va_end(va);
-	param = begin_params;
-	//display_list_content(param);
+	arg = begin_args;
+	//display_list_content(arg);
 	return (len_print);
 }

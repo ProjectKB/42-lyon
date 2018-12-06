@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 21:09:51 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 16:27:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ void	del_flag_repetition(char **flag)
 
 void	transform_flag(t_arg *param)
 {
-	fix_impossible_flag(&param->flag, param->conversion_indicator);
+	fix_impossible_flag(&param->flag, param->c_i);
 	fix_impossible_comb(&param->flag);
 	del_flag_repetition(&param->flag);
 }
