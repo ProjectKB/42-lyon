@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:29:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 18:30:20 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char		*int_part_to_str(long double *nb, char *s)
+static char			*int_part_to_str(long double *nb, char *s)
 {
 	long double	tmp;
 	int			len;
@@ -25,7 +25,7 @@ static char		*int_part_to_str(long double *nb, char *s)
 		s[i++] = '0';
 	while (!(*nb < 1))
 	{
-		len =  0;
+		len = 0;
 		tmp = *nb;
 		while (!(tmp < 10) && ++len)
 			tmp /= 10;
@@ -43,7 +43,7 @@ static char		*int_part_to_str(long double *nb, char *s)
 	return (s);
 }
 
-static double	get_rounder(int precision)
+static double		get_rounder(int precision)
 {
 	long double		rounder;
 
@@ -53,7 +53,7 @@ static double	get_rounder(int precision)
 	return (rounder);
 }
 
-static char		*dec_part_to_str(long double *nb, char *s, int precision)
+static char			*dec_part_to_str(long double *nb, char *s, int precision)
 {
 	long double		rounder;
 
@@ -71,7 +71,7 @@ static char		*dec_part_to_str(long double *nb, char *s, int precision)
 	return (s);
 }
 
-static char		*s_get_rounder(long double nb, long double c_nb, char *s)
+static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 {
 	long double		rounder;
 	unsigned long	arr;
@@ -97,7 +97,7 @@ static char		*s_get_rounder(long double nb, long double c_nb, char *s)
 	return (s);
 }
 
-int	check_errors(long double nb, char **s)
+int					check_errors(long double nb, char **s)
 {
 	uint64_t *to_check;
 
@@ -114,7 +114,7 @@ int	check_errors(long double nb, char **s)
 	return (0);
 }
 
-char			*ftoa(long double nb, char *s, int precision)
+char				*ftoa(long double nb, char *s, int precision)
 {
 	int				neg;
 	int				i;

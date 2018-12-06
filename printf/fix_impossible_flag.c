@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:27:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 18:30:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ void	fix_impossible_comb(char **flag)
 		remove_char_from_str(flag, ' ');
 }
 
-void	fix_impossible_flag(char **flag, e_ci c_i)
+void	fix_impossible_flag(char **flag, t_ci c_i)
 {
 	if (c_i == di && ft_strchr(*flag, '#'))
 		remove_char_from_str(flag, '#');
@@ -35,9 +35,11 @@ void	fix_impossible_flag(char **flag, e_ci c_i)
 		remove_char_from_str(flag, '+');
 	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, '#'))
 		remove_char_from_str(flag, '#');
-	if ((c_i == c || c_i == s || c_i == p || c_i == spe) && ft_strchr(*flag, '+'))
+	if ((c_i == c || c_i == s || c_i == p || c_i == spe) \
+													&& ft_strchr(*flag, '+'))
 		remove_char_from_str(flag, '+');
-	if ((c_i == c || c_i == s || c_i == p || c_i == spe) && ft_strchr(*flag, ' '))
+	if ((c_i == c || c_i == s || c_i == p || c_i == spe) \
+													&& ft_strchr(*flag, ' '))
 		remove_char_from_str(flag, ' ');
 	if ((c_i == c || c_i == s || c_i == p) && ft_strchr(*flag, '0'))
 		remove_char_from_str(flag, '0');

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:23:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 18:35:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,16 +24,16 @@
 
 int		ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 
-typedef enum {
+typedef enum	e_lm {
 	WOAW,
 	hh,
 	h,
 	l,
 	ll,
 	L
-} e_lm;
+}				t_lm;
 
-typedef enum {
+typedef enum	e_ci {
 	woaw,
 	c,
 	s,
@@ -45,17 +45,17 @@ typedef enum {
 	X,
 	f,
 	spe,
-} e_ci;
+}				t_ci;
 
-typedef struct s_arg {
+typedef struct	s_arg {
 	struct s_arg	*next;
-	char	*flag;
-	char	*field;
-	int		pre;
-	e_lm	l_m;
-	e_ci	c_i;
-	char	*content;
-} t_arg;
+	char			*flag;
+	char			*field;
+	int				pre;
+	t_lm			l_m;
+	t_ci			c_i;
+	char			*content;
+}				t_arg;
 
 /*
 ** TOOLS
@@ -85,8 +85,8 @@ void	double_to_one_pourcent(char **str, int *i, char *format);
 void	stock_flag(char **flag, char *format, int *i);
 void	stock_field(char **field, char *format, int *i);
 void	stock_precision(int *precision, char *format, int *i);
-void	stock_length_modifier(e_lm *length_modifier, char *format, int *i);
-void	stock_conversion_indicator(e_ci *conversion_indicator, char *format, int *i);
+void	stock_length_modifier(t_lm *length_modifier, char *format, int *i);
+void	stock_conversion_indicator(t_ci *c_i, char *format, int *i);
 void	stock_arg_description(t_arg *param, char *format, int *i);
 t_arg	*parse_string(const char *format);
 void	stock_content(t_arg *param, char **content, void *to_display);
@@ -97,7 +97,7 @@ int		ft_printf(const char *format, ...);
 ** MANAGE FLAG
 */
 void	fix_impossible_comb(char **flag);
-void	fix_impossible_flag(char **flag,  e_ci c_i);
+void	fix_impossible_flag(char **flag, t_ci c_i);
 void	transform_flag(t_arg *param);
 void	hash_tag_comportement(t_arg **param);
 void	plus_comportement(t_arg **param);
@@ -130,7 +130,6 @@ int		flt_len(long double n);
 ** TRANSFORM CHAIN
 */
 void	transform_chain(t_arg **param);
-
 
 /*
 ** DISPLAY CHAIN

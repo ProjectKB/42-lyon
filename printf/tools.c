@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:41:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 18:31:06 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -159,8 +159,8 @@ int		is_hexa(char *str)
 
 	i = -1;
 	while (str[++i])
-		if ((str[i] >= 'a' && str[i] <= 'f') ||
-											(str[i] >= 'A' && str[i] <= 'F'))
+		if ((str[i] >= 'a' && str[i] <= 'f') \
+										|| (str[i] >= 'A' && str[i] <= 'F'))
 			return (1);
 	return (0);
 }

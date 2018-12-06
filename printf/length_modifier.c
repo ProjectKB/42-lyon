@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   l_m.c                                .::    .:/ .      .::   */
+/*   length_modifier.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/23 12:56:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:31:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/12/06 17:55:49 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/12/06 18:30:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,16 +25,20 @@ void	di_l_m(t_arg *arg, char **content, void *to_stock)
 		*content = precision_tr((ft_itoa((long long int)to_stock)), arg);
 }
 
-char	*oxX_l_m(t_arg *arg, char *content, void *to_stock, int base)
+char	*oxbigx_l_m(t_arg *arg, char *content, void *to_stock, int base)
 {
 	if (arg->l_m == hh)
-		content = precision_tr(ft_itoa_base((unsigned char)to_stock, base), arg);
+		content = precision_tr(
+							ft_itoa_base((unsigned char)to_stock, base), arg);
 	else if (arg->l_m == h)
-		content = precision_tr(ft_itoa_base((unsigned short int)to_stock, base), arg);
+		content = precision_tr(
+						ft_itoa_base((unsigned short int)to_stock, base), arg);
 	else if (arg->l_m == l)
-		content = precision_tr(ft_itoa_base((unsigned long int)to_stock, base), arg);
+		content = precision_tr(
+						ft_itoa_base((unsigned long int)to_stock, base), arg);
 	else if (arg->l_m == ll)
-		content = precision_tr(ft_itoa_base((unsigned long long int)to_stock, base), arg);
+		content = precision_tr(
+					ft_itoa_base((unsigned long long int)to_stock, base), arg);
 	return (content);
 }
 
@@ -47,7 +51,8 @@ void	u_l_m(t_arg *arg, char **content, void *to_stock)
 	else if (arg->l_m == l)
 		*content = precision_tr(ft_utoa((unsigned long int)to_stock), arg);
 	else if (arg->l_m == ll)
-		*content = precision_tr(ft_utoa((unsigned long long int)to_stock), arg);
+		*content = precision_tr(
+							ft_utoa((unsigned long long int)to_stock), arg);
 }
 
 void	stock_content_lm(t_arg *arg, char **content, void *to_stock)
@@ -55,11 +60,11 @@ void	stock_content_lm(t_arg *arg, char **content, void *to_stock)
 	if (arg->c_i == di)
 		di_l_m(arg, content, to_stock);
 	else if (arg->c_i == o)
-		*content = oxX_l_m(arg, *content, to_stock, 8);
+		*content = oxbigx_l_m(arg, *content, to_stock, 8);
 	else if (arg->c_i == x)
-		*content = oxX_l_m(arg, *content, to_stock, 16);
+		*content = oxbigx_l_m(arg, *content, to_stock, 16);
 	else if (arg->c_i == X)
-		*content = ft_strupcase(oxX_l_m(arg, *content, to_stock, 16));
+		*content = ft_strupcase(oxbigx_l_m(arg, *content, to_stock, 16));
 	else if (arg->c_i == u)
 		u_l_m(arg, content, to_stock);
 }

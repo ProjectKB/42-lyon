@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 16:41:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/06 18:31:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,7 @@ void	stock_precision(int *precision, char *format, int *i)
 	}
 }
 
-void	stock_length_modifier(e_lm *l_m, char *format, int *i)
+void	stock_length_modifier(t_lm *l_m, char *format, int *i)
 {
 	if (format[*i] == 'h' && format[*i + 1] == 'h')
 	{
@@ -98,7 +98,7 @@ void	stock_length_modifier(e_lm *l_m, char *format, int *i)
 	}
 }
 
-void	stock_conversion_indicator(e_ci *c_i, char *format, int *i)
+void	stock_conversion_indicator(t_ci *c_i, char *format, int *i)
 {
 	if (format[*i] == 'c')
 		*c_i = c;
