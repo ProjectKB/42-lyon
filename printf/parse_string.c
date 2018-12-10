@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 15:13:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 15:27:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,6 +66,7 @@ void	double_to_one_pourcent(char **str, int *j, char *format)
 
 void	stock_arg_description(t_arg *arg, char *format, int *i)
 {
+	free_list(arg);
 	stock_flag(&arg->flag, format, i);
 	stock_field(&arg->field, format, i);
 	stock_precision(&arg->pre, format, i);
