@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 18:27:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 18:41:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,9 +27,9 @@ int main()
 	//printf("%d\n", printf("osef ! %#9llX et %-12hhx\n", (unsigned long long)-1248759650, (unsigned char)-1478223695));
 	//printf("p : '%%%0004%'\n");
 	//ft_printf("m : '%%%0004%'\n");
-	//printf("%d\n", ft_printf("m : titi % +---12.5% et%%%0004% et %+1%"));
-	//printf("%d\n", printf("m : titi % +---12.5% et%%%0004% et %+1%"));
-	ft_printf("%d", 4);
+	printf("%d\n", ft_printf("m : titi % +---12.5% et%%%0004% et %+1%"));
+	printf("%d\n", printf("p : titi % +---12.5% et%%%0004% et %+1%"));
+	//ft_printf("%d", 4);
 
 	return (0);
 }
