@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 12:23:12 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 10:23:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ static void		ft_reverse_str(char *str)
 
 char			*ft_utoa(size_t nb)
 {
-	size_t		i;
+	size_t	i;
 	char	*str;
 
 	i = 0;

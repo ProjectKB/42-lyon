@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/29 20:49:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 11:45:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
 size_t				ft_recursive_power(int nb, int power);
-long double				ft_recursive_npower(int power);
+long double			ft_recursive_npower(int power);
 char				*ft_strupcase(char *str);
 char				*ft_lowercase(char *str);
 char				*ft_strcapitalize(char *str);
@@ -74,6 +74,9 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strfsub(char **s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strffulljoin(char const *s1, char const *s2);
+char				*ft_strffjoin(char const *s1, char const *s2);
+char				*ft_strfsjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(long long n);
@@ -87,6 +90,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+char				*ft_double_to_binary_converter(double nb);
+char				*ft_convert_binary_to_hexa(char *to_convert);
 
 typedef struct		s_list
 {
@@ -107,5 +112,13 @@ void				ft_freedbtab(void **tab);
 void				ft_putdbstr(char **dbstr, char c);
 char				**ft_dbstrnew(int size);
 char				ft_getchar();
+char				*ft_charjoin(char *str, char c);
+char				*ft_charfjoin(char *str, char c);
+char				*ft_charrjoin(char *str, char c);
+char				*ft_charrfjoin(char *str, char c);
+void				ft_remove_char_from_str(char **to_transform, char c);
+void				ft_remove_one_char_from_str(char **to_transform, char c);
+char				ft_nb_char_occur(char *str);
+
 
 #endif

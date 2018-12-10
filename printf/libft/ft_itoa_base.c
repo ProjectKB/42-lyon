@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/22 13:55:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 10:24:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,7 +61,6 @@ static char		convert_char_to_base(int n)
 	while (i < n)
 		i++;
 	return (s[i]);
-
 }
 
 char			*ft_itoa_base(unsigned long nb, int base)

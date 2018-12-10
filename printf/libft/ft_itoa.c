@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 11:27:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 10:25:20 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,9 +14,9 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int        size_maloc(long int n)
+static int	size_maloc(long int n)
 {
-	int malok;
+	int		malok;
 
 	malok = 0;
 	if (n <= 0)
@@ -32,7 +32,7 @@ static int        size_maloc(long int n)
 	return (malok);
 }
 
-char	*ft_itoa(long long nb)
+char		*ft_itoa(long long nb)
 {
 	int		malok;
 	char	*str;
