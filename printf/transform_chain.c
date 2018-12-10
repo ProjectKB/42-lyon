@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 18:41:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:31:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 11:24:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ void	transform_chain(t_arg **arg)
 	zero_comportement(arg);
 	if (ft_strchr((*arg)->content, '-') && (*arg)->content[0] != '-')
 	{
-		remove_char_from_str(&(*arg)->content, '-');
-		(*arg)->content = charrjoin((*arg)->content, '-');
+		ft_remove_char_from_str(&(*arg)->content, '-');
+		(*arg)->content = ft_charrjoin((*arg)->content, '-');
 	}
 }

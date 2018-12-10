@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:35:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 10:18:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,6 +103,7 @@ void	hash_tag_comportement(t_arg **param);
 void	plus_comportement(t_arg **param);
 void	aq_comportement(t_arg **param);
 void	zero_comportement(t_arg **param);
+void	stock_global_content(t_arg *arg, va_list va, int *len_print);
 
 /*
 ** MANAGE FIELD

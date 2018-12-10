@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:30:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 11:22:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,19 +17,19 @@ void	plus_comportement(t_arg **arg)
 {
 	if (((*arg)->c_i == di || (*arg)->c_i == f)
 			&& ft_atoi((*arg)->content) < 0)
-		remove_char_from_str(&(*arg)->flag, '+');
+		ft_remove_char_from_str(&(*arg)->flag, '+');
 	if (ft_strchr((*arg)->flag, '+'))
 	{
 		if (!ft_strchr((*arg)->flag, '-'))
 		{
 			if (ft_strchr((*arg)->field, '0'))
-				(*arg)->field = charrjoin((*arg)->field, '+');
+				(*arg)->field = ft_charrjoin((*arg)->field, '+');
 			else
-				(*arg)->content = charrjoin((*arg)->content, '+');
+				(*arg)->content = ft_charrjoin((*arg)->content, '+');
 		}
 		else if (ft_strchr((*arg)->flag, '-'))
-			(*arg)->content = charrjoin((*arg)->content, '+');
-		remove_char_from_str(&(*arg)->flag, '+');
+			(*arg)->content = ft_charrjoin((*arg)->content, '+');
+		ft_remove_char_from_str(&(*arg)->flag, '+');
 	}
 }
 
@@ -37,8 +37,8 @@ void	aq_comportement(t_arg **arg)
 {
 	if (ft_strchr((*arg)->flag, ' ') && !ft_strchr((*arg)->content, '-'))
 	{
-		(*arg)->content = charrjoin((*arg)->content, ' ');
-		remove_char_from_str(&(*arg)->flag, ' ');
+		(*arg)->content = ft_charrjoin((*arg)->content, ' ');
+		ft_remove_char_from_str(&(*arg)->flag, ' ');
 	}
 }
 
@@ -47,10 +47,10 @@ void	zero_comportement(t_arg **arg)
 	if (((*arg)->c_i == di || (*arg)->c_i == f) \
 		&& ft_strchr((*arg)->content, '-') && ft_strchr((*arg)->field, '0'))
 	{
-		(*arg)->field = charrjoin((*arg)->field, '-');
-		remove_char_from_str(&(*arg)->content, '-');
+		(*arg)->field = ft_charrjoin((*arg)->field, '-');
+		ft_remove_char_from_str(&(*arg)->content, '-');
 	}
-	remove_char_from_str(&(*arg)->flag, '0');
+	ft_remove_char_from_str(&(*arg)->flag, '0');
 }
 
 void	hash_tag_comportement_x(t_arg **arg)
@@ -131,8 +131,8 @@ void	hash_tag_comportement_f(t_arg **arg)
 	if (ft_strchr((*arg)->flag, '#') && (*arg)->c_i == f)
 	{
 		if (!((*arg)->pre))
-			(*arg)->content = charjoin((*arg)->content, '.');
-		remove_char_from_str(&(*arg)->flag, '#');
+			(*arg)->content = ft_charjoin((*arg)->content, '.');
+		ft_remove_char_from_str(&(*arg)->flag, '#');
 	}
 }
 

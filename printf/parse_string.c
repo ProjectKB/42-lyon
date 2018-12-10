@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 19:31:30 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 11:25:41 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ int		stock_ordinary_char(char **str, char *format, int *i)
 		if (format[*i] == '%' && format[*i + 1] != '%' \
 										&& format[*i - 1] != '%' && (*i += 1))
 			break ;
-		*str = charjoin(*str, format[*i]);
+		*str = ft_charjoin(*str, format[*i]);
 		*i += 1;
 		k++;
 	}

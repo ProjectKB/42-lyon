@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/11/29 23:13:23 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/10 10:54:07 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -31,6 +31,7 @@ SRC = ./list_tools.c \
 	  ./length_modifier.c \
 	  ./transform_chain.c \
 	  ./final_display.c \
+	  ./ft_printf.c \
 	  ./libft/ft_atoi.c\
 	  ./libft/ft_utoi.c\
 	  ./libft/ft_bzero.c\
@@ -110,6 +111,13 @@ SRC = ./list_tools.c \
 	  ./libft/ft_swap.c \
 	  ./libft/ft_strcapitalize.c \
 	  ./libft/ft_strrev.c \
+	  ./libft/ft_double_to_binary_converter.c \
+	  ./libft/ft_convert_binary_to_hexa.c \
+	  ./libft/ft_charrjoin.c \
+	  ./libft/ft_charjoin.c \
+	  ./libft/ft_remove_char_from_str.c \
+	  ./libft/ft_remove_one_char_form_str.c \
+	  ./libft/ft_nb_char_occur.c \
 
 HEADER = ./printf.h
 
@@ -138,6 +146,7 @@ $(NAME): $(OBJECT) $(HEADER)
 	@printf  $(MAKE_LIB)
 	@printf "$(OK)"
 	@ar rucs $(NAME) $(OBJECT)
+	@mv *.o ./objects/
 	@printf $(MAKE_PRINTF)
 	@printf "$(OK)\n"
 

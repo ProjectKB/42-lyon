@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:30:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 10:19:53 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,27 +63,4 @@ void	stock_global_content(t_arg *arg, va_list va, int *len_print)
 	if (arg->c_i == c && ft_strlen(arg->content) == 3)
 		*len_print -= 2;
 	*len_print += (ft_strlen(arg->content) + ft_strlen(arg->field));
-}
-
-int		ft_printf(const char *format, ...)
-{
-	va_list	va;
-	char	*tmp;
-	t_arg	*arg;
-	t_arg	*begin_args;
-	int		len_print;
-
-	arg = parse_string(format);
-	begin_args = arg;
-	va_start(va, format);
-	len_print = 0;
-	while (arg)
-	{
-		stock_global_content(arg, va, &len_print);
-		final_display(arg);
-		arg = arg->next;
-	}
-	va_end(va);
-	arg = begin_args;
-	return (len_print);
 }

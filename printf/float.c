@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:30:20 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 11:26:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ static char			*dec_part_to_str(long double *nb, char *s, int precision)
 	while (precision--)
 	{
 		*nb *= 10;
-		s = charjoin(s, (int)*nb + '0');
+		s = ft_charjoin(s, (int)*nb + '0');
 		*nb -= (int)*nb;
 	}
 	if (s[ft_strlen(s) - 1] - '0' >= 5)
@@ -132,7 +132,7 @@ char				*ftoa(long double nb, char *s, int precision)
 			s[0] = '-';
 			s++;
 		}
-		s = charjoin(int_part_to_str(&nb, s), '.');
+		s = ft_charjoin(int_part_to_str(&nb, s), '.');
 		if (!precision)
 			s = s_get_rounder(nb, c_nb, s);
 		else if (precision == -1)
@@ -140,7 +140,7 @@ char				*ftoa(long double nb, char *s, int precision)
 		else if (precision != -1)
 			s = dec_part_to_str(&nb, s, precision + 1);
 		if (neg)
-			s = charrjoin(s, '-');
+			s = ft_charrjoin(s, '-');
 	}
 	return (s);
 }
