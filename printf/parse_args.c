@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 10:19:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 18:19:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 
 void	stock_content(t_arg *arg, char **content, void *to_display)
 {
+	free(*content);
 	if (arg->c_i == di)
 		*content = precision_tr(ft_itoa((int)to_display), arg);
 	else if (arg->c_i == s)

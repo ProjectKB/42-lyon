@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 16:37:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 18:16:23 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,8 @@ t_arg	*create_elem(void)
 	if (!(arg = (t_arg*)malloc(sizeof(*arg))))
 		return (NULL);
 	arg->next = NULL;
-	arg->content = ft_memalloc(0);
-	arg->field = ft_memalloc(0);
+	arg->content = ft_strdup("\0");
+	arg->field = ft_strdup("\0");
 	arg->flag = ft_strdup("\0");
 	arg->pre = -1;
 	arg->l_m = WOAW;
@@ -54,6 +54,6 @@ void	free_list(t_arg *list)
 		free(list->content);
 	if (list->flag)
 		free(list->flag);
-	if (list->flag)
+	if (list->field)
 		free(list->field);
 }

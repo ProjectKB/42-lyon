@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 16:38:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 18:27:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,6 @@ int main()
 	//printf("%d\n", ft_printf("m : titi % +---12.5% et%%%0004% et %+1%"));
 	//printf("%d\n", printf("m : titi % +---12.5% et%%%0004% et %+1%"));
 	ft_printf("%d", 4);
-	ft_printf("bonjour");
 
 	return (0);
 }

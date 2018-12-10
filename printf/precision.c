@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/06 18:19:47 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 12:54:29 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 18:19:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,10 +30,10 @@ char	*precision_tr(char *content, t_arg *arg)
 	if (arg->pre == ft_strlen(content) && ft_strchr(content, '-'))
 		content = ft_charrjoin(content, '0');
 	if (arg->c_i == p && arg->pre == -1)
-		return (ft_strjoin("0x", content));
+		return (ft_strfsjoin("0x", content));
 	else if (arg->c_i == p && ft_strlen(content) == 1 && content[0] == '0')
 		return (ft_strdup("0x"));
 	else if (arg->c_i == p)
-		return (ft_strjoin("0x", content));
+		return (ft_strfsjoin("0x", content));
 	return (content);
 }
