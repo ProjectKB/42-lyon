@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:26:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 19:27:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,6 +79,7 @@ static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	int				i;
 
 	i = 0;
+	nb = 4.0;
 	rounder = get_rounder(0);
 	if (c_nb < 0)
 		c_nb = -c_nb;

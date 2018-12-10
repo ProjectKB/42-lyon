@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 18:41:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 19:40:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,19 +17,105 @@
 
 int main()
 {
-	/*ft_printf("cc%#.4X et %#012x %#04X !!\n", 0xaef, 0xe, 0);
-	printf("cc%#.4X et %#012x %#04X !!\n", 0xaef, 0xe, 0);
-	ft_printf("t %#7.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
-	printf("t %#7.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
-	ft_printf("%#.22X et %020.14x\n", 0xff, 0xff);
-	printf("%#.22X et %020.14x\n", 0xff, 0xff);*/
-	//ft_printf("%d\n", ft_printf("osef ! %#9llX et %-12hhx\n", (unsigned long long)-1248759650, (unsigned char)-1478223695));
-	//printf("%d\n", printf("osef ! %#9llX et %-12hhx\n", (unsigned long long)-1248759650, (unsigned char)-1478223695));
-	//printf("p : '%%%0004%'\n");
-	//ft_printf("m : '%%%0004%'\n");
-	printf("%d\n", ft_printf("m : titi % +---12.5% et%%%0004% et %+1%"));
-	printf("%d\n", printf("p : titi % +---12.5% et%%%0004% et %+1%"));
-	//ft_printf("%d", 4);
+	/*ft_printf("%d\n", 4);
+	ft_printf("%.d\n", 4);
+	ft_printf("%.4d\n", 4);
+	ft_printf("%15d\n", 4);
+	ft_printf("%15.d\n", 4);
+	ft_printf("%15.15d\n", 4);
+	ft_printf("%0+-# 15.15d\n", 4);
+	ft_printf("%0+# 15.15d\n", 4);
+	ft_printf("%0+# 15.d\n", 4);
+	ft_printf("%0+-# 15.d\n", 4);
+
+	ft_printf("%i\n", 4);
+	ft_printf("%.i\n", 4);
+	ft_printf("%.4i\n", 4);
+	ft_printf("%15i\n", 4);
+	ft_printf("%15.i\n", 4);
+	ft_printf("%15.15i\n", 4);
+	ft_printf("%0+-# 15.15i\n", 4);
+	ft_printf("%0+# 15.15i\n", 4);
+	ft_printf("%0+# 15.i\n", 4);
+	ft_printf("%0+-# 15.i\n", 4);
+
+	ft_printf("%u\n", 4);
+	ft_printf("%.u\n", 4);
+	ft_printf("%.4u\n", 4);
+	ft_printf("%15u\n", 4);
+	ft_printf("%15.u\n", 4);
+	ft_printf("%15.15u\n", 4);
+	ft_printf("%0+-# 15.15u\n", 4);
+	ft_printf("%0+# 15.15u\n", 4);
+	ft_printf("%0+# 15.u\n", 4);
+	ft_printf("%0+-# 15.u\n", 4);
+
+	ft_printf("%x\n", 4);
+	ft_printf("%.x\n", 4);
+	ft_printf("%.4x\n", 4);
+	ft_printf("%15x\n", 4);
+	ft_printf("%15.x\n", 4);
+	ft_printf("%15.15x\n", 4);
+	ft_printf("%0+-# 15.15x\n", 4);
+	ft_printf("%0+# 15.15x\n", 4);
+	ft_printf("%0+# 15.x\n", 4);
+	ft_printf("%0+-# 15.x\n", 4);
+
+	ft_printf("%X\n", 4);
+	ft_printf("%.X\n", 4);
+	ft_printf("%.4X\n", 4);
+	ft_printf("%15X\n", 4);
+	ft_printf("%15.X\n", 4);
+	ft_printf("%15.15X\n", 4);
+	ft_printf("%0+-# 15.15X\n", 4);
+	ft_printf("%0+# 15.15X\n", 4);
+	ft_printf("%0+# 15.X\n", 4);
+	ft_printf("%0+-# 15.X\n", 4);
+
+	ft_printf("%f\n", 4);
+	ft_printf("%.f\n", 4);
+	ft_printf("%.4f\n", 4);
+	ft_printf("%15f\n", 4);
+	ft_printf("%15.f\n", 4);
+	ft_printf("%15.15f\n", 4);
+	ft_printf("%0+-# 15.15f\n", 4);
+	ft_printf("%0+# 15.15f\n", 4);
+	ft_printf("%0+# 15.f\n", 4);
+	ft_printf("%0+-# 15.f\n", 4);
+
+	ft_printf("%c\n", 65);
+	ft_printf("%.c\n", 4);
+	ft_printf("%.4c\n", 4);
+	ft_printf("%15c\n", 4);
+	ft_printf("%15.c\n", 4);
+	ft_printf("%15.15c\n", 4);
+	ft_printf("%0+-# 15.15c\n", 4);
+	ft_printf("%0+# 15.15c\n", 4);
+	ft_printf("%0+# 15.c\n", 4);
+	ft_printf("%0+-# 15.c\n", 4);
+
+	ft_printf("%p\n", (void*)65);
+	ft_printf("%.p\n", (void*)4);
+	ft_printf("%.4p\n", (void*)4);
+	ft_printf("%15p\n", (void*)4);
+	ft_printf("%15.p\n", (void*)4);
+	ft_printf("%15.15p\n", (void*)4);
+	ft_printf("%0+-# 15.15p\n", (void*)4);
+	ft_printf("m : %15p\n", (void*)4);
+	ft_printf("%0+# 15.p\n", (void*)4);
+	ft_printf("%0+-# 15.p\n", (void*)4);*/
+
+	ft_printf("%s\n", "coucou");
+	ft_printf("%.s\n", "coucou");
+	/*ft_printf("%.4s\n", "coucou");
+	ft_printf("%15s\n", "coucou");
+	ft_printf("%15.s\n", "coucou");
+	ft_printf("%15.15s\n", "coucou");
+	ft_printf("%0+-# 15.15s\n", "coucou");
+	ft_printf("m : %15s\n", "coucou");
+	ft_printf("%0+# 15.s\n", "coucou");
+	ft_printf("%0+-# 15.s\n", "coucou");*/
+
 
 	return (0);
 }
