@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:30:30 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 15:07:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,4 +46,11 @@ void	display_list_content(t_arg *list)
 		printf("maillon %d\n\n", i);
 		i++;
 	}
+}
+
+void	free_list(t_arg *list)
+{
+	free(list->content);
+	free(list->flag);
+	free(list->field);
 }

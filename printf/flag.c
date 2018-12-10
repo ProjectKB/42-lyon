@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:22:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 13:00:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,17 +62,17 @@ void	hash_tag_comportement_x(t_arg **arg)
 			if (ft_strchr((*arg)->field, '0'))
 			{
 				if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-					(*arg)->field = ft_strjoin("0x", (*arg)->field);
+					(*arg)->field = ft_strfsjoin("0x", (*arg)->field);
 			}
 			else
 			{
 				if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-					(*arg)->content = ft_strjoin("0x", (*arg)->content);
+					(*arg)->content = ft_strfsjoin("0x", (*arg)->content);
 			}
 		}
 		else if (ft_strchr((*arg)->flag, '-'))
 			if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-				(*arg)->content = ft_strjoin("0x", (*arg)->content);
+				(*arg)->content = ft_strfsjoin("0x", (*arg)->content);
 	}
 }
 
@@ -85,18 +85,18 @@ void	hash_tag_comportement_bigx(t_arg **arg)
 			if (ft_strchr((*arg)->field, '0'))
 			{
 				if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-					(*arg)->field = ft_strjoin("0X", (*arg)->field);
+					(*arg)->field = ft_strfsjoin("0X", (*arg)->field);
 			}
 			else
 			{
 				if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-					(*arg)->content = ft_strjoin("0X", (*arg)->content);
+					(*arg)->content = ft_strfsjoin("0X", (*arg)->content);
 			}
 		}
 		else if (ft_strchr((*arg)->flag, '-'))
 		{
 			if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-				(*arg)->content = ft_strjoin("0X", (*arg)->content);
+				(*arg)->content = ft_strfsjoin("0X", (*arg)->content);
 		}
 	}
 }
@@ -110,18 +110,18 @@ void	hash_tag_comportement_o(t_arg **arg)
 			if (ft_strchr((*arg)->field, '0'))
 			{
 				if ((ft_atoi((*arg)->content) || !(*arg)->pre))
-					(*arg)->field = ft_strjoin("0", (*arg)->content);
+					(*arg)->field = ft_strfsjoin("0", (*arg)->content);
 			}
 			else
 			{
 				if ((ft_atoi((*arg)->content) || !(*arg)->pre))
-					(*arg)->content = ft_strjoin("0", (*arg)->content);
+					(*arg)->content = ft_strfsjoin("0", (*arg)->content);
 			}
 		}
 		else if (ft_strchr((*arg)->flag, '-'))
 		{
 			if ((ft_atoi((*arg)->content) || !(*arg)->pre))
-				(*arg)->content = ft_strjoin("0", (*arg)->content);
+				(*arg)->content = ft_strfsjoin("0", (*arg)->content);
 		}
 	}
 }

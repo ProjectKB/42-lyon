@@ -6,14 +6,14 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/12/10 10:54:07 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/10 14:11:32 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CC= clang
+CC= clang -Wall -Wextra -Werror -g
 
 SRC = ./list_tools.c \
 	  ./parse_string.c \
@@ -74,6 +74,7 @@ SRC = ./list_tools.c \
 	  ./libft/ft_strcpy.c\
 	  ./libft/ft_strdel.c\
 	  ./libft/ft_strdup.c\
+	  ./libft/ft_strfdup.c\
 	  ./libft/ft_strequ.c\
 	  ./libft/ft_striter.c\
 	  ./libft/ft_striteri.c\
@@ -115,6 +116,9 @@ SRC = ./list_tools.c \
 	  ./libft/ft_convert_binary_to_hexa.c \
 	  ./libft/ft_charrjoin.c \
 	  ./libft/ft_charjoin.c \
+	  ./libft/ft_strfsjoin.c \
+	  ./libft/ft_strffjoin.c \
+	  ./libft/ft_strffulljoin.c \
 	  ./libft/ft_remove_char_from_str.c \
 	  ./libft/ft_remove_one_char_form_str.c \
 	  ./libft/ft_nb_char_occur.c \

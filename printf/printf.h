@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 10:18:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 14:16:33 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,7 @@ int		is_hexa(char *str);
 t_arg	*create_elem(void);
 void	display_list_content(t_arg *list);
 void	create_and_move_forward(t_arg **param);
+void	free_list(t_arg *list);
 
 /*
 ** FILL STRUCT

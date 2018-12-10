@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/10 10:16:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 14:40:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/27 19:07:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <math.h>
 
-int	ft_printf(const char *format, ...)
+int main()
 {
-	va_list	va;
-	t_arg	*arg;
-	t_arg	*begin_args;
-	t_arg	*tmp;
-	int		len_print;
-
-	arg = parse_string(format);
-	begin_args = arg;
-	va_start(va, format);
-	len_print = 0;
-	while (arg)
-	{
-		stock_global_content(arg, va, &len_print);
-		final_display(arg);
-		tmp = arg;
-		free_list(arg);
-		arg = arg->next;
-		free(tmp);
-	}
-	va_end(va);
-	arg = begin_args;
-	return (len_print);
+	/*printf("%05d\n", 42);
+	printf("%0 5d\n", 42);
+	printf("%+05d\n", 42);
+	printf("%+02d\n", 4);
+	printf("%#x\n", 4);*/
+	//printf("%s\n", "coucou");
+	printf("%d\n", "coucou");
+	//printf("%5s\n", "coucou");
+	return (0);
 }

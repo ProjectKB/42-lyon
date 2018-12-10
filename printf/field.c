@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:19:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 13:15:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,6 @@ void	fill_field(char **field, t_arg *arg)
 {
 	int		i;
 	int		count;
-	char	*tmp;
 
 	i = -1;
 	if (arg->pre == -1 && arg->c_i != f && arg->c_i != di && arg->c_i != spe)
