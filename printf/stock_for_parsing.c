@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 20:30:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 22:49:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,12 +19,15 @@ void	stock_flag(char **flag, char *format, int *i)
 	int	count;
 
 	k = 0;
+	count = 0;
+	if (format[*i] == '#' || format[*i] == '0' || \
+		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ')
 	count = *i;
-	//free(*flag);
 	while (format[count] == '#' || format[count] == '0' || \
 		format[count] == '-' || format[count] == '+' || format[count] == ' ')
 		count++;
-	count -= *i;
+	if (count)
+		count -= *i;
 	if (!(*flag = (char*)malloc(sizeof(*flag) * (count + 1))))
 		return ;
 	while (k < count)
@@ -39,10 +42,8 @@ void	stock_flag(char **flag, char *format, int *i)
 void	stock_field(char **field, char *format, int *i)
 {
 	int	f_size;
-	int	count;
 
 	f_size = 0;
-	count = 0;
 	if (format[*i] >= '0' && format[*i] <= '9')
 	{
 		while (format[*i] >= '0' && format[*i] <= '9')

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/10 10:48:37 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 20:15:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 23:38:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,6 @@ void	ft_remove_one_char_from_str(char **to_transform, char c)
 			tmp[j++] = (*to_transform)[++i];
 	}
 	tmp[j] = '\0';
-	free(*to_transform);
+	//free(*to_transform);
 	*to_transform = tmp;
 }

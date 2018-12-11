@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 20:26:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 23:39:24 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,8 @@
 int main()
 {
 	ft_printf("coucou");
+	//ft_printf("%+d", 4);
+	//ft_printf("%d", 4);
 	/*ft_printf("%d\n", 4);
 	ft_printf("%.d\n", 4);
 	ft_printf("%.4d\n", 4);

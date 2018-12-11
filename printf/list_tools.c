@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 20:29:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 23:40:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ t_arg	*create_elem(void)
 	arg->next = NULL;
 	arg->content = ft_strdup("\0");
 	arg->field = ft_strdup("\0");
-	arg->flag = ft_strdup("\0");
+	arg->flag = NULL;
 	arg->pre = -1;
 	arg->l_m = WOAW;
 	arg->c_i = woaw;
