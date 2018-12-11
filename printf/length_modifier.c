@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/06 17:55:49 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 18:30:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 00:21:21 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,6 +57,7 @@ void	u_l_m(t_arg *arg, char **content, void *to_stock)
 
 void	stock_content_lm(t_arg *arg, char **content, void *to_stock)
 {
+	free(arg->content);
 	if (arg->c_i == di)
 		di_l_m(arg, content, to_stock);
 	else if (arg->c_i == o)
