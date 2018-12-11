@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 22:49:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 00:01:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,6 @@ void	stock_field(char **field, char *format, int *i)
 			f_size = f_size * 10 + format[*i] - '0';
 			*i += 1;
 		}
-		free(*field);
 		*field = ft_itoa(f_size);
 	}
 }
