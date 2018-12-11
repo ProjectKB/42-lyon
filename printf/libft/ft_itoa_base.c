@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 10:24:42 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 19:30:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,12 +55,15 @@ static char		convert_char_to_base(int n)
 {
 	char	*s;
 	int		i;
+	char	c;
 
 	i = 0;
 	s = ft_strdup("0123456789abcdef");
 	while (i < n)
 		i++;
-	return (s[i]);
+	c = s[i];
+	//free(s);
+	return (c);
 }
 
 char			*ft_itoa_base(unsigned long nb, int base)

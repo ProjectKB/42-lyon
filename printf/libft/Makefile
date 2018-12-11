@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/12/10 11:45:37 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/10 14:09:57 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -59,6 +59,7 @@ SRC = 	ft_atoi.c\
 		ft_strcpy.c\
 		ft_strdel.c\
 		ft_strdup.c\
+		ft_strfdup.c\
 		ft_strequ.c\
 		ft_striter.c\
 		ft_striteri.c\
@@ -102,9 +103,7 @@ SRC = 	ft_atoi.c\
 		ft_double_to_binary_converter.c \
 		ft_convert_binary_to_hexa.c \
 		ft_charrjoin.c \
-		ft_charrfjoin.c \
 		ft_charjoin.c \
-		ft_charfjoin.c \
 		ft_remove_char_from_str.c \
 		ft_remove_one_char_form_str.c \
 		ft_nb_char_occur.c \

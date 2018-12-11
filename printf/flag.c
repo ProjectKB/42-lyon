@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 13:00:28 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 20:19:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ void	hash_tag_comportement_x(t_arg **arg)
 			if (ft_strchr((*arg)->field, '0'))
 			{
 				if ((ft_atoi((*arg)->content)) || is_hexa((*arg)->content))
-					(*arg)->field = ft_strfsjoin("0x", (*arg)->field);
+					(*arg)->field = ft_strfsjoin("0x", (*arg)->field); //here
 			}
 			else
 			{

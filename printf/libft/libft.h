@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:45:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/10 14:09:08 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,7 @@ int					ft_floatlen(long double nb);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strdup(const char *src);
+char				*ft_strfdup(const char *src, char	*ptr_to_free);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t n);
 char				*ft_strcat(char *s1, const char *s2);
@@ -72,7 +73,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
-char				*ft_strfsub(char **s, unsigned int start, size_t len);
+char				*ft_strfsub(char *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strffulljoin(char const *s1, char const *s2);
 char				*ft_strffjoin(char const *s1, char const *s2);
@@ -113,9 +114,7 @@ void				ft_putdbstr(char **dbstr, char c);
 char				**ft_dbstrnew(int size);
 char				ft_getchar();
 char				*ft_charjoin(char *str, char c);
-char				*ft_charfjoin(char *str, char c);
 char				*ft_charrjoin(char *str, char c);
-char				*ft_charrfjoin(char *str, char c);
 void				ft_remove_char_from_str(char **to_transform, char c);
 void				ft_remove_one_char_from_str(char **to_transform, char c);
 char				ft_nb_char_occur(char *str);

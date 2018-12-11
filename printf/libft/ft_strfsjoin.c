@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 14:48:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:41:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 20:00:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ char	*ft_strfsjoin(char const *s1, char const *s2)
 			return (NULL);
 		ft_strcpy(s3, s1);
 		ft_strcat((char *)s3, (char *)s2);
-		free((char*)s2);
+		//free((char*)s2);
 		return (s3);
 	}
 	return (NULL);

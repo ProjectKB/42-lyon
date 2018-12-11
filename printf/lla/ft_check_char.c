@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_charjoin.c                                    .::    .:/ .      .::   */
+/*   ft_check_char.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/10 10:44:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:44:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/30 10:55:06 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/06 15:45:43 by rcepre      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_charfjoin(char *str, char c)
+int	ft_check_char(const char *str, char c)
 {
-	int		i;
-	char	*n_string;
+	int	count;
 
-	i = 0;
-	if (!(n_string = (char*)malloc(sizeof(*n_string) * ft_strlen(str) + 2)))
-		return (NULL);
-	while (str[i])
-	{
-		n_string[i] = str[i];
-		i++;
-	}
-	n_string[i++] = c;
-	n_string[i] = '\0';
-	free(str);
-	return (n_string);
+	count = 0;
+	while (*str)
+		if (*str++ == c)
+			count++;
+	return (count);
 }

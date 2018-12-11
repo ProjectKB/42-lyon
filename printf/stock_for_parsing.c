@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:40:40 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 18:48:52 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 20:30:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	stock_flag(char **flag, char *format, int *i)
 
 	k = 0;
 	count = *i;
-	free(*flag);
+	//free(*flag);
 	while (format[count] == '#' || format[count] == '0' || \
 		format[count] == '-' || format[count] == '+' || format[count] == ' ')
 		count++;

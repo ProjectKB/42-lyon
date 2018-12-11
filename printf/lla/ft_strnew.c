@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_charrjoin.c                                   .::    .:/ .      .::   */
+/*   ft_strnew.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/10 10:45:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 11:46:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 16:39:10 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_charrfjoin(char *str, char c)
+char	*ft_strnew(size_t size)
 {
-	int		i;
-	int		j;
-	char	*n_string;
+	char	*str;
+	size_t	i;
 
-	i = -1;
-	j = 0;
-	if (!(n_string = (char*)malloc(sizeof(*n_string) * ft_strlen(str) + 2)))
+	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	n_string[j++] = c;
-	while (str[++i])
-		n_string[j++] = str[i];
-	i++;
-	n_string[j] = '\0';
-	free(str);
-	return (n_string);
+	i = 0;
+	while (str && i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

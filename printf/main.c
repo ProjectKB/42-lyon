@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/18 15:56:25 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 19:40:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 20:26:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@
 
 int main()
 {
+	ft_printf("coucou");
 	/*ft_printf("%d\n", 4);
 	ft_printf("%.d\n", 4);
 	ft_printf("%.4d\n", 4);
@@ -105,8 +106,8 @@ int main()
 	ft_printf("%0+# 15.p\n", (void*)4);
 	ft_printf("%0+-# 15.p\n", (void*)4);*/
 
-	ft_printf("%s\n", "coucou");
-	ft_printf("%.s\n", "coucou");
+	//ft_printf("%s\n", "coucou");
+	//ft_printf("%.s\n", "coucou");
 	/*ft_printf("%.4s\n", "coucou");
 	ft_printf("%15s\n", "coucou");
 	ft_printf("%15.s\n", "coucou");

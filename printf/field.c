@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 18:46:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 20:32:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ void	special_field(t_arg *arg, int *count, char **field)
 		*count -= 2;
 	if ((arg->c_i == o) && ft_strchr(arg->flag, '#') && ft_atoi(arg->content))
 		*count -= 1;
-	free(*field);
+	//free(*field);
 	*field = ft_strdup("");
 	if (arg->c_i == c && ft_strlen(arg->content) == 2)
 		*count += 1;
