@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 00:00:15 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 02:03:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,10 +50,7 @@ void	display_list_content(t_arg *list)
 
 void	free_list(t_arg *list)
 {
-	if (list->content)
 		free(list->content);
-	if (list->flag)
 		free(list->flag);
-	if (list->field)
 		free(list->field);
 }

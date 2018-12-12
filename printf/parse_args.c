@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 00:18:22 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 03:07:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,9 +18,12 @@ void	stock_content(t_arg *arg, char **content, void *to_display)
 	free(*content);
 	if (arg->c_i == di)
 		*content = precision_tr(ft_itoa((int)to_display), arg);
+	else if (arg->c_i == s && !((char*)to_display))
+		*content = precision_tr(
+		ft_strdup("(null)"), arg);
 	else if (arg->c_i == s)
 		*content = precision_tr(
-		ft_strdup(string_null((char*)to_display)), arg);
+		ft_strdup((char*)to_display), arg);
 	else if (arg->c_i == c)
 		*content = ft_itoa((int)to_display);
 	else if (arg->c_i == u)
@@ -46,7 +49,7 @@ void	stock_global_content(t_arg *arg, va_list va, int *len_print)
 		arg->content = ftoa((long double)(va_arg(va, double)),\
 				arg->content, arg->pre);
 	else if (arg->c_i == f && arg->l_m == L)
-		arg->content = ftoa((long double)(va_arg(va, long double)), \
+				arg->content = ftoa((long double)(va_arg(va, long double)), \
 		arg->content, arg->pre);
 	else if (arg->c_i != woaw && arg->l_m == WOAW)
 		stock_content(arg, &arg->content, va_arg(va, void*));

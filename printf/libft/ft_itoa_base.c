@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 19:30:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 03:14:47 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ static char		convert_char_to_base(int n)
 	while (i < n)
 		i++;
 	c = s[i];
-	//free(s);
+	free(s);
 	return (c);
 }
 

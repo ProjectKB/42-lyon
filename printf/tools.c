@@ -6,20 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 21:06:00 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/10 20:02:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 03:07:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-
-char	*string_null(char *str)
-{
-	if (!str)
-		return (ft_strdup("(null)"));
-	return (str);
-}
 
 int		is_hexa(char *str)
 {

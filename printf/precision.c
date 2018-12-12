@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/06 18:19:47 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 23:39:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 03:21:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ char	*precision_tr(char *content, t_arg *arg)
 	if (arg->pre == -1 && arg->c_i != p)
 		return (content);
 	if (arg->c_i == s)
-		return (ft_strsub(content, 0, arg->pre));
+		return (ft_strfsub(content, 0, arg->pre));
 	if (!arg->pre && arg->c_i != c &&
 	arg->c_i != f && arg->c_i != p && !ft_atoi(content))
 		ft_remove_char_from_str(&content, '0');
@@ -32,7 +32,7 @@ char	*precision_tr(char *content, t_arg *arg)
 	if (arg->c_i == p && arg->pre == -1)
 		return (ft_strfsjoin("0x", content));
 	else if (arg->c_i == p && ft_strlen(content) == 1 && content[0] == '0')
-		return (ft_strdup("0x"));
+		return (ft_strfdup("0x", content));
 	else if (arg->c_i == p)
 		return (ft_strfsjoin("0x", content));
 	return (content);
