@@ -17,35 +17,34 @@
 
 int main()
 {
-	ft_printf("'%p'\n", "coucou");
-	printf("'%p'\n", "coucou");
-	ft_printf("'%p'\n", "coucou");
-	/*ft_printf("'%hhp'\n", "coucou");
-	printf("'%hhp'\n", "coucou");
-	ft_printf("'%hp'\n", "coucou");
-	printf("'%'hp'\n", "coucou");
-	ft_printf("'%llp'\n", "coucou");
-	printf("'%llp'\n", "coucou");
-	ft_printf("'%lp'\n", "coucou");
-	printf("'%lp'\n", "coucou");*/
-	ft_printf("'%.p'\n", "coucou");
-	printf("'%.p'\n", "coucou");
-	ft_printf("'%.4p'\n", "coucou");
-	printf("'%.4p'\n", "coucou");
-	ft_printf("'%15p'\n", "coucou");
-	printf("'%15p'\n", "coucou");
-	ft_printf("'%15.p'\n", "coucou");
-	printf("'%15.p'\n", "coucou");
-	ft_printf("'%15.15p'\n", "coucou");
-	printf("'%15.15p'\n", "coucou");
-	ft_printf("'%-0#p'\n", "coucou");
-	printf("'%0-#15.15p'\n", "coucou");
-	ft_printf("'%0-#15.15p'\n", "coucou");
-	printf("'%0-#15.15p'\n", "coucou");
-	ft_printf("'%0-#15.p'\n", "coucou");
-	printf("'%0-#15.p'\n", "coucou");
-	ft_printf("'%0-#15.p'\n", "coucou");
-	printf("'%0-#15.p'\n\n", "coucou");
+	ft_printf("'%f'\n", 4.0);
+	ft_printf("'%lf'\n", 4.0);
+	printf("'%Lf'\n", (long double)4.0);
+	/*printf("'%hhf'\n", 4.0);
+	ft_printf("'%hf'\n", 4.0);
+	printf("'%'hf'\n", 4.0);
+	ft_printf("'%llf'\n", 4.0);
+	printf("'%llf'\n", 4.0);
+	ft_printf("'%lf'\n", 4.0);
+	printf("'%lf'\n", 4.0);*/
+	ft_printf("'%.f'\n", 4.0);
+	printf("'%.f'\n", 4.0);
+	ft_printf("'%.4f'\n", 4.0);
+	printf("'%.4f'\n", 4.0);
+	ft_printf("'%15f'\n", 4.0);
+	printf("'%15f'\n", 4.0);
+	ft_printf("'%15.f'\n", 4.0);
+	printf("'%15.f'\n", 4.0);
+	ft_printf("'%15.15f'\n", 4.0);
+	printf("'%15.15f'\n", 4.0);
+	ft_printf("'%-0#f'\n", 4.0);
+	printf("'%0-#15.15f'\n", 4.0);
+	ft_printf("'%0-#15.15f'\n", 4.0);
+	printf("'%0-#15.15f'\n", 4.0);
+	ft_printf("'%0-#15.f'\n", 4.0);
+	printf("'%0-#15.f'\n", 4.0);
+	ft_printf("'%0-#15.f'\n", 4.0);
+	printf("'%0-#15.f'\n\n", 4.0);
 
 	return (0);
 }
