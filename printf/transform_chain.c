@@ -6,13 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 18:41:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 07:38:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/16 09:21:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
-
 
 void	special_transform(char *str, t_arg *arg)
 {

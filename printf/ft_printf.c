@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/10 10:16:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/14 22:46:49 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/16 09:14:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,8 @@ int	ft_printf(const char *format, ...)
 	int		len_print;
 
 	arg = parse_string(format);
+	if (!arg)
+		return (-1);
 	begin_args = arg;
 	va_start(va, format);
 	len_print = 0;
