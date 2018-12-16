@@ -1,0 +1,1 @@
+nslookup slash16.org | grep "Address" | sed -n 1p | awk '{print $2}'
