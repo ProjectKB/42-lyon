@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 19:06:04 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 06:28:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/17 00:03:59 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,8 @@ void	fill_field(char **field, t_arg *arg)
 	while (++i < count)
 	{
 		if (ft_strchr(arg->flag, '0') && arg->pre == -1)
+			*field = ft_charjoin(*field, '0');
+		else if (ft_strchr(arg->flag, '0') && arg->c_i == f)
 			*field = ft_charjoin(*field, '0');
 		else
 			*field = ft_charjoin(*field, ' ');
