@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/12/12 22:06:43 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/16 06:09:28 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -g
 
 SRC_DIR = .
 

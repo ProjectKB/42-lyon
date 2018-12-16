@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 20:22:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/16 07:33:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,12 +48,12 @@ void	double_to_one_pourcent(char **str, int *j, char *format)
 
 	i = 0;
 	count = 0;
-	while ((*str)[i])
+	while ((*str)[i + 1])
 	{
 		if ((*str)[i] == '%' && (*str)[i + 1] == '%')
 		{
 			first_part = ft_strsub(*str, 0, i);
-			second_part = ft_strfsub(*str, i + 1, ft_strlen(*str));
+			second_part = ft_strfsub(*str, i + 1, ft_strlen(*str) - 1);
 			*str = ft_strffulljoin(first_part, second_part);
 			if (!count)
 				count++;

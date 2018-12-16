@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strdup.c                                      .::    .:/ .      .::   */
+/*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 17:48:48 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 06:12:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/12/13 21:03:40 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/12/16 07:39:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "printf.h"
+#include <limits.h>
 
-char	*ft_strdup(const char *src)
+int	main(void)
 {
-	char	*copy;
-	int		i;
+	//printf("%ld\n", LONG_MIN);
+	//ft_printf("%ld\n", LONG_MIN);
 
-	i = 0;
-	if (!(copy = (char*)malloc(sizeof(*copy) * ft_strlen(src) + 1)))
-		return (NULL);
-	while (src[i])
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
+
+	//printf("%%%%%%%%%%%%%%%%%%%%\n");
+
+	printf("{% 015d}\n", 0);
+	ft_printf("{% 015d}\n", 0);
+	//printf("{% 03f}\n", 0.0);
+	//ft_printf("{% 03f}\n", 0.0);
+	return (0);
 }

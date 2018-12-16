@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/06 17:56:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/15 00:56:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/16 06:39:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,8 +60,7 @@ char			*ft_itoa_base(size_t nb, int base)
 	str = ft_strdup("\0");
 	if (!nb)
 	{
-		str[i] = '0';
-		str[i + 1] = '\0';
+		str = ft_strfdup("0", str);
 		return (str);
 	}
 	while (nb != 0)
