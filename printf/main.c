@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/17 07:14:36 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/17 07:49:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 06:18:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 
 int main(int argc, const char *argv[])
 {
-	ft_printf(" %d", 4);
+	ft_printf("bonjour %f bonjour %.f\n\n", -99.9999, 100.999999);
+	printf("bonjour %f bonjour %.f", -99.9999, 100.999999);
 	return 0;
 }

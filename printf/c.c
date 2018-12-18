@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 06:19:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 02:48:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@ static char			*int_part_to_str(long double *nb, char *s, int i)
 	int			len;
 	int			delta;
 
-	s = ft_strdup("");
 	if (*nb < 1)
 		s[i++] = '0';
 	while (!(*nb < 1))
@@ -52,34 +51,7 @@ static double		get_rounder(int precision)
 	return (rounder);
 }
 
-char	*arr(char *s)
-{
-	int		limit;
-	char	*ent;
-	int		i;
-
-	limit = ft_strlen(s) - ft_strlen(ft_strchr(s, '.'));
-	ent = ft_itoa((ft_atoi(s) + 1));
-	i = limit - 1;
-	while (s[++i])
-	{
-		if (s[i] == ':' && i - 1 != limit)
-		{
-			s[i] = '0';
-			s[i - 1] += 1;
-		}
-		if (s[i] == ':' && i - 1 == limit)
-		{
-			s[i] = '0';
-			s = ft_strfsub(s, limit, ft_strlen(s) - limit);
-			s = ft_strffulljoin(ent, s);
-		}
-	}
-	return (s);
-}
-
-static char			*dec_part_to_str(long double *nb, char *s, \
-														int precision, int ind)
+static char			*dec_part_to_str(long double *nb, char *s, int precision)
 {
 	long double		rounder;
 
@@ -91,11 +63,9 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 		s = ft_charjoin(s, (int)*nb + '0');
 		*nb -= (int)*nb;
 	}
-	if (s[ft_strlen(s) - 1] - '0' > 5)
+	if (s[ft_strlen(s) - 1] - '0' >= 5)
 		s[ft_strlen(s) - 2] += 1;
 	s[ft_strlen(s) - 1] = '\0';
-	if (ind)
-		s = arr(s);
 	return (s);
 }
 
@@ -113,8 +83,8 @@ static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	c_nb += rounder;
 	arr_s = (unsigned long)c_nb;
 	arr = (ft_utoi(s));
-	s = dec_part_to_str(&nb, s, 2, 0);
-	while (s[i] != '.')
+	s = dec_part_to_str(&nb, s, 2);
+	/*while (s[i] != '.')
 		i++;
 	free(s);
 	if (s[i + 1] - '0' == 5 && (arr % 2))
@@ -122,16 +92,18 @@ static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	else if (s[i + 1] - '0' > 5)
 		s = ft_itoa(arr_s);
 	else
-		s = ft_itoa(arr);
+		s = ft_itoa(arr);*/
 	return (s);
 }
 
 char				*ftoa(long double nb, char *s, int precision)
 {
 	int				neg;
+	int				i;
 	long double		c_nb;
 
 	neg = 0;
+	i = 0;
 	c_nb = nb;
 	if (nb < 0)
 	{
@@ -139,14 +111,17 @@ char				*ftoa(long double nb, char *s, int precision)
 		nb *= -1;
 		s = ft_strfdup("0", s);
 	}
-	s = int_part_to_str(&nb, s, 0);
-	s = ft_charjoin(s, '.');
+	s = ft_charjoin(int_part_to_str(&nb, s, 0), '.');
 	if (!precision)
 		s = s_get_rounder(nb, c_nb, s);
-	else if (precision == -1)
-		s = dec_part_to_str(&nb, s, 7, 0);
+	if (precision == -1)
+	{
+		s = dec_part_to_str(&nb, s, 7);
+	}
 	else if (precision != -1)
-		s = dec_part_to_str(&nb, s, precision + 1, 1);
+	{
+		s = dec_part_to_str(&nb, s, precision + 1);
+	}
 	if (neg)
 		s = ft_charrjoin(s, '-');
 	return (s);
