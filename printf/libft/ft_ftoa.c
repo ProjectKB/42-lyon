@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 06:19:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 07:13:21 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-static char			*int_part_to_str(long double *nb, char *s, int i)
+static char			*int_part_to_str(long double *nb, char *s)
 {
 	long double	tmp;
 	int			len;
@@ -21,7 +21,7 @@ static char			*int_part_to_str(long double *nb, char *s, int i)
 
 	s = ft_strdup("");
 	if (*nb < 1)
-		s[i++] = '0';
+		s = ft_charjoin(s, '0');
 	while (!(*nb < 1))
 	{
 		len = 0;
@@ -29,30 +29,20 @@ static char			*int_part_to_str(long double *nb, char *s, int i)
 		while (!(tmp < 10) && ++len)
 			tmp /= 10;
 		tmp = (int)tmp;
-		s[i++] = (int)tmp + '0';
+		s = ft_charjoin(s, (int)tmp + '0');
 		while (len--)
 			tmp *= 10;
 		*nb = *nb - tmp;
 		if ((delta = ft_floatlen(tmp) - ft_floatlen(*nb) - 1) > 0)
 			while (delta--)
-				s[i++] = '0';
+				s = ft_charjoin(s, '0');
 	}
 	if ((ft_floatlen(tmp) - ft_floatlen(*nb)) > 0)
-		s[i++] = '0';
+		s = ft_charjoin(s, '0');
 	return (s);
 }
 
-static double		get_rounder(int precision)
-{
-	long double		rounder;
-
-	rounder = 0.5;
-	while (precision--)
-		rounder /= 10;
-	return (rounder);
-}
-
-char	*arr(char *s)
+static char			*arr(char *s)
 {
 	int		limit;
 	char	*ent;
@@ -75,6 +65,7 @@ char	*arr(char *s)
 			s = ft_strffulljoin(ent, s);
 		}
 	}
+	free(ent);
 	return (s);
 }
 
@@ -83,7 +74,7 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 {
 	long double		rounder;
 
-	rounder = get_rounder(precision);
+	rounder = ft_get_rounder(precision);
 	*nb += rounder;
 	while (precision--)
 	{
@@ -107,7 +98,7 @@ static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	int				i;
 
 	i = 0;
-	rounder = get_rounder(0);
+	rounder = ft_get_rounder(0);
 	if (c_nb < 0)
 		c_nb = -c_nb;
 	c_nb += rounder;
@@ -126,7 +117,7 @@ static char			*s_get_rounder(long double nb, long double c_nb, char *s)
 	return (s);
 }
 
-char				*ftoa(long double nb, char *s, int precision)
+char				*ft_ftoa(long double nb, char *s, int precision)
 {
 	int				neg;
 	long double		c_nb;
@@ -139,7 +130,8 @@ char				*ftoa(long double nb, char *s, int precision)
 		nb *= -1;
 		s = ft_strfdup("0", s);
 	}
-	s = int_part_to_str(&nb, s, 0);
+	free(s);
+	s = int_part_to_str(&nb, s);
 	s = ft_charjoin(s, '.');
 	if (!precision)
 		s = s_get_rounder(nb, c_nb, s);

@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strnew.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/17 07:14:36 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 06:18:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/06 16:39:10 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:18:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main(int argc, const char *argv[])
+char	*ft_strnew(size_t size)
 {
-	ft_printf("bonjour %f bonjour %.f\n\n", -99.9999, 100.999999);
-	printf("bonjour %f bonjour %.f", -99.9999, 100.999999);
-	return 0;
+	char	*str;
+	size_t	i;
+
+	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (str && i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
