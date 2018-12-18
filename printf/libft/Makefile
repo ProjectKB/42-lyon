@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2018/12/14 22:00:56 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/18 07:09:54 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -109,6 +109,8 @@ SRC = 	ft_atoi.c\
 		ft_nb_char_occur.c \
 		ft_nb_char_occurs.c \
 		ft_is_hexa.c \
+		ft_get_rounder.c \
+		ft_ftoa.c \
 
 HEADER = ./libft.h
 

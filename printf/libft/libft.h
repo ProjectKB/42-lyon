@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/14 21:12:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 07:09:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -120,5 +120,7 @@ void				ft_remove_one_char_from_str(char **to_transform, char c);
 char				ft_nb_char_occur(char *str);
 int					ft_nb_char_occurs(char *str, char c);
 int					ft_is_hexa(char *str);
+double				ft_get_rounder(int precision);
+char				*ft_ftoa(long double nb, char *s, int precision);
 
 #endif

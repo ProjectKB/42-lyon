@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2018/12/16 06:09:28 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/18 07:11:39 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -26,7 +26,6 @@ SRC = $(SRC_DIR)/list_tools.c \
 	$(SRC_DIR)/fix_impossible_flag.c \
 	$(SRC_DIR)/flag_plus_zero_aq.c \
 	$(SRC_DIR)/field.c \
-	$(SRC_DIR)/float.c \
 	$(SRC_DIR)/precision.c \
 	$(SRC_DIR)/length_modifier.c \
 	$(SRC_DIR)/transform_chain.c \

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 16:28:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/17 07:33:18 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 07:13:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,7 @@ void	fix_impossible_flag(char **flag, t_ci c_i)
 void	del_flag_repetition(char **flag)
 {
 	char	c;
+
 	if (*flag)
 		while ((c = ft_nb_char_occur(*flag)) != '|')
 			ft_remove_one_char_from_str(flag, c);

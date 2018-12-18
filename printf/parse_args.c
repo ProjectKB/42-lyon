@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 03:11:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 07:11:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,10 +46,10 @@ void	stock_global_content(t_arg *arg, va_list va, int *len_print)
 {
 	special_case_lm(arg);
 	if (arg->c_i == f && (arg->l_m == WOAW || arg->l_m == l))
-		arg->content = ftoa((long double)(va_arg(va, double)),\
+		arg->content = ft_ftoa((long double)(va_arg(va, double)),\
 				arg->content, arg->pre);
 	else if (arg->c_i == f && arg->l_m == L)
-		arg->content = ftoa((long double)(va_arg(va, long double)), \
+		arg->content = ft_ftoa((long double)(va_arg(va, long double)), \
 													arg->content, arg->pre);
 	else if (arg->c_i != woaw && arg->l_m == WOAW && arg->c_i != spe)
 		stock_content(arg, &arg->content, va_arg(va, void*));

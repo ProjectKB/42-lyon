@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 02:54:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/18 07:15:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,14 +36,14 @@ void	display_list_content(t_arg *list)
 	i = 1;
 	while (list)
 	{
-		printf("m_content : '%s'\n", list->content);
-		printf("flag : '%s'\n", list->flag);
-		printf("field : '%s'\n", list->field);
-		printf("pre : %d\n", list->pre);
-		printf("length modifier : %d\n", list->l_m);
-		printf("conversion indicator : %d\n", list->c_i);
+		ft_printf("m_content : '%s'\n", list->content);
+		ft_printf("flag : '%s'\n", list->flag);
+		ft_printf("field : '%s'\n", list->field);
+		ft_printf("pre : %d\n", list->pre);
+		ft_printf("length modifier : %d\n", list->l_m);
+		ft_printf("conversion indicator : %d\n", list->c_i);
 		list = list->next;
-		printf("maillon %d\n\n", i);
+		ft_printf("maillon %d\n\n", i);
 		i++;
 	}
 }
