@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 07:13:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/21 12:05:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ static char			*arr(char *s)
 		{
 			s[i] = '0';
 			s = ft_strfsub(s, limit, ft_strlen(s) - limit);
-			s = ft_strffulljoin(ent, s);
+			s = ft_strfsjoin(ent, s);
 		}
 	}
 	free(ent);

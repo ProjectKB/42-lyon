@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 06:19:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/21 12:19:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 
 void	plus_comportement(t_arg **arg)
 {
-	if (((*arg)->c_i == di || (*arg)->c_i == f)
-			&& ft_atoi((*arg)->content) < 0)
+	if (((*arg)->c_i == di || (*arg)->c_i == f) \
+											&& ft_atoi((*arg)->content) < 0)
 		ft_remove_char_from_str(&(*arg)->flag, '+');
 	if (ft_strchr((*arg)->flag, '+'))
 	{

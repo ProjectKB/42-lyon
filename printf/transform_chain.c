@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/27 18:41:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 09:21:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/21 12:18:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,14 +33,15 @@ void	special_transform(char *str, t_arg *arg)
 
 void	transform_chain(t_arg **arg)
 {
-	plus_comportement(arg);
-	hash_tag_comportement(arg);
-	aq_comportement(arg);
-	zero_comportement(arg);
-	special_transform((*arg)->content, *arg);
 	if (ft_strchr((*arg)->content, '-') && (*arg)->content[0] != '-')
 	{
 		ft_remove_char_from_str(&(*arg)->content, '-');
 		(*arg)->content = ft_charrjoin((*arg)->content, '-');
 	}
-}
+	printf("%s\n", (*arg)->content);
+	plus_comportement(arg);
+	hash_tag_comportement(arg);
+	aq_comportement(arg);
+	zero_comportement(arg);
+	special_transform((*arg)->content, *arg);
+	}
