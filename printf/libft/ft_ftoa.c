@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/21 12:05:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/21 13:56:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,8 +50,8 @@ static char			*arr(char *s)
 
 	limit = ft_strlen(s) - ft_strlen(ft_strchr(s, '.'));
 	ent = ft_itoa((ft_atoi(s) + 1));
-	i = limit - 1;
-	while (s[++i])
+	i = ft_strlen(s);
+	while (s[--i])
 	{
 		if (s[i] == ':' && i - 1 != limit)
 		{
@@ -74,7 +74,7 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 {
 	long double		rounder;
 
-	rounder = ft_get_rounder(precision);
+	rounder = ft_get_rounder(precision - 1);
 	*nb += rounder;
 	while (precision--)
 	{
@@ -82,8 +82,6 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 		s = ft_charjoin(s, (int)*nb + '0');
 		*nb -= (int)*nb;
 	}
-	if (s[ft_strlen(s) - 1] - '0' > 5)
-		s[ft_strlen(s) - 2] += 1;
 	s[ft_strlen(s) - 1] = '\0';
 	if (ind)
 		s = arr(s);
@@ -136,7 +134,7 @@ char				*ft_ftoa(long double nb, char *s, int precision)
 	if (!precision)
 		s = s_get_rounder(nb, c_nb, s);
 	else if (precision == -1)
-		s = dec_part_to_str(&nb, s, 7, 0);
+		s = dec_part_to_str(&nb, s, 7, 1);
 	else if (precision != -1)
 		s = dec_part_to_str(&nb, s, precision + 1, 1);
 	if (neg)
