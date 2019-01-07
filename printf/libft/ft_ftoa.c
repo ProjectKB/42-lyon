@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/21 13:56:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/07 11:24:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,6 +82,8 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 		s = ft_charjoin(s, (int)*nb + '0');
 		*nb -= (int)*nb;
 	}
+	if (s[ft_strlen(s) - 1] >= '5')
+		s[ft_strlen(s) - 2] += 1;
 	s[ft_strlen(s) - 1] = '\0';
 	if (ind)
 		s = arr(s);
