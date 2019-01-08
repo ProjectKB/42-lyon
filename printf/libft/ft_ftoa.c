@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/14 10:50:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/07 11:24:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 14:36:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,7 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 {
 	long double		rounder;
 
-	rounder = ft_get_rounder(precision - 1);
+	rounder = ft_get_rounder(precision);
 	*nb += rounder;
 	while (precision--)
 	{
@@ -82,7 +82,7 @@ static char			*dec_part_to_str(long double *nb, char *s, \
 		s = ft_charjoin(s, (int)*nb + '0');
 		*nb -= (int)*nb;
 	}
-	if (s[ft_strlen(s) - 1] >= '5')
+	if (s[ft_strlen(s) - 1] >= '5' && ind != 2)
 		s[ft_strlen(s) - 2] += 1;
 	s[ft_strlen(s) - 1] = '\0';
 	if (ind)
@@ -136,7 +136,7 @@ char				*ft_ftoa(long double nb, char *s, int precision)
 	if (!precision)
 		s = s_get_rounder(nb, c_nb, s);
 	else if (precision == -1)
-		s = dec_part_to_str(&nb, s, 7, 1);
+		s = dec_part_to_str(&nb, s, 7, 2);
 	else if (precision != -1)
 		s = dec_part_to_str(&nb, s, precision + 1, 1);
 	if (neg)

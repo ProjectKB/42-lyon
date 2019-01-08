@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 13:33:10 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 07:11:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 12:55:51 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,9 +62,10 @@ void	stock_global_content(t_arg *arg, va_list va, int *len_print)
 		fill_field(&arg->field, arg);
 		transform_chain(&arg);
 	}
-	if (arg->c_i == c && ft_strlen(arg->content) == 2)
+	if (arg->c_i == c && ft_strlen(arg->content) == 2 && len_print)
 		*len_print -= 1;
-	if (arg->c_i == c && ft_strlen(arg->content) == 3)
+	if (arg->c_i == c && ft_strlen(arg->content) == 3 && len_print)
 		*len_print -= 2;
-	*len_print += (ft_strlen(arg->content) + ft_strlen(arg->field));
+	if (len_print)
+		*len_print += (ft_strlen(arg->content) + ft_strlen(arg->field));
 }

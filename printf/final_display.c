@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/28 19:09:49 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/11 22:52:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 13:34:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,4 +31,25 @@ void	final_display(t_arg *arg)
 		else
 			ft_putstr(arg->content);
 	}
+}
+
+char	*final_stock(t_arg *arg, char *str)
+{
+	if ((arg->flag) && ft_strchr(arg->flag, '-'))
+	{
+		if (arg->c_i == c)
+			str = ft_charjoin(str, ft_atoi(arg->content));
+		else
+			str = ft_strffjoin(str, arg->content);
+		str = ft_strffjoin(str, arg->field);
+	}
+	else
+	{
+		str = ft_strfsjoin(arg->field, str);
+		if (arg->c_i == c)
+			str = ft_charjoin(str, ft_atoi(arg->content));
+		else
+			str = ft_strffjoin(str, arg->content);
+	}
+	return (str);
 }

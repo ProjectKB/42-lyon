@@ -5,16 +5,30 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/20 16:39:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/21 12:22:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/07 18:57:37 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/08 14:37:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "printf.h"
 
-int	main()
+int main(int argc, char **argv)
 {
-	ft_printf("-coucou-coucou-");
+	ft_printf("%f\n", 4.999999);
+	printf("%f\n", 4.999999);
+	ft_printf("%.f\n", 4.999999);
+	printf("%.f\n", 4.999999);
+	ft_printf("%.1f\n", 4.999999);
+	printf("%.1f\n", 4.999999);
+	ft_printf("%.50f\n", 4.999999);
+	printf("%.50f\n", 4.999999);
+	ft_printf("%.2f\n", 4.886);
+	printf("%.2f\n", 4.886);
+	ft_printf("%f\n", 4.886);
+	printf("%f\n", 4.886);
 	return (0);
 }
+
+

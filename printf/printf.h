@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 09:20:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 13:03:17 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -124,6 +124,8 @@ void			transform_chain(t_arg **param);
 ** DISPLAY CHAIN
 */
 void			final_display(t_arg *param);
+char			*final_stock(t_arg *arg, char *str);
 int				ft_printf(const char *format, ...);
+char			*ft_sprintf(const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/20 18:23:02 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/21 12:19:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 12:41:58 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,5 +50,6 @@ void	zero_comportement(t_arg **arg)
 		(*arg)->field = ft_charrjoin((*arg)->field, '-');
 		ft_remove_char_from_str(&(*arg)->content, '-');
 	}
-	ft_remove_char_from_str(&(*arg)->flag, '0');
+	if (ft_strchr((*arg)->flag, '0'))
+		ft_remove_char_from_str(&(*arg)->flag, '0');
 }
