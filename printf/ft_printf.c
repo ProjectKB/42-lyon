@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/10 10:16:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 13:09:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 17:07:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	va;
 	t_arg	*arg;

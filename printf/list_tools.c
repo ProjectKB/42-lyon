@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/16 17:01:30 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 07:15:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 13:07:59 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ t_arg	*create_elem(void)
 	arg->pre = -1;
 	arg->l_m = WOAW;
 	arg->c_i = woaw;
+	arg->color = 0;
 	return (arg);
 }
 

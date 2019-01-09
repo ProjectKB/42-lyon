@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 07:02:10 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/01 00:49:29 by rcepre      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:50:37 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,5 +27,6 @@ void	ft_putcolor(char *s, int type, int color)
 	code[2] += type;
 	ft_putstr(code);
 	ft_putstr(s);
+	ft_putstr("\033[0m");
 	free(code);
 }

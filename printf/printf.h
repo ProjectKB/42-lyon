@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 16:56:01 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 13:03:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 13:07:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,7 @@ typedef struct	s_arg {
 	t_lm			l_m;
 	t_ci			c_i;
 	char			*content;
+	int				color;
 }				t_arg;
 
 /*

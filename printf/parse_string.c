@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/15 17:54:28 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/18 06:17:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 13:56:52 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,8 +64,27 @@ void	double_to_one_pourcent(char **str, int *j, char *format)
 		*j += 1;
 }
 
+void	stock_color(int *color, char *format, int *i)
+{
+	int	s;
+	int	count;
+
+	s = 0;
+	count = 0;
+	while (format[s] && count < 3)
+		count++;
+	if (count == 3 && format[*i] >= '0' && format[*i] <= '7' && \
+							format[*i + 1] >= '0' && format[*i + 1] <= '7' && \
+														format[*i + 2] == '$')
+	{
+		*color = (format[*i] - '0') * 10 + (format[*i + 1] - '0');
+		*i += 3;
+	}
+}
+
 void	stock_arg_description(t_arg *arg, char *format, int *i)
 {
+	stock_color(&arg->color, format, i);
 	stock_flag(&arg->flag, format, i);
 	stock_field(&arg->field, format, i);
 	stock_precision(&arg->pre, format, i);
