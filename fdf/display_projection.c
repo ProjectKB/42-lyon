@@ -13,7 +13,7 @@
 
 #include "fdf.h"
 
-void    display_test(double **coord, t_pmax *p_max, t_param *param)
+void    display_test(double **coord, t_param *param)
 {
     int i;
     int j;
@@ -21,13 +21,14 @@ void    display_test(double **coord, t_pmax *p_max, t_param *param)
     double midle;
     double fact;
 
+
     i = -1;
     j = 0;
     midle = 500.0;
-    fact = 30.0;
-    while (++i < p_max->y)
+    fact = 40.0;
+    while (++i < param->y_max)
     {
-        while (j + 3 < p_max->x * 2)
+        while (j + 3 < param->x_max * 2)
         {
             bresenham(midle + coord[i][j] * fact, midle + coord[i][j + 1] * fact, midle + coord[i][j + 2] * fact, midle + coord[i][j + 3] * fact, param);
             j += 2; 
@@ -35,9 +36,9 @@ void    display_test(double **coord, t_pmax *p_max, t_param *param)
         j = 0;
     }
     i = -1;
-    while (j < p_max->x * 2)
+    while (j < param->x_max * 2)
     {
-        while (++i + 1 < p_max->y)
+        while (++i + 1 < param->y_max)
             bresenham(midle + coord[i][j] * fact, midle + coord[i][j + 1] * fact, midle + coord[i + 1][j] * fact, midle + coord[i + 1][j + 1] * fact, param);
         i = -1;
         j += 2;

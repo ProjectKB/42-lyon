@@ -24,27 +24,42 @@
 typedef struct	s_param {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		width;
+	int 	height;
+	int		x_max;
+	int 	y_max;
+	double	**coord;
+	int		**tab;
+	int		iso;
+	int		obl;
 }				t_param;
 
-typedef struct	s_pmax {
-	int	x;
-	int	y;
-}				t_pmax;
+/*typedef struct	s_center {
+	int	x_mil;
+	int	y_mil;
+	int	z_mil;
+	int	w_mil;
+	int	h_mil;
+	double x_factor;
+	double y_factor;
+}				t_center;*/
 
-typedef struct	s_point {
-	double	x;
-	double	y;
-	double	z;
-}				t_point;
-
+t_param *init_param(int width, int height);
 void	bresenham(int x1, int y1, int x2, int y2, t_param *param);
-void    find_xy_max(char **argv, t_pmax *p_max);
-t_pmax 	*init_struct(void);
+void    find_xy_max(char **argv, t_param *param);
 t_param *init_window(void);
-int		**file_to_data(char **argv, t_pmax *p_max);
-int		*str_to_tabint(char *str, t_pmax *p_max);
-int     **calcul_xy_iso(int **tab, t_pmax *p_max);
-double     **calcul_classic(int **tab, t_pmax *p_max);
-void    display_test(double **coord, t_pmax *p_max, t_param *param);
+int		**file_to_data(char **argv, t_param *param);
+int		*str_to_tabint(char *str, t_param *param);
+int     **calcul_xy_iso(int **tab, t_param *param);
+double	**calcul_iso(int **tab, t_param *param);
+double	**calcul_obl(int **tab, t_param *param);
+void    display_test(double **coord, t_param *param);
+//t_center    calcul_center(t_center center, t_dim dim, t_pmax *p_max, int **coord);
+
+int    deal_key(int key, t_param *param);
+int    expose_hook(t_param *param);
+
+void    map_event(int id, t_param *param, void (*move)(int, t_param*));
+void    move_map(int id, t_param *param);
 
 #endif

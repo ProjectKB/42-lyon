@@ -12,9 +12,8 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#define PI
 
-void    find_xy_max(char **argv, t_pmax *p_max)
+void    find_xy_max(char **argv, t_param *param)
 {
     int     fd;
     int     test;
@@ -24,14 +23,14 @@ void    find_xy_max(char **argv, t_pmax *p_max)
     count = 0;
     fd = open(argv[1], O_RDONLY);
     get_next_line(fd, &line);
-    p_max->x = ft_strlen(line) - ft_nb_char_occurs(line, ' ');
+    param->x_max = ft_strlen(line) - ft_nb_char_occurs(line, ' ');
     while ((get_next_line(fd, &line)))
         count++;
-    p_max->y = count + 1;
+    param->y_max = count + 1;
     close(fd);
 }
 
-int    *str_to_tabint(char *str, t_pmax *p_max)
+int    *str_to_tabint(char *str, t_param *param)
 {
     int j;
     int *tab;
@@ -40,7 +39,7 @@ int    *str_to_tabint(char *str, t_pmax *p_max)
   
     j = -1;
     i = 0;
-    if (!(tab = (int*)malloc(sizeof(*tab) * p_max->x)))
+    if (!(tab = (int*)malloc(sizeof(*tab) * param->x_max)))
         return (NULL);
     split = ft_strsplit(str, ' ');
     while (split[++j])
@@ -48,7 +47,7 @@ int    *str_to_tabint(char *str, t_pmax *p_max)
     return (tab);
 }
 
-int    **file_to_data(char **argv, t_pmax *p_max)
+int    **file_to_data(char **argv, t_param *param)
 {
     int     **tab;
     char    *data;
@@ -57,90 +56,43 @@ int    **file_to_data(char **argv, t_pmax *p_max)
 
     i = 0;
     fd = open(argv[1], O_RDONLY);
-    if (!(tab = (int**)malloc(sizeof(*tab) * p_max->y)))
+    if (!(tab = (int**)malloc(sizeof(*tab) * param->y_max)))
         return (NULL);
-    while (i < p_max->y)
+    while (i < param->y_max)
     {
         get_next_line(fd, &data);
-        tab[i] = str_to_tabint(data, p_max);
+        tab[i] = str_to_tabint(data, param);
         i++;
     }
     close(fd);
     return (tab);
 }
 
-/*int     **calcul_xy_iso(int **tab, t_pmax *p_max)
-{
-    int i;
-    int j;
-    int k;
-    double a;
-    double b;
-    double c;
-    int **coord_iso;
-
-    i = 0;
-    j = 0;
-    k = 0;
-    a = 0.71;
-    b = -0.41;
-    c = 0.82;
-    if (!(coord_iso = (int**)malloc(sizeof(int*) * (p_max->y))))
-        return (NULL);
-    while (i < p_max->y)
-    {
-        while (j < p_max->x)
-        {
-            if (!j)
-                if (!(coord_iso[i] = (int*)malloc(sizeof(int) * (p_max->x * 2))))
-                    return (NULL);
-            coord_iso[i][k] = j;
-            coord_iso[i][k + 1] = i;
-            //coord_iso[i][k] = 500 + 30 * (cos(0) * j + sin(0) * i);
-            //coord_iso[i][k + 1] = 500 + 30 * (sin(0) * (sin(0) * j - cos(0) * i) + cos(0) * tab[i][j]);
-            //coord_iso[i][k] = 0 + 100 * (a * (j - i));
-            //coord_iso[i][k + 1] = 0 + 100 * (b * (j + i) + c * tab[i][j]);
-            k += 2;
-            j++;
-        }
-        k = 0;
-        j = 0;
-        i++;
-    }
-    return (coord_iso);
-}*/
-
-double     **calcul_classic(int **tab, t_pmax *p_max)
+double     **calcul_iso(int **tab, t_param *param)
 {
     int i;
     int j;
     int k;
     double **coord_iso;
-    t_point point;
 
     i = 0;
     j = 0;
     k = 0;
-    if (!(coord_iso = (double**)malloc(sizeof(double*) * (p_max->y))))
+    param->iso = 1;
+    param->obl = 0;
+    if (!(coord_iso = (double**)malloc(sizeof(double*) * (param->y_max))))
         return (NULL);
-    while (i < p_max->y)
+    while (i < param->y_max)
     {
-        while (j < p_max->x)
+        while (j < param->x_max)
         {
-            point.x = j;
-            point.y = i;
-            point.z = tab[i][j];
             if (!j)
-                if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (p_max->x * 2))))
+                if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
-            //coord_iso[i][k] = j;
-            //coord_iso[i][k + 1] = i;
             //coord_iso[i][k] = (double)j * (sqrt((double)2) / (double)2) - (double)i * (sqrt((double)2) / (double)2);
             //coord_iso[i][k + 1] = (double)-j * ((double)1 / sqrt((double)6)) - (double)i * ((double)1 / sqrt((double)6)) + (double)tab[i][j] * sqrt((double)2 / (double)3);
-            //coord_iso[i][k] = j + tab[i][j] * 1;
-            //coord_iso[i][k + 1] = i + tab[i][j] * 1;
-            coord_iso[i][k] = 0.707f * (point.x - point.y);
-            coord_iso[i][k + 1] = (sqrt(0.666f) * point.z) - 0.408f * (point.x + point.y);
+            coord_iso[i][k] = 0.707f * (j - i);
+            coord_iso[i][k + 1] = (sqrt(0.666f) * -tab[i][j]) - 0.408f * (j + i);
             k += 2;
             j++;
         }
@@ -149,4 +101,39 @@ double     **calcul_classic(int **tab, t_pmax *p_max)
         i++;
     }
     return (coord_iso);
+}
+
+double     **calcul_obl(int **tab, t_param *param)
+{
+    int i;
+    int j;
+    int k;
+    double **coord_obl;
+
+    i = 0;
+    j = 0;
+    k = 0;
+    param->iso = 0;
+    param->obl = 1;
+    if (!(coord_obl = (double**)malloc(sizeof(double*) * (param->y_max))))
+        return (NULL);
+    while (i < param->y_max)
+    {
+        while (j < param->x_max)
+        {
+            if (!j)
+                if (!(coord_obl[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
+                    return (NULL);
+            //coord_iso[i][k] = j;
+            //coord_iso[i][k + 1] = i;
+            coord_obl[i][k] = j + tab[i][j] * 1;
+            coord_obl[i][k + 1] = i + tab[i][j] * 1;
+            k += 2;
+            j++;
+        }
+        k = 0;
+        j = 0;
+        i++;
+    }
+    return (coord_obl);
 }
