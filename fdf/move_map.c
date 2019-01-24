@@ -15,16 +15,15 @@
 
 void    map_event(int key, t_param *param, void (*move)(int, t_param*))
 {
-    if (key == 53)
-        mlx_destroy_window(param->mlx_ptr, param->win_ptr);
-    else if (key == 83 && (!param->iso))
-        param->coord = calcul_iso(param->tab, param);
-    else if (key == 84 && (!param->obl))
-        param->coord = calcul_obl(param->tab, param);
-    else
-        move(key, param);
-    mlx_clear_window(param->mlx_ptr, param->win_ptr);
-    display_test(param->coord, param);
+    move(key, param);
+}
+
+void    zoom(int key, t_param *param)
+{
+    if (key == 69)
+        param->fact += 10;
+    else if (key == 78)
+        param->fact -= 10;
 }
 
 void    move_map(int key, t_param *param)

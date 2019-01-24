@@ -21,6 +21,8 @@ t_param *init_param(int width, int height)
         return (NULL);
     param->width = width;    
     param->height = height;
+    param->fact = 40;
+    param->midle = 500;
     return (param);
 }
 

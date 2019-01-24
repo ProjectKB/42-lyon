@@ -17,20 +17,14 @@ void    display_test(double **coord, t_param *param)
 {
     int i;
     int j;
-    int z;
-    double midle;
-    double fact;
-
 
     i = -1;
     j = 0;
-    midle = 500.0;
-    fact = 40.0;
     while (++i < param->y_max)
     {
         while (j + 3 < param->x_max * 2)
         {
-            bresenham(midle + coord[i][j] * fact, midle + coord[i][j + 1] * fact, midle + coord[i][j + 2] * fact, midle + coord[i][j + 3] * fact, param);
+            bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i][j + 2] * param->fact, param->midle + coord[i][j + 3] * param->fact, param);
             j += 2; 
         }
         j = 0;
@@ -39,7 +33,7 @@ void    display_test(double **coord, t_param *param)
     while (j < param->x_max * 2)
     {
         while (++i + 1 < param->y_max)
-            bresenham(midle + coord[i][j] * fact, midle + coord[i][j + 1] * fact, midle + coord[i + 1][j] * fact, midle + coord[i + 1][j + 1] * fact, param);
+            bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param);
         i = -1;
         j += 2;
     }

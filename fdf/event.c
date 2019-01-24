@@ -16,6 +16,17 @@
 int    deal_key(int key, t_param *param)
 {
     printf("key : %d\n", key);
-    map_event(key, param, move_map);
+    if (key == 53)
+        mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+    else if (key == 83 && (!param->iso))
+        param->coord = calcul_iso(param->tab, param);
+    else if (key == 84 && (!param->obl))
+        param->coord = calcul_obl(param->tab, param);
+    else if (key == 69 || key == 78)
+        map_event(key, param, zoom);
+    else
+        map_event(key, param, move_map);
+    mlx_clear_window(param->mlx_ptr, param->win_ptr);
+    display_test(param->coord, param);
     return (0);
 }
