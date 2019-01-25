@@ -89,24 +89,7 @@ double     **calcul_iso(int **tab, t_param *param)
             if (!j)
                 if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
-            if (param->mod == 1)
-            {
-                param->rot->xr_x = j * cos(param->rotate) + i * -sin(param->rotate);
-                param->rot->xr_y = j * sin(param->rotate) + i * cos(param->rotate);
-                param->rot->xr_z = tab[i][j];
-            }
-            else if (param->mod == 2)
-            {
-                param->rot->xr_x = j;
-                param->rot->xr_y = i * cos(param->rotate) + tab[i][j] * -sin(param->rotate);
-                param->rot->xr_z = i * sin(param->rotate) + tab[i][j] * cos(param->rotate);
-            }
-            else if (param->mod == 3)
-            {
-                param->rot->xr_x = j * cos(param->rotate) + tab[i][j] * sin(param->rotate);
-                param->rot->xr_y = i;
-                param->rot->xr_z = j * -sin(param->rotate) + tab[i][j] * cos(param->rotate);
-            }
+            matrix(j, i, tab[i][j], param);
             coord_iso[i][k] = 0.707f * (param->rot->xr_x - param->rot->xr_y) + param->move_w;
             coord_iso[i][k + 1] = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y) + param->move_h;
             k += 2;
@@ -140,24 +123,7 @@ double     **calcul_obl(int **tab, t_param *param)
             if (!j)
                 if (!(coord_obl[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
-                if (param->mod == 1)
-            {
-                param->rot->xr_x = j * cos(param->rotate) + i * -sin(param->rotate);
-                param->rot->xr_y = j * sin(param->rotate) + i * cos(param->rotate);
-                param->rot->xr_z = tab[i][j];
-            }
-            else if (param->mod == 2)
-            {
-                param->rot->xr_x = j;
-                param->rot->xr_y = i * cos(param->rotate) + tab[i][j] * -sin(param->rotate);
-                param->rot->xr_z = i * sin(param->rotate) + tab[i][j] * cos(param->rotate);
-            }
-            else if (param->mod == 3)
-            {
-                param->rot->xr_x = j * cos(param->rotate) + tab[i][j] * sin(param->rotate);
-                param->rot->xr_y = i;
-                param->rot->xr_z = j * -sin(param->rotate) + tab[i][j] * cos(param->rotate);
-            }
+            matrix(j, i, tab[i][j], param);
             coord_obl[i][k] = param->rot->xr_x + param->rot->xr_z * param->z_obl + param->move_w;
             coord_obl[i][k + 1] = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
             k += 2;

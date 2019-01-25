@@ -25,6 +25,8 @@ typedef struct	s_rot {
 	double xr_x;
 	double xr_y;
 	double xr_z;
+	int		mod;
+	double	angle;
 }				t_rot;
 
 typedef struct	s_param {
@@ -44,8 +46,6 @@ typedef struct	s_param {
 	double	z_obl;
 	int		move_w;
 	int		move_h;
-	double	rotate;
-	int		mod;
 	t_rot	*rot;
 }				t_param;				
 
@@ -79,5 +79,7 @@ void    move_map(int id, t_param *param);
 void    zoom(int key, t_param *param);
 void    manage_z_axes(int key, t_param *param);
 void    rotate_map(int key, t_param *param);
+
+void    matrix(int x, int y, int z, t_param *param);
 
 #endif

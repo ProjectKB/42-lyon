@@ -22,7 +22,7 @@ void    zoom(int key, t_param *param)
 {
     if (key == 69)
         param->fact += 10;
-    else if (key == 78 && param->fact)
+    else if (key == 78 )
         param->fact -= 10;
 }
 
@@ -48,38 +48,42 @@ void    move_map(int key, t_param *param)
         param->move_h -= 1;
     else if (key == 125 || key == 1)
         param->move_h -= -1;
+    else if (key == 14)
+        param->midle += 20;
+    else if (key == 12)
+        param->midle -= 20;
 }
 
 void    rotate_map(int key, t_param *param)
 {
     if (key == 91)
     {
-        param->mod = 1;
-        param->rotate -= 0.1;
+        param->rot->mod = 1;
+        param->rot->angle -= 0.1;
     }
     else if (key == 92)
     {
-        param->mod = 1;
-        param->rotate += 0.1;
+        param->rot->mod = 1;
+        param->rot->angle += 0.1;
     }
     else if (key == 87)
     {
-        param->mod = 2;
-        param->rotate -= 0.1;
+        param->rot->mod = 2;
+        param->rot->angle -= 0.1;
     }
     else if (key == 88)
     {
-        param->mod = 2;
-        param->rotate += 0.1;
+        param->rot->mod = 2;
+        param->rot->angle += 0.1;
     }
     else if (key == 84)
     {
-        param->mod = 3;
-        param->rotate -= 0.1;
+        param->rot->mod = 3;
+        param->rot->angle -= 0.1;
     }
     else if (key == 85)
     {
-        param->mod = 3;
-        param->rotate += 0.1;
+        param->rot->mod = 3;
+        param->rot->angle += 0.1;
     }
 }

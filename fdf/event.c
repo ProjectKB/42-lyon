@@ -18,6 +18,13 @@ int    deal_key(int key, t_param *param)
     printf("key : %d\n", key);
     if (key == 53)
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+    if (key == 76 && (param->rot->angle = 0) != -1)
+    {
+        if (param->iso)
+            param->coord = calcul_iso(param->tab, param);
+        else
+            param->coord = calcul_obl(param->tab, param);
+    }
     if (key == 82 && (!param->iso))
         param->coord = calcul_iso(param->tab, param);
     if (key == 65 && (!param->obl))
@@ -26,7 +33,7 @@ int    deal_key(int key, t_param *param)
         map_event(key, param, zoom);
     if (key == 75 || key == 67)
         map_event(key, param, manage_z_axes);
-    if (key == 126 || key == 125 || key == 123 || key == 124 || key == 2 || !key || key == 1 || key == 13) 
+    if (key == 126 || key == 125 || key == 123 || key == 124 || key == 2 || !key || key == 1 || key == 13 || key == 12 || key == 14) 
         map_event(key, param, move_map);
     if (key == 91 || key == 92 || key == 87 || key == 88 || key == 84 || key == 85)
         map_event(key, param, rotate_map); 
