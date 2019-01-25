@@ -22,31 +22,31 @@ void    zoom(int key, t_param *param)
 {
     if (key == 69)
         param->fact += 10;
-    else if (key == 78)
+    else if (key == 78 && param->fact)
         param->fact -= 10;
+}
+
+void    manage_z_axes(int key, t_param *param)
+{
+    if (key == 75 && param->iso)
+        param->z_iso -= 0.1;
+    else if (key == 67 && param->iso)
+        param->z_iso += 0.1;
+    else if (key == 75 && param->obl)
+        param->z_obl -= 0.1;
+    else if (key == 67 && param->obl)
+        param->z_obl += 0.1;
 }
 
 void    move_map(int key, t_param *param)
 {
-    int i;
-    int j;
-
-    i = -1;
     if (key == 124 || key == 2)
-        while (++i < param->y_max && (j = -2) != -1)
-            while (j + 2 < param->x_max * 2 && (j += 2) != -1)
-                param->coord[i][j] += 1;
+        param->move_w += 1;
     else if (key == 123 || !key)
-        while (++i < param->y_max && (j = -2) != -1)
-            while (j + 2 < param->x_max * 2 && (j += 2) != -1)
-                param->coord[i][j] -= 1;
+        param->move_w -= 1;
     else if (key == 126 || key == 13)
-        while (++i < param->y_max && (j = -1) != -2)
-            while (j + 2 < param->x_max * 2 && (j += 2) != -1)
-                param->coord[i][j] -= 1;
+        param->move_h -= 1;
     else if (key == 125 || key == 1)
-        while (++i < param->y_max && (j = -1) != -2)
-            while (j + 2 < param->x_max * 2 && (j += 2) != -1)
-                param->coord[i][j] += 1;
+        param->move_h -= -1;
 }
 

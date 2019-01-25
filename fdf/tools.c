@@ -23,6 +23,10 @@ t_param *init_param(int width, int height)
     param->height = height;
     param->fact = 40;
     param->midle = 500;
+    param->z_iso = 0.816;
+    param->z_obl = 1.0;
+    param->move_w = 0;
+    param->move_h = 0;
     return (param);
 }
 

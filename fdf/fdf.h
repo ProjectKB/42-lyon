@@ -34,6 +34,10 @@ typedef struct	s_param {
 	int		obl;
 	int		midle;
 	int		fact;
+	double	z_iso;
+	double	z_obl;
+	int		move_w;
+	int		move_h;
 }				t_param;
 
 /*typedef struct	s_center {
@@ -64,5 +68,6 @@ int    expose_hook(t_param *param);
 void    map_event(int id, t_param *param, void (*move)(int, t_param*));
 void    move_map(int id, t_param *param);
 void    zoom(int key, t_param *param);
+void    manage_z_axes(int key, t_param *param);
 
 #endif

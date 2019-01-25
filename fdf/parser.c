@@ -89,10 +89,8 @@ double     **calcul_iso(int **tab, t_param *param)
             if (!j)
                 if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
-            //coord_iso[i][k] = (double)j * (sqrt((double)2) / (double)2) - (double)i * (sqrt((double)2) / (double)2);
-            //coord_iso[i][k + 1] = (double)-j * ((double)1 / sqrt((double)6)) - (double)i * ((double)1 / sqrt((double)6)) + (double)tab[i][j] * sqrt((double)2 / (double)3);
-            coord_iso[i][k] = 0.707f * (j - i);
-            coord_iso[i][k + 1] = (sqrt(0.666f) * -tab[i][j]) - 0.408f * (j + i);
+            coord_iso[i][k] = 0.707f * (j - i) + param->move_w;
+            coord_iso[i][k + 1] = (param->z_iso * -tab[i][j]) - 0.408f * (j + i) + param->move_h;
             k += 2;
             j++;
         }
@@ -126,8 +124,8 @@ double     **calcul_obl(int **tab, t_param *param)
                     return (NULL);
             //coord_iso[i][k] = j;
             //coord_iso[i][k + 1] = i;
-            coord_obl[i][k] = j + tab[i][j] * 1;
-            coord_obl[i][k + 1] = i + tab[i][j] * 1;
+            coord_obl[i][k] = j + tab[i][j] * param->z_obl + param->move_w;
+            coord_obl[i][k + 1] = i + tab[i][j] * param->z_obl + param->move_h;
             k += 2;
             j++;
         }
