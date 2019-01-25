@@ -50,3 +50,36 @@ void    move_map(int key, t_param *param)
         param->move_h -= -1;
 }
 
+void    rotate_map(int key, t_param *param)
+{
+    if (key == 91)
+    {
+        param->mod = 1;
+        param->rotate -= 0.1;
+    }
+    else if (key == 92)
+    {
+        param->mod = 1;
+        param->rotate += 0.1;
+    }
+    else if (key == 87)
+    {
+        param->mod = 2;
+        param->rotate -= 0.1;
+    }
+    else if (key == 88)
+    {
+        param->mod = 2;
+        param->rotate += 0.1;
+    }
+    else if (key == 84)
+    {
+        param->mod = 3;
+        param->rotate -= 0.1;
+    }
+    else if (key == 85)
+    {
+        param->mod = 3;
+        param->rotate += 0.1;
+    }
+}

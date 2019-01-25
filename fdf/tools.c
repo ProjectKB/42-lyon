@@ -19,6 +19,8 @@ t_param *init_param(int width, int height)
 
     if (!(param = (t_param*)malloc(sizeof(*param))))
         return (NULL);
+    if (!(param->rot = (t_rot*)malloc(sizeof(*param->rot))))
+        return (NULL);
     param->width = width;    
     param->height = height;
     param->fact = 40;
@@ -27,6 +29,8 @@ t_param *init_param(int width, int height)
     param->z_obl = 1.0;
     param->move_w = 0;
     param->move_h = 0;
+    param->rotate = 0.0;
+    param->mod = 1;
     return (param);
 }
 

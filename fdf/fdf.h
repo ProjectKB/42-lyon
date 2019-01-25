@@ -21,6 +21,12 @@
 # include "./libft/libft.h"
 # include "minilibx_macos/mlx.h"
 
+typedef struct	s_rot {
+	double xr_x;
+	double xr_y;
+	double xr_z;
+}				t_rot;
+
 typedef struct	s_param {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -38,7 +44,10 @@ typedef struct	s_param {
 	double	z_obl;
 	int		move_w;
 	int		move_h;
-}				t_param;
+	double	rotate;
+	int		mod;
+	t_rot	*rot;
+}				t_param;				
 
 /*typedef struct	s_center {
 	int	x_mil;
@@ -69,5 +78,6 @@ void    map_event(int id, t_param *param, void (*move)(int, t_param*));
 void    move_map(int id, t_param *param);
 void    zoom(int key, t_param *param);
 void    manage_z_axes(int key, t_param *param);
+void    rotate_map(int key, t_param *param);
 
 #endif
