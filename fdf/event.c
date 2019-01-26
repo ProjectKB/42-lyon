@@ -36,7 +36,9 @@ int    deal_key(int key, t_param *param)
     if (key == 126 || key == 125 || key == 123 || key == 124 || key == 2 || !key || key == 1 || key == 13 || key == 12 || key == 14) 
         map_event(key, param, move_map);
     if (key == 91 || key == 92 || key == 87 || key == 88 || key == 84 || key == 85)
-        map_event(key, param, rotate_map); 
+        map_event(key, param, rotate_map);
+    if (key == 7 || key == 11)
+        map_event(key, param, switch_drawline_style);
     if (param->iso)
         param->coord = calcul_iso(param->tab, param);
     else

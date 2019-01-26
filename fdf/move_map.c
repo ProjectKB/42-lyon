@@ -87,3 +87,11 @@ void    rotate_map(int key, t_param *param)
         param->rot->angle += 0.1;
     }
 }
+
+void    switch_drawline_style(int key, t_param *param)
+{
+    if (key == 7)
+        param->algo = 0;
+    else
+        param->algo = 1;
+}

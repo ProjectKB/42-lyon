@@ -13,93 +13,148 @@
 
 #include "fdf.h"
 
-/*void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
+double	ABS(double v)
 {
-	int dx;
+	if (v < 0)
+		v = -v;
+	return (v);
+}
+
+void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
+{
+	double				n;
+	int				i;
+	double				step_x;
+	double				step_y;
+	double				pos_x;
+	double				pos_y;
+	double				t;
+	double				u;
+
+	i = -1;
+	step_x = x2 - x1;
+	step_y = y2 - y1;
+	
+	t = ABS(step_x);
+	u = ABS(step_y);
+	if (t > u)
+	{
+		n = ABS(step_x);
+		step_y /= ABS(step_x);
+		step_x /= ABS(step_x);
+	}
+	else
+	{
+		n = ABS(step_y);
+		step_x /= ABS(step_y);
+		step_y /= ABS(step_y);
+	}
+	while (++i < n)
+	{
+		//new_point(&pos, src, i, step);
+		pos_x = x1 + i * step_x;
+		pos_y = y1 + i * step_y;
+		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
+			mlx_pixel_put(param->mlx_ptr, param->win_ptr, pos_x, pos_y, 0xFFFFFF);
+	}
+
+	/*int dx;
 	int dy;
 	int e;
-
 	dx = x2 - x1;
 	dy = y2 - y1;
-
 	if (dx)
 	{
 		if (dx > 0)
 		{
-			if (dy > 0) // vecteur oblique 1er cadran
+			dy = y2 - y1;
+			if (dy)
 			{
-				if (dx >= dy) // vecteur diagonal ou oblique proche de l’horizontale, dans le 1er octant
+				if (dy > 0) // vecteur oblique 1er cadran
 				{
-					e = dx;
-					dx = e * 2;
-					dy *= 2;
-					while (1)
+					if (dx >= dy) // vecteur diagonal ou oblique proche de l’horizontale, dans le 1er octant
 					{
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
-						if (x1++ == x2)
-							break;
-						if ((e -= dy) < 0)
+						e = dx;
+						dx = e * 2;
+						dy *= 2;
+						while (1)
 						{
-							y1 += 1;
-							e += dx;
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							x1++;
+							if (x1 == x2)
+								break;
+							e -= dy;
+							if (e < 0)
+							{
+								y1 += 1;
+								e += dx;
+							}
 						}
 					}
-				}
-				else // vecteur oblique proche de la verticale, dans le 2d octant
-				{
-					e = dy;
-					dy = e * 2;
-					dx *= 2;
-					while (1)
+					else // vecteur oblique proche de la verticale, dans le 2d octant
 					{
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
-						if (y1++ == y2)
-							break;
-						if ((e -= dx) < 0)
+						e = dy;
+						dy = e * 2;
+						dx *= 2;
+						while (1)
 						{
-							x1 += 1;
-							e += dy;
-						}
-					}	
-				}
-			}
-			else if (dy < 0 && dx > 0) // vecteur oblique dans le 4e cadran
-			{
-				if (dx >= -dy) // vecteur diagonal ou oblique proche de l’horizontale, dans le 8e octant
-				{
-					e = dx;
-					dx = e * 2;
-					dy *= 2;
-					while (1)
-					{
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
-						if (x1++ == x2)
-							break;
-						if ((e += dy) < 0)
-						{
-							y1 -= 1;
-							e += dx;
-						}
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							y1++;
+							if (y1 == y2)
+								break;
+							e -= dx;
+							if (e < 0)
+							{
+								x1 += 1;
+								e += dy;
+							}
+						}	
 					}
 				}
-				else // vecteur oblique proche de la verticale, dans le 7e octant
+
+				else if (dy < 0 && dx > 0) // vecteur oblique dans le 4e cadran
 				{
-					e = dy;
-					dy = e * 2;
-					dx *= 2;
-					while (1)
+					if (dx >= -dy) // vecteur diagonal ou oblique proche de l’horizontale, dans le 8e octant
 					{
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
-						if (y1-- == y2)
-							break;
-						if ((e += dx) > 0)
+						e = dx;
+						dx = e * 2;
+						dy *= 2;
+						while (1)
 						{
-							x1 += 1;
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							x1++;
+							if (x1 == x2)
+								break;
 							e += dy;
+							if (e < 0)
+							{
+								y1 -= 1;
+								e += dx;
+							}
 						}
-					}	
+					}
+					else // vecteur oblique proche de la verticale, dans le 7e octant
+					{
+						e = dy;
+						dy = e * 2;
+						dx *= 2;
+						while (1)
+						{
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							y1--;
+							if (y1 == y2)
+								break;
+							e += dx;
+							if (e > 0)
+							{
+								x1 += 1;
+								e += dy;
+							}
+						}	
+					}
 				}
 			}
+
 			else if (dy == 0 && dx > 0) // // vecteur horizontal vers la droite
 			{
 				while (x1++ != x2)
@@ -108,24 +163,50 @@
 				}
 			}
 		}
+
+
 		else if (dx < 0)
 		{
-			if ((dy = y2 - y1) != 0)
+			dy = y2 - y1;
+			if (dy)
 			{
-				if (dy > 0 && -dx >= dy) // vecteur oblique dans le 2d quadran
+				if (dy > 0)
 				{
-					e = dx;
-					dx = e * 2;
-					dy *= 2;
-					while (1)
+					if (-dx >= dy) // vecteur oblique dans le 2d quadran
 					{
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
-						if (x1-- == x2)
-							break;
-						if ((e += dy) > 0)
+						e = dx;
+						dx = e * 2;
+						dy *= 2;
+						while (1)
 						{
-							y1 += 1;
-							e += dx;
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							x1--;	
+							if (x1 == x2)
+								break;
+							e += dy;
+							if (e >= 0)
+							{
+								y1 += 1;
+								e += dx;
+							}
+						}
+					}
+					else
+					{
+						e = dy;
+						dy = e * 2;
+						dx *= 2;
+						while (x1 > x2)
+						{
+							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);
+							y1++;	
+							//if (y1 == x2)
+								//break;
+							if ((e += dx) <= 0)
+							{
+								x1 -= 1;
+								e += dy;
+							}
 						}
 					}
 				}
@@ -139,9 +220,11 @@
 						while (1)
 						{
 							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
-							if (x1-- == x2)
+							x1--;
+							if (x1 == x2)
 								break;
-							if ((e -= dy) >= 0)
+							e -= dy;
+							if (e >= 0)
 							{
 								y1 -= 1;
 								e += dx;
@@ -156,9 +239,11 @@
 						while (1)
 						{
 							mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
-							if (y1-- == y2)
+							y1--;
+							if (y1 == y2)
 								break;
-							if ((e -= dx) >= 0)
+							e -= dx;
+							if (e >= 0)
 							{
 								x1 -= 1;
 								e += dy;
@@ -166,22 +251,27 @@
 						}
 					}
 				}
-				else if (dy == 0 && dx < 0)
-					while (x1-- != x2)
-						mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
 			}
+			else if (dy == 0 && dx < 0)
+				while (x1-- != x2)
+					mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
 		}
 	}
-	else if (dx == 0 && (dy = y2 - y1) != 0i)
+
+	else if (dx == 0)
 	{
-		if (dy > 0)
-			while (y1++ != y2)
-				mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
-		else if (dy < 0 && dx == 0)
-			while (y1-- != y2)
-				mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
-	}
-}*/
+		dy = y2 - y1;
+		if (dy != 0)
+		{
+			if (dy > 0)
+				while (y1++ != y2)
+					mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
+			else if (dy < 0 && dx == 0)
+				while (y1-- != y2)
+					mlx_pixel_put(param->mlx_ptr, param->win_ptr, x1, y1, 0xFFFFFF);	
+		}
+	}*/
+}
 
 void swap(int *a , int *b) 
 { 
@@ -229,8 +319,8 @@ void drawPixel( int x , int y , float brightness, t_param *param)
 { 
     mlx_pixel_put(param->mlx_ptr, param->win_ptr, x, y, 0xFFFFFF);
 } 
-  
-void	bresenham(int x0, int y0, int x1, int y1, t_param *param) 
+
+void	xiaolin(int x0, int y0, int x1, int y1, t_param *param) 
 { 
     int steep = absolute(y1 - y0) > absolute(x1 - x0) ; 
   

@@ -46,6 +46,7 @@ typedef struct	s_param {
 	double	z_obl;
 	int		move_w;
 	int		move_h;
+	int		algo;
 	t_rot	*rot;
 }				t_param;				
 
@@ -79,7 +80,9 @@ void    move_map(int id, t_param *param);
 void    zoom(int key, t_param *param);
 void    manage_z_axes(int key, t_param *param);
 void    rotate_map(int key, t_param *param);
+void    switch_drawline_style(int key, t_param *param);
 
 void    matrix(int x, int y, int z, t_param *param);
+void	xiaolin(int x0, int y0, int x1, int y1, t_param *param);
 
 #endif
