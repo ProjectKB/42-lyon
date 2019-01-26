@@ -31,7 +31,7 @@ t_param *init_param(int width, int height)
     param->move_h = 0;
     param->algo = 0;
     param->rot->angle = 0.0;
-    param->rot->mod = 1;
+    param->rot->mod = 2;
     return (param);
 }
 

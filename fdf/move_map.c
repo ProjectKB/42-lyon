@@ -21,9 +21,9 @@ void    map_event(int key, t_param *param, void (*move)(int, t_param*))
 void    zoom(int key, t_param *param)
 {
     if (key == 69)
-        param->fact += 10;
-    else if (key == 78 )
-        param->fact -= 10;
+        param->fact += 2;
+    else if (key == 78)
+        param->fact -= 2;
 }
 
 void    manage_z_axes(int key, t_param *param)
@@ -59,12 +59,12 @@ void    rotate_map(int key, t_param *param)
     if (key == 91)
     {
         param->rot->mod = 1;
-        param->rot->angle -= 0.1;
+        param->rot->angle += 0.1;
     }
     else if (key == 92)
     {
         param->rot->mod = 1;
-        param->rot->angle += 0.1;
+        param->rot->angle -= 0.1;
     }
     else if (key == 87)
     {

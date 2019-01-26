@@ -23,7 +23,7 @@ void    find_xy_max(char **argv, t_param *param)
     count = 0;
     fd = open(argv[1], O_RDONLY);
     get_next_line(fd, &line);
-    param->x_max = ft_strlen(line) - ft_nb_char_occurs(line, ' ');
+    param->x_max = ft_nb_nbr(line, ' ');
     while ((get_next_line(fd, &line)))
         count++;
     param->y_max = count + 1;

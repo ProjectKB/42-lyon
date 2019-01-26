@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 {
 	t_param *param;
 
+	(void)argc;
 	param = init_param(1000, 1000);
 	param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");

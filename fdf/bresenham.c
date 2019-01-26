@@ -315,7 +315,7 @@ float rfPartOfNumber(float x)
 // draws a pixel on screen of given brightness 
 // 0<=brightness<=1. We can use your own library 
 // to draw on screen 
-void drawPixel( int x , int y , float brightness, t_param *param) 
+void drawPixel( int x , int y , t_param *param) 
 { 
     mlx_pixel_put(param->mlx_ptr, param->win_ptr, x, y, 0xFFFFFF);
 } 
@@ -356,10 +356,8 @@ void	xiaolin(int x0, int y0, int x1, int y1, t_param *param)
         { 
             // pixel coverage is determined by fractional 
             // part of y co-ordinate 
-            drawPixel(iPartOfNumber(intersectY), x, 
-                        rfPartOfNumber(intersectY), param); 
-            drawPixel(iPartOfNumber(intersectY)-1, x, 
-                        fPartOfNumber(intersectY), param); 
+            drawPixel(iPartOfNumber(intersectY), x, param); 
+            drawPixel(iPartOfNumber(intersectY)-1, x, param); 
             intersectY += gradient; 
         } 
     } 
@@ -370,10 +368,8 @@ void	xiaolin(int x0, int y0, int x1, int y1, t_param *param)
         { 
             // pixel coverage is determined by fractional 
             // part of y co-ordinate 
-            drawPixel(x, iPartOfNumber(intersectY), 
-                        rfPartOfNumber(intersectY), param); 
-            drawPixel(x, iPartOfNumber(intersectY)-1, 
-                          fPartOfNumber(intersectY), param); 
+            drawPixel(x, iPartOfNumber(intersectY), param); 
+            drawPixel(x, iPartOfNumber(intersectY)-1, param); 
             intersectY += gradient; 
         } 
     } 

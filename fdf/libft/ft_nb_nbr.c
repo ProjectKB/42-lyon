@@ -13,7 +13,7 @@
 
 #include "libft.h"
 
-int	ft_nb_char_occurs(char *str, char c)
+int	ft_nb_nbr(char *str, char c)
 {
 	int	i;
 	int	count;
@@ -22,7 +22,7 @@ int	ft_nb_char_occurs(char *str, char c)
 	count = 0;
 	while (str[++i])
 	{
-		if (str[i] == c)
+		if (str[i] != c && (str[i + 1] == c || str[i + 1] == '\0'))
 			count++;
 	}
 	return (count);

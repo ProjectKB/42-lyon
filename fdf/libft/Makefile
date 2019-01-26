@@ -114,6 +114,7 @@ SRC = 	ft_atoi.c\
 		get_next_line.c \
 		ft_putdbint.c \
 		ft_debug.c \
+		ft_nb_nbr.c \
 
 HEADER = ./libft.h
 

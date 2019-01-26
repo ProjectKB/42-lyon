@@ -126,5 +126,6 @@ char				*ft_ftoa(long double nb, char *s, int precision);
 int					get_next_line(const int fd, char **line);
 void				ft_putdbint(int **dbint, int x, int y);
 void    			ft_debug(void);
+int					ft_nb_nbr(char *str, char c);
 
 #endif
