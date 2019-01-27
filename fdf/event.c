@@ -20,6 +20,8 @@ int    deal_key(int key, t_param *param)
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
     if (key == 76 && (param->rot->angle = 0) != -1)
     {
+        param->move_h = 0;
+        param->move_w = 0;
         if (param->iso)
             param->coord = calcul_iso(param->tab, param);
         else
@@ -31,8 +33,6 @@ int    deal_key(int key, t_param *param)
     }
     if (key == 65 && (!param->obl))
     {
-        param->move_h = 0;
-        param->move_w = 0;
         param->coord = calcul_obl(param->tab, param);
     }
     if (key == 69 || key == 78)

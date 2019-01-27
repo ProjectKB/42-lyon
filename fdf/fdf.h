@@ -51,6 +51,7 @@ typedef struct	s_param {
 	int		zoom_y;
 	t_rot	*rot;
 	int		test;
+	double **reset;
 }				t_param;				
 
 /*typedef struct	s_center {
