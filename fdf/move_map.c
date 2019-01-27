@@ -52,6 +52,7 @@ void    move_map(int key, t_param *param)
         param->midle += 20;
     else if (key == 12)
         param->midle -= 20;
+    printf("%d\n", param->midle);
 }
 
 void    rotate_map(int key, t_param *param)

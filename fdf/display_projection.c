@@ -17,9 +17,13 @@ void    display_test(double **coord, t_param *param)
 {
     int i;
     int j;
+    int test;
 
     i = -1;
     j = 0;
+    printf("x_start : %f\n", coord[0][0] * param->fact);
+    printf("x_end : %f\n", coord[0][param->x_max * 2 - 2] * param->fact);
+    param->midle = (param->width - (coord[0][param->x_max * 2 - 2] * param->fact) - (coord[0][0] * param->fact)) / 2;
     while (++i < param->y_max)
     {
         while (j + 3 < param->x_max * 2)
@@ -37,7 +41,7 @@ void    display_test(double **coord, t_param *param)
     {
         while (++i + 1 < param->y_max)
         {
-            if (param->algo == 1)
+             if (param->algo == 1)
                 bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param);
             else
                 xiaolin(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param);

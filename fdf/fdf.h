@@ -47,6 +47,7 @@ typedef struct	s_param {
 	int		move_w;
 	int		move_h;
 	int		algo;
+	int		zoom_y;
 	t_rot	*rot;
 }				t_param;				
 

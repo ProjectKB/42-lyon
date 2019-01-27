@@ -51,7 +51,6 @@ void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
 	}
 	while (++i < n)
 	{
-		//new_point(&pos, src, i, step);
 		pos_x = x1 + i * step_x;
 		pos_y = y1 + i * step_y;
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))

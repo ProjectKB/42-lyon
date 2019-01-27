@@ -28,6 +28,7 @@ void    find_xy_max(char **argv, t_param *param)
         count++;
     param->y_max = count + 1;
     close(fd);
+    param->fact = (param->width - param->width / 6) / param->x_max;
 }
 
 int    *str_to_tabint(char *str, t_param *param)
@@ -91,6 +92,7 @@ double     **calcul_iso(int **tab, t_param *param)
                     return (NULL);
             matrix(j, i, tab[i][j], param);
             coord_iso[i][k] = 0.707f * (param->rot->xr_x - param->rot->xr_y) + param->move_w;
+
             coord_iso[i][k + 1] = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y) + param->move_h;
             k += 2;
             j++;
@@ -107,11 +109,13 @@ double     **calcul_obl(int **tab, t_param *param)
     int i;
     int j;
     int k;
+    int t;
     double **coord_obl;
 
     i = 0;
     j = 0;
     k = 0;
+
     param->iso = 0;
     param->obl = 1;
     if (!(coord_obl = (double**)malloc(sizeof(double*) * (param->y_max))))
