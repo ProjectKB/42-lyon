@@ -85,5 +85,6 @@ void    switch_drawline_style(int key, t_param *param);
 
 void    matrix(int x, int y, int z, t_param *param);
 void	xiaolin(int x0, int y0, int x1, int y1, t_param *param);
+double	ABS(double v);
 
 #endif

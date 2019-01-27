@@ -21,9 +21,15 @@ void    display_test(double **coord, t_param *param)
 
     i = -1;
     j = 0;
-    printf("x_start : %f\n", coord[0][0] * param->fact);
-    printf("x_end : %f\n", coord[0][param->x_max * 2 - 2] * param->fact);
-    param->midle = (param->width - (coord[0][param->x_max * 2 - 2] * param->fact) - (coord[0][0] * param->fact)) / 2;
+   param->midle = 382;
+    //printf("x_start : %f\n", coord[param->y_max - 1][0] * param->fact);
+    //printf("x_end : %f\n", coord[0][param->x_max * 2 - 2] * param->fact);
+    /*printf("x_start : %f\n", 366 + coord[param->y_max - 1][param->x_max - 2] * param->fact);
+    printf("x_end : %f\n", 366 + coord[param->y_max - 1][param->x_max * 2 - 2] * param->fact); */
+    param->midle = ABS(coord[param->y_max - 1][0] * param->fact) + ((param->width - (ABS(coord[param->y_max - 1][0] * param->fact) + ABS(coord[0][param->x_max * 2 - 2] * param->fact))) / 2);
+    //printf("%d\n", param->midle);
+    //printf("v : %d\n", param->midle);
+    //param->midle = (param->width - (coord[0][param->x_max * 2 - 2] * param->fact) - (coord[0][0] * param->fact)) / 2;
     while (++i < param->y_max)
     {
         while (j + 3 < param->x_max * 2)
@@ -49,4 +55,5 @@ void    display_test(double **coord, t_param *param)
         i = -1;
         j += 2;
     }
+    //mlx_pixel_put(param->mlx_ptr, param->win_ptr, param->midle + coord[0][param->x_max * 2 - 2] * param->fact, param->midle + coord[0][param->x_max * 2 - 1] * param->fact, 0xf44242);
 }
