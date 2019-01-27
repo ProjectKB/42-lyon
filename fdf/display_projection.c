@@ -17,19 +17,45 @@ void    display_test(double **coord, t_param *param)
 {
     int i;
     int j;
-    int test;
+    static int test = 0;
+    static int test2 = 0;
+    double test1;
 
     i = -1;
     j = 0;
-   param->midle = 382;
-    //printf("x_start : %f\n", coord[param->y_max - 1][0] * param->fact);
-    //printf("x_end : %f\n", coord[0][param->x_max * 2 - 2] * param->fact);
-    /*printf("x_start : %f\n", 366 + coord[param->y_max - 1][param->x_max - 2] * param->fact);
-    printf("x_end : %f\n", 366 + coord[param->y_max - 1][param->x_max * 2 - 2] * param->fact); */
-    param->midle = ABS(coord[param->y_max - 1][0] * param->fact) + ((param->width - (ABS(coord[param->y_max - 1][0] * param->fact) + ABS(coord[0][param->x_max * 2 - 2] * param->fact))) / 2);
-    //printf("%d\n", param->midle);
-    //printf("v : %d\n", param->midle);
-    //param->midle = (param->width - (coord[0][param->x_max * 2 - 2] * param->fact) - (coord[0][0] * param->fact)) / 2;
+    
+    
+    //printf("y1 %f\n", param->midle + coord[0][1] * param->fact);
+    //printf("y2 %f\n", param->midle + coord[param->y_max - 1][param->x_max * 2 - 1] * param->fact);
+    //test1 = (ABS(param->midle + coord[param->y_max - 1][param->x_max * 2 - 1] * param->fact) + ABS(param->midle + coord[0][1] * param->fact)) / param->fact; 
+    //printf("fact : %f\n", test1);
+    //param->move_h = test1;
+
+    if (!param->iso && !test)
+    {
+       param->midle = (param->width - ABS(coord[0][param->x_max * 2 - 2] * param->fact) - ABS(coord[0][0] * param->fact)) / 2;
+       test++;
+       test2 = 0;
+    }
+    else if (!param->obl && !test2)
+    {
+       param->midle = ABS(coord[param->y_max - 1][0] * param->fact) + ((param->width - (ABS(coord[param->y_max - 1][0] * param->fact) + ABS(coord[0][param->x_max * 2 - 2] * param->fact))) / 2);
+       test2++;
+       test = 0;
+    }
+        //param->midle = param->x_max * param->fact / 2;
+    while (++i < param->y_max)
+    {
+        while (j < param->x_max * 2)
+        {
+            coord[i][j] += param->move_w;
+            if (!param->obl)
+                coord[i][j + 1] += param->y_max + param->move_h;
+            j += 2;
+        }
+        j = 0;
+    }
+    i = -1;
     while (++i < param->y_max)
     {
         while (j + 3 < param->x_max * 2)

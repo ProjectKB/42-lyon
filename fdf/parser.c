@@ -91,9 +91,9 @@ double     **calcul_iso(int **tab, t_param *param)
                 if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
             matrix(j, i, tab[i][j], param);
-            coord_iso[i][k] = 0.707f * (param->rot->xr_x - param->rot->xr_y) + param->move_w;
-
-            coord_iso[i][k + 1] = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y) + param->move_h;
+            coord_iso[i][k] = 0.707f * (param->rot->xr_x - param->rot->xr_y);
+            
+            coord_iso[i][k + 1] = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y);
             k += 2;
             j++;
         }
@@ -128,7 +128,7 @@ double     **calcul_obl(int **tab, t_param *param)
                 if (!(coord_obl[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
             matrix(j, i, tab[i][j], param);
-            coord_obl[i][k] = param->rot->xr_x + param->rot->xr_z * param->z_obl + param->move_w;
+            coord_obl[i][k] = param->rot->xr_x + param->rot->xr_z * param->z_obl;
             coord_obl[i][k + 1] = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
             k += 2;
             j++;

@@ -21,9 +21,9 @@ void    map_event(int key, t_param *param, void (*move)(int, t_param*))
 void    zoom(int key, t_param *param)
 {
     if (key == 69)
-        param->fact += 2;
+        param->fact += 1;
     else if (key == 78)
-        param->fact -= 2;
+        param->fact -= 1;
 }
 
 void    manage_z_axes(int key, t_param *param)
@@ -48,10 +48,26 @@ void    move_map(int key, t_param *param)
         param->move_h -= 1;
     else if (key == 125 || key == 1)
         param->move_h -= -1;
-    else if (key == 14)
-        param->midle += 20;
+    else if (key == 8)
+    {
+        param->move_w += 1;
+        param->move_h += 1;
+    }
     else if (key == 12)
-        param->midle -= 20;
+    {
+        param->move_w -= 1;
+        param->move_h -= 1;
+    }
+    else if (key == 6)
+    {
+        param->move_w -= 1;
+        param->move_h += 1;
+    }
+    else if (key == 14)
+    {
+        param->move_w += 1;
+        param->move_h -= 1;
+    }
     printf("%d\n", param->midle);
 }
 

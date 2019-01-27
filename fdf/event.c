@@ -26,14 +26,20 @@ int    deal_key(int key, t_param *param)
             param->coord = calcul_obl(param->tab, param);
     }
     if (key == 82 && (!param->iso))
+    {
         param->coord = calcul_iso(param->tab, param);
+    }
     if (key == 65 && (!param->obl))
+    {
+        param->move_h = 0;
+        param->move_w = 0;
         param->coord = calcul_obl(param->tab, param);
+    }
     if (key == 69 || key == 78)
         map_event(key, param, zoom);
     if (key == 75 || key == 67)
         map_event(key, param, manage_z_axes);
-    if (key == 126 || key == 125 || key == 123 || key == 124 || key == 2 || !key || key == 1 || key == 13 || key == 12 || key == 14) 
+    if (key == 126 || key == 125 || key == 123 || key == 124 || key == 2 || !key || key == 1 || key == 13 || key == 12 || key == 14 || key == 6 || key == 8) 
         map_event(key, param, move_map);
     if (key == 91 || key == 92 || key == 87 || key == 88 || key == 84 || key == 85)
         map_event(key, param, rotate_map);

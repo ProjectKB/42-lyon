@@ -23,7 +23,7 @@ t_param *init_param(int width, int height)
         return (NULL);
     param->width = width;    
     param->height = height;
-    param->midle = 500;
+    param->midle = width / 2;
     param->z_iso = 0.816;
     param->z_obl = 1.0;
     param->move_w = 0;

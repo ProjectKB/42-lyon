@@ -41,6 +41,7 @@ typedef struct	s_param {
 	int		iso;
 	int		obl;
 	int		midle;
+	int		midle2;
 	int		fact;
 	double	z_iso;
 	double	z_obl;
@@ -49,6 +50,7 @@ typedef struct	s_param {
 	int		algo;
 	int		zoom_y;
 	t_rot	*rot;
+	int		test;
 }				t_param;				
 
 /*typedef struct	s_center {
