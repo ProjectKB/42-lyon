@@ -26,6 +26,15 @@ void    zoom(int key, t_param *param)
         param->fact -= 1;
 }
 
+int    zoom2(int key, t_param *param)
+{
+    if (key == 69)
+        param->fact += 1;
+    else if (key == 78)
+        param->fact -= 1;
+    return (0);
+}
+
 void    manage_z_axes(int key, t_param *param)
 {
     if (key == 75 && param->iso)
@@ -36,6 +45,16 @@ void    manage_z_axes(int key, t_param *param)
         param->z_obl -= 0.1;
     else if (key == 67 && param->obl)
         param->z_obl += 0.1;
+}
+
+int    manage_z_axes2(int key, t_param *param)
+{
+    if (key == 75 && param->iso)
+        param->z_iso -= 0.1;
+    param->coord = calcul_iso(param->tab, param);
+    mlx_clear_window(param->mlx_ptr, param->win_ptr);
+    display_test(param->coord, param);
+    return (0);
 }
 
 void    move_map(int key, t_param *param)

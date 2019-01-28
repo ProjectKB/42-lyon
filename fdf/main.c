@@ -27,14 +27,16 @@ int main(int argc, char **argv)
 	param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
 
-	mlx_expose_hook(param->win_ptr, expose_hook, param);
-	mlx_key_hook(param->win_ptr, deal_key, param);
+	//mlx_expose_hook(param->win_ptr, expose_hook, param);
+	//mlx_key_hook(param->win_ptr, deal_key, param);
 
 	find_xy_max(argv, param);
 	param->tab = file_to_data(argv, param);
 	ft_putdbint(param->tab, param->x_max, param->y_max);
 	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 	param->coord = calcul_iso(param->tab, param);
+	mlx_hook(param->win_ptr, 2, (1L<<0), deal_key, param);
+	
 	display_test(param->coord, param);
 	mlx_loop(param->mlx_ptr);
 	return (0);

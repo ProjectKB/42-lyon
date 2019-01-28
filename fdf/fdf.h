@@ -42,7 +42,7 @@ typedef struct	s_param {
 	int		obl;
 	int		midle;
 	int		midle2;
-	int		fact;
+	double	fact;
 	double	z_iso;
 	double	z_obl;
 	int		move_w;

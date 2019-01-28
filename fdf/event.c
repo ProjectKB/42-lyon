@@ -22,6 +22,8 @@ int    deal_key(int key, t_param *param)
     {
         param->move_h = 0;
         param->move_w = 0;
+        param->z_iso = 0.816;
+        param->z_obl = 1.0;
         if (param->iso)
             param->coord = calcul_iso(param->tab, param);
         else
