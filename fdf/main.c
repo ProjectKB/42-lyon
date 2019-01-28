@@ -26,9 +26,11 @@ int main(int argc, char **argv)
 	param = init_param(1000, 1000);
 	param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
+	//param->img_ptr = mlx_new_image(param->mlx_ptr, param->width, param->height);
+	//param->img_data = (unsigned int*)mlx_get_data_addr(param->img_ptr, &param->bpp, &param->slz, &param->endian);
 
-	//mlx_expose_hook(param->win_ptr, expose_hook, param);
-	//mlx_key_hook(param->win_ptr, deal_key, param);
+	////mlx_expose_hook(param->win_ptr, expose_hook, param);
+	////mlx_key_hook(param->win_ptr, deal_key, param);
 
 	find_xy_max(argv, param);
 	param->tab = file_to_data(argv, param);
@@ -36,8 +38,13 @@ int main(int argc, char **argv)
 	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 	param->coord = calcul_iso(param->tab, param);
 	mlx_hook(param->win_ptr, 2, (1L<<0), deal_key, param);
-	
+	//mlx_destroy_image(param->mlx_ptr, param->img_ptr);
 	display_test(param->coord, param);
+
+	//mlx_destroy_image(param->mlx_ptr, param->img_ptr);
+	//mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
+	
+	
 	mlx_loop(param->mlx_ptr);
 	return (0);
 }

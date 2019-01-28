@@ -31,12 +31,14 @@ t_param *init_param(int width, int height)
     param->algo = 1;
     param->rot->angle = 0.0;
     param->rot->mod = 2;
+    param->test = 0;
+    if (!(param->img_data = (unsigned int*)malloc(sizeof(*param->img_data) * (param->width * param->height))))
+        return (NULL);
     return (param);
 }
 
-int     expose_hook(t_param *param)
+void				img_put_pixel(t_param *param, int x, int y, int color)
 {
-    if (!param)
-        return (1);
-    return (0);    
+	if ((x > 0 && x < param->width) && (y > 0 && y < param->height))
+	    param->img_data[(y * param->width + x)] = color;
 }

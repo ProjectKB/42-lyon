@@ -15,28 +15,31 @@
 
 int    deal_key(int key, t_param *param)
 {
+    param->test = 1;
     printf("key : %d\n", key);
     if (key == 53)
+    {
+        mlx_destroy_image(param->mlx_ptr, param->img_ptr);
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
-    if (key == 76 && (param->rot->angle = 0) != -1)
+    }
+    if (key == 76)
     {
         param->move_h = 0;
         param->move_w = 0;
         param->z_iso = 0.816;
         param->z_obl = 1.0;
+        param->fact = (param->width - param->width / 6) / param->x_max;
+        param->rot->angle = 0;
+        param->rot->mod = 2;
         if (param->iso)
             param->coord = calcul_iso(param->tab, param);
         else
             param->coord = calcul_obl(param->tab, param);
     }
     if (key == 82 && (!param->iso))
-    {
         param->coord = calcul_iso(param->tab, param);
-    }
     if (key == 65 && (!param->obl))
-    {
         param->coord = calcul_obl(param->tab, param);
-    }
     if (key == 69 || key == 78)
         map_event(key, param, zoom);
     if (key == 75 || key == 67)
@@ -52,6 +55,10 @@ int    deal_key(int key, t_param *param)
     else
         param->coord = calcul_obl(param->tab, param);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
+
+
+    //mlx_destroy_image(param->mlx_ptr, param->img_ptr);
     display_test(param->coord, param);
+    //mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
     return (0);
 }

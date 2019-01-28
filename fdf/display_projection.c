@@ -31,7 +31,7 @@ void    display_test(double **coord, t_param *param)
     //printf("fact : %f\n", test1);
     //param->move_h = test1;
 
-    if (!param->iso && !test)
+    if ((!param->iso && !test))
     {
        param->midle = (param->width - ABS(coord[0][param->x_max * 2 - 2] * param->fact) - ABS(coord[0][0] * param->fact)) / 2;
        test++;

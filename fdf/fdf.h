@@ -32,6 +32,8 @@ typedef struct	s_rot {
 typedef struct	s_param {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
+	unsigned int		*img_data;
 	int		width;
 	int 	height;
 	int		x_max;
@@ -49,9 +51,11 @@ typedef struct	s_param {
 	int		move_h;
 	int		algo;
 	int		zoom_y;
+	int		bpp;
+	int		slz;
+	int		endian;
 	t_rot	*rot;
 	int		test;
-	double **reset;
 }				t_param;				
 
 /*typedef struct	s_center {
@@ -89,5 +93,6 @@ void    switch_drawline_style(int key, t_param *param);
 void    matrix(int x, int y, int z, t_param *param);
 void	xiaolin(int x0, int y0, int x1, int y1, t_param *param);
 double	ABS(double v);
+void	img_put_pixel(t_param *param, int x, int y, int color);
 
 #endif
