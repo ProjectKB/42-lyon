@@ -56,6 +56,7 @@ typedef struct	s_param {
 	int		endian;
 	t_rot	*rot;
 	int		test;
+	int		color;
 }				t_param;				
 
 /*typedef struct	s_center {

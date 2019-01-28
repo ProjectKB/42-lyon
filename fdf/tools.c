@@ -32,8 +32,14 @@ t_param *init_param(int width, int height)
     param->rot->angle = 0.0;
     param->rot->mod = 2;
     param->test = 0;
-    if (!(param->img_data = (unsigned int*)malloc(sizeof(*param->img_data) * (param->width * param->height))))
+    param->mlx_ptr = mlx_init();
+	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
+
+
+    param->img_ptr = mlx_new_image(param->mlx_ptr, param->width, param->height);
+    if (!(param->img_data = (unsigned int*)malloc(sizeof(unsigned int) * (param->width * param->height))))
         return (NULL);
+	param->img_data = (unsigned int*)mlx_get_data_addr(param->img_ptr, &param->bpp, &param->slz, &param->endian);
     return (param);
 }
 

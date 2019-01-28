@@ -15,12 +15,18 @@
 
 int    deal_key(int key, t_param *param)
 {
+    //ft_bzero(param->img_data, param->width * param->height);
+    //display_test(param->coord, param);
+    //mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
     param->test = 1;
     printf("key : %d\n", key);
     if (key == 53)
     {
+        mlx_clear_window(param->mlx_ptr, param->win_ptr);
+        ft_bzero(param->img_data, (param->width * param->height) * 4);
         mlx_destroy_image(param->mlx_ptr, param->img_ptr);
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+        return (0);
     }
     if (key == 76)
     {
@@ -55,10 +61,8 @@ int    deal_key(int key, t_param *param)
     else
         param->coord = calcul_obl(param->tab, param);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
-
-
-    //mlx_destroy_image(param->mlx_ptr, param->img_ptr);
+    ft_bzero(param->img_data, (param->width * param->height) * 4);
     display_test(param->coord, param);
-    //mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
+    mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
     return (0);
 }
