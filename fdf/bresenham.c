@@ -55,7 +55,7 @@ void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
 		pos_y = y1 + i * step_y;
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
 			//mlx_pixel_put(param->mlx_ptr, param->win_ptr, pos_x, pos_y, 0xFFFFFF);
-			img_put_pixel(param, pos_x, pos_y, 255);
+			img_put_pixel(param, pos_x, pos_y, 150);
 	}
 
 	/*int dx;

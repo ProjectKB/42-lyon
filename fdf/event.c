@@ -13,17 +13,47 @@
 
 #include "fdf.h"
 
+int	deal_mouse(int key, int x, int y, t_param *param)
+{
+	printf("%d\n", key);
+    if (key == 4)
+        param->fact += 1;
+    else if (key == 5)
+        param->fact -= 1;
+    else if (key == 3)
+    {
+        param->move_h = 0;
+        param->move_w = 0;
+        param->z_iso = 0.816;
+        param->z_obl = 1.0;
+        param->fact = (param->width - param->width / 6) / param->x_max;
+        param->rot->angle = 0;
+        param->rot->mod = 2;
+        if (param->iso)
+            param->coord = calcul_iso(param->tab, param);
+        else
+            param->coord = calcul_obl(param->tab, param);
+    }
+    else if (key == 1 && (!param->iso))
+        param->coord = calcul_iso(param->tab, param);
+    else if (key == 2 && (!param->obl))
+        param->coord = calcul_obl(param->tab, param);
+    if (param->iso)
+        param->coord = calcul_iso(param->tab, param);
+    else
+        param->coord = calcul_obl(param->tab, param);
+    mlx_clear_window(param->mlx_ptr, param->win_ptr);
+    ft_bzero(param->img_data, (param->width * param->height) * 4);
+    display_test(param->coord, param);
+    mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
+	return (0);
+}
+
 int    deal_key(int key, t_param *param)
 {
-    //ft_bzero(param->img_data, param->width * param->height);
-    //display_test(param->coord, param);
-    //mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
-    param->test = 1;
     printf("key : %d\n", key);
     if (key == 53)
     {
-        mlx_clear_window(param->mlx_ptr, param->win_ptr);
-        ft_bzero(param->img_data, (param->width * param->height) * 4);
         mlx_destroy_image(param->mlx_ptr, param->img_ptr);
         mlx_destroy_window(param->mlx_ptr, param->win_ptr);
         return (0);
@@ -66,3 +96,4 @@ int    deal_key(int key, t_param *param)
     mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
     return (0);
 }
+

@@ -25,9 +25,8 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	param = init_param(1000, 1000);
-
 	////mlx_expose_hook(param->win_ptr, expose_hook, param);
-	////mlx_key_hook(param->win_ptr, deal_key, param);
+	
 
 	find_xy_max(argv, param);
 	param->tab = file_to_data(argv, param);
@@ -36,9 +35,9 @@ int main(int argc, char **argv)
 	//printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 
 	param->coord = calcul_iso(param->tab, param);
+	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
 	mlx_hook(param->win_ptr, 2, (1L<<0), deal_key, param);
 	
-
 	if (!test)
 	{
 		display_test(param->coord, param);
