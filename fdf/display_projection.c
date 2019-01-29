@@ -52,7 +52,7 @@ void    display_test(double **coord, t_param *param)
         while (j + 3 < param->x_max * 2)
         {
             if (param->algo == 1)
-                bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i][j + 2] * param->fact, param->midle + coord[i][j + 3] * param->fact, param);
+                bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i][j + 2] * param->fact, param->midle + coord[i][j + 3] * param->fact, param, param->color[i][j]);
             else
                 xiaolin(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i][j + 2] * param->fact, param->midle + coord[i][j + 3] * param->fact, param);
             j += 2; 
@@ -65,7 +65,7 @@ void    display_test(double **coord, t_param *param)
         while (++i + 1 < param->y_max)
         {
              if (param->algo == 1)
-                bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param);
+                bresenham(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param, param->color[i][j]);
             else
                 xiaolin(param->midle + coord[i][j] * param->fact, param->midle + coord[i][j + 1] * param->fact, param->midle + coord[i + 1][j] * param->fact, param->midle + coord[i + 1][j + 1] * param->fact, param);
         }

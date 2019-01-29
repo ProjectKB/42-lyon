@@ -35,7 +35,6 @@ t_param *init_param(int width, int height)
     param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
 
-
     param->img_ptr = mlx_new_image(param->mlx_ptr, param->width, param->height);
     if (!(param->img_data = (unsigned int*)malloc(sizeof(unsigned int) * (param->width * param->height))))
         return (NULL);

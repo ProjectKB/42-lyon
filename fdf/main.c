@@ -31,8 +31,8 @@ int main(int argc, char **argv)
 	find_xy_max(argv, param);
 	param->tab = file_to_data(argv, param);
 
-	//ft_putdbint(param->tab, param->x_max, param->y_max);
-	//printf("x : %d\ny : %d\n", param->x_max, param->y_max);
+	ft_putdbint(param->tab, param->x_max, param->y_max);
+	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 
 	param->coord = calcul_iso(param->tab, param);
 	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);

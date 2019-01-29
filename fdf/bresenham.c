@@ -20,7 +20,7 @@ double	ABS(double v)
 	return (v);
 }
 
-void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
+void	bresenham(int x1, int y1, int x2, int y2, t_param *param, int color)
 {
 	double				n;
 	int				i;
@@ -54,8 +54,7 @@ void	bresenham(int x1, int y1, int x2, int y2, t_param *param)
 		pos_x = x1 + i * step_x;
 		pos_y = y1 + i * step_y;
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
-			//mlx_pixel_put(param->mlx_ptr, param->win_ptr, pos_x, pos_y, 0xFFFFFF);
-			img_put_pixel(param, pos_x, pos_y, 150);
+			img_put_pixel(param, pos_x, pos_y, color);
 	}
 
 	/*int dx;

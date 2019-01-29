@@ -29,6 +29,12 @@ typedef struct	s_rot {
 	double	angle;
 }				t_rot;
 
+typedef struct	s_coord {
+	double	x;
+	double	y;
+	int		color;
+}				t_coord;	
+
 typedef struct	s_param {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -55,11 +61,11 @@ typedef struct	s_param {
 	int		endian;
 	t_rot	*rot;
 	int		test;
-	int		color;
-}				t_param;
+	int		**color;
+}				t_param;				
 
 t_param *init_param(int width, int height);
-void	bresenham(int x1, int y1, int x2, int y2, t_param *param);
+void	bresenham(int x1, int y1, int x2, int y2, t_param *param, int color);
 void    find_xy_max(char **argv, t_param *param);
 t_param *init_window(void);
 int		**file_to_data(char **argv, t_param *param);

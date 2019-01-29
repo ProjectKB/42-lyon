@@ -83,17 +83,26 @@ double     **calcul_iso(int **tab, t_param *param)
     param->obl = 0;
     if (!(coord_iso = (double**)malloc(sizeof(double*) * (param->y_max))))
         return (NULL);
+    if (!(param->color = (int**)malloc(sizeof(int*) * (param->y_max))))
+        return (NULL);
     while (i < param->y_max)
     {
         while (j < param->x_max)
         {
             if (!j)
+            {
                 if (!(coord_iso[i] = (double*)malloc(sizeof(double) * (param->x_max * 2))))
                     return (NULL);
+                if (!(param->color[i] = (int*)malloc(sizeof(int) * (param->x_max * 2))))
+                    return (NULL);
+            }
             matrix(j, i, tab[i][j], param);
             coord_iso[i][k] = 0.707f * (param->rot->xr_x - param->rot->xr_y);
-            
             coord_iso[i][k + 1] = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y);
+            param->color[i][k] = 255;
+            //if (tab[i][j] == 10)
+              //  param->color[i][k] = 10 * 900000;
+            //printf("%d\n", tab[i][j]);
             k += 2;
             j++;
         }
