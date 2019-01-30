@@ -69,82 +69,23 @@ int    **file_to_data(char **argv, t_param *param)
     return (tab);
 }
 
-t_coord     **calcul_iso(int **tab, t_param *param)
+t_coord     **projection_calcul(int **tab, t_param *param, int proj)
 {
     int i;
     int j;
-    int k;
-    t_coord **coord_iso;
+    t_coord **v2;
 
-    i = 0;
-    j = 0;
-    k = 0;
-    param->iso = 1;
-    param->obl = 0;
-    if (!(coord_iso = (t_coord**)malloc(sizeof(t_coord*) * (param->y_max))))
+    i = -1;
+    if (!(v2 = (t_coord**)malloc(sizeof(t_coord*) * (param->y_max))))
         return (NULL);
-    if (!(param->color = (int**)malloc(sizeof(int*) * (param->y_max))))
-        return (NULL);
-    while (i < param->y_max)
-    {
-        while (j < param->x_max)
+    while (++i < param->y_max && (j = -1))
+        while (++j < param->x_max)
         {
             if (!j)
-            {
-                if (!(coord_iso[i] = (t_coord*)malloc(sizeof(t_coord) * (param->x_max))))
-                    return (NULL);
-                if (!(param->color[i] = (int*)malloc(sizeof(int) * (param->x_max * 2))))
-                    return (NULL);
-            }
-            matrix(j, i, tab[i][j], param);
-            coord_iso[i][k].x = 0.707f * (param->rot->xr_x - param->rot->xr_y);
-            coord_iso[i][k].y = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y);
-            param->color[i][k] = 255;
-            //if (tab[i][j] == 10)
-              //  param->color[i][k] = 10 * 900000;
-            //printf("%d\n", tab[i][j]);
-            k++;
-            j++;
-        }
-        k = 0;
-        j = 0;
-        i++;
-    }
-    return (coord_iso);
-}
-
-t_coord     **calcul_obl(int **tab, t_param *param)
-{
-    int i;
-    int j;
-    int k;
-    int t;
-    t_coord **coord_obl;
-
-    i = 0;
-    j = 0;
-    k = 0;
-
-    param->iso = 0;
-    param->obl = 1;
-    if (!(coord_obl = (t_coord**)malloc(sizeof(t_coord*) * (param->y_max))))
-        return (NULL);
-    while (i < param->y_max)
-    {
-        while (j < param->x_max)
-        {
-            if (!j)
-                if (!(coord_obl[i] = (t_coord*)malloc(sizeof(t_coord) * (param->x_max * 2))))
+                if (!(v2[i] = (t_coord*)malloc(sizeof(t_coord) * (param->x_max))))
                     return (NULL);
             matrix(j, i, tab[i][j], param);
-            coord_obl[i][k].x = param->rot->xr_x + param->rot->xr_z * param->z_obl;
-            coord_obl[i][k].y = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
-            k++;
-            j++;
+            projection(&v2[i][j], proj, param);
         }
-        k = 0;
-        j = 0;
-        i++;
-    }
-    return (coord_obl);
+    return (v2);
 }

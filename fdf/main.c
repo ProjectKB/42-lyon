@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	ft_putdbint(param->tab, param->x_max, param->y_max);
 	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 
-	param->coords = calcul_iso(param->tab, param);
+	param->coords = projection_calcul(param->tab, param, 1);
 	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
 	mlx_hook(param->win_ptr, 2, (1L<<0), deal_key, param);
 	

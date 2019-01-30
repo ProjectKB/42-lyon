@@ -32,6 +32,7 @@ t_param *init_param(int width, int height)
     param->rot->angle = 0.0;
     param->rot->mod = 2;
     param->test = 0;
+    param->proj = 1;
     param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
 
@@ -46,4 +47,22 @@ void				img_put_pixel(t_param *param, int x, int y, int color)
 {
 	if ((x > 0 && x < param->width) && (y > 0 && y < param->height))
 	    param->img_data[(y * param->width + x)] = color;
+}
+
+void     projection(t_coord *v2, int projection, t_param *param)
+{
+    if (projection == 1)
+    {
+        param->proj = 1;
+        v2->x = 0.707f * (param->rot->xr_x - param->rot->xr_y);
+        v2->y = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y);
+        v2->c = 255;
+    }
+    else
+    {
+        param->proj = 0;
+        v2->x = param->rot->xr_x + param->rot->xr_z * param->z_obl;
+        v2->y = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
+        v2->c = 255;
+    }
 }

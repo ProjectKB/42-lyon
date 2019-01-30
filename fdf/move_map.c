@@ -28,13 +28,13 @@ void    zoom(int key, t_param *param)
 
 void    manage_z_axes(int key, t_param *param)
 {
-    if (key == 75 && param->iso)
+    if (key == 75 && param->proj)
         param->z_iso -= 0.1;
-    else if (key == 67 && param->iso)
+    else if (key == 67 && param->proj)
         param->z_iso += 0.1;
-    else if (key == 75 && param->obl)
+    else if (key == 75 && !param->proj)
         param->z_obl -= 0.1;
-    else if (key == 67 && param->obl)
+    else if (key == 67 && !param->proj)
         param->z_obl += 0.1;
 }
 

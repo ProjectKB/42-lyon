@@ -29,19 +29,12 @@ int	deal_mouse(int key, int x, int y, t_param *param)
         param->fact = (param->width - param->width / 6) / param->x_max;
         param->rot->angle = 0;
         param->rot->mod = 2;
-        if (param->iso)
-            param->coords = calcul_iso(param->tab, param);
-        else
-            param->coords = calcul_obl(param->tab, param);
     }
-    else if (key == 1 && (!param->iso))
-        param->coords = calcul_iso(param->tab, param);
-    else if (key == 2 && (!param->obl))
-        param->coords = calcul_obl(param->tab, param);
-    if (param->iso)
-        param->coords = calcul_iso(param->tab, param);
-    else
-        param->coords = calcul_obl(param->tab, param);
+    else if (key == 1 && (!param->proj))
+        param->proj = 1;
+    else if (key == 2 && param->proj)
+        param->proj = 0;
+    param->coords = projection_calcul(param->tab, param, param->proj);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
     ft_bzero(param->img_data, (param->width * param->height) * 4);
     display_test(param->coords, param);
@@ -67,15 +60,11 @@ int    deal_key(int key, t_param *param)
         param->fact = (param->width - param->width / 6) / param->x_max;
         param->rot->angle = 0;
         param->rot->mod = 2;
-        if (param->iso)
-            param->coords = calcul_iso(param->tab, param);
-        else
-            param->coords = calcul_obl(param->tab, param);
     }
-    if (key == 82 && (!param->iso))
-        param->coords = calcul_iso(param->tab, param);
-    if (key == 65 && (!param->obl))
-        param->coords = calcul_obl(param->tab, param);
+    if (key == 82 && (!param->proj))
+        param->proj = 1;
+    if (key == 65 && param->proj)
+        param->proj = 0;
     if (key == 69 || key == 78)
         map_event(key, param, zoom);
     if (key == 75 || key == 67)
@@ -86,10 +75,7 @@ int    deal_key(int key, t_param *param)
         map_event(key, param, rotate_map);
     if (key == 7 || key == 11)
         map_event(key, param, switch_drawline_style);
-    if (param->iso)
-        param->coords = calcul_iso(param->tab, param);
-    else
-        param->coords = calcul_obl(param->tab, param);
+    param->coords = projection_calcul(param->tab, param, param->proj);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
     ft_bzero(param->img_data, (param->width * param->height) * 4);
     display_test(param->coords, param);
