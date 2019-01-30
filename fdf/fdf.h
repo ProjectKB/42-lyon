@@ -62,6 +62,7 @@ typedef struct	s_param {
 	t_rot	*rot;
 	int		test;
 	int		**color;
+	t_coord ** coords;
 }				t_param;				
 
 t_param *init_param(int width, int height);
@@ -71,9 +72,9 @@ t_param *init_window(void);
 int		**file_to_data(char **argv, t_param *param);
 int		*str_to_tabint(char *str, t_param *param);
 int     **calcul_xy_iso(int **tab, t_param *param);
-double	**calcul_iso(int **tab, t_param *param);
-double	**calcul_obl(int **tab, t_param *param);
-void    display_test(double **coord, t_param *param);
+t_coord	**calcul_iso(int **tab, t_param *param);
+t_coord	**calcul_obl(int **tab, t_param *param);
+void    display_test(t_coord **coord, t_param *param);
 
 int    deal_key(int key, t_param *param);
 int		deal_mouse(int key, int x, int y, t_param *param);

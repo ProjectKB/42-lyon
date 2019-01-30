@@ -34,13 +34,13 @@ int main(int argc, char **argv)
 	ft_putdbint(param->tab, param->x_max, param->y_max);
 	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 
-	param->coord = calcul_iso(param->tab, param);
+	param->coords = calcul_iso(param->tab, param);
 	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
 	mlx_hook(param->win_ptr, 2, (1L<<0), deal_key, param);
 	
 	if (!test)
 	{
-		display_test(param->coord, param);
+		display_test(param->coords, param);
 		mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
 		test++;
 	}

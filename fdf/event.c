@@ -30,21 +30,21 @@ int	deal_mouse(int key, int x, int y, t_param *param)
         param->rot->angle = 0;
         param->rot->mod = 2;
         if (param->iso)
-            param->coord = calcul_iso(param->tab, param);
+            param->coords = calcul_iso(param->tab, param);
         else
-            param->coord = calcul_obl(param->tab, param);
+            param->coords = calcul_obl(param->tab, param);
     }
     else if (key == 1 && (!param->iso))
-        param->coord = calcul_iso(param->tab, param);
+        param->coords = calcul_iso(param->tab, param);
     else if (key == 2 && (!param->obl))
-        param->coord = calcul_obl(param->tab, param);
+        param->coords = calcul_obl(param->tab, param);
     if (param->iso)
-        param->coord = calcul_iso(param->tab, param);
+        param->coords = calcul_iso(param->tab, param);
     else
-        param->coord = calcul_obl(param->tab, param);
+        param->coords = calcul_obl(param->tab, param);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
     ft_bzero(param->img_data, (param->width * param->height) * 4);
-    display_test(param->coord, param);
+    display_test(param->coords, param);
     mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
 	return (0);
 }
@@ -68,14 +68,14 @@ int    deal_key(int key, t_param *param)
         param->rot->angle = 0;
         param->rot->mod = 2;
         if (param->iso)
-            param->coord = calcul_iso(param->tab, param);
+            param->coords = calcul_iso(param->tab, param);
         else
-            param->coord = calcul_obl(param->tab, param);
+            param->coords = calcul_obl(param->tab, param);
     }
     if (key == 82 && (!param->iso))
-        param->coord = calcul_iso(param->tab, param);
+        param->coords = calcul_iso(param->tab, param);
     if (key == 65 && (!param->obl))
-        param->coord = calcul_obl(param->tab, param);
+        param->coords = calcul_obl(param->tab, param);
     if (key == 69 || key == 78)
         map_event(key, param, zoom);
     if (key == 75 || key == 67)
@@ -87,12 +87,12 @@ int    deal_key(int key, t_param *param)
     if (key == 7 || key == 11)
         map_event(key, param, switch_drawline_style);
     if (param->iso)
-        param->coord = calcul_iso(param->tab, param);
+        param->coords = calcul_iso(param->tab, param);
     else
-        param->coord = calcul_obl(param->tab, param);
+        param->coords = calcul_obl(param->tab, param);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
     ft_bzero(param->img_data, (param->width * param->height) * 4);
-    display_test(param->coord, param);
+    display_test(param->coords, param);
     mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
     return (0);
 }
