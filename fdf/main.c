@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 	}
 	//printf("%d\n", (0 << 24) + (255 << 16) + (255 << 8) + 255);
 	//printf("z_min : %d\nz_max : %d\n", param->z_min, param->z_max);
+	printf("z_iso : %f\n", param->z_iso);
 	mlx_loop(param->mlx_ptr);
 	return (0);
 }

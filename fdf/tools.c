@@ -29,8 +29,8 @@ t_param *init_param(int width, int height)
     param->width = width;    
     param->height = height;
     param->midle = width / 2;
-    param->z_iso = 0.5;
-    param->z_obl = 0.5;
+    param->z_iso = 0.2;
+    param->z_obl = -0.15;
     param->move_w = 0;
     param->move_h = 0;
     param->algo = 1;
