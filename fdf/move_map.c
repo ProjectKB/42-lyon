@@ -121,3 +121,13 @@ void    switch_drawline_style(int key, t_param *param)
     else
         param->algo = 1;
 }
+
+void    switch_color(int key, t_param *param)
+{
+    if (key == 15)
+        param->c_mod = 1;
+    else if (key == 5)
+        param->c_mod = 2;
+    else if (key == 11)
+        param->c_mod = 3;
+}

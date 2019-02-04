@@ -34,7 +34,15 @@ typedef struct	s_coord {
 	double	y;
 	int	z;
 	int		c;
-}				t_coord;	
+}				t_coord;
+
+typedef struct	s_color {
+	double	r;
+	double	g;
+	double	b;
+	double	max;
+	double	min;
+}				t_color;
 
 typedef struct	s_param {
 	void	*mlx_ptr;
@@ -61,7 +69,9 @@ typedef struct	s_param {
 	int		bpp;
 	int		slz;
 	int		endian;
+	int		c_mod;
 	t_rot	*rot;
+	t_color *col;
 	int		test;
 	int		**color;
 	t_coord ** coords;
@@ -87,6 +97,7 @@ void    zoom(int key, t_param *param);
 void    manage_z_axes(int key, t_param *param);
 void    rotate_map(int key, t_param *param);
 void    switch_drawline_style(int key, t_param *param);
+void    switch_color(int key, t_param *param);
 
 void    matrix(int x, int y, int z, t_param *param);
 void 	projection(t_coord *v2, int projection, t_param *param, int z);
@@ -96,5 +107,6 @@ void	img_put_pixel(t_param *param, int x, int y, int color);
 int     manage_mouse(int key, t_param *param);
 
 int     calcul_color(int r, int g, int b);
+void     define_color(t_color *color, t_param *param);
 
 #endif

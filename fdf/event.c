@@ -29,6 +29,7 @@ int	deal_mouse(int key, int x, int y, t_param *param)
         param->fact = (param->width - param->width / 6) / param->x_max;
         param->rot->angle = 0;
         param->rot->mod = 2;
+        param->c_mod = 0;
     }
     else if (key == 1 && (!param->proj))
         param->proj = 1;
@@ -60,6 +61,7 @@ int    deal_key(int key, t_param *param)
         param->fact = (param->width - param->width / 6) / param->x_max;
         param->rot->angle = 0;
         param->rot->mod = 2;
+        param->c_mod = 0;
     }
     if (key == 82 && (!param->proj))
         param->proj = 1;
@@ -73,8 +75,10 @@ int    deal_key(int key, t_param *param)
         map_event(key, param, move_map);
     if (key == 91 || key == 92 || key == 87 || key == 88 || key == 84 || key == 85)
         map_event(key, param, rotate_map);
-    if (key == 7 || key == 11)
+    if (key == 38 || key == 7)
         map_event(key, param, switch_drawline_style);
+    if (key == 15 || key == 5 || key == 11)
+        map_event(key, param, switch_color);
     param->coords = projection_calcul(param->tab, param, param->proj);
     mlx_clear_window(param->mlx_ptr, param->win_ptr);
     ft_bzero(param->img_data, (param->width * param->height) * 4);

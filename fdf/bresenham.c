@@ -30,19 +30,12 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 	double				pos_y;
 	double				t;
 	double				u;
-    int c_s;
-    int c_e;
-    int c_m;
     int test = 1;
-    int q;
 
 	i = -1;
 	step_x = end.x - start.x;
 	step_y = end.y - start.y;
-    c_s = calcul_color(0, 0, 255);
-    c_e = calcul_color(200, 200, 255);
-    //printf("z1 : %d\nz2 : %d\n", start.z, end.z);
-	
+    define_color(param->col, param);
 	t = ABS(step_x);
 	u = ABS(step_y);
 	if (t > u)
@@ -57,22 +50,38 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 		step_x /= ABS(step_y);
 		step_y /= ABS(step_y);
 	}
-    q = n / (param->z_max - param->z_min);
+    //printf("n : %f\n", n);
 	while (++i < n)
 	{
 		pos_x = start.x + i * step_x;
 		pos_y = start.y + i * step_y;
-        if (start.z == param->z_min && end.z == param->z_min)
-            start.c = c_s;
+        if (param->c_mod == 0)
+            start.c = calcul_color(255, 255, 255);
+        else if (start.z == param->z_min && end.z == param->z_min)
+            start.c = param->col->min;
         else if (start.z == param->z_max && end.z == param->z_max)
-            start.c = c_e;
+            start.c = param->col->max;
         else if (start.z > end.z)
-            start.c = calcul_color(200 - test, 200 - test, 255);
+        {
+            if (param->c_mod == 2)
+                start.c = calcul_color(0, 255, 0 + test);
+            if (param->c_mod == 1)
+                start.c = calcul_color(255, 0 + test, 0 + test);
+            if (param->c_mod == 3)
+                start.c = calcul_color(0 + test, 0 + test, 255);
+        }
         else if (start.z < end.z)
-            start.c = calcul_color(0 + test, 0 + test, 255);
+        {
+            if (param->c_mod == 2)
+                start.c = calcul_color(200 - test, 255, 200 - test);
+            if (param->c_mod == 1)
+                start.c = calcul_color(255, 200 - test, 200 - test);
+            if (param->c_mod == 3)
+                start.c = calcul_color(200 - test, 200 - test, 255);
+        }
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
 			img_put_pixel(param, pos_x, pos_y, start.c);
-        if (200 - test > 0)
+        if (200 - test > 0 && param->c_mod)
             test++;
 	}
 }
@@ -120,7 +129,12 @@ void drawPixel( int x , int y , t_param *param)
 void	xiaolin(t_coord start, t_coord end, t_param *param) 
 { 
     int steep = absolute(end.y - start.y) > absolute(end.x - start.x) ; 
-  
+    int c_s;
+    int c_e;
+    int test = 1;
+
+    define_color(param->col, param);
+
     if (steep) 
     { 
         swap(&start.x , &start.y); 
@@ -146,20 +160,54 @@ void	xiaolin(t_coord start, t_coord end, t_param *param)
     { 
         int x; 
         for (x = xpxl1 ; x <=xpxl2 ; x++) 
-        { 
-            drawPixel(iPartOfNumber(intersectY), x, param); 
-            drawPixel(iPartOfNumber(intersectY)-1, x, param); 
+        {
+            if (param->c_mod == 0)
+            start.c = calcul_color(255, 255, 255);
+            else if (start.z == param->z_min && end.z == param->z_min)
+                start.c = param->col->min;
+            else if (start.z == param->z_max && end.z == param->z_max)
+                start.c = param->col->max;
+            else if (start.z != end.z)
+            {
+                if (param->c_mod == 2)
+                    start.c = calcul_color(0, 255, 0 + test);
+                if (param->c_mod == 1)
+                    start.c = calcul_color(255, 0 + test, 0 + test);
+                if (param->c_mod == 3)
+                    start.c = calcul_color(0 + test, 0 + test, 255);
+            }
+            img_put_pixel(param, iPartOfNumber(intersectY), x, start.c); 
+            img_put_pixel(param, iPartOfNumber(intersectY)-1, x, start.c); 
             intersectY += gradient;
-        } 
+            if (200 - test > 0)
+                test++; 
+        }
     } 
     else
     { 
         int x; 
         for (x = xpxl1 ; x <=xpxl2 ; x++) 
-        { 
-            drawPixel(x, iPartOfNumber(intersectY), param); 
-            drawPixel(x, iPartOfNumber(intersectY)-1, param); 
+        {
+            if (param->c_mod == 0)
+            start.c = calcul_color(255, 255, 255);
+            else if (start.z == param->z_min && end.z == param->z_min)
+                start.c = param->col->min;
+            else if (start.z == param->z_max && end.z == param->z_max)
+                start.c = param->col->max;
+            else if (start.z != end.z)
+            {
+                if (param->c_mod == 2)
+                    start.c = calcul_color(0, 255, 0 + test);
+                if (param->c_mod == 1)
+                    start.c = calcul_color(255, 0 + test, 0 + test);
+                if (param->c_mod == 3)
+                    start.c = calcul_color(0 + test, 0 + test, 255);
+            }
+            img_put_pixel(param, x, iPartOfNumber(intersectY), start.c); 
+            img_put_pixel(param, x, iPartOfNumber(intersectY)-1, start.c);  
             intersectY += gradient; 
+            if (200 - test > 0)
+                test++; 
         } 
     } 
   

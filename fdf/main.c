@@ -31,8 +31,8 @@ int main(int argc, char **argv)
 	find_xy_max(argv, param);
 	param->tab = file_to_data(argv, param);
 
-	ft_putdbint(param->tab, param->x_max, param->y_max);
-	printf("x : %d\ny : %d\n", param->x_max, param->y_max);
+	//ft_putdbint(param->tab, param->x_max, param->y_max);
+	//printf("x : %d\ny : %d\n", param->x_max, param->y_max);
 
 	param->coords = projection_calcul(param->tab, param, 1);
 	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	}
 	//printf("%d\n", (0 << 24) + (255 << 16) + (255 << 8) + 255);
 	//printf("z_min : %d\nz_max : %d\n", param->z_min, param->z_max);
-	printf("z_iso : %f\n", param->z_iso);
+	//printf("z_iso : %f\n", param->z_iso);
 	mlx_loop(param->mlx_ptr);
 	return (0);
 }

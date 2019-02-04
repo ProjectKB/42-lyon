@@ -26,6 +26,8 @@ t_param *init_param(int width, int height)
         return (NULL);
     if (!(param->rot = (t_rot*)malloc(sizeof(*param->rot))))
         return (NULL);
+    if (!(param->col = (t_color*)malloc(sizeof(*param->col))))
+        return (NULL);
     param->width = width;    
     param->height = height;
     param->midle = width / 2;
@@ -36,6 +38,7 @@ t_param *init_param(int width, int height)
     param->algo = 1;
     param->rot->angle = 0.0;
     param->rot->mod = 2;
+    param->c_mod = 0;
     param->test = 0;
     param->proj = 1;
     param->mlx_ptr = mlx_init();
@@ -72,5 +75,41 @@ void     projection(t_coord *v2, int projection, t_param *param, int z)
         v2->y = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
         v2->z  = z;
         v2->c = 255;
+    }
+}
+
+void     define_color(t_color *color, t_param *param)
+{
+    if (!param->c_mod)
+    {
+        color->r = 255;
+        color->g = 255;
+        color->b = 255;
+        color->min = calcul_color(255, 255, 255);
+        color->max = calcul_color(255, 255, 255);
+    }
+    if (param->c_mod == 1)
+    {
+        color->r = 255;
+        color->g = 0;
+        color->b = 0;
+        color->min = calcul_color(255, 200, 200);
+        color->max = calcul_color(255, 0, 0);
+    }
+    if (param->c_mod == 2)
+    {
+        color->r = 0;
+        color->g = 255;
+        color->b = 0;
+        color->min = calcul_color(200, 255, 200);
+        color->max = calcul_color(0, 255, 0);
+    }
+    if (param->c_mod == 3)
+    {
+        color->r = 0;
+        color->g = 0;
+        color->b = 255;
+        color->min = calcul_color(200, 200, 255);
+        color->max = calcul_color(0, 0, 255);
     }
 }
