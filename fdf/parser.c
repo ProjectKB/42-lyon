@@ -29,6 +29,8 @@ void    find_xy_max(char **argv, t_param *param)
     param->y_max = count + 1;
     close(fd);
     param->fact = (param->width - param->width / 6) / param->x_max;
+    if (!param->fact)
+        param->fact = 0.8;
 }
 
 void    find_z_min_z_max(t_param *param, int z)

@@ -27,6 +27,8 @@ int	deal_mouse(int key, int x, int y, t_param *param)
         param->z_iso = 0.2;
         param->z_obl = -0.15;
         param->fact = (param->width - param->width / 6) / param->x_max;
+        if (!param->fact)
+            param->fact = 0.8;
         param->rot->angle = 0;
         param->rot->mod = 2;
         param->c_mod = 0;
@@ -59,6 +61,8 @@ int    deal_key(int key, t_param *param)
         param->z_iso = 0.2;
         param->z_obl = -0.15;
         param->fact = (param->width - param->width / 6) / param->x_max;
+        if (!param->fact)
+            param->fact = 0.8;
         param->rot->angle = 0;
         param->rot->mod = 2;
         param->c_mod = 0;
