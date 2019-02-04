@@ -44,6 +44,7 @@ int main(int argc, char **argv)
 		mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
 		test++;
 	}
+	//printf("%d\n", (0 << 24) + (255 << 16) + (255 << 8) + 255);
 	mlx_loop(param->mlx_ptr);
 	return (0);
 }

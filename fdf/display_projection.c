@@ -23,25 +23,17 @@ void    display_test(t_coord **v2, t_param *param)
     i = -1;
     j = 0;
     
-    if ((!param->proj && !test))
-    {
-       param->midle = (param->width - ABS(v2[0][param->x_max - 1].x * param->fact) - ABS(v2[0][0].x * param->fact)) / 2;
-       test++;
-       test2 = 0;
-    }
-    else if (param->proj && !test2)
-    {
-       param->midle = ABS(v2[param->y_max - 1][0].x * param->fact) + ((param->width - (ABS(v2[param->y_max - 1][0].x * param->fact) + ABS(v2[0][param->x_max - 1].x * param->fact))) / 2);
-       test2++;
-       test = 0;
-    }
+    printf("x : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].x * param->fact);
+    printf("y : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y * param->fact);
     while (++i < param->y_max)
     {
         while (j < param->x_max)
         {
             v2[i][j].x += param->move_w;
-            if (param->proj)
-                v2[i][j].y += param->y_max + param->move_h;
+            v2[i][j].x *= param->fact;
+            v2[i][j].x += param->width / 2;
+            v2[i][j].y += param->y_max + param->move_h;
+            v2[i][j].y *= param->fact;
             j++;
         }
         j = 0;

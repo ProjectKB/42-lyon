@@ -15,6 +15,18 @@
 
 void    matrix(int x, int y, int z, t_param *param)
 {
+    int x_t;
+    int y_t;
+
+    if (param->proj)
+        y = -y;
+    x_t = param->x_max / 2;
+    y_t = param->y_max / 2;
+    x -= x_t;
+    if (param->proj)
+        y += y_t;
+    else
+        y -= y_t;
     if (param->rot->mod == 1)
     {
         param->rot->xr_x = x * cos(param->rot->angle) + y * -sin(param->rot->angle);

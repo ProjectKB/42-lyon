@@ -32,8 +32,8 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 	double				u;
 
 	i = -1;
-	step_x = (param->midle + end.x * param->fact) - (param->midle + start.x * param->fact);
-	step_y = (param->midle + end.y * param->fact) - (param->midle + start.y * param->fact);
+	step_x = end.x - start.x;
+	step_y = end.y - start.y;
 	
 	t = ABS(step_x);
 	u = ABS(step_y);
@@ -51,8 +51,8 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 	}
 	while (++i < n)
 	{
-		pos_x = (param->midle + start.x * param->fact) + i * step_x;
-		pos_y = (param->midle + start.y * param->fact) + i * step_y;
+		pos_x = start.x + i * step_x;
+		pos_y = start.y + i * step_y;
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
 			img_put_pixel(param, pos_x, pos_y, start.c);
 	}
