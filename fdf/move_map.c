@@ -40,33 +40,39 @@ void    manage_z_axes(int key, t_param *param)
 
 void    move_map(int key, t_param *param)
 {
+    int move;
+
+    move = 1;
+    while ((move + 10) * 10 < param->x_max)
+        move *= 10;
+    printf("move : %d\n", move);
     if (key == 124 || key == 2)
-        param->move_w += 1;
+        param->move_w += move;
     else if (key == 123 || !key)
-        param->move_w -= 1;
+        param->move_w -= move;
     else if (key == 126 || key == 13)
-        param->move_h -= 1;
+        param->move_h -= move;
     else if (key == 125 || key == 1)
-        param->move_h -= -1;
+        param->move_h -= -move;
     else if (key == 8)
     {
-        param->move_w += 1;
-        param->move_h += 1;
+        param->move_w += move;
+        param->move_h += move;
     }
     else if (key == 12)
     {
-        param->move_w -= 1;
-        param->move_h -= 1;
+        param->move_w -= move;
+        param->move_h -= move;
     }
     else if (key == 6)
     {
-        param->move_w -= 1;
-        param->move_h += 1;
+        param->move_w -= move;
+        param->move_h += move;
     }
     else if (key == 14)
     {
-        param->move_w += 1;
-        param->move_h -= 1;
+        param->move_w += move;
+        param->move_h -= move;
     }
     printf("%d\n", param->midle);
 }

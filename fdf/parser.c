@@ -31,6 +31,14 @@ void    find_xy_max(char **argv, t_param *param)
     param->fact = (param->width - param->width / 6) / param->x_max;
 }
 
+void    find_z_min_z_max(t_param *param, int z)
+{
+    if (z > param->z_max)
+        param->z_max = z;
+    else if (z < param->z_min)
+        param->z_min = z;
+}
+
 int    *str_to_tabint(char *str, t_param *param)
 {
     int j;
@@ -44,7 +52,11 @@ int    *str_to_tabint(char *str, t_param *param)
         return (NULL);
     split = ft_strsplit(str, ' ');
     while (split[++j])
-        tab[i++] = ft_atoi(split[j]);
+    {
+        tab[i] = ft_atoi(split[j]);
+        find_z_min_z_max(param, tab[i]);
+        i++;
+    }
     return (tab);
 }
 
@@ -85,7 +97,7 @@ t_coord     **projection_calcul(int **tab, t_param *param, int proj)
                 if (!(v2[i] = (t_coord*)malloc(sizeof(t_coord) * (param->x_max))))
                     return (NULL);
             matrix(j, i, tab[i][j], param);
-            projection(&v2[i][j], proj, param);
+            projection(&v2[i][j], proj, param, tab[i][j]);
         }
     return (v2);
 }

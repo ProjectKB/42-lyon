@@ -23,8 +23,8 @@ void    display_test(t_coord **v2, t_param *param)
     i = -1;
     j = 0;
     
-    printf("x : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].x * param->fact);
-    printf("y : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y * param->fact);
+    //printf("x : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].x * param->fact);
+    //printf("y : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y * param->fact);
     while (++i < param->y_max)
     {
         while (j < param->x_max)

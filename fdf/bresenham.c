@@ -30,10 +30,18 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 	double				pos_y;
 	double				t;
 	double				u;
+    int c_s;
+    int c_e;
+    int c_m;
+    int test = 1;
+    int q;
 
 	i = -1;
 	step_x = end.x - start.x;
 	step_y = end.y - start.y;
+    c_s = calcul_color(0, 0, 255);
+    c_e = calcul_color(200, 200, 255);
+    //printf("z1 : %d\nz2 : %d\n", start.z, end.z);
 	
 	t = ABS(step_x);
 	u = ABS(step_y);
@@ -49,12 +57,23 @@ void	bresenham(t_coord start, t_coord end, t_param *param)
 		step_x /= ABS(step_y);
 		step_y /= ABS(step_y);
 	}
+    q = n / (param->z_max - param->z_min);
 	while (++i < n)
 	{
 		pos_x = start.x + i * step_x;
 		pos_y = start.y + i * step_y;
+        if (start.z == param->z_min && end.z == param->z_min)
+            start.c = c_s;
+        else if (start.z == param->z_max && end.z == param->z_max)
+            start.c = c_e;
+        else if (start.z > end.z)
+            start.c = calcul_color(200 - test, 200 - test, 255);
+        else if (start.z < end.z)
+            start.c = calcul_color(0 + test, 0 + test, 255);
 		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
 			img_put_pixel(param, pos_x, pos_y, start.c);
+        if (200 - test > 0)
+            test++;
 	}
 }
 
@@ -71,19 +90,16 @@ void swap(double *a , double *b)
     else return x; 
 } 
   
-//returns integer part of a floating point number 
 int iPartOfNumber(float x) 
 { 
     return (int)x; 
 } 
   
-//rounds off a number 
 int roundNumber(float x) 
 { 
     return iPartOfNumber(x + 0.5) ; 
 } 
   
-//returns fractional part of a number 
 float fPartOfNumber(float x) 
 { 
     if (x>0) return x - iPartOfNumber(x); 
@@ -91,15 +107,11 @@ float fPartOfNumber(float x)
   
 } 
   
-//returns 1 - fractional part of number 
 float rfPartOfNumber(float x) 
 { 
     return 1 - fPartOfNumber(x); 
 } 
   
-// draws a pixel on screen of given brightness 
-// 0<=brightness<=1. We can use your own library 
-// to draw on screen 
 void drawPixel( int x , int y , t_param *param) 
 { 
     img_put_pixel(param, x, y, 255);
@@ -107,43 +119,37 @@ void drawPixel( int x , int y , t_param *param)
 
 void	xiaolin(t_coord start, t_coord end, t_param *param) 
 { 
-    int steep = absolute((param->midle + end.y * param->fact) - (param->midle + start.y * param->fact)) > absolute((param->midle + end.x * param->fact) - (param->midle + start.x * param->fact)) ; 
+    int steep = absolute(end.y - start.y) > absolute(end.x - start.x) ; 
   
-    // swap the co-ordinates if slope > 1 or we 
-    // draw backwards 
     if (steep) 
     { 
         swap(&start.x , &start.y); 
         swap(&end.x , &end.y); 
     } 
-    if ((param->midle + start.x * param->fact) > (param->midle + end.x * param->fact)) 
+    if (start.x > end.x) 
     { 
         swap(&start.x ,&end.x); 
         swap(&start.y ,&end.y); 
     } 
   
-    //compute the slope 
-	float dx = (param->midle + end.x * param->fact) - (param->midle + start.x * param->fact);
-	float dy = (param->midle + end.y * param->fact) - (param->midle + start.y * param->fact);
+	float dx = end.x - start.x;
+	float dy = end.y - start.y;
     float gradient = dy/dx; 
     if (dx == 0.0) 
         gradient = 1; 
   
-    int xpxl1 = (param->midle + start.x * param->fact); 
-    int xpxl2 = (param->midle + end.x * param->fact); 
-    float intersectY = (param->midle + start.y * param->fact); 
+    int xpxl1 = start.x; 
+    int xpxl2 = end.x; 
+    float intersectY = start.y; 
   
-    // main loop 
     if (steep) 
     { 
         int x; 
         for (x = xpxl1 ; x <=xpxl2 ; x++) 
         { 
-            // pixel coverage is determined by fractional 
-            // part of y co-ordinate 
             drawPixel(iPartOfNumber(intersectY), x, param); 
             drawPixel(iPartOfNumber(intersectY)-1, x, param); 
-            intersectY += gradient; 
+            intersectY += gradient;
         } 
     } 
     else
@@ -151,8 +157,6 @@ void	xiaolin(t_coord start, t_coord end, t_param *param)
         int x; 
         for (x = xpxl1 ; x <=xpxl2 ; x++) 
         { 
-            // pixel coverage is determined by fractional 
-            // part of y co-ordinate 
             drawPixel(x, iPartOfNumber(intersectY), param); 
             drawPixel(x, iPartOfNumber(intersectY)-1, param); 
             intersectY += gradient; 

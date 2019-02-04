@@ -32,6 +32,7 @@ typedef struct	s_rot {
 typedef struct	s_coord {
 	double	x;
 	double	y;
+	int	z;
 	int		c;
 }				t_coord;	
 
@@ -44,6 +45,8 @@ typedef struct	s_param {
 	int 	height;
 	int		x_max;
 	int 	y_max;
+	int		z_min;
+	int		z_max;
 	double	**coord;
 	int		**tab;
 	int		proj;
@@ -86,10 +89,12 @@ void    rotate_map(int key, t_param *param);
 void    switch_drawline_style(int key, t_param *param);
 
 void    matrix(int x, int y, int z, t_param *param);
-void 	projection(t_coord *v2, int projection, t_param *param);
+void 	projection(t_coord *v2, int projection, t_param *param, int z);
 void	xiaolin(t_coord start, t_coord end, t_param *param);
 double	ABS(double v);
 void	img_put_pixel(t_param *param, int x, int y, int color);
 int     manage_mouse(int key, t_param *param);
+
+int     calcul_color(int r, int g, int b);
 
 #endif

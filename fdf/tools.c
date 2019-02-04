@@ -13,6 +13,11 @@
 
 #include "fdf.h"
 
+int     calcul_color(int r, int g, int b)
+{
+    return ((0 << 24) + (r << 16) + (g << 8) + b);
+}
+
 t_param *init_param(int width, int height)
 {
     t_param *param;
@@ -24,8 +29,8 @@ t_param *init_param(int width, int height)
     param->width = width;    
     param->height = height;
     param->midle = width / 2;
-    param->z_iso = 0.816;
-    param->z_obl = 1.0;
+    param->z_iso = 0.5;
+    param->z_obl = 0.5;
     param->move_w = 0;
     param->move_h = 0;
     param->algo = 1;
@@ -35,7 +40,8 @@ t_param *init_param(int width, int height)
     param->proj = 1;
     param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->width, param->height, "MLX 101");
-
+    param->z_min = 0;
+    param->z_max = 0;
     param->img_ptr = mlx_new_image(param->mlx_ptr, param->width, param->height);
     if (!(param->img_data = (unsigned int*)malloc(sizeof(unsigned int) * (param->width * param->height))))
         return (NULL);
@@ -49,13 +55,14 @@ void				img_put_pixel(t_param *param, int x, int y, int color)
 	    param->img_data[(y * param->width + x)] = color;
 }
 
-void     projection(t_coord *v2, int projection, t_param *param)
+void     projection(t_coord *v2, int projection, t_param *param, int z)
 {
     if (projection == 1)
     {
         param->proj = 1;
         v2->x = 0.707f * (param->rot->xr_x - param->rot->xr_y);
         v2->y = (param->z_iso * -param->rot->xr_z) - 0.408f * (param->rot->xr_x + param->rot->xr_y);
+        v2->z = z;
         v2->c = 255;
     }
     else
@@ -63,6 +70,7 @@ void     projection(t_coord *v2, int projection, t_param *param)
         param->proj = 0;
         v2->x = param->rot->xr_x + param->rot->xr_z * param->z_obl;
         v2->y = param->rot->xr_y + param->rot->xr_z * param->z_obl + param->move_h;
+        v2->z  = z;
         v2->c = 255;
     }
 }
