@@ -19,12 +19,14 @@ void    display_test(t_coord **v2, t_param *param)
     int j;
     static int test = 0;
     static int test2 = 0;
+    static int x = 0;
+    double w;
 
     i = -1;
     j = 0;
-    
-    //printf("x : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].x * param->fact);
-    //printf("y : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y * param->fact);
+    w = v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y + param->y_max + param->move_h;
+    w *= param->fact;
+    w = param->width / 2 - w;
     while (++i < param->y_max)
     {
         while (j < param->x_max)
@@ -32,13 +34,19 @@ void    display_test(t_coord **v2, t_param *param)
             v2[i][j].x += param->move_w;
             v2[i][j].x *= param->fact;
             v2[i][j].x += param->width / 2;
-            v2[i][j].y += param->y_max + param->move_h;
+            v2[i][j].y += param->y_max;
             v2[i][j].y *= param->fact;
+            v2[i][j].y += w + param->move_h;
             j++;
         }
         j = 0;
     }
     i = -1;
+    printf("x : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].x);
+    printf("y : %f\n", v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y);
+    printf("%f\n", (param->width / 2 - v2[(param->y_max - 1) / 2][(param->x_max - 1) / 2].y));
+    printf("q : %f\n", w);
+    printf("fact : %f\n", param->fact);
     while (++i < param->y_max)
     {
         while (j + 1 < param->x_max)
