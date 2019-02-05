@@ -6,209 +6,51 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 23:55:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 16:13:27 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-double	ABS(double v)
+t_jordan	init_jordan(t_coord start, t_coord end)
 {
-	if (v < 0)
-		v = -v;
-	return (v);
+	t_jordan j;
+
+	j.i = -1;
+	j.q = 1;
+	j.step_x = end.x - start.x;
+	j.step_y = end.y - start.y;
+	j.t = ft_fabs(j.step_x);
+	j.u = ft_fabs(j.step_y);
+	return (j);
 }
 
-void	bresenham(t_coord start, t_coord end, t_param *param)
+void		bresenham(t_coord start, t_coord end, t_param *param)
 {
-	double				n;
-	int				i;
-	double				step_x;
-	double				step_y;
-	double				pos_x;
-	double				pos_y;
-	double				t;
-	double				u;
-    int test = 1;
+	t_jordan	j;
 
-	i = -1;
-	step_x = end.x - start.x;
-	step_y = end.y - start.y;
-    define_color(param->col, param);
-	t = ABS(step_x);
-	u = ABS(step_y);
-	if (t > u)
+	j = init_jordan(start, end);
+	if (j.t > j.u && (j.n = ft_fabs(j.step_x)))
 	{
-		n = ABS(step_x);
-		step_y /= ABS(step_x);
-		step_x /= ABS(step_x);
+		j.step_y /= ft_fabs(j.step_x);
+		j.step_x /= ft_fabs(j.step_x);
 	}
 	else
 	{
-		n = ABS(step_y);
-		step_x /= ABS(step_y);
-		step_y /= ABS(step_y);
+		j.n = ft_fabs(j.step_y);
+		j.step_x /= ft_fabs(j.step_y);
+		j.step_y /= ft_fabs(j.step_y);
 	}
-    //printf("n : %f\n", n);
-	while (++i < n)
+	while (++j.i < j.n)
 	{
-		pos_x = start.x + i * step_x;
-		pos_y = start.y + i * step_y;
-        if (param->c_mod == 0)
-            start.c = calcul_color(255, 255, 255);
-        else if (start.z == param->z_min && end.z == param->z_min)
-            start.c = param->col->min;
-        else if (start.z == param->z_max && end.z == param->z_max)
-            start.c = param->col->max;
-        else if (start.z > end.z)
-        {
-            if (param->c_mod == 2)
-                start.c = calcul_color(0, 255, 0 + test);
-            if (param->c_mod == 1)
-                start.c = calcul_color(255, 0 + test, 0 + test);
-            if (param->c_mod == 3)
-                start.c = calcul_color(0 + test, 0 + test, 255);
-        }
-        else if (start.z < end.z)
-        {
-            if (param->c_mod == 2)
-                start.c = calcul_color(200 - test, 255, 200 - test);
-            if (param->c_mod == 1)
-                start.c = calcul_color(255, 200 - test, 200 - test);
-            if (param->c_mod == 3)
-                start.c = calcul_color(200 - test, 200 - test, 255);
-        }
-		if ((pos_x >= 0 && pos_x <= param->width) && (pos_y >= 0 && pos_y <= param->height))
-			img_put_pixel(param, pos_x, pos_y, start.c);
-        if (200 - test > 0 && param->c_mod)
-            test++;
+		j.pos_x = start.x + j.i * j.step_x;
+		j.pos_y = start.y + j.i * j.step_y;
+		start.c = gradient_value_j(param, start, end, j.q);
+		if ((j.pos_x >= 0 && j.pos_x <= param->width) \
+								&& (j.pos_y >= 0 && j.pos_y <= param->height))
+			img_put_pixel(param, j.pos_x, j.pos_y, start.c);
+		if (200 - j.q > 0 && param->c_mod)
+			j.q++;
 	}
-}
-
-void swap(double *a , double *b) 
-{ 
-    double temp = *a; 
-    *a = *b; 
-    *b = temp; 
-} 
-
-	float absolute(float x ) 
-{ 
-    if (x < 0) return -x; 
-    else return x; 
-} 
-  
-int iPartOfNumber(float x) 
-{ 
-    return (int)x; 
-} 
-  
-int roundNumber(float x) 
-{ 
-    return iPartOfNumber(x + 0.5) ; 
-} 
-  
-float fPartOfNumber(float x) 
-{ 
-    if (x>0) return x - iPartOfNumber(x); 
-    else return x - (iPartOfNumber(x)+1); 
-  
-} 
-  
-float rfPartOfNumber(float x) 
-{ 
-    return 1 - fPartOfNumber(x); 
-} 
-  
-void drawPixel( int x , int y , t_param *param) 
-{ 
-    img_put_pixel(param, x, y, 255);
-} 
-
-void	xiaolin(t_coord start, t_coord end, t_param *param) 
-{ 
-    int steep = absolute(end.y - start.y) > absolute(end.x - start.x) ; 
-    int c_s;
-    int c_e;
-    int test = 1;
-
-    define_color(param->col, param);
-
-    if (steep) 
-    { 
-        swap(&start.x , &start.y); 
-        swap(&end.x , &end.y); 
-    } 
-    if (start.x > end.x) 
-    { 
-        swap(&start.x ,&end.x); 
-        swap(&start.y ,&end.y); 
-    } 
-  
-	float dx = end.x - start.x;
-	float dy = end.y - start.y;
-    float gradient = dy/dx; 
-    if (dx == 0.0) 
-        gradient = 1; 
-  
-    int xpxl1 = start.x; 
-    int xpxl2 = end.x; 
-    float intersectY = start.y; 
-  
-    if (steep) 
-    { 
-        int x; 
-        for (x = xpxl1 ; x <=xpxl2 ; x++) 
-        {
-            if (param->c_mod == 0)
-            start.c = calcul_color(255, 255, 255);
-            else if (start.z == param->z_min && end.z == param->z_min)
-                start.c = param->col->min;
-            else if (start.z == param->z_max && end.z == param->z_max)
-                start.c = param->col->max;
-            else if (start.z != end.z)
-            {
-                if (param->c_mod == 2)
-                    start.c = calcul_color(0, 255, 0 + test);
-                if (param->c_mod == 1)
-                    start.c = calcul_color(255, 0 + test, 0 + test);
-                if (param->c_mod == 3)
-                    start.c = calcul_color(0 + test, 0 + test, 255);
-            }
-            img_put_pixel(param, iPartOfNumber(intersectY), x, start.c); 
-            img_put_pixel(param, iPartOfNumber(intersectY)-1, x, start.c); 
-            intersectY += gradient;
-            if (200 - test > 0)
-                test++; 
-        }
-    } 
-    else
-    { 
-        int x; 
-        for (x = xpxl1 ; x <=xpxl2 ; x++) 
-        {
-            if (param->c_mod == 0)
-            start.c = calcul_color(255, 255, 255);
-            else if (start.z == param->z_min && end.z == param->z_min)
-                start.c = param->col->min;
-            else if (start.z == param->z_max && end.z == param->z_max)
-                start.c = param->col->max;
-            else if (start.z != end.z)
-            {
-                if (param->c_mod == 2)
-                    start.c = calcul_color(0, 255, 0 + test);
-                if (param->c_mod == 1)
-                    start.c = calcul_color(255, 0 + test, 0 + test);
-                if (param->c_mod == 3)
-                    start.c = calcul_color(0 + test, 0 + test, 255);
-            }
-            img_put_pixel(param, x, iPartOfNumber(intersectY), start.c); 
-            img_put_pixel(param, x, iPartOfNumber(intersectY)-1, start.c);  
-            intersectY += gradient; 
-            if (200 - test > 0)
-                test++; 
-        } 
-    } 
-  
 }

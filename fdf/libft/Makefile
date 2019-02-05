@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2019/01/15 14:22:34 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/05 16:48:13 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -115,6 +115,12 @@ SRC = 	ft_atoi.c\
 		ft_putdbint.c \
 		ft_debug.c \
 		ft_nb_nbr.c \
+		ft_fabs.c \
+		ft_fswap.c \
+		ft_ipart_of_numb.c \
+		ft_round.c \
+		ft_fpart_of_numb.c \
+		ft_rfpart_of_numb.c \
 
 HEADER = ./libft.h
 

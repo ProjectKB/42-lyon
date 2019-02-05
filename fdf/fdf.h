@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 14:22:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 17:24:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,30 @@ typedef struct	s_color {
 	double	min;
 }				t_color;
 
+typedef struct	s_jordan {
+	double	step_x;
+	double	step_y;
+	double	pos_x;
+	double	pos_y;
+	double	n;
+	double	t;
+	double	u;
+	int		i;
+	int		q;
+}				t_jordan;
+
+typedef struct	s_xiaolin {
+	int		steep;
+	float	dx;
+	float	dy;
+	float	gradient;
+	int		xpxl1;
+	int		xpxl2;
+	float	intersectY;
+	int		x;
+	int		q;
+}				t_xiaolin;
+
 typedef struct	s_param {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -80,7 +104,7 @@ typedef struct	s_param {
 t_param *init_param(int width, int height);
 void	bresenham(t_coord start, t_coord end, t_param *param);
 void    find_xy_max(char **argv, t_param *param);
-t_param *init_window(void);
+void	init_window(t_param *param);
 int		**file_to_data(char **argv, t_param *param);
 int		*str_to_tabint(char *str, t_param *param);
 int     **calcul_xy_iso(int **tab, t_param *param);
@@ -108,5 +132,8 @@ int     manage_mouse(int key, t_param *param);
 
 int     calcul_color(int r, int g, int b);
 void     define_color(t_color *color, t_param *param);
+double gradient_value_j(t_param *param, t_coord start, t_coord end, int q);
+double gradient_value_x(t_param *param, t_coord start, t_coord end, int q);
+double color_min_max(t_param *param, int b);
 
 #endif
