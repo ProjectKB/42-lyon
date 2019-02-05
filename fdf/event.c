@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 17:53:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 22:24:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,7 @@ void	display_new_window(t_param *param)
 	ft_bzero(param->img_data, (param->width * param->height) * 4);
 	display_test(param->coords, param);
 	mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
+	bla(param);
 }
 
 void	close_window(t_param *param)
@@ -76,6 +77,10 @@ int		deal_key(int k, t_param *param)
 		map_event(k, param, rotate_map);
 	else if (k == 38 || k == 7 || k == 15 || k == 11 || k == 5 || k == 49)
 		map_event(k, param, switch_drawline_style_and_color);
+	else if (k == 36)
+		param->menu = 1;
+	else if (k == 258)
+		param->menu = 0;
 	if (k != 53)
 		display_new_window(param);
 	return (0);

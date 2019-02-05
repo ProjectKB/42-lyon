@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:58:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 22:22:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,7 +99,8 @@ typedef struct	s_param {
 	int		test;
 	int		**color;
 	t_coord ** coords;
-}				t_param;				
+	int menu;
+}				t_param;
 
 t_param *init_param(int width, int height);
 void	bresenham(t_coord start, t_coord end, t_param *param);
@@ -136,5 +137,6 @@ double gradient_value_j(t_param *param, t_coord start, t_coord end, int q);
 double gradient_value_x(t_param *param, t_coord start, t_coord end, int q);
 double color_min_max(t_param *param, int b);
 void	display_usage(int mod);
+void	bla(t_param *param);
 
 #endif
