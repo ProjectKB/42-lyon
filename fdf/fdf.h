@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 05:39:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 14:22:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,9 +94,9 @@ int    expose_hook(t_param *param);
 void    map_event(int id, t_param *param, void (*move)(int, t_param*));
 void    move_map(int id, t_param *param);
 void    zoom(int key, t_param *param);
-void    manage_z_axes(int key, t_param *param);
+void    elevation_and_zoom(int key, t_param *param);
 void    rotate_map(int key, t_param *param);
-void    switch_drawline_style(int key, t_param *param);
+void    switch_drawline_style_and_color(int key, t_param *param);
 void    switch_color(int key, t_param *param);
 
 void    matrix(int x, int y, int z, t_param *param);
