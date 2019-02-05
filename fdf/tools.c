@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:14:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 18:57:33 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,8 +74,11 @@ void	projection(t_coord *v2, int projection, t_param *p, int z)
 	}
 }
 
-void	display_usage(void)
+void	display_usage(int mod)
 {
-	ft_putendl("usage : ./fdf map_to_parse");
+	if (!mod)
+		ft_putendl("usage : ./fdf map_to_parse");
+	else
+		ft_putendl("Your map is invalid.\nusage : ./fdf map_to_parse");
 	exit(0);
 }

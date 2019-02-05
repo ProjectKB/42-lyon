@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:14:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 18:58:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -135,6 +135,6 @@ void     define_color(t_color *color, t_param *param);
 double gradient_value_j(t_param *param, t_coord start, t_coord end, int q);
 double gradient_value_x(t_param *param, t_coord start, t_coord end, int q);
 double color_min_max(t_param *param, int b);
-void	display_usage(void);
+void	display_usage(int mod);
 
 #endif

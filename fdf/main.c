@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:17:52 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 18:58:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,15 +15,13 @@
 
 //mlx_string_put(param->mlx_ptr, param->win_ptr, 50, 50, 0xFFFFFF, "coucou");
 
-
-
 int main(int argc, char **argv)
 {
 	t_param *param;
 	static int	start = 0;
 
 	if (argc != 2)
-		display_usage();
+		display_usage(0);
 	param = init_param(1000, 1000);
 	init_window(param);
 	find_xy_max(argv, param);

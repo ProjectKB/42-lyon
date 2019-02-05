@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:20:39 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 21:37:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,9 +24,9 @@ void	find_xy_max(char **argv, t_param *p)
 	count = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		display_usage();
+		display_usage(0);
 	if ((rt = get_next_line(fd, &line)) == -1)
-		display_usage();
+		display_usage(0);
 	p->x_max = ft_nb_nbr(line, ' ');
 	while ((get_next_line(fd, &line)))
 		count++;
@@ -80,6 +80,9 @@ int		**file_to_data(char **argv, t_param *p)
 	while (i < p->y_max)
 	{
 		get_next_line(fd, &data);
+		if (ft_strlen(data) - (ft_strlen(data) - \
+											ft_nb_nbr(data, ' ')) != p->x_max)
+			display_usage(1);
 		tab[i] = str_to_tabint(data, p);
 		i++;
 	}
