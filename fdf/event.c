@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 14:22:57 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 17:53:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@ void	reset_param(t_param *param)
 		param->fact = 0.8;
 	param->rot->angle = 0;
 	param->rot->mod = 2;
-	param->c_mod = 0;
 }
 
 void	display_new_window(t_param *param)
@@ -75,7 +74,7 @@ int		deal_key(int k, t_param *param)
 		map_event(k, param, move_map);
 	else if (k == 91 || k == 92 || k == 87 || k == 88 || k == 84 || k == 85)
 		map_event(k, param, rotate_map);
-	else if (k == 38 || k == 7 || k == 15 || k == 11 || k == 5)
+	else if (k == 38 || k == 7 || k == 15 || k == 11 || k == 5 || k == 49)
 		map_event(k, param, switch_drawline_style_and_color);
 	if (k != 53)
 		display_new_window(param);

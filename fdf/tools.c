@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 17:26:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 18:14:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,4 +72,10 @@ void	projection(t_coord *v2, int projection, t_param *p, int z)
 		v2->z = z;
 		v2->c = 255;
 	}
+}
+
+void	display_usage(void)
+{
+	ft_putendl("usage : ./fdf map_to_parse");
+	exit(0);
 }

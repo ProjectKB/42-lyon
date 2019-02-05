@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 14:22:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 17:54:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -90,4 +90,6 @@ void	switch_drawline_style_and_color(int key, t_param *param)
 		param->c_mod = 2;
 	else if (key == 11)
 		param->c_mod = 3;
+	else if (key == 49)
+		param->c_mod = 0;
 }
