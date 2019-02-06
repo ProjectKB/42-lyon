@@ -88,16 +88,13 @@ typedef struct	s_param {
 	int		move_w;
 	int		move_h;
 	int		algo;
-	int		zoom_y;
 	int		bpp;
 	int		slz;
 	int		endian;
 	int		c_mod;
 	t_rot	*rot;
 	t_color *col;
-	int		test;
-	int		**color;
-	t_coord **coords;
+	t_coord **v2;
 	int menu;
 	int status;
 }				t_param;
@@ -109,7 +106,7 @@ void	init_window(t_param *param);
 void		file_to_data(char **argv, t_param *param);
 void	str_to_tabint(char *str, t_param *param, int v);
 int     **calcul_xy_iso(int **tab, t_param *param);
-t_coord	**projection_calcul(int **tab, t_param *param, int projection);
+void	projection_calcul(int **tab, t_param *param, int projection);
 void    fill_image(t_coord **coord, t_param *param);
 
 int    deal_key(int key, t_param *param);

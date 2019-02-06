@@ -34,6 +34,8 @@ t_param	*init_param(int width, int height)
 	p->proj = 1;
 	p->menu = 0;
 	p->status = 0;
+	p->z_min = 0;
+	p->z_max = 0;
 	return (p);
 }
 

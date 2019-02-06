@@ -43,8 +43,6 @@ void	find_xy_max(char **argv, t_param *p)
 
 void	find_z_min_z_max(t_param *p, int z)
 {
-	p->z_max = 0;
-	p->z_min = 0;
 	if (z > p->z_max)
 		p->z_max = z;
 	else if (z < p->z_min)
@@ -94,23 +92,23 @@ void	file_to_data(char **argv, t_param *p)
 	close(fd);
 }
 
-t_coord	**projection_calcul(int **tab, t_param *p, int proj)
+void	projection_calcul(int **tab, t_param *p, int proj)
 {
 	int		i;
 	int		j;
-	t_coord	**v2;
+	//t_coord	**v2;
 
 	i = -1;
-	if (!(v2 = (t_coord**)malloc(sizeof(t_coord*) * (p->y_max))))
-		return (NULL);
+	if (!(p->v2 = (t_coord**)malloc(sizeof(t_coord*) * (p->y_max))))
+		return ;
 	while (++i < p->y_max && (j = -1))
 		while (++j < p->x_max)
 		{
 			if (!j)
-				if (!(v2[i] = (t_coord*)malloc(sizeof(t_coord) * (p->x_max))))
-					return (NULL);
+				if (!(p->v2[i] = (t_coord*)malloc(sizeof(t_coord) * (p->x_max))))
+					return ;
 			matrix(j, i, tab[i][j], p);
-			projection(&v2[i][j], proj, p, tab[i][j]);
+			projection(&p->v2[i][j], proj, p, tab[i][j]);
 		}
-	return (v2);
+	//return (v2);
 }

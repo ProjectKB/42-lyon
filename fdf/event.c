@@ -28,10 +28,10 @@ void	reset_param(t_param *param)
 
 void	display_new_window(t_param *param)
 {
-	param->coords = projection_calcul(param->tab, param, param->proj);
+	projection_calcul(param->tab, param, param->proj);
 	mlx_clear_window(param->mlx_ptr, param->win_ptr);
 	ft_bzero(param->img_data, (param->width * param->height) * 4);
-	fill_image(param->coords, param);
+	fill_image(param->v2, param);
 	mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
 	up_menu(param);
 	down_menu(param);
@@ -77,7 +77,7 @@ int		deal_key(int k, t_param *param)
 		map_event(k, param, move_map);
 	else if (k == 91 || k == 92 || k == 87 || k == 88 || k == 84 || k == 85)
 		map_event(k, param, rotate_map);
-	else if (k == 38 || k == 7 || k == 15 || k == 11 || k == 5 || k == 49)
+	if (k == 38 || k == 7 || k == 15 || k == 11 || k == 5 || k == 49)
 		map_event(k, param, switch_drawline_style_and_color);
 	else if (k == 36)
 		param->menu = 1;

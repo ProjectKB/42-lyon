@@ -23,6 +23,16 @@ void	free_tab(t_param *p)
 	free(p->tab);
 }
 
+void	free_v2(t_param *p)
+{
+	int i;
+
+	i = -1;
+	while (++i < p->y_max)
+		free(p->v2[i]);
+	free(p->v2);
+}
+
 int		main(int argc, char **argv)
 {
 	t_param		*param;
@@ -36,12 +46,12 @@ int		main(int argc, char **argv)
 	file_to_data(argv, param);
 	//ft_putdbint(param->tab, param->x_max, param->y_max);
 	//printf("x : %d y : %d\n", param->x_max, param->y_max);
-	/*param->coords = projection_calcul(param->tab, param, 1);
-	mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
+	projection_calcul(param->tab, param, 1);
+	/*mlx_hook(param->win_ptr, 4, (0L), deal_mouse, param);
 	mlx_hook(param->win_ptr, 2, (1L << 0), deal_key, param);
 	if (!start)
 	{
-		fill_image(param->coords, param);
+		fill_image(param->v2, param);
 		mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
 		up_menu(param);
 		down_menu(param);
@@ -49,6 +59,7 @@ int		main(int argc, char **argv)
 	}
 	mlx_loop(param->mlx_ptr);*/
 	free_tab(param);
+	free_v2(param);
 	free(param->rot);
 	free(param);
 	return (0);
