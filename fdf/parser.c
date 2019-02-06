@@ -49,49 +49,6 @@ void	find_z_min_z_max(t_param *p, int z)
 		p->z_min = z;
 }
 
-void	check_errors(char *str)
-{
-	int i;
-	int q;
-
-	i = 0;
-	q = 0;
-	while (str[i])
-	{
-		if (str[i] == ',')
-			q = i;
-		i++;
-	}
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= 'a' && str[i] <= 'f') || (str[i] >= 'A' && str[i] <= 'F'))
-		{
-			if (!q)
-			{
-				if (str[0] != '0' || (str[1] != 'x' && str[1] != 'X'))
-					display_usage();
-			}
-			else if (q)
-			{
-				if (str[q + 1] != '0' || (str[q + 2] != 'x' && str[q + 2] != 'X'))
-					display_usage();
-			}
-		}
-		i++;
-	}
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (str[i] != ',' && str[i] != 'x' && str[i] != 'X')
-			if (str[i] < '0' || (str[i] > '9' && str[i] < 'A') || (str[i] > 'F' && str[i] < 'a') || str[i] > 'f')
-			display_usage();
-		i++;
-	}
-}
-
 void	str_to_tabint(char *str, t_param *p, int v)
 {
 	int		j;

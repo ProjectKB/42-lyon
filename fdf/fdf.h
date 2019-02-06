@@ -143,5 +143,5 @@ void				down_menu(t_param *param);
 void				global_free(t_param *param);
 void				free_tab(t_param *p);
 void				free_v2(t_param *p);
-
+void				check_errors(char *str);
 #endif

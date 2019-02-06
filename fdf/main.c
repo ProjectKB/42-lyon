@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:46:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 22:11:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 int		main(int argc, char **argv)
 {
 	t_param		*param;
-	char *str;
 	static int	start = 0;
 
 	if (argc != 2)
