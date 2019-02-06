@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:46:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 22:41:23 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,9 @@ void	find_xy_max(char **argv, t_param *p)
 	int		rt;
 
 	count = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		display_usage();
-	if ((rt = get_next_line(fd, &line)) == -1 || ft_strlen(line) <= 1)
+	if ((rt = get_next_line(fd, &line)) <= 0 || ft_strlen(line) <= 1)
 		display_usage();
 	free(line);
 	p->x_max = ft_nb_nbr(line, ' ');
