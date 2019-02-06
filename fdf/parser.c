@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 12:39:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:10:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,9 +82,9 @@ void	file_to_data(char **argv, t_param *p)
 	while (i < p->y_max)
 	{
 		get_next_line(fd, &data);
-		/*if (ft_strlen(data) - (ft_strlen(data) - \
+		if (ft_strlen(data) - (ft_strlen(data) - \
 											ft_nb_nbr(data, ' ')) != p->x_max)
-			display_usage();*/
+			display_usage();
 		str_to_tabint(data, p, i);
 		free(data);
 		i++;
@@ -96,7 +96,6 @@ void	projection_calcul(int **tab, t_param *p, int proj)
 {
 	int		i;
 	int		j;
-	//t_coord	**v2;
 
 	i = -1;
 	if (!(p->v2 = (t_coord**)malloc(sizeof(t_coord*) * (p->y_max))))
@@ -105,10 +104,10 @@ void	projection_calcul(int **tab, t_param *p, int proj)
 		while (++j < p->x_max)
 		{
 			if (!j)
-				if (!(p->v2[i] = (t_coord*)malloc(sizeof(t_coord) * (p->x_max))))
+				if (!(p->v2[i] = (t_coord*)malloc(sizeof(t_coord) \
+																* (p->x_max))))
 					return ;
 			matrix(j, i, tab[i][j], p);
 			projection(&p->v2[i][j], proj, p, tab[i][j]);
 		}
-	//return (v2);
 }

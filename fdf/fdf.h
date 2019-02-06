@@ -136,5 +136,6 @@ double color_min_max(t_param *param, int b);
 void	display_usage(void);
 void	up_menu(t_param *param);
 void	down_menu(t_param *param);
+void	global_free(t_param *param);
 
 #endif

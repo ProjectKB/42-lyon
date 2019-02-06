@@ -41,6 +41,7 @@ void	close_window(t_param *param)
 {
 	mlx_destroy_image(param->mlx_ptr, param->img_ptr);
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+	global_free(param);
 	exit(0);
 }
 
