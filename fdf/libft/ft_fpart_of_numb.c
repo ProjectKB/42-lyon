@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/05 16:43:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 16:45:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:41:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-float ft_fpart_of_numb(float x)
+float	ft_fpart_of_numb(float x)
 {
 	return (x = (x > 0) ? x - ft_ipart_of_numb(x) : \
 										x - ft_ipart_of_numb(x) + 1);

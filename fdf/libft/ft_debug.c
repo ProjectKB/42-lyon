@@ -6,18 +6,18 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/26 15:16:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/26 16:35:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:41:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_debug(void)
+void	ft_debug(void)
 {
-    static char  letter = 'A';
+	static char	letter = 'A';
 
-    ft_putchar(letter);
-    ft_putchar('\n');
-    letter++;
+	ft_putchar(letter);
+	ft_putchar('\n');
+	letter++;
 }

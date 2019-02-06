@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/10 10:49:51 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/14 21:04:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:40:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int	ft_nb_nbr(char *str, char c)
 {
 	int	i;
 	int	count;
-	int s;
+	int	s;
 
 	i = -1;
 	count = 0;

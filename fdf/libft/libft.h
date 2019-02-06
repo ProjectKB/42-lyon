@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 16:49:28 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:42:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -125,13 +125,13 @@ double				ft_get_rounder(int precision);
 char				*ft_ftoa(long double nb, char *s, int precision);
 int					get_next_line(const int fd, char **line);
 void				ft_putdbint(int **dbint, int x, int y);
-void    			ft_debug(void);
+void				ft_debug(void);
 int					ft_nb_nbr(char *str, char c);
 double				ft_fabs(double v);
 void				ft_fswap(double *a, double *b);
 int					ft_ipart_of_numb(float x);
 int					ft_round(float x);
-float					ft_fpart_of_numb(float x);
-float					ft_rfpart_of_numb(float x);
+float				ft_fpart_of_numb(float x);
+float				ft_rfpart_of_numb(float x);
 
 #endif
