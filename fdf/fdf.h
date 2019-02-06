@@ -79,7 +79,6 @@ typedef struct	s_param {
 	int 	y_max;
 	int		z_min;
 	int		z_max;
-	double	**coord;
 	int		**tab;
 	int		proj;
 	int		midle;
@@ -98,7 +97,7 @@ typedef struct	s_param {
 	t_color *col;
 	int		test;
 	int		**color;
-	t_coord ** coords;
+	t_coord **coords;
 	int menu;
 	int status;
 }				t_param;
@@ -107,8 +106,8 @@ t_param *init_param(int width, int height);
 void	jordan(t_coord start, t_coord end, t_param *param);
 void    find_xy_max(char **argv, t_param *param);
 void	init_window(t_param *param);
-int		**file_to_data(char **argv, t_param *param);
-int		*str_to_tabint(char *str, t_param *param);
+void		file_to_data(char **argv, t_param *param);
+void	str_to_tabint(char *str, t_param *param, int v);
 int     **calcul_xy_iso(int **tab, t_param *param);
 t_coord	**projection_calcul(int **tab, t_param *param, int projection);
 void    fill_image(t_coord **coord, t_param *param);
