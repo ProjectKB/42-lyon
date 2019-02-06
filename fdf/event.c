@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 22:24:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 13:11:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,15 +31,17 @@ void	display_new_window(t_param *param)
 	param->coords = projection_calcul(param->tab, param, param->proj);
 	mlx_clear_window(param->mlx_ptr, param->win_ptr);
 	ft_bzero(param->img_data, (param->width * param->height) * 4);
-	display_test(param->coords, param);
+	fill_image(param->coords, param);
 	mlx_put_image_to_window(param, param->win_ptr, param->img_ptr, 0, 0);
-	bla(param);
+	up_menu(param);
+	down_menu(param);
 }
 
 void	close_window(t_param *param)
 {
 	mlx_destroy_image(param->mlx_ptr, param->img_ptr);
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+	exit(0);
 }
 
 int		deal_mouse(int key, int x, int y, t_param *param)

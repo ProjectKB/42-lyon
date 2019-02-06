@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 22:22:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 13:10:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,17 +100,18 @@ typedef struct	s_param {
 	int		**color;
 	t_coord ** coords;
 	int menu;
+	int status;
 }				t_param;
 
 t_param *init_param(int width, int height);
-void	bresenham(t_coord start, t_coord end, t_param *param);
+void	jordan(t_coord start, t_coord end, t_param *param);
 void    find_xy_max(char **argv, t_param *param);
 void	init_window(t_param *param);
 int		**file_to_data(char **argv, t_param *param);
 int		*str_to_tabint(char *str, t_param *param);
 int     **calcul_xy_iso(int **tab, t_param *param);
 t_coord	**projection_calcul(int **tab, t_param *param, int projection);
-void    display_test(t_coord **coord, t_param *param);
+void    fill_image(t_coord **coord, t_param *param);
 
 int    deal_key(int key, t_param *param);
 int		deal_mouse(int key, int x, int y, t_param *param);
@@ -136,7 +137,8 @@ void     define_color(t_color *color, t_param *param);
 double gradient_value_j(t_param *param, t_coord start, t_coord end, int q);
 double gradient_value_x(t_param *param, t_coord start, t_coord end, int q);
 double color_min_max(t_param *param, int b);
-void	display_usage(int mod);
-void	bla(t_param *param);
+void	display_usage(void);
+void	up_menu(t_param *param);
+void	down_menu(t_param *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 22:54:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 12:42:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,7 @@ t_param	*init_param(int width, int height)
 	p->c_mod = 0;
 	p->proj = 1;
 	p->menu = 0;
+	p->status = 0;
 	return (p);
 }
 
@@ -72,34 +73,5 @@ void	projection(t_coord *v2, int projection, t_param *p, int z)
 		v2->y = p->rot->xr_y + p->rot->xr_z * p->z_obl + p->move_h;
 		v2->z = z;
 		v2->c = 255;
-	}
-}
-
-void	bla(t_param *p)
-{
-	if (!p->menu)
-	{
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 10, 0xFFFFFF, \
-									"   ZOOM    || press - + or use wheel");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 30, 0xFFFFFF, \
-											"   COLOR   || press r g b space");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 50, 0xFFFFFF, \
-									" MOVE MAP  || use gamer keys or arrows");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 70, 0xFFFFFF, \
-													" ELEVATION || press / *");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 90, 0xFFFFFF, \
-									"PROJECTION || press 0 . or l/r click");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 750, 70, 0xFFFFFF, \
-													"press x j || DRAWLINE");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 750, 10, 0xFFFFFF, \
-													"press 8 9 || ROTATION Z");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 750, 30, 0xFFFFFF, \
-													"press 5 6 || ROTATION Y");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 750, 50, 0xFFFFFF, \
-													"press 2 3 || ROTATION X");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 570, 950, 0xFFFFFF, \
-							"press right enter or press wheel || RESET");
-		mlx_string_put(p->mlx_ptr, p->win_ptr, 10, 950, 0xFFFFFF, \
-								"HIDE MENU || press left enter right shift");
 	}
 }
