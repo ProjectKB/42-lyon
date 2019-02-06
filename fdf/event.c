@@ -28,6 +28,7 @@ void	reset_param(t_param *param)
 
 void	display_new_window(t_param *param)
 {
+	free_v2(param);
 	projection_calcul(param->tab, param, param->proj);
 	mlx_clear_window(param->mlx_ptr, param->win_ptr);
 	ft_bzero(param->img_data, (param->width * param->height) * 4);

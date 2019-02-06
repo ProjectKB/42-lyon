@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 22:45:32 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:10:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:46:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	find_xy_max(char **argv, t_param *p)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		display_usage();
-	if ((rt = get_next_line(fd, &line)) == -1)
+	if ((rt = get_next_line(fd, &line)) == -1 || ft_strlen(line) <= 1)
 		display_usage();
 	free(line);
 	p->x_max = ft_nb_nbr(line, ' ');
@@ -49,6 +49,49 @@ void	find_z_min_z_max(t_param *p, int z)
 		p->z_min = z;
 }
 
+void	check_errors(char *str)
+{
+	int i;
+	int q;
+
+	i = 0;
+	q = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			q = i;
+		i++;
+	}
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 'a' && str[i] <= 'f') || (str[i] >= 'A' && str[i] <= 'F'))
+		{
+			if (!q)
+			{
+				if (str[0] != '0' || (str[1] != 'x' && str[1] != 'X'))
+					display_usage();
+			}
+			else if (q)
+			{
+				if (str[q + 1] != '0' || (str[q + 2] != 'x' && str[q + 2] != 'X'))
+					display_usage();
+			}
+		}
+		i++;
+	}
+	i = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] != ',' && str[i] != 'x' && str[i] != 'X')
+			if (str[i] < '0' || (str[i] > '9' && str[i] < 'A') || (str[i] > 'F' && str[i] < 'a') || str[i] > 'f')
+			display_usage();
+		i++;
+	}
+}
+
 void	str_to_tabint(char *str, t_param *p, int v)
 {
 	int		j;
@@ -57,11 +100,14 @@ void	str_to_tabint(char *str, t_param *p, int v)
 
 	j = -1;
 	i = 0;
+	if (!ft_strlen(str) || (ft_strlen(str) == 1))
+		display_usage();
 	if (!(p->tab[v] = (int*)malloc(sizeof(int*) * p->x_max)))
 		return ;
 	split = ft_strsplit(str, ' ');
 	while (split[++j])
 	{
+		check_errors(split[j]);
 		p->tab[v][i] = ft_atoi(split[j]);
 		find_z_min_z_max(p, p->tab[v][i]);
 		i++;

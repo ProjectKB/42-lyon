@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 05:39:57 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:21:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:47:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -141,5 +141,7 @@ void				display_usage(void);
 void				up_menu(t_param *param);
 void				down_menu(t_param *param);
 void				global_free(t_param *param);
+void				free_tab(t_param *p);
+void				free_v2(t_param *p);
 
 #endif
