@@ -48,6 +48,8 @@ void	close_window(t_param *param)
 
 int		deal_mouse(int key, int x, int y, t_param *param)
 {
+	(void)x;
+	(void)y;
 	if (key == 4)
 		param->fact += 1;
 	else if (key == 5)

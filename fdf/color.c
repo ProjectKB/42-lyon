@@ -22,6 +22,7 @@ double	color_min_max(t_param *param, int b)
 {
 	double	rez;
 
+	rez = 0;
 	if (!param->c_mod && !b)
 		rez = calcul_color(255, 255, 255);
 	else if (!param->c_mod)

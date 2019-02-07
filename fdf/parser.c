@@ -16,7 +16,6 @@
 void	find_xy_max(char **argv, t_param *p)
 {
 	int		fd;
-	int		test;
 	int		count;
 	char	*line;
 	int		rt;
