@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 13:49:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 17:36:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,6 @@ t_filler *init_struct(void)
 
 	if (!(fil = (t_filler*)malloc(sizeof(*fil))))
 		return (NULL);
-	fil->x_max = 0;
-	fil->y_max = 0;
 	return (fil);
 }
 
@@ -37,23 +35,41 @@ int main(int argc, char **argv)
 	int rt;
 	char	*line;
 	int fd;
-	int start = 0;
+	int start = -1;
+	int s = 0;
 	t_filler *fil;
 
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
-	while ((rt = get_next_line(fd, &line)))
+	while (1)
 	{
-		if (!start)
+		if (!(rt = get_next_line(fd, &line)))
+			break ;
+		if (!(++start))
 			fil->player = line[10];
-		else if (start == 1)
-			xy_max(fil, line);
-		else if (start > 2 && start - 3 < fil->y_max)
-			fill_board(fil, line, start - 3);
-		start++;
+		else
+		{
+				if (s == 0)
+					bx_by_max(fil, line);
+				else if (s > 1 && s - 2 < fil->by_max)
+					fill_board(fil, line, s - 2);
+				else if (s == fil->by_max + 2)
+					px_py_max(fil, line);
+				else if (s != 1)
+					fill_piece(fil, line, s - fil->by_max - 3);
+				s++;
+				if (fil->px_max && fil->bx_max && s == fil->by_max + fil->py_max + 3)
+				{
+					putdbstr(fil->board, fil->by_max);
+					ft_putchar('\n');
+					putdbstr(fil->piece, fil->py_max);
+					ft_putchar('\n');
+					s = 0;
+				}
+		}
 	}
-	putdbstr(fil->board, fil->y_max);
 	printf("player : %c\n", fil->player);
-	printf("x_max : %d y_max : %d\n", fil->x_max, fil->y_max);
+	/*printf("bx_max : %d by_max : %d\n", fil->bx_max, fil->by_max);
+	printf("px_max : %d py_max : %d\n", fil->px_max, fil->py_max);*/
 	return (0);
 }
