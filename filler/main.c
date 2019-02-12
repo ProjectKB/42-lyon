@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 18:52:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 19:19:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,11 +39,11 @@ int main(int argc, char **argv)
 	int s = 0;
 	t_filler *fil;
 
-	fd = open(argv[1], O_RDONLY);
+	//fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
 	{
-		if (!(rt = get_next_line(fd, &line)))
+		if (!(rt = get_next_line(0, &line)))
 			break ;
 		if (!(++start))
 			define_player(fil, line);

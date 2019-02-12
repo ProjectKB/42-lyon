@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 18:08:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 18:30:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 19:08:41 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,11 +32,14 @@ void	define_fx_fy_pos(t_filler *fil)
 {
 	int	i;
 	int	j;
+	int k;
+	int l;
 	static int	s = -1;
 
 	i = -1;
 	j = -1;
-
+	k = -1;
+	l = -1;
 	if (++s)
 		return ;
 	while (++i < fil->by_max)
@@ -44,6 +47,11 @@ void	define_fx_fy_pos(t_filler *fil)
 			break;
 	while (fil->board[i][++j] != fil->c_win)
 		;
-	fil->fy = i;
-	fil->fx = j;
+	while (++k < fil->py_max)
+		if (ft_find_char(fil->piece[k], '*'))
+			break;
+	while (fil->piece[k][++l] != '*')
+		;
+	fil->fy = i - k;
+	fil->fx = j - l;
 }
