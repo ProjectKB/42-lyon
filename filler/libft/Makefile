@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 09:13:44 by rcepre            #+#    #+#              #
-#    Updated: 2019/02/05 16:48:13 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/12 18:45:05 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -121,6 +121,23 @@ SRC = 	ft_atoi.c\
 		ft_round.c \
 		ft_fpart_of_numb.c \
 		ft_rfpart_of_numb.c \
+		ft_find_char.c \
+		list_tools.c \
+		parse_string.c \
+		stock_for_parsing.c \
+		parse_args.c \
+		fix_impossible_flag.c \
+		flag_plus_zero_aq.c \
+		field.c \
+		precision.c \
+		length_modifier.c \
+		transform_chain.c \
+		final_display.c \
+		length_modifier.c \
+		transform_chain.c \
+		final_display.c \
+		ft_printf.c \
+		flag_hash.c \
 
 HEADER = ./libft.h
 

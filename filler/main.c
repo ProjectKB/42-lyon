@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 17:36:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 18:52:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 		if (!(rt = get_next_line(fd, &line)))
 			break ;
 		if (!(++start))
-			fil->player = line[10];
+			define_player(fil, line);
 		else
 		{
 				if (s == 0)
@@ -60,15 +60,18 @@ int main(int argc, char **argv)
 				s++;
 				if (fil->px_max && fil->bx_max && s == fil->by_max + fil->py_max + 3)
 				{
-					putdbstr(fil->board, fil->by_max);
-					ft_putchar('\n');
-					putdbstr(fil->piece, fil->py_max);
-					ft_putchar('\n');
+					define_fx_fy_pos(fil);
+					ft_printf("%d %d\n", fil->fy, fil->fx);
+					//putdbstr(fil->board, fil->by_max);
+					//ft_putchar('\n');
+					//putdbstr(fil->piece, fil->py_max);
+					//ft_putchar('\n');
 					s = 0;
 				}
 		}
 	}
-	printf("player : %c\n", fil->player);
+	//printf("player : %c win : %c los : %c\n", fil->player, fil->c_win, fil->c_los);
+	//ft_printf("x_first : %d y_first : %d\n", fil->fx, fil->fy);
 	/*printf("bx_max : %d by_max : %d\n", fil->bx_max, fil->by_max);
 	printf("px_max : %d py_max : %d\n", fil->px_max, fil->py_max);*/
 	return (0);

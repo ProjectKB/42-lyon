@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 17:31:21 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 18:05:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,6 @@ void	fill_piece(t_filler *fil, char *str, int s)
 
 	i = 0;
 	j = -1;
-	//printf("s : %d\n", s);
 	if (!s)
 		if (!(fil->piece = (char**)malloc(sizeof(char*) * fil->py_max)))
 			return ;
@@ -73,3 +72,5 @@ void	fill_piece(t_filler *fil, char *str, int s)
 		fil->piece[s][j] = str[i++];
 	fil->piece[s][fil->px_max] = '\0';
 }
+
+

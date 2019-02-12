@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 16:06:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 18:43:19 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putcolor(char *s, int type, int color);
@@ -44,7 +45,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle,
-size_t len);
+		size_t len);
 size_t				ft_recursive_power(int nb, int power);
 long double			ft_recursive_npower(int power);
 char				*ft_strupcase(char *str);
@@ -133,5 +134,113 @@ int					ft_ipart_of_numb(float x);
 int					ft_round(float x);
 float				ft_fpart_of_numb(float x);
 float				ft_rfpart_of_numb(float x);
+int					ft_find_char(char *str, char c);
+
+int					ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
+
+typedef enum		e_lm {
+					WOAW,
+					hh,
+					h,
+					l,
+					ll,
+					L
+}					t_lm;
+
+typedef enum		e_ci {
+					woaw,
+					c,
+					s,
+					p,
+					di,
+					o,
+					u,
+					x,
+					X,
+					f,
+					spe,
+}					t_ci;
+
+typedef struct		s_arg {
+	struct s_arg	*next;
+	char			*flag;
+	char			*field;
+	int				pre;
+	t_lm			l_m;
+	t_ci			c_i;
+	char			*content;
+	int				color;
+}					t_arg;
+
+/*
+ * ** LISTS TOOLS
+ * */
+t_arg				*create_elem(void);
+void				display_list_content(t_arg *list);
+void				create_and_move_forward(t_arg **param);
+void				free_list(t_arg *list);
+
+/*
+ * ** FILL STRUCT
+ * */
+int					stock_ordinary_char(char **str, char *format, int *i);
+void				double_to_one_pourcent(char **str, int *i, char *format);
+void				stock_flag(char **flag, char *format, int *i);
+void				stock_field(char **field, char *format, int *i);
+void				stock_precision(int *precision, char *format, int *i);
+void				stock_length_modifier(t_lm *length_modifier, \
+		char *format, int *i);
+void				stock_conversion_indicator(t_ci *c_i, char *format, int *i);
+void				stock_arg_description(t_arg *param, char *format, int *i);
+t_arg				*parse_string(const char *format);
+void				stock_content(t_arg *param, char **content, void *to_display);
+void				parse_args(t_arg *param, ...);
+void				stock_global_content(t_arg *arg, va_list va, int *len_print);
+
+/*
+ * ** MANAGE FLAG
+ * */
+void			fix_impossible_comb(char **flag);
+void			fix_impossible_flag(char **flag, t_ci c_i);
+void			transform_flag(t_arg *param);
+void			hash_tag_comportement(t_arg **param);
+void			plus_comportement(t_arg **param);
+void			aq_comportement(t_arg **param);
+void			zero_comportement(t_arg **param);
+
+/*
+ * ** MANAGE FIELD
+ * */
+void			fill_field(char **field, t_arg *param);
+
+/*
+ * ** MANAGE PRECISION
+ * */
+char			*precision_tr(char *content, t_arg *param);
+
+/*
+ * ** MANAGE LENGTH MODIFIER
+ * */
+void			stock_content_lm(t_arg *param, char **content, void *to_stock);
+void			special_case_lm(t_arg *param);
+
+/*
+ * ** FLOAT
+ * */
+char			*ftoa(long double nb, char *s, int precision);
+int				flt_len(long double n);
+
+/*
+ * ** TRANSFORM CHAIN
+ * */
+void			transform_chain(t_arg **param);
+
+/*
+ * ** DISPLAY CHAIN
+ * */
+void			final_display(t_arg *param);
+char			*final_stock(t_arg *arg, char *str);
+int				ft_printf(const char *format, ...);
+char			*ft_sprintf(const char *format, ...);
 
 #endif
