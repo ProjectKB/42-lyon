@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 18:27:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 16:18:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,8 @@ typedef struct	s_filler {
 	int		fy;
 
 }				t_filler;
+
+void	putdbstr(char **tab, int stop);
 
 void	bx_by_max(t_filler *fill, char *str);
 void	px_py_max(t_filler *fill, char *str);

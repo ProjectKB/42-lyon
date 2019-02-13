@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 18:08:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 19:08:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 17:01:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 void	define_player(t_filler *fil, char *str)
 {
 	fil->player = str[10];
-	if (fil->player == 1)
+	if (fil->player == 49)
 	{
 		fil->c_win = 'O';
 		fil->c_los = 'X';
@@ -26,6 +26,7 @@ void	define_player(t_filler *fil, char *str)
 		fil->c_win = 'X';
 		fil->c_los = 'O';
 	}
+	printf("player : %c win : %c lose: %c\n", fil->player, fil->c_win, fil->c_los);
 }
 
 void	define_fx_fy_pos(t_filler *fil)
