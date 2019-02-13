@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 18:08:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 17:01:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 19:01:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ void	define_player(t_filler *fil, char *str)
 		fil->c_win = 'X';
 		fil->c_los = 'O';
 	}
-	printf("player : %c win : %c lose: %c\n", fil->player, fil->c_win, fil->c_los);
+	//printf("player : %c win : %c lose: %c\n", fil->player, fil->c_win, fil->c_los);
 }
 
 void	define_fx_fy_pos(t_filler *fil)
@@ -35,15 +35,12 @@ void	define_fx_fy_pos(t_filler *fil)
 	int	j;
 	int k;
 	int l;
-	static int	s = -1;
 
 	i = -1;
 	j = -1;
 	k = -1;
 	l = -1;
-	if (++s)
-		return ;
-	while (++i < fil->by_max)
+	while (++i < fil->by_max - 1)
 		if (ft_find_char(fil->board[i], fil->c_win))
 			break;
 	while (fil->board[i][++j] != fil->c_win)
@@ -55,4 +52,9 @@ void	define_fx_fy_pos(t_filler *fil)
 		;
 	fil->fy = i - k;
 	fil->fx = j - l;
+	//printf("hello -> i : %d j : %d\n", i, j);
+	//printf("hello -> k : %d l : %d\n", k, l);
+	//printf("hello -> fy : %d fx : %d\n", fil->fy, fil->fx);
+	//putdbstr(fil->board, fil->by_max);
+	//putdbstr(fil->piece, fil->py_max);
 }

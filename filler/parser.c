@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 17:29:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 18:05:52 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ void	bx_by_max(t_filler *fil, char *str)
 		fil->by_max = fil->by_max * 10 + (str[i] - 48);
 	while (str[++i] != ':')
 		fil->bx_max = fil->bx_max * 10 + (str[i] - 48);
-	printf("bx : %d by : %d\n", fil->bx_max, fil->by_max);
+	//printf("bx : %d by : %d\n", fil->bx_max, fil->by_max);
 }
 
 void	fill_board(t_filler *fil, char *str, int s)
@@ -55,7 +55,7 @@ void	px_py_max(t_filler *fil, char *str)
 		fil->py_max = fil->py_max * 10 + (str[i] - 48);
 	while (str[++i] != ':')
 		fil->px_max = fil->px_max * 10 + (str[i] - 48);
-	printf("px : %d py : %d\n", fil->px_max, fil->py_max);
+	//printf("px : %d py : %d\n", fil->px_max, fil->py_max);
 }
 
 void	fill_piece(t_filler *fil, char *str, int s)

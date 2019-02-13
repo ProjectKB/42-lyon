@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 17:49:08 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 19:04:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ void	loop(t_filler *fil, int fd, char *line)
 
 	if (!(rt = get_next_line(fd, &line)))
 		exit (0);
-	else if (!fil->player && ft_strstr(line, "carli.filler") && ft_find_char(line, '$'))
+	else if (!fil->player && ft_strstr(line, "loiberti.filler") && ft_find_char(line, '$'))
 		define_player(fil, line);
 	else if (ft_strstr(line, "Plateau") && (b = 1))
 		bx_by_max(fil, line);
@@ -56,20 +56,22 @@ void	loop(t_filler *fil, int fd, char *line)
 		fill_piece(fil, line, py);
 	if (fil->py_max && py == fil->py_max - 1)
 	{
-		putdbstr(fil->piece, fil->py_max);
-		putdbstr(fil->board, fil->by_max);
+		//putdbstr(fil->piece, fil->py_max);
+		//putdbstr(fil->board, fil->by_max);
+		//ft_debug();
+		define_fx_fy_pos(fil);
+		//ft_debug();
 		py = -1;
 		by = -1;
 		b = 0;
-		//define_fx_fy_pos(fil);
 		fil->py_max = 0;
 		fil->player = 0;
-		ft_printf("%d %d\n", 0, 0);
+		ft_printf("%d %d\n", fil->fy, fil->fx);
 	}
-	printf("by : %d\n", by);
-	printf("by_max : %d\n", fil->by_max);
-	printf("py : %d\n", py);
-	printf("py_max : %d\n\n", fil->py_max);
+	//printf("by : %d\n", by);
+	//printf("by_max : %d\n", fil->by_max);
+	//printf("py : %d\n", py);
+	//printf("py_max : %d\n\n", fil->py_max);
 }
 
 int main(int argc, char **argv)
@@ -81,8 +83,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-	{
-		loop(fil, fd, line);
-	}
+		loop(fil, 0, line);
 	return (0);
 }
