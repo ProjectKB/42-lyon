@@ -6,7 +6,7 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2019/02/13 13:32:35 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/14 13:50:19 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,6 +22,7 @@ SRC_DIR = .
 SRC = $(SRC_DIR)/parser.c \
 	$(SRC_DIR)/tools.c \
 	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/algo.c \
 
 HEADER = ./filler.h
 LIBFT_PATH = ./libft

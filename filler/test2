@@ -4,7 +4,7 @@
 #                                              #
 # -------------------------------------------- #
 launched ./players/carli.filler
-$$$ exec p1 : [./players/carli.filler]
+$$$ exec p1 : [./players/loiberti.filler]
 Plateau 15 17:
     01234567890123456
 000 .................

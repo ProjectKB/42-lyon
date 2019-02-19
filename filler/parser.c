@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 18:05:52 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 12:59:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,36 @@ void	bx_by_max(t_filler *fil, char *str)
 	//printf("bx : %d by : %d\n", fil->bx_max, fil->by_max);
 }
 
+void	define_last_pos(char c, t_filler *fil, int j, int s)
+{
+	if (c == fil->c_los || c == fil->c_los + 32)
+	{
+		if (c == fil->c_los + 32)
+		{
+			fil->last.x = j;
+			fil->last.y = s;
+		}
+		else if (c == fil->c_los && !fil->start)
+		{
+			fil->last.x = j;
+			fil->last.y = s;
+		}
+	}
+	else if (c == fil->c_win || c == fil->c_win + 32)
+	{
+		if (c == fil->c_win + 32)
+		{
+			fil->base.x = j;
+			fil->base.y = s;
+		}
+		else if (c == fil->c_win && !fil->start)
+		{
+			fil->base.x = j;
+			fil->base.y = s;
+		}
+	}
+}
+
 void	fill_board(t_filler *fil, char *str, int s)
 {
 	int i;
@@ -40,7 +70,10 @@ void	fill_board(t_filler *fil, char *str, int s)
 	if (!(fil->board[s] = (char*)malloc(sizeof(char) * fil->bx_max + 1)))
 		return ;
 	while (++j < fil->bx_max)
+	{
 		fil->board[s][j] = str[++i];
+		define_last_pos(str[i], fil, j, s);
+	}
 	fil->board[s][j] = '\0';
 }
 

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 19:04:26 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 18:40:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,6 +32,12 @@ t_filler *init_struct(void)
 	fil->py_max = 0;
 	fil->bx_max = 0;
 	fil->by_max = 0;
+	fil->start = 0;
+	fil->score.v = 10000;
+	fil->score.x = 0;
+	fil->score.y = 0;
+	fil->score.v_t = 0;
+	fil->score.c = 0;
 	return (fil);
 }
 
@@ -56,22 +62,26 @@ void	loop(t_filler *fil, int fd, char *line)
 		fill_piece(fil, line, py);
 	if (fil->py_max && py == fil->py_max - 1)
 	{
-		//putdbstr(fil->piece, fil->py_max);
 		//putdbstr(fil->board, fil->by_max);
-		//ft_debug();
-		define_fx_fy_pos(fil);
-		//ft_debug();
+		//putdbstr(fil->piece, fil->py_max);
+		//printf("c : %c\n", fil->c_win);
+		//printf("x : %d y : %d\n", fil->px_max, fil->py_max);
+		transform_map(fil);
+		//putdbstr(fil->board, fil->by_max);
+		resolve(fil);
 		py = -1;
 		by = -1;
 		b = 0;
+		//printf("score : %d\n", fil->score.v);
+		//printf("x : %d y : %d\n", fil->score.x, fil->score.y);
+		//ft_printf("start : %d\n", fil->start);
 		fil->py_max = 0;
-		fil->player = 0;
-		ft_printf("%d %d\n", fil->fy, fil->fx);
+		fil->player = 1;
+		fil->start = 1;
+		ft_printf("%d %d\n", fil->score.y, fil->score.x);
+		//ft_printf("%d %d\n", fil->base.x, fil->base.y);
+		//ft_printf("b : %d b : %d\n", fil->base.x, fil->base.y);
 	}
-	//printf("by : %d\n", by);
-	//printf("by_max : %d\n", fil->by_max);
-	//printf("py : %d\n", py);
-	//printf("py_max : %d\n\n", fil->py_max);
 }
 
 int main(int argc, char **argv)
@@ -83,6 +93,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, 0, line);
+		loop(fil, fd, line);
 	return (0);
 }
