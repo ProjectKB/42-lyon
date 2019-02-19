@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 12:59:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/19 15:04:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,10 +33,11 @@ void	define_last_pos(char c, t_filler *fil, int j, int s)
 	{
 		if (c == fil->c_los + 32)
 		{
+			ft_debug();
 			fil->last.x = j;
 			fil->last.y = s;
 		}
-		else if (c == fil->c_los && !fil->start)
+		else if (c == fil->c_los)
 		{
 			fil->last.x = j;
 			fil->last.y = s;

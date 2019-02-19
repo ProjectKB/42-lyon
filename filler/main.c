@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 18:40:28 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/19 15:02:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,6 +67,7 @@ void	loop(t_filler *fil, int fd, char *line)
 		//printf("c : %c\n", fil->c_win);
 		//printf("x : %d y : %d\n", fil->px_max, fil->py_max);
 		transform_map(fil);
+		//printf("lx : %d ly : %d\n", fil->last.x, fil->last.y);
 		//putdbstr(fil->board, fil->by_max);
 		resolve(fil);
 		py = -1;
@@ -93,6 +94,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, fd, line);
+		loop(fil, 0, line);
 	return (0);
 }

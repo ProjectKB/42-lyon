@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 18:32:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/19 15:37:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,9 +49,11 @@ int		occupied(t_filler *f, int sy, int sx)
 		while (++j < f->px_max)
 		{
 			if (f->board[sy + i][sx + j] == f->c_los || f->board[sy + i][sx + j] == f->c_los + 32)
-				return (1);
-			else if (f->board[sy + i][sx + j] == f->c_win || f->board[sy + i][sx + j] == f->c_win + 32)
-				f->score.c++;
+				if (f->piece[i][j] == '*')
+					return (1);
+			if (f->board[sy + i][sx + j] == f->c_win || f->board[sy + i][sx + j] == f->c_win + 32)
+				if (f->piece[i][j] == '*')
+					f->score.c++;
 		}
 	if (f->score.c != 1)
 		return (1);
@@ -76,6 +78,12 @@ void	calcul_score(t_filler *f, int sy, int sx)
 	}
 }
 
+void	test(t_filler *f, int sy, int sx)
+{
+	f->score.x = sx;
+	f->score.y = sy;
+}
+
 void        resolve(t_filler *f)
 {
 	unsigned int	i;
@@ -85,7 +93,8 @@ void        resolve(t_filler *f)
 	while (++i < f->by_max && (j = -1))
 		while (++j < f->bx_max)
 			if (!exceed_board(f, i, j) && !occupied(f, i, j))
-				calcul_score(f, i, j);
+				test(f, i, j);
+				//calcul_score(f, i, j);
 	f->score.v = 10000;
 	f->score.v_t = 0;
 }
