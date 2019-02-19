@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/19 15:53:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/19 17:28:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,6 @@ void        resolve(t_filler *f)
 			if (!exceed_board(f, i, j) && !occupied(f, i, j))
 				//test(f, i, j);
 				calcul_score(f, i, j);
-	f->score.v = 10000;
+	f->score.v = 100000;
 	f->score.v_t = 0;
 }

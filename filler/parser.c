@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/19 15:04:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/19 18:37:12 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,6 @@ void	define_last_pos(char c, t_filler *fil, int j, int s)
 	{
 		if (c == fil->c_los + 32)
 		{
-			ft_debug();
 			fil->last.x = j;
 			fil->last.y = s;
 		}
@@ -92,6 +91,22 @@ void	px_py_max(t_filler *fil, char *str)
 	//printf("px : %d py : %d\n", fil->px_max, fil->py_max);
 }
 
+void	pxs_pxe(t_filler *fil, char **piece)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < fil->p.ye && (j = -1))
+		while (++j < fil->px_max)
+		{
+			if (piece[i + fil->p.ys][j] == '*' && j < fil->p.xs)
+				fil->p.xs = j;
+			if (piece[i + fil->p.ys][j] == '*' && j > fil->p.xe)
+				fil->p.xe = j;
+		}
+}
+
 void	fill_piece(t_filler *fil, char *str, int s)
 {
 	int i;
@@ -104,6 +119,10 @@ void	fill_piece(t_filler *fil, char *str, int s)
 			return ;
 	if (!(fil->piece[s] = (char*)malloc(sizeof(char) * (fil->px_max + 1))))
 		return ;
+	if (ft_find_char(str, '*') && fil->p.ys == -1)
+		fil->p.ys = s;
+	if (ft_find_char(str, '*') && fil->p.ys != -1)
+		fil->p.ye++;
 	while (++j < fil->px_max)
 		fil->piece[s][j] = str[i++];
 	fil->piece[s][fil->px_max] = '\0';
