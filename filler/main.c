@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 13:12:34 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 13:19:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,15 +33,16 @@ t_filler *init_struct(void)
 	fil->bx_max = 0;
 	fil->by_max = 0;
 	fil->start = 0;
-	fil->score.v = 100000;
+	fil->score.v = 10000;
 	fil->score.x = 0;
 	fil->score.y = 0;
 	fil->score.v_t = 0;
 	fil->score.c = 0;
-	fil->p.xs = 105;
+	/*fil->p.xs = 105;
 	fil->p.xe = 0;
 	fil->p.ys = -1;
 	fil->p.ye = 0;
+	fil->c_piece = NULL;*/
 	return (fil);
 }
 
@@ -68,10 +69,12 @@ void	loop(t_filler *fil, int fd, char *line)
 	{
 		//putdbstr(fil->board, fil->by_max);
 		//printf("\n");
-		putdbstr(fil->piece, fil->py_max);
+		//putdbstr(fil->piece, fil->py_max);
 		//pxs_pxe(fil, fil->piece);
 		//printf("sy : %d ey : %d\n", fil->p.ys, fil->p.ye);
 		//printf("sx : %d ex : %d\n", fil->p.xs, fil->p.xe);
+		//cut_piece(fil);
+		//putdbstr(fil->c_piece, fil->p.ye);
 		//printf("c : %c\n", fil->c_win);
 		//printf("x : %d y : %d\n", fil->px_max, fil->py_max);
 		transform_map(fil);
@@ -88,9 +91,10 @@ void	loop(t_filler *fil, int fd, char *line)
 		//printf("x : %d y : %d\n", fil->score.x, fil->score.y);
 		//ft_printf("start : %d\n", fil->start);
 		fil->py_max = 0;
+		/*fil->c_piece = NULL;
 		fil->p.ys = -1;
 		fil->p.xs = 105;
-		fil->p.xe = 105;
+		fil->p.xe = 105;*/
 		fil->player = 1;
 		fil->start = 1;
 		ft_printf("%d %d\n", fil->score.y, fil->score.x);
@@ -110,6 +114,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, 0, line);
+		loop(fil, fd, line);
 	return (0);
 }

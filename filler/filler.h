@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/19 18:38:03 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 13:04:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,7 @@ typedef struct	s_filler {
 	int		start;
 	char	**board;
 	char	**piece;
+	char	**c_piece;
 	char	c_win;
 	char	c_los;
 	int		fx;
@@ -74,6 +75,7 @@ void	px_py_max(t_filler *fill, char *str);
 void	pxs_pxe(t_filler *fill, char **piece);
 void	fill_board(t_filler *fil, char *str, int s);
 void	fill_piece(t_filler *fil, char *str, int s);
+void	cut_piece(t_filler *f);
 
 void	define_player(t_filler *fil, char *str);
 void	define_fx_fy_pos(t_filler *fil);

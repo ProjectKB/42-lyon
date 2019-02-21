@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/19 18:37:12 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 13:49:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,7 +91,7 @@ void	px_py_max(t_filler *fil, char *str)
 	//printf("px : %d py : %d\n", fil->px_max, fil->py_max);
 }
 
-void	pxs_pxe(t_filler *fil, char **piece)
+/*void	pxs_pxe(t_filler *fil, char **piece)
 {
 	int	i;
 	int	j;
@@ -107,6 +107,24 @@ void	pxs_pxe(t_filler *fil, char **piece)
 		}
 }
 
+void	cut_piece(t_filler *f)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	if (!(f->c_piece = (char**)malloc(sizeof(char*) * f->p.ye)))
+		return ;
+	while (++i < f->p.ye && (j = -1))
+	{
+		if (!(f->c_piece[i] = (char*)malloc(sizeof(char) * (f->p.xe - f->p.xs + 2))))
+			return ;
+		while (++j < f->p.xe - f->p.xs + 2)
+			f->c_piece[i][j] = f->piece[f->p.ys + i][f->p.xs + j];
+		f->c_piece[i][j] = '\0';
+	}
+}*/
+
 void	fill_piece(t_filler *fil, char *str, int s)
 {
 	int i;
@@ -119,13 +137,11 @@ void	fill_piece(t_filler *fil, char *str, int s)
 			return ;
 	if (!(fil->piece[s] = (char*)malloc(sizeof(char) * (fil->px_max + 1))))
 		return ;
-	if (ft_find_char(str, '*') && fil->p.ys == -1)
+	/*if (ft_find_char(str, '*') && fil->p.ys == -1)
 		fil->p.ys = s;
 	if (ft_find_char(str, '*') && fil->p.ys != -1)
-		fil->p.ye++;
+		fil->p.ye++;*/
 	while (++j < fil->px_max)
 		fil->piece[s][j] = str[i++];
 	fil->piece[s][fil->px_max] = '\0';
 }
-
-
