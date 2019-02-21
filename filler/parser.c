@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 16:13:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 18:04:35 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -112,7 +112,47 @@ void	fill_piece(t_filler *fil, char *str, int s)
 	fil->piece[s][fil->px_max] = '\0';
 }
 
-void    pxs_pxe(t_filler *fil, char **piece)
+int	calcul_dist(t_filler *f, int y, int x)
+{
+	int	j;
+	int	left;
+	int	right;
+
+	j = x;
+	left = 0;
+	right = 0;
+	while (--j > -1)
+		if (f->board[y][j] == f->c_los && !left)
+			left = j;
+	while (++x < f->bx_max)
+		if (f->board[y][x] == f->c_los && !right)
+			right = x;
+	if (left > right)
+		return (right);
+	return (left);
+}
+
+int	calcul_dist_c(t_filler *f, int y, int x)
+{
+	int	j;
+	int	left;
+	int	right;
+
+	j = y;
+	left = 0;
+	right = 0;
+	while (--j > -1)
+		if (f->board[j][x] == f->c_los && !left)
+			left = j;
+	while (++y < f->by_max)
+		if (f->board[y][x] == f->c_los && !right)
+			right = y;
+	if (left > right)
+		return (right);
+	return (left);
+}
+
+/*void    pxs_pxe(t_filler *fil, char **piece)
 {
 	int    i;
 	int    j;
@@ -145,4 +185,4 @@ void    cut_piece(t_filler *f)
 			f->c_piece[i][j] = f->piece[f->p.ys + i][f->p.xs + j];
 		f->c_piece[i][j] = '\0';
 	}
-}
+}*/

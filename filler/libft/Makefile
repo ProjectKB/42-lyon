@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/14 18:49:50 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/14 18:49:55 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/21 17:17:25 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -138,6 +138,8 @@ SRC = 	ft_atoi.c\
 		final_display.c \
 		ft_printf.c \
 		flag_hash.c \
+		ft_nb_char_occurs_c.c \
+		ft_find_char_c.c \
 
 HEADER = ./libft.h
 

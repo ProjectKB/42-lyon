@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 13:04:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 18:05:09 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,9 @@ void	pxs_pxe(t_filler *fill, char **piece);
 void	fill_board(t_filler *fil, char *str, int s);
 void	fill_piece(t_filler *fil, char *str, int s);
 void	cut_piece(t_filler *f);
+
+int	calcul_dist(t_filler *f, int y, int x);
+int	calcul_dist_c(t_filler *f, int y, int x);
 
 void	define_player(t_filler *fil, char *str);
 void	define_fx_fy_pos(t_filler *fil);

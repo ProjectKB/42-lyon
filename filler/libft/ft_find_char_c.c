@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_nb_char_occur.c                               .::    .:/ .      .::   */
+/*   ft_find_char_c.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/10 10:49:51 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 16:51:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/02/21 17:15:11 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/21 17:16:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nb_char_occurs(char *str, char c)
+int	ft_find_char_c(char **tab, int x, int y_max, char c)
 {
 	int	i;
 	int	count;
 
 	i = -1;
 	count = 0;
-	while (str[++i])
-	{
-		if (str[i] == c)
-			count++;
-	}
-	return (count);
+	while (++i < y_max)
+		if (tab[i][x] == c)
+			return (1);
+	return (0);
 }

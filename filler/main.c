@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 16:20:16 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 18:13:17 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,11 +89,11 @@ void	loop(t_filler *fil, int fd, char *line)
 		//printf("score : %d\n", fil->score.v);
 		//printf("x : %d y : %d\n", fil->score.x, fil->score.y);
 		//ft_printf("start : %d\n", fil->start);
-		fil->c_piece = NULL;
+		/*fil->c_piece = NULL;
 		fil->p.ys = -1;
 		fil->p.ye = 0;
 		fil->p.xs = 105;
-		fil->p.xe = 0;
+		fil->p.xe = 0;*/
 		fil->py_max = 0;
 		fil->player = 1;
 		fil->start = 1;

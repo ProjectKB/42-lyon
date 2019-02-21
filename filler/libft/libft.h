@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 18:43:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 17:17:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -135,6 +135,8 @@ int					ft_round(float x);
 float				ft_fpart_of_numb(float x);
 float				ft_rfpart_of_numb(float x);
 int					ft_find_char(char *str, char c);
+int					ft_nb_char_occurs_c(char **tab, int x, int y_max, char c);
+int					ft_find_char_c(char **tab, int x, int y_max, char c);
 
 int					ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
 

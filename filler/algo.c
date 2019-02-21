@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 16:19:44 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 18:16:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	transform_map(t_filler *f)
+void	transform_map2(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -27,6 +27,36 @@ void	transform_map(t_filler *f)
 			{
 				vx = j >= f->last.x ? j - f->last.x : f->last.x - j;
 				vy = i >= f->last.y ? i - f->last.y : f->last.y - i;
+				f->board[i][j] = vx >= vy ? vx + 33 : vy + 33;
+			}
+}
+
+void	transform_map(t_filler *f)
+{
+	int	i;
+	int	j;
+	int vx;
+	int vy;
+	int vl;
+	int vc;
+
+	i = -1;
+	vc = 0;
+	vl = 0;
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max)
+			if (f->board[i][j] == '.')
+			{
+				vx = ft_nb_char_occurs(f->board[i], f->c_los);
+				if (ft_find_char(f->board[i], f->c_los + 32))
+					vx -= 10;
+				vl = calcul_dist(f, i, j);
+				vx -= vl;
+				vy = ft_nb_char_occurs_c(f->board, j, f->by_max, f->c_los);
+				if (ft_find_char_c(f->board, j, f->by_max, f->c_los + 32))
+					vy -= 10;
+				vc = calcul_dist_c(f, i, j);
+				vy -= vc;
 				f->board[i][j] = vx >= vy ? vx + 33 : vy + 33;
 			}
 }
