@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/19 18:39:11 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 13:12:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,9 +69,9 @@ void	loop(t_filler *fil, int fd, char *line)
 		//putdbstr(fil->board, fil->by_max);
 		//printf("\n");
 		putdbstr(fil->piece, fil->py_max);
-		pxs_pxe(fil, fil->piece);
-		printf("sy : %d ey : %d\n", fil->p.ys, fil->p.ye);
-		printf("sx : %d ex : %d\n", fil->p.xs, fil->p.xe);
+		//pxs_pxe(fil, fil->piece);
+		//printf("sy : %d ey : %d\n", fil->p.ys, fil->p.ye);
+		//printf("sx : %d ex : %d\n", fil->p.xs, fil->p.xe);
 		//printf("c : %c\n", fil->c_win);
 		//printf("x : %d y : %d\n", fil->px_max, fil->py_max);
 		transform_map(fil);
@@ -110,6 +110,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, fd, line);
+		loop(fil, 0, line);
 	return (0);
 }
