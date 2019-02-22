@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 18:13:17 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/22 15:53:57 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,11 +38,6 @@ t_filler *init_struct(void)
 	fil->score.y = 0;
 	fil->score.v_t = 0;
 	fil->score.c = 0;
-	fil->p.xs = 105;
-	fil->p.xe = 0;
-	fil->p.ys = -1;
-	fil->p.ye = 0;
-	fil->c_piece = NULL;
 	return (fil);
 }
 
@@ -77,8 +72,11 @@ void	loop(t_filler *fil, int fd, char *line)
 		//fil->p.ye++;
 		//printf("c : %c\n", fil->c_win);
 		//printf("x : %d y : %d\n", fil->px_max, fil->py_max);
+		//putdbstr(fil->board, fil->by_max);
+		//printf("\n");
 		transform_map(fil);
-		//cut_piece(fil);
+		//convert_board(fil);
+		//ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
 		//putdbstr(fil->c_piece, fil->p.ye);
 		//printf("lx : %d ly : %d\n", fil->last.x, fil->last.y);
 		//putdbstr(fil->board, fil->by_max);
@@ -98,6 +96,7 @@ void	loop(t_filler *fil, int fd, char *line)
 		fil->player = 1;
 		fil->start = 1;
 		ft_printf("%d %d\n", fil->score.y, fil->score.x);
+		//ft_printf("%d %d\n", fil->base.y, fil->base.x);
 		//ft_printf("%d %d\n", fil->base.x, fil->base.y);
 		//ft_printf("b : %d b : %d\n", fil->base.x, fil->base.y);
 	}

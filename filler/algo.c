@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 18:16:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/22 15:51:55 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	transform_map2(t_filler *f)
+void	transform_map(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,7 @@ void	transform_map2(t_filler *f)
 			}
 }
 
-void	transform_map(t_filler *f)
+/*void	transform_map2(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -47,19 +47,19 @@ void	transform_map(t_filler *f)
 		while (++j < f->bx_max)
 			if (f->board[i][j] == '.')
 			{
-				vx = ft_nb_char_occurs(f->board[i], f->c_los);
-				if (ft_find_char(f->board[i], f->c_los + 32))
-					vx -= 10;
-				vl = calcul_dist(f, i, j);
-				vx -= vl;
-				vy = ft_nb_char_occurs_c(f->board, j, f->by_max, f->c_los);
-				if (ft_find_char_c(f->board, j, f->by_max, f->c_los + 32))
-					vy -= 10;
-				vc = calcul_dist_c(f, i, j);
-				vy -= vc;
+				//vx = ft_nb_char_occurs(f->board[i], f->c_los);
+				//if (ft_find_char(f->board[i], f->c_los + 32))
+					//vx -= 10;
+				vx = calcul_dist(f, i, j);
+				//vx -= vl;
+				//vy = ft_nb_char_occurs_c(f->board, j, f->by_max, f->c_los);
+				//if (ft_find_char_c(f->board, j, f->by_max, f->c_los + 32))
+					//vy -= 10;
+				vy = calcul_dist_c(f, i, j);
+				//vy -= vc;
 				f->board[i][j] = vx >= vy ? vx + 33 : vy + 33;
 			}
-}
+}*/
 
 int		exceed_board(t_filler *f, int sy, int sx)
 {
@@ -108,6 +108,37 @@ void	calcul_score(t_filler *f, int sy, int sx)
 	}
 }
 
+void	place_piece(t_filler *f, int sy, int sx)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	f->score.v_t = 0;
+	while (++i < f->py_max && (j = -1))
+		while (++j < f->px_max)
+			f->score.v_t += f->iboard[i + sy][j + sx];
+	if (f->iboard[f->last.y][f->last.x] == 43 || f->iboard[f->last.y][f->last.x] == 15 ||
+	f->iboard[f->last.y][f->last.x] == 10 || f->iboard[f->last.y][f->last.x] == 13)
+	{
+		if (f->score.v_t && f->score.v_t < f->score.v)
+		{
+			f->score.x = sx;
+			f->score.y = sy;
+			f->score.v = f->score.v_t;
+		}
+	}
+	else
+	{
+		if (f->score.v_t && f->score.v_t > -f->score.v)
+		{
+			f->score.x = sx;
+			f->score.y = sy;
+			f->score.v = f->score.v_t;
+		}
+	}
+}
+
 void	test(t_filler *f, int sy, int sx)
 {
 	f->score.x = sx;
@@ -123,6 +154,7 @@ void        resolve(t_filler *f)
 	while (++i < f->by_max && (j = -1))
 		while (++j < f->bx_max)
 			if (!exceed_board(f, i, j) && !occupied(f, i, j))
+				//place_piece(f, i, j);
 				//test(f, i, j);
 				calcul_score(f, i, j);
 	f->score.v = 100000;

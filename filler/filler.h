@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 18:05:09 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/22 15:20:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,13 +39,6 @@ typedef struct	s_score {
 	int c;
 }				t_score;
 
-typedef struct	s_piece {
-	int	ye;
-	int	ys;
-	int xe;
-	int xs;
-}				t_piece;
-
 typedef struct	s_filler {
 	char	player;
 	int		bx_max;
@@ -54,8 +47,8 @@ typedef struct	s_filler {
 	int		py_max;
 	int		start;
 	char	**board;
+	int		**iboard;
 	char	**piece;
-	char	**c_piece;
 	char	c_win;
 	char	c_los;
 	int		fx;
@@ -65,7 +58,6 @@ typedef struct	s_filler {
 	t_base	base;
 	t_last	last;
 	t_score	score;
-	t_piece p;
 }				t_filler;
 
 void	putdbstr(char **tab, int stop);
@@ -85,5 +77,6 @@ void	define_fx_fy_pos(t_filler *fil);
 
 void	transform_map(t_filler *f);
 void	resolve(t_filler *f);
+void	convert_board(t_filler *f);
 
 #endif
