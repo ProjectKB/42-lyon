@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 17:01:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 17:19:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ void	loop(t_filler *fil, int fd, char *line)
 		//printf("\n");
 		//transform_map(fil);
 		convert_board(fil);
-		transform_map(fil);
+		//transform_map(fil);
 		ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
 		//putdbstr(fil->c_piece, fil->p.ye);
 		//printf("lx : %d ly : %d\n", fil->last.x, fil->last.y);

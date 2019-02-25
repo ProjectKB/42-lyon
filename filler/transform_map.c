@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 17:02:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 18:12:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,21 +51,29 @@
 	}
 }*/
 
-void	dist_line(t_filler *f, int *tab)
+/*void	dist_line(t_filler *f, int *tab)
 {
 	int	i;
 	int	s;
 	int	e;
+	int	s2;
+	int	e2;
 
 	i = -1;
 	s = 0;
 	e = 0;
+	s2 = 0;
+	e2 = 0;
 	while (++i < f->bx_max)
 	{
 		if (!s && (tab[i] == -10 || tab[i] == -2))
 			s = i;
+		if (!s2 && (tab[i] == 700 || tab[i] == 600))
+			s2 = i;
 		if (!e && (tab[i] == -10 || tab[i] == -2) && (i == f->bx_max - 1 || tab[i + 1] == 50))
 			e = i;
+		if (!e && (tab[i] == 700 || tab[i] == 600) && (i == f->bx_max - 1 || tab[i + 1] == 50))
+			e2 = i;
 	}
 	i = -1;
 	while (++i < f->bx_max)
@@ -79,9 +87,9 @@ void	dist_line(t_filler *f, int *tab)
 		if (i < s && tab[i] != -2  && e)
 			tab[i] = s - i;
 	}
-}
+}*/
 
-void	dist_line2(t_filler *f, int *tab)
+/*void	dist_line2(t_filler *f, int *tab)
 {
 	int	i;
 	int	s;
@@ -105,9 +113,9 @@ void	dist_line2(t_filler *f, int *tab)
 		if (i > e && tab[i] == 50 && e)
 			tab[i] = i - e;
 	}
-}
+}*/
 
-void	dist_col2(t_filler *f, int **tab, int j)
+/*void	dist_col2(t_filler *f, int **tab, int j)
 {
 	int	i;
 	int	s;
@@ -133,9 +141,9 @@ void	dist_col2(t_filler *f, int **tab, int j)
 		if (i > e && tab[i][j] == 50 && e)
 			tab[i][j] = i - e;
 	}
-}
+}*/
 
-void	dist_col(t_filler *f, int **tab, int j)
+/*void	dist_col(t_filler *f, int **tab, int j)
 {
 	int	i;
 	int	s;
@@ -165,9 +173,9 @@ void	dist_col(t_filler *f, int **tab, int j)
 		if (i > e && tab[i][j] != -10 && e)
 			tab[i][j] = i - e;
 	}
-}
+}*/
 
-void	transform_map(t_filler *f)
+/*void	transform_map(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -184,9 +192,9 @@ void	transform_map(t_filler *f)
 		dist_line(f, f->iboard[i]);
 		//dist_line2(f, f->iboard[i]);
 	}
-}
+}*/
 
-void	convert_board(t_filler *f)
+/*void	convert_board(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -212,6 +220,61 @@ void	convert_board(t_filler *f)
 				f->iboard[i][j] = 50;
 		}
 	}
-}
+}*/
 
+void	convert_board(t_filler *f)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	if (!(f->iboard = (int**)malloc(sizeof(int*) * f->by_max)))
+		return ;
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max)
+		{
+			if (!j && !(f->iboard[i] = (int*)malloc(sizeof(int) * f->bx_max)))
+				return ;
+			if (f->board[i][j] == f->c_win + 32)
+				f->iboard[i][j] = -3;
+			else if (f->board[i][j] == f->c_win)
+				f->iboard[i][j] = -4;
+			else if (f->board[i][j] == f->c_los + 32)
+				f->iboard[i][j] = -1;
+			else if (f->board[i][j] == f->c_los)
+				f->iboard[i][j] = -2;
+			else if (i < f->by_max / 2 && i > f->by_max / 4 && j < f->bx_max / 2 && j > f->bx_max / 4)
+				f->iboard[i][j] = 14;
+			else if (i < f->by_max / 2 && j < f->bx_max / 2 && j > f->bx_max / 4)
+				f->iboard[i][j] = 12;
+			else if (i < f->by_max / 2 && i > f->by_max / 4 && j < f->bx_max / 2 && j < f->bx_max / 4)
+				f->iboard[i][j] = 13;
+			else if (i < f->by_max / 2 && j < f->bx_max / 2)
+				f->iboard[i][j] = 11;
+			else if (i >= f->by_max / 4 && i < f->by_max / 2 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 23;
+			else if (i < f->by_max / 2 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 21;
+			else if (i < f->by_max / 4 && j >= f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 22;
+			else if (i < f->by_max / 2 && j >= f->bx_max / 2)
+				f->iboard[i][j] = 24;
+			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2 && j > f->bx_max / 4)
+				f->iboard[i][j] = 32;
+			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2)
+				f->iboard[i][j] = 31;
+			else if (i >= f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2 && j >= f->bx_max / 4)
+				f->iboard[i][j] = 34;
+			else if (i >= f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 4)
+				f->iboard[i][j] = 33;
+			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 41;
+			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 42;
+			else if (i >= f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
+				f->iboard[i][j] = 43;
+			else if (i >= f->by_max / 2 && j >= f->bx_max / 2)
+				f->iboard[i][j] = 44;
+		}
+}
 
