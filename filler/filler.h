@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/22 15:20:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 12:23:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,5 +78,7 @@ void	define_fx_fy_pos(t_filler *fil);
 void	transform_map(t_filler *f);
 void	resolve(t_filler *f);
 void	convert_board(t_filler *f);
+void	dist_line(t_filler *f, int *tab);
+void	dist_col(t_filler *f, int **tab, int j);
 
 #endif
