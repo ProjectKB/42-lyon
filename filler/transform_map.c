@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 13:30:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 17:02:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,6 +81,60 @@ void	dist_line(t_filler *f, int *tab)
 	}
 }
 
+void	dist_line2(t_filler *f, int *tab)
+{
+	int	i;
+	int	s;
+	int	e;
+
+	i = -1;
+	s = 0;
+	e = 0;
+	while (++i < f->bx_max)
+	{
+		if (!s && (tab[i] == 50) && (i != f->bx_max - 1 || tab[i + 1] != 50))
+			s = i;
+		if (!e && (tab[i] == 50) && (i != f->bx_max - 1 || tab[i - 1] != 50))
+			e = i;
+	}
+	i = -1;
+	while (++i < f->bx_max)
+	{
+		if (i < s && tab[i] == 50  && s)
+			tab[i] = s - i;
+		if (i > e && tab[i] == 50 && e)
+			tab[i] = i - e;
+	}
+}
+
+void	dist_col2(t_filler *f, int **tab, int j)
+{
+	int	i;
+	int	s;
+	int	e;
+	int b;
+
+	i = -1;
+	s = 0;
+	e = 0;
+	b = -5;
+	while (++i < f->by_max)
+	{
+		if (!s && tab[i][j] == 50 && (i == f->by_max - 1 || tab[i + 1][j] != 50))
+			s = i;
+		if (!e && tab[i][j] == 50 && (!i || tab[i - 1][j] != 50))
+			e = i;
+	}
+	i = -1;
+	while (++i < f->by_max)
+	{
+		if (i < s && tab[i][j] == 50 && s)
+			tab[i][j] = s - i;
+		if (i > e && tab[i][j] == 50 && e)
+			tab[i][j] = i - e;
+	}
+}
+
 void	dist_col(t_filler *f, int **tab, int j)
 {
 	int	i;
@@ -121,9 +175,15 @@ void	transform_map(t_filler *f)
 	i = -1;
 	j = -1;
 	while (++j < f->bx_max)
+	{
 		dist_col(f, f->iboard, j);
+		//dist_col2(f, f->iboard, j);
+	}
 	while (++i < f->by_max)
+	{
 		dist_line(f, f->iboard[i]);
+		//dist_line2(f, f->iboard[i]);
+	}
 }
 
 void	convert_board(t_filler *f)
@@ -151,7 +211,6 @@ void	convert_board(t_filler *f)
 			else
 				f->iboard[i][j] = 50;
 		}
-		dist_line(f, f->iboard[i]);
 	}
 }
 

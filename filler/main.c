@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 13:22:59 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 17:01:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,7 +47,9 @@ void	loop(t_filler *fil, int fd, char *line)
 	static int b = 0;
 	static int py = -1;
 	static int by = -1;
+	int count;
 
+	count = 0;
 	if (!(rt = get_next_line(fd, &line)))
 		exit (0);
 	else if (!fil->player && ft_strstr(line, "loiberti.filler") && ft_find_char(line, '$'))
@@ -77,7 +79,7 @@ void	loop(t_filler *fil, int fd, char *line)
 		//transform_map(fil);
 		convert_board(fil);
 		transform_map(fil);
-		//ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
+		ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
 		//putdbstr(fil->c_piece, fil->p.ye);
 		//printf("lx : %d ly : %d\n", fil->last.x, fil->last.y);
 		//putdbstr(fil->board, fil->by_max);
@@ -112,6 +114,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, 0, line);
+		loop(fil, fd, line);
 	return (0);
 }
