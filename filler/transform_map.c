@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 18:12:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 14:28:15 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -278,3 +278,84 @@ void	convert_board(t_filler *f)
 		}
 }
 
+t_ext	set_ext(t_ext e, t_filler *f)
+{
+	e.a1.x = 0;
+	e.a1.y = 0;
+	e.a2.x = f->bx_max / 4;
+	e.a2.y = 0;
+	e.a3.x = f->bx_max / 2 - 1;
+	e.a3.y = 0;
+	e.a4.x = f->bx_max / 2 + f->bx_max / 4;
+	e.a4.y = 0;
+	e.a5.x = f->bx_max -1;
+	e.a5.y = 0;
+	e.b1.x = f->bx_max -1;
+	e.b1.y = f->by_max / 4;
+	e.b2.x = f->bx_max -1;
+	e.b2.y = f->by_max / 2 - 1;
+	e.b3.x = f->bx_max -1;
+	e.b3.y = f->by_max / 2 + f->by_max / 4;
+	e.c1.x = 0;
+	e.c1.y = f->by_max - 1;
+	e.c2.x = f->bx_max / 4;
+	e.c2.y = f->by_max - 1;
+	e.c3.x = f->bx_max / 2 - 1;
+	e.c3.y = f->by_max - 1;
+	e.c4.x = f->bx_max / 2 + f->bx_max / 4;
+	e.c4.y = f->by_max - 1;
+	e.c5.x = f->bx_max -1;
+	e.c5.y = f->by_max - 1;
+	e.d1.x = 0;
+	e.d1.y = f->by_max / 4;
+	e.d2.x = 0;
+	e.d2.y = f->by_max / 2 - 1;
+	e.d3.x = 0;
+	e.d3.y = f->by_max / 2 + f->by_max / 4;
+	return (e);
+}
+
+void	add_ext_to_iboard(t_filler *f)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	f->ext = set_ext(f->ext, f);
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max)
+		{
+			if (j == f->ext.a1.x && i == f->ext.a1.y)
+				f->iboard[i][j] = 50;
+			else if (j == f->ext.a2.x && i == f->ext.a2.y)
+				f->iboard[i][j] = 51;
+			else if (j == f->ext.a3.x && i == f->ext.a3.y)
+				f->iboard[i][j] = 52;
+			else if (j == f->ext.a4.x && i == f->ext.a4.y)
+				f->iboard[i][j] = 53;
+			else if (j == f->ext.a5.x && i == f->ext.a5.y)
+				f->iboard[i][j] = 54;
+			else if (j == f->ext.b1.x && i == f->ext.b1.y)
+				f->iboard[i][j] = 55;
+			else if (j == f->ext.b2.x && i == f->ext.b2.y)
+				f->iboard[i][j] = 56;
+			else if (j == f->ext.b3.x && i == f->ext.b3.y)
+				f->iboard[i][j] = 57;
+			else if (j == f->ext.c1.x && i == f->ext.c1.y)
+				f->iboard[i][j] = 62;
+			else if (j == f->ext.c2.x && i == f->ext.c2.y)
+				f->iboard[i][j] = 61;
+			else if (j == f->ext.c3.x && i == f->ext.c3.y)
+				f->iboard[i][j] = 60;
+			else if (j == f->ext.c4.x && i == f->ext.c5.y)
+				f->iboard[i][j] = 59;
+			else if (j == f->ext.c5.x && i == f->ext.c5.y)
+				f->iboard[i][j] = 58;
+			else if (j == f->ext.d1.x && i == f->ext.d1.y)
+				f->iboard[i][j] = 65;
+			else if (j == f->ext.d2.x && i == f->ext.d2.y)
+				f->iboard[i][j] = 64;
+			else if (j == f->ext.d3.x && i == f->ext.d3.y)
+				f->iboard[i][j] = 63;
+		}
+}
