@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 14:28:15 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 15:00:52 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -235,36 +235,28 @@ void	convert_board(t_filler *f)
 		{
 			if (!j && !(f->iboard[i] = (int*)malloc(sizeof(int) * f->bx_max)))
 				return ;
-			if (f->board[i][j] == f->c_win + 32)
-				f->iboard[i][j] = -3;
-			else if (f->board[i][j] == f->c_win)
-				f->iboard[i][j] = -4;
-			else if (f->board[i][j] == f->c_los + 32)
-				f->iboard[i][j] = -1;
-			else if (f->board[i][j] == f->c_los)
-				f->iboard[i][j] = -2;
-			else if (i < f->by_max / 2 && i > f->by_max / 4 && j < f->bx_max / 2 && j > f->bx_max / 4)
-				f->iboard[i][j] = 14;
+			if (i < f->by_max / 2 && i > f->by_max / 4 && j < f->bx_max / 2 && j > f->bx_max / 4)
+				f->iboard[i][j] = 19;
 			else if (i < f->by_max / 2 && j < f->bx_max / 2 && j > f->bx_max / 4)
-				f->iboard[i][j] = 12;
+				f->iboard[i][j] = 15;
 			else if (i < f->by_max / 2 && i > f->by_max / 4 && j < f->bx_max / 2 && j < f->bx_max / 4)
-				f->iboard[i][j] = 13;
+				f->iboard[i][j] = 17;
 			else if (i < f->by_max / 2 && j < f->bx_max / 2)
 				f->iboard[i][j] = 11;
 			else if (i >= f->by_max / 4 && i < f->by_max / 2 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
-				f->iboard[i][j] = 23;
+				f->iboard[i][j] = 28;
 			else if (i < f->by_max / 2 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
 				f->iboard[i][j] = 21;
 			else if (i < f->by_max / 4 && j >= f->bx_max / 2 + f->bx_max / 4)
 				f->iboard[i][j] = 22;
 			else if (i < f->by_max / 2 && j >= f->bx_max / 2)
-				f->iboard[i][j] = 24;
+				f->iboard[i][j] = 25;
 			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2 && j > f->bx_max / 4)
 				f->iboard[i][j] = 32;
 			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2)
 				f->iboard[i][j] = 31;
 			else if (i >= f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 2 && j >= f->bx_max / 4)
-				f->iboard[i][j] = 34;
+				f->iboard[i][j] = 36;
 			else if (i >= f->by_max / 2 + f->by_max / 4 && j < f->bx_max / 4)
 				f->iboard[i][j] = 33;
 			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
@@ -272,9 +264,9 @@ void	convert_board(t_filler *f)
 			else if (i >= f->by_max / 2 && i < f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 + f->bx_max / 4)
 				f->iboard[i][j] = 42;
 			else if (i >= f->by_max / 2 + f->by_max / 4 && j >= f->bx_max / 2 && j < f->bx_max / 2 + f->bx_max / 4)
-				f->iboard[i][j] = 43;
+				f->iboard[i][j] = 47;
 			else if (i >= f->by_max / 2 && j >= f->bx_max / 2)
-				f->iboard[i][j] = 44;
+				f->iboard[i][j] = 43;
 		}
 }
 
@@ -326,36 +318,83 @@ void	add_ext_to_iboard(t_filler *f)
 		while (++j < f->bx_max)
 		{
 			if (j == f->ext.a1.x && i == f->ext.a1.y)
-				f->iboard[i][j] = 50;
+				f->iboard[i][j] = 12;
 			else if (j == f->ext.a2.x && i == f->ext.a2.y)
-				f->iboard[i][j] = 51;
+				f->iboard[i][j] = 13;
 			else if (j == f->ext.a3.x && i == f->ext.a3.y)
-				f->iboard[i][j] = 52;
+				f->iboard[i][j] = 16;
 			else if (j == f->ext.a4.x && i == f->ext.a4.y)
-				f->iboard[i][j] = 53;
+				f->iboard[i][j] = 23;
 			else if (j == f->ext.a5.x && i == f->ext.a5.y)
-				f->iboard[i][j] = 54;
+				f->iboard[i][j] = 24;
 			else if (j == f->ext.b1.x && i == f->ext.b1.y)
-				f->iboard[i][j] = 55;
+				f->iboard[i][j] = 26;
 			else if (j == f->ext.b2.x && i == f->ext.b2.y)
-				f->iboard[i][j] = 56;
+				f->iboard[i][j] = 27;
 			else if (j == f->ext.b3.x && i == f->ext.b3.y)
-				f->iboard[i][j] = 57;
+				f->iboard[i][j] = 44;
 			else if (j == f->ext.c1.x && i == f->ext.c1.y)
-				f->iboard[i][j] = 62;
+				f->iboard[i][j] = 35;
 			else if (j == f->ext.c2.x && i == f->ext.c2.y)
-				f->iboard[i][j] = 61;
+				f->iboard[i][j] = 37;
 			else if (j == f->ext.c3.x && i == f->ext.c3.y)
-				f->iboard[i][j] = 60;
+				f->iboard[i][j] = 38;
 			else if (j == f->ext.c4.x && i == f->ext.c5.y)
-				f->iboard[i][j] = 59;
+				f->iboard[i][j] = 46;
 			else if (j == f->ext.c5.x && i == f->ext.c5.y)
-				f->iboard[i][j] = 58;
+				f->iboard[i][j] = 45;
 			else if (j == f->ext.d1.x && i == f->ext.d1.y)
-				f->iboard[i][j] = 65;
+				f->iboard[i][j] = 14;
 			else if (j == f->ext.d2.x && i == f->ext.d2.y)
-				f->iboard[i][j] = 64;
+				f->iboard[i][j] = 18;
 			else if (j == f->ext.d3.x && i == f->ext.d3.y)
-				f->iboard[i][j] = 63;
+				f->iboard[i][j] = 34;
 		}
 }
+
+int	return_zone(t_filler *f, int **tab)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max)
+		{
+			if (tab[f->last.y][f->last.x] < 15)
+				return (11);
+			else if (tab[f->last.y][f->last.x] >= 15 && tab[f->last.y][f->last.x] < 17)
+				return (12);
+			else if (tab[f->last.y][f->last.x] >= 17 && tab[f->last.y][f->last.x] < 19)
+				return (13);
+			else if (tab[f->last.y][f->last.x] == 19)
+				return (14);
+			else if (tab[f->last.y][f->last.x] == 21)
+				return (21);
+			else if (tab[f->last.y][f->last.x] >= 22 && tab[f->last.y][f->last.x] < 25)
+				return (22);
+			else if (tab[f->last.y][f->last.x] == 28)
+				return (23);
+			else if (tab[f->last.y][f->last.x] >= 25 && tab[f->last.y][f->last.x] < 28)
+				return (24);
+			else if (tab[f->last.y][f->last.x] == 31)
+				return (31);
+			else if (tab[f->last.y][f->last.x] == 32)
+				return (32);
+			else if (tab[f->last.y][f->last.x] >= 33 && tab[f->last.y][f->last.x] < 36)
+				return (33);
+			else if (tab[f->last.y][f->last.x] >= 36 && tab[f->last.y][f->last.x] < 38)
+				return (34);
+			else if (tab[f->last.y][f->last.x] == 41)
+				return (41);
+			else if (tab[f->last.y][f->last.x] == 42)
+				return (42);
+			else if (tab[f->last.y][f->last.x] == 47)
+				return (43);
+			else if (tab[f->last.y][f->last.x] >= 43 && tab[f->last.y][f->last.x] < 47)
+				return (44);
+		}
+	return (0);
+}
+
+
