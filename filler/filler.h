@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 13:53:49 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/01 14:45:40 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -106,5 +106,8 @@ void	convert_board(t_filler *f);
 void	dist_line(t_filler *f, int *tab);
 void	dist_col(t_filler *f, int **tab, int j);
 
-void	add_ext_to_iboard(t_filler *f);
+void	test1(t_filler *f);
+void	test2(t_filler *f);
+void	test3(t_filler *f);
+
 #endif

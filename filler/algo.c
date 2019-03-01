@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 16:38:45 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/01 13:36:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -118,25 +118,12 @@ void	place_piece(t_filler *f, int sy, int sx)
 	while (++i < f->py_max && (j = -1))
 		while (++j < f->px_max)
 			f->score.v_t += f->iboard[i + sy][j + sx];
-	/*if (f->iboard[f->last.y][f->last.x] == 43 || f->iboard[f->last.y][f->last.x] == 15 ||
-	f->iboard[f->last.y][f->last.x] == 10 || f->iboard[f->last.y][f->last.x] == 13)
-	{
-		if (f->score.v_t && f->score.v_t < f->score.v)
+		if (f->score.v_t && f->score.v_t > f->score.v)
 		{
 			f->score.x = sx;
 			f->score.y = sy;
 			f->score.v = f->score.v_t;
 		}
-	}*/
-	//else
-	//{
-		if (f->score.v_t && f->score.v_t < f->score.v)
-		{
-			f->score.x = sx;
-			f->score.y = sy;
-			f->score.v = f->score.v_t;
-		}
-	//}
 }
 
 void	test(t_filler *f, int sy, int sx)
@@ -154,9 +141,9 @@ void        resolve(t_filler *f)
 	while (++i < f->by_max && (j = -1))
 		while (++j < f->bx_max)
 			if (!exceed_board(f, i, j) && !occupied(f, i, j))
-				//place_piece(f, i, j);
+				place_piece(f, i, j);
 				//test(f, i, j);
-				calcul_score(f, i, j);
-	f->score.v = 100000;
+				//calcul_score(f, i, j);
+	f->score.v = -5;
 	f->score.v_t = 0;
 }
