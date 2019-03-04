@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/22 15:21:55 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 18:09:56 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ void	bx_by_max(t_filler *fil, char *str)
 
 void	define_last_pos(char c, t_filler *fil, int j, int s)
 {
-	if (c == fil->c_los || c == fil->c_los + 32)
+	if ((c == fil->c_los || c == fil->c_los + 32) /*&& !fil->start*/)
 	{
 		if (c == fil->c_los + 32)
 		{
@@ -42,7 +42,7 @@ void	define_last_pos(char c, t_filler *fil, int j, int s)
 			fil->last.y = s;
 		}
 	}
-	else if (c == fil->c_win || c == fil->c_win + 32)
+	else if ((c == fil->c_win || c == fil->c_win + 32) /*&& !fil->start*/)
 	{
 		if (c == fil->c_win + 32)
 		{

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:14:35 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 18:00:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ void	loop(t_filler *fil, int fd, char *line)
 		if (!fil->start)
 			convert_board(fil);
 			test8(fil);
-			printf("%d %d %d %d %d %d\n", fil->v.c1, fil->v.c2, fil->v.c3, fil->v.l1, fil->v.l2, fil->v.l3);
+			//printf("%d %d %d %d %d %d\n", fil->v.c1, fil->v.c2, fil->v.c3, fil->v.l1, fil->v.l2, fil->v.l3);
 			test4(fil);
 			test1(fil);
 			test2(fil);
