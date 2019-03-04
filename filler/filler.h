@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/01 14:45:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 16:03:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,16 @@ typedef struct	s_e {
 	int	x;
 	int	y;
 }				t_e;
+
+typedef struct	s_v {
+	int	l1;
+	int	l2;
+	int l3;
+	int	c1;
+	int	c2;
+	int c3;
+}				t_v;
+
 
 typedef struct	s_score {
 	int	x;
@@ -83,6 +93,7 @@ typedef struct	s_filler {
 	t_last	last;
 	t_score	score;
 	t_ext	ext;
+	t_v		v;
 }				t_filler;
 
 void	putdbstr(char **tab, int stop);
@@ -109,5 +120,7 @@ void	dist_col(t_filler *f, int **tab, int j);
 void	test1(t_filler *f);
 void	test2(t_filler *f);
 void	test3(t_filler *f);
+void	test4(t_filler *f);
+void	test8(t_filler *f);
 
 #endif

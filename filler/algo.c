@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/01 13:36:38 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:02:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-/*void	transform_map(t_filler *f)
+void	transform_map(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,7 @@
 				vy = i >= f->last.y ? i - f->last.y : f->last.y - i;
 				f->board[i][j] = vx >= vy ? vx + 33 : vy + 33;
 			}
-}*/
+}
 
 /*void	transform_map2(t_filler *f)
 {
@@ -118,7 +118,7 @@ void	place_piece(t_filler *f, int sy, int sx)
 	while (++i < f->py_max && (j = -1))
 		while (++j < f->px_max)
 			f->score.v_t += f->iboard[i + sy][j + sx];
-		if (f->score.v_t && f->score.v_t > f->score.v)
+		if (f->score.v_t > f->score.v)
 		{
 			f->score.x = sx;
 			f->score.y = sy;
