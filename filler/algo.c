@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 18:00:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 18:21:10 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -118,7 +118,7 @@ void	place_piece(t_filler *f, int sy, int sx)
 	while (++i < f->py_max && (j = -1))
 		while (++j < f->px_max)
 			f->score.v_t += f->iboard[i + sy][j + sx];
-		if (f->score.v_t > f->score.v)
+		if (f->score.v_t < f->score.v)
 		{
 			f->score.x = sx;
 			f->score.y = sy;
@@ -144,6 +144,6 @@ void        resolve(t_filler *f)
 				place_piece(f, i, j);
 				//test(f, i, j);
 				//calcul_score(f, i, j);
-	f->score.v = -5;
+	f->score.v = 10000;
 	f->score.v_t = 0;
 }

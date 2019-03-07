@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:14:14 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:10:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,21 +87,20 @@ int		column(t_filler *f)
 	c = 0;
 	d = 0;
 	while (++i < f->by_max && (j = -1))
+	{
 		while (++j < (f->bx_max - 1) / 4)
-			if (f->iboard[i][j] == 3 || f->iboard[i][j] == 4)
+			if (f->iboard[i][j] == 30 || f->iboard[i][j] == 40)
 				a++;
-	while (++i < f->by_max && (j = -1))
 		while (++j < (f->bx_max - 1) / 2)
-			if (f->iboard[i][j] == 3 || f->iboard[i][j] == 4)
+			if (f->iboard[i][j] == 30 || f->iboard[i][j] == 40)
 				b++;
-	while (++i < f->by_max && (j = -1))
 		while (++j < (f->bx_max - 1) / 2 + (f->bx_max - 1) / 4)
-			if (f->iboard[i][j] == 3 || f->iboard[i][j] == 4)
+			if (f->iboard[i][j] == 30 || f->iboard[i][j] == 40)
 				c++;
-	while (++i < f->by_max && (j = -1))
 		while (++j < f->bx_max)
-			if (f->iboard[i][j] == 3 || f->iboard[i][j] == 4)
+			if (f->iboard[i][j] == 30 || f->iboard[i][j] == 40)
 				d++;
+	}
 	return (bigger_c(a, b, c, d));
 }
 
@@ -206,18 +205,17 @@ void	convert_board(t_filler *f)
 		while (++j < f->bx_max)
 		{
 			if (f->board[i][j] == f->c_win + 32)
-				f->iboard[i][j] = 20;
+				f->iboard[i][j] = 200;
 			else if (f->board[i][j] == f->c_win)
-				f->iboard[i][j] = 10;
+				f->iboard[i][j] = 300;
 			else if (f->board[i][j] == f->c_los + 32)
-				f->iboard[i][j] = 30;
+				f->iboard[i][j] = 400;
 			else if (f->board[i][j] == f->c_los)
-				f->iboard[i][j] = 40;
+				f->iboard[i][j] = 500;
 			else
-				f->iboard[i][j] = 0;
+				f->iboard[i][j] = 100;
 		}
 	}
-	//test8(f);
 }
 
 
@@ -232,32 +230,44 @@ void	test1(t_filler *f)
 	int i;
 	int a;
 	int b;
+	int v;
 
 	j = -1;
 	i = -1;
 	a = test5(f) ? 8 : 9;
 	b = test5(f) ? 9 : 8;
-	while (++j < f->last.x - 5)
-	{
-		f->iboard[f->base.y][j] = b;
-		f->iboard[f->base.y + 1][j] = b;
-		f->iboard[f->base.y + 2][j] = b;
-		f->iboard[f->base.y + 3][j] = b;
-	}
-	while (++j < f->base.x)
-	{
-		f->iboard[f->base.y][j] = a;
-		f->iboard[f->base.y + 1][j] = a;
-		f->iboard[f->base.y + 2][j] = a;
-		f->iboard[f->base.y + 3][j] = a;
-	}
-	while (++j < f->bx_max)
-	{
-		f->iboard[f->base.y][j] = b;
-		f->iboard[f->base.y + 1][j] = b;
-		f->iboard[f->base.y + 2][j] = b;
-		f->iboard[f->base.y + 3][j] = b;
-	}
+	while (++j < f->last.x - 5 && (v = -1))
+		while (++v < 4)
+			f->iboard[f->base.y + v][j] = b;
+	while (++j < f->base.x && (v = -1))
+		while (++v < 4)
+			f->iboard[f->base.y + v][j] = a;
+	while (++j < f->bx_max && (v = -1))
+		while (++v < 4)
+			f->iboard[f->base.y + v][j] = b;
+}
+
+void	test11(t_filler *f)
+{
+	int	j;
+	int i;
+	int a;
+	int b;
+	int v;
+
+	j = -1;
+	i = -1;
+	a = test5(f) ? 8 : 9;
+	b = test5(f) ? 9 : 8;
+	while (++j < f->last.x - 5 && (v = -1))
+		while (++v < 4)
+			f->iboard[f->last.y + v][j] = b;
+	while (++j < f->base.x && (v = -1))
+		while (++v < 4)
+			f->iboard[f->last.y + v][j] = a;
+	while (++j < f->bx_max && (v = -1))
+		while (++v < 4)
+			f->iboard[f->last.y + v][j] = b;
 }
 
 void	test4(t_filler *f)
@@ -265,63 +275,64 @@ void	test4(t_filler *f)
 	int	i;
 	int	a;
 	int	b;
+	int v;
 
 	i = -1;
 	a = test5(f) ? 8 : 9;
 	b = test5(f) ? 9 : 8;
-	while (++i < f->base.y)
-	{
-		f->iboard[i][f->last.x - 1] = a;
-		f->iboard[i][f->last.x - 2] = a;
-		if (f->last.x - 3 > 0)
-		{
-			f->iboard[i][f->last.x - 3] = a;
-			f->iboard[i][f->last.x - 4] = a;
-		}
-	}
-	while (++i < f->by_max)
-	{
-		f->iboard[i][f->last.x - 1] = b;
-		f->iboard[i][f->last.x - 2] = b;
-		if (f->last.x - 3 > 0)
-		{
-			f->iboard[i][f->last.x - 3] = b;
-			f->iboard[i][f->last.x - 4] = b;
-		}
-	}
+	while (++i < f->base.y && (v = 0) != -1)
+		while (--v > -5 && (f->iboard[i][f->last.x + v] = a))
+			if (f->last.x - 3 <= 0)
+				break;
+	while (++i < f->by_max && (v = 0) != -1)
+		while (--v > -5 && (f->iboard[i][f->last.x + v] = b))
+			if (f->last.x - 3 <= 0)
+				break;
 }
+
+void	test44(t_filler *f)
+{
+	int	i;
+	int	a;
+	int	b;
+	int v;
+
+	i = -1;
+	a = test5(f) ? 8 : 9;
+	b = test5(f) ? 9 : 8;
+	while (++i < f->base.y && (v = 0) != -1)
+		while (--v > -5 && (f->iboard[i][f->base.x + v] = a))
+			if (f->base.x - 3 <= 0)
+				break;
+	while (++i < f->by_max && (v = 0) != -1)
+		while (--v > -5 && (f->iboard[i][f->base.x + v] = b))
+			if (f->base.x - 3 <= 0)
+				break;
+}
+
 
 void	test2(t_filler *f)
 {
 	int	j;
 	int i;
+	int v;
 
 	i = -1;
 	j = -1;
-	while (++i < f->by_max)
-	{
-		f->iboard[i][(f->bx_max - 1) / 2] = f->v.c2;
-		f->iboard[i][(f->bx_max - 1) / 2 + 1] = f->v.c2;
-		f->iboard[i][(f->bx_max - 1) / 2 - 1] = f->v.c2;
-		f->iboard[i][(f->bx_max - 1) / 4] = f->v.c1;
-		f->iboard[i][(f->bx_max - 1) / 4 + 1] = f->v.c1;
-		f->iboard[i][(f->bx_max - 1) / 4 - 1] = f->v.c1;
-		f->iboard[i][(f->bx_max - 1) / 2 + (f->bx_max - 1) / 4] = f->v.c3;
-		f->iboard[i][(f->bx_max - 1) / 2 + (f->bx_max - 1) / 4 + 1] = f->v.c3;
-		f->iboard[i][(f->bx_max - 1) / 2 + (f->bx_max - 1) / 4 - 1] = f->v.c3;
-	}
-	while (++j < f->bx_max)
-	{
-		f->iboard[(f->by_max - 1) / 2][j] = f->v.l2;
-		f->iboard[(f->by_max - 1) / 2 + 1][j] = f->v.l2;
-		f->iboard[(f->by_max - 1) / 2 - 1][j] = f->v.l2;
-		f->iboard[(f->by_max - 1) / 4][j] = f->v.l1;
-		f->iboard[(f->by_max - 1) / 4 + 1][j] = f->v.l1;
-		f->iboard[(f->by_max - 1) / 4 - 1][j] = f->v.l1;
-		f->iboard[(f->by_max - 1) / 4 + (f->by_max - 1) / 2][j] = f->v.l3;
-		f->iboard[(f->by_max - 1) / 4 + (f->by_max - 1) / 2 + 1][j] = f->v.l3;
-		f->iboard[(f->by_max - 1) / 4 + (f->by_max - 1) / 2 - 1][j] = f->v.l3;
-	}
+	while (++i < f->by_max && (v = -2))
+		while (++v < 2)
+		{
+			f->iboard[i][(f->bx_max - 1) / 2 + v] = f->v.c2;
+			f->iboard[i][(f->bx_max - 1) / 4 + v] = f->v.c1;
+			f->iboard[i][(f->bx_max - 1) / 2 + (f->bx_max - 1) / 4 + v] = f->v.c3;
+		}
+	while (++j < f->bx_max && (v = -2))
+		while (++v < 2)
+		{
+			f->iboard[(f->by_max - 1) / 2 + v][j] = f->v.l2;
+			f->iboard[(f->by_max - 1) / 4 + v][j] = f->v.l1;
+			f->iboard[(f->by_max - 1) / 4 + (f->by_max - 1) / 2 + v][j] = f->v.l3;
+		}
 }
 
 void	test3(t_filler *f)
@@ -339,4 +350,93 @@ void	test3(t_filler *f)
 		f->iboard[i][j] = 6;
 }
 
+void	test6(t_filler *f)
+{
+	int	j;
+	int	i;
 
+	i = f->by_max;
+	j = f->bx_max;
+	while (--i > -1 && --j > -1)
+	{
+		f->iboard[i][j] = 9;
+		f->iboard[i][j - 1] = 9;
+	}
+	i = -1;
+	while (++i < f->by_max / 4 && (j = -1))
+		while (++j < f->bx_max / 2)
+			f->iboard[i][j] = 9;
+	i = -1;
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max / 4)
+			f->iboard[i][j] = 9;
+}
+
+void	line_se(int *s, int *e, int *tab, t_filler *f, int tt)
+{
+	int j;
+	int v;
+	j = -1;
+	v = 0;
+	while (++j < f->bx_max)
+	{
+		if (!v && (tab[j] == tt || tab[j] == tt + 100) && j && tab[j - 1] == 100)
+			*s = j - 1;
+		if ((tab[j] == tt || tab[j] == tt + 100) && j + 1 != f->bx_max && tab[j + 1] == 100)
+			*e = j + 1;
+	}
+}
+
+void	col_se(int *s, int *e, t_filler *f, int j, int tt)
+{
+	int i;
+	int v;
+	i = -1;
+	v = 0;
+	while (++i < f->by_max)
+	{
+		if (!v && (f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i && f->iboard[i - 1][j] == 100)
+			*s = i - 1;
+		if ((f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i + 1 != f->by_max && f->iboard[i + 1][j] == 100)
+			*e = i + 1;
+	}
+}
+
+void	test7(t_filler *f)
+{
+	int	i;
+	int	j;
+	int	xs;
+	int	xe;
+	int	ys;
+	int	ye;
+
+	i = -1;
+	while (++i < f->by_max && (j = -1))
+	{
+		xs = 0;
+		xe = 0;
+		line_se(&xs, &xe, f->iboard[i], f, 400);
+		while (++j < f->bx_max)
+		{
+			if (xs && j < xs)
+				f->iboard[i][j] = xs - j;
+			if (xe && j > xe)
+				f->iboard[i][j] = j - xs;
+		}
+	}
+	j = -1;
+	while (++j < f->bx_max && (i = -1))
+	{
+		ys = 0;
+		ye = 0;
+		col_se(&ys, &ye, f, j, 400);
+		while (++i < f->by_max)
+		{
+			if (ys && i < ys)
+				f->iboard[i][j] = ys - i;
+			if (ye && i > ye)
+				f->iboard[i][j] = i - ys;
+		}
+	}
+}
