@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/07 19:16:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 21:25:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 void	bx_by_max(t_filler *fil, char *str)
 {
-	int i;
+	int	i;
 
 	i = 7;
 	fil->bx_max = 0;
@@ -24,45 +24,30 @@ void	bx_by_max(t_filler *fil, char *str)
 		fil->by_max = fil->by_max * 10 + (str[i] - 48);
 	while (str[++i] != ':')
 		fil->bx_max = fil->bx_max * 10 + (str[i] - 48);
-	//fil->bx_max++;
-	//fil->by_max++;
-	//printf("bx : %d by : %d\n", fil->bx_max, fil->by_max);
 }
 
 void	define_last_pos(char c, t_filler *fil, int j, int s)
 {
-	if ((c == fil->c_los || c == fil->c_los + 32) /*&& !fil->start*/)
+	if ((c == fil->c_los || c == fil->c_los + 32))
 	{
-		if (c == fil->c_los + 32)
-		{
-			fil->last.x = j;
+		if (c == fil->c_los + 32 && (fil->last.x = j) != -1)
 			fil->last.y = s;
-		}
-		else if (c == fil->c_los)
-		{
-			fil->last.x = j;
+		else if (c == fil->c_los && (fil->last.x = j) != -1)
 			fil->last.y = s;
-		}
 	}
-	else if ((c == fil->c_win || c == fil->c_win + 32) /*&& !fil->start*/)
+	else if ((c == fil->c_win || c == fil->c_win + 32))
 	{
-		if (c == fil->c_win + 32)
-		{
-			fil->base.x = j;
+		if (c == fil->c_win + 32 && (fil->base.x = j))
 			fil->base.y = s;
-		}
-		else if (c == fil->c_win && !fil->start)
-		{
-			fil->base.x = j;
+		else if (c == fil->c_win && !fil->start && (fil->base.x = j))
 			fil->base.y = s;
-		}
 	}
 }
 
 void	fill_board(t_filler *fil, char *str, int s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 3;
 	j = -1;
@@ -81,7 +66,7 @@ void	fill_board(t_filler *fil, char *str, int s)
 
 void	px_py_max(t_filler *fil, char *str)
 {
-	int i;
+	int	i;
 
 	i = 5;
 	fil->px_max = 0;
@@ -90,13 +75,12 @@ void	px_py_max(t_filler *fil, char *str)
 		fil->py_max = fil->py_max * 10 + (str[i] - 48);
 	while (str[++i] != ':')
 		fil->px_max = fil->px_max * 10 + (str[i] - 48);
-	//printf("px : %d py : %d\n", fil->px_max, fil->py_max);
 }
 
 void	fill_piece(t_filler *fil, char *str, int s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = -1;
@@ -109,78 +93,3 @@ void	fill_piece(t_filler *fil, char *str, int s)
 		fil->piece[s][j] = str[i++];
 	fil->piece[s][fil->px_max] = '\0';
 }
-
-int	calcul_dist(t_filler *f, int y, int x)
-{
-	int	j;
-	int	left;
-	int	right;
-
-	j = x;
-	left = 0;
-	right = 0;
-	while (--j > -1)
-		if (f->board[y][j] == f->c_los && !left)
-			left = j;
-	while (++x < f->bx_max)
-		if (f->board[y][x] == f->c_los && !right)
-			right = x;
-	if (left > right)
-		return (right);
-	return (left);
-}
-
-int	calcul_dist_c(t_filler *f, int y, int x)
-{
-	int	j;
-	int	left;
-	int	right;
-
-	j = y;
-	left = 0;
-	right = 0;
-	while (--j > -1)
-		if (f->board[j][x] == f->c_los && !left)
-			left = j;
-	while (++y < f->by_max)
-		if (f->board[y][x] == f->c_los && !right)
-			right = y;
-	if (left > right)
-		return (right);
-	return (left);
-}
-
-/*void    pxs_pxe(t_filler *fil, char **piece)
-{
-	int    i;
-	int    j;
-
-	i = -1;
-	while (++i < fil->p.ye && (j = -1))
-		while (++j < fil->px_max)
-		{
-			if (piece[i + fil->p.ys][j] == '*' && j < fil->p.xs)
-				fil->p.xs = j;
-			if (piece[i + fil->p.ys][j] == '*' && j > fil->p.xe)
-				fil->p.xe = j;
-		}
-	fil->p.xe++;
-}
-
-void    cut_piece(t_filler *f)
-{
-	int    i;
-	int    j;
-
-	i = -1;
-	if (!(f->c_piece = (char**)malloc(sizeof(char*) * f->p.ye)))
-		return ;
-	while (++i < f->p.ye && (j = -1))
-	{
-		if (!(f->c_piece[i] = (char*)malloc(sizeof(char) * (f->p.xe - f->p.xs + 1))))
-			return ;
-		while (++j < (f->p.xe - f->p.xs))
-			f->c_piece[i][j] = f->piece[f->p.ys + i][f->p.xs + j];
-		f->c_piece[i][j] = '\0';
-	}
-}*/
