@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:30:15 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 18:09:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 19:16:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,8 @@ void	bx_by_max(t_filler *fil, char *str)
 		fil->by_max = fil->by_max * 10 + (str[i] - 48);
 	while (str[++i] != ':')
 		fil->bx_max = fil->bx_max * 10 + (str[i] - 48);
+	//fil->bx_max++;
+	//fil->by_max++;
 	//printf("bx : %d by : %d\n", fil->bx_max, fil->by_max);
 }
 
