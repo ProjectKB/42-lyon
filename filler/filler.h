@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 16:48:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 14:54:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -124,5 +124,6 @@ void	test4(t_filler *f);
 void	test8(t_filler *f);
 void	test6(t_filler *f);
 void	test7(t_filler *f);
+void	test9(t_filler *f);
 
 #endif

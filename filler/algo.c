@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 18:21:10 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 18:17:15 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -144,6 +144,6 @@ void        resolve(t_filler *f)
 				place_piece(f, i, j);
 				//test(f, i, j);
 				//calcul_score(f, i, j);
-	f->score.v = 10000;
+	f->score.v = 1000000;
 	f->score.v_t = 0;
 }

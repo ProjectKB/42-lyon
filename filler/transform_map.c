@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 19:10:29 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 18:16:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -204,22 +204,22 @@ void	convert_board(t_filler *f)
 			return ;
 		while (++j < f->bx_max)
 		{
-			if (f->board[i][j] == f->c_win + 32)
+			/*if (f->board[i][j] == f->c_win + 32)
 				f->iboard[i][j] = 200;
 			else if (f->board[i][j] == f->c_win)
-				f->iboard[i][j] = 300;
-			else if (f->board[i][j] == f->c_los + 32)
-				f->iboard[i][j] = 400;
+				f->iboard[i][j] = 300;*/
+			if (f->board[i][j] == f->c_los + 32)
+				f->iboard[i][j] = 500;
 			else if (f->board[i][j] == f->c_los)
 				f->iboard[i][j] = 500;
 			else
-				f->iboard[i][j] = 100;
+				f->iboard[i][j] = 555;
 		}
 	}
 }
 
 
-int		test5(t_filler *f)
+/*int		test5(t_filler *f)
 {
 	return (f->base.y > f->last.y ? 0 : 1);
 }
@@ -380,10 +380,31 @@ void	line_se(int *s, int *e, int *tab, t_filler *f, int tt)
 	v = 0;
 	while (++j < f->bx_max)
 	{
-		if (!v && (tab[j] == tt || tab[j] == tt + 100) && j && tab[j - 1] == 100)
-			*s = j - 1;
-		if ((tab[j] == tt || tab[j] == tt + 100) && j + 1 != f->bx_max && tab[j + 1] == 100)
-			*e = j + 1;
+		if (!v && (tab[j] == tt || tab[j] == tt + 100) && j && tab[j - 1] == 0)
+		{
+			v = 1;
+			*s = j;
+		}
+		if ((tab[j] == tt || tab[j] == tt + 100) && j + 1 != f->bx_max && tab[j + 1] == 0)
+			*e = j;
+	}
+}
+
+void	line_d(int *s, int *e, int *tab, t_filler *f, int tt)
+{
+	int j;
+	int v;
+	j = -1;
+	v = 0;
+	while (++j < f->bx_max)
+	{
+		if (!v && tab[j] != tt && j && tab[j - 1] == 0)
+		{
+			v = 1;
+			*s = j;
+		}
+		if (tab[j] != tt && j + 1 != f->bx_max && tab[j + 1] == 0)
+			*e = j;
 	}
 }
 
@@ -395,14 +416,35 @@ void	col_se(int *s, int *e, t_filler *f, int j, int tt)
 	v = 0;
 	while (++i < f->by_max)
 	{
-		if (!v && (f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i && f->iboard[i - 1][j] == 100)
-			*s = i - 1;
-		if ((f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i + 1 != f->by_max && f->iboard[i + 1][j] == 100)
-			*e = i + 1;
+		if (!v && (f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i)
+		{
+			*s = i;
+			v = 1;
+		}
+		if ((f->iboard[i][j] == tt || f->iboard[i][j] == tt + 100) && i + 1 != f->by_max && f->iboard[i + 1][j] == 0)
+			*e = i;
 	}
 }
 
-void	test7(t_filler *f)
+void	col_d(int *s, int *e, t_filler *f, int j, int tt)
+{
+	int i;
+	int v;
+	i = -1;
+	v = 0;
+	while (++i < f->by_max)
+	{
+		if (!v && f->iboard[i][j] != tt && i)
+		{
+			*s = i;
+			v = 1;
+		}
+		if (f->iboard[i][j] != tt && i + 1 != f->by_max && f->iboard[i + 1][j] == 0)
+			*e = i;
+	}
+}*/
+
+/*void	test7(t_filler *f)
 {
 	int	i;
 	int	j;
@@ -420,9 +462,9 @@ void	test7(t_filler *f)
 		while (++j < f->bx_max)
 		{
 			if (xs && j < xs)
-				f->iboard[i][j] = xs - j;
+				f->iboard[i][j] = (xs - j);
 			if (xe && j > xe)
-				f->iboard[i][j] = j - xs;
+				f->iboard[i][j] = (j - xe);
 		}
 	}
 	j = -1;
@@ -434,9 +476,101 @@ void	test7(t_filler *f)
 		while (++i < f->by_max)
 		{
 			if (ys && i < ys)
-				f->iboard[i][j] = ys - i;
+				f->iboard[i][j] = (ys - i);
 			if (ye && i > ye)
-				f->iboard[i][j] = i - ys;
+				f->iboard[i][j] = (i - ye);
 		}
 	}
+}*/
+
+void	test7(t_filler *f)
+{
+	int	i;
+	int	j;
+	int v;
+
+	v = 1;
+	while (v < 100 && (i = -1))
+	{
+		while (++i < f->by_max && (j = -1))
+		{
+			while (++j < f->bx_max)
+			{
+				if (i - v >= 0 && f->iboard[i][j] == 500 && f->iboard[i - v][j] != 500 && f->iboard[i - v][j] == 555)
+					f->iboard[i - v][j] = v * 100;
+				if (i + v < f->by_max && f->iboard[i][j] == 500 && f->iboard[i + v][j] != 500 && f->iboard[i + v][j] == 555)
+					f->iboard[i + v][j] = v * 100;
+				if (j - v >= 0 && f->iboard[i][j] == 500 && f->iboard[i][j - v] != 500 && f->iboard[i][j - v] == 555)
+					f->iboard[i][j - v] = v * 100;
+				if (j + v < f->bx_max && f->iboard[i][j] == 500 && f->iboard[i][j + v] != 500 && f->iboard[i][j + v] == 555)
+					f->iboard[i][j + v] = v * 100;
+				if (i - v >= 0 && j - v >= 0 && f->iboard[i][j] == 500 && f->iboard[i - v][j - v] != 500 && f->iboard[i - v][j - v] == 555)
+					f->iboard[i - v][j - v] = v * 100;
+				if (i - v >= 0 && j + v < f->bx_max && f->iboard[i][j] == 500 && f->iboard[i - v][j + v] != 500 && f->iboard[i - v][j + v] == 555)
+					f->iboard[i - v][j + v] = v * 100;
+				if (i + v < f->by_max && j + v < f->bx_max && f->iboard[i][j] == 500 && f->iboard[i + v][j + v] != 500 && f->iboard[i + v][j + v] == 555)
+					f->iboard[i + v][j + v] = v * 100;
+				if (i + v < f->by_max && j - v >= 0 && f->iboard[i][j] == 500 && f->iboard[i + v][j - v] != 500 && f->iboard[i + v][j - v] == 555)
+					f->iboard[i + v][j - v] = v * 100;
+			}
+		}
+		v++;
+	}
 }
+
+/*void	test9(t_filler *f)
+{
+	int	i;
+	int	j;
+	int	xs;
+	int	xe;
+	int	ys;
+	int	ye;
+
+	i = -1;
+	while (++i < f->by_max && (j = -1))
+	{
+		xs = 0;
+		xe = 0;
+		ys = 0;
+		ye = 0;
+		col_d(&ys, &ye, f, j, 0);
+		while (++j < f->bx_max)
+		{
+			line_d(&xs, &xe, f->iboard[i], f, 0);
+			if (i < ys && j < xs)
+				f->iboard[i][j] = f->iboard[i][xs] + f->iboard[ys][j];
+			else if (i > ys && j < xs)
+				f->iboard[i][j] = f->iboard[i][xs] + f->iboard[ys][j];
+		}
+	}
+	i = f->by_max;
+	while (--i > ye && (j = f->bx_max))
+	{
+		xs = 0;
+		xe = 0;
+		ys = 0;
+		ye = 0;
+		line_d(&xs, &xe, f->iboard[i], f, 0);
+		while (--j > xe)
+		{
+			col_d(&ys, &ye, f, j, 0);
+				f->iboard[i][j] = f->iboard[i][xe] + f->iboard[ye][j];
+		}
+	}
+	i = -1;
+	while (++i < ys && (j = f->bx_max))
+	{
+		xs = 0;
+		xe = 0;
+		ys = 0;
+		ye = 0;
+		line_d(&xs, &xe, f->iboard[i], f, 0);
+		while (--j > xe)
+		{
+			col_d(&ys, &ye, f, j, 0);
+			f->iboard[i][j] = f->iboard[i][xe] + f->iboard[ys][j];
+		}
+	}
+
+}*/

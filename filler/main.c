@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/07 14:01:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 18:17:03 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ t_filler *init_struct(void)
 	fil->bx_max = 0;
 	fil->by_max = 0;
 	fil->start = 0;
-	fil->score.v = 10000;
+	fil->score.v = 1000000;
 	fil->score.x = 0;
 	fil->score.y = 0;
 	fil->score.v_t = 0;
@@ -66,7 +66,7 @@ void	loop(t_filler *fil, int fd, char *line)
 	if (fil->py_max && py == fil->py_max - 1)
 	{
 		//transform_map(fil);
-		if (!fil->start)
+		//if (!fil->start)
 			convert_board(fil);
 			//test8(fil);
 			//printf("%d %d %d %d %d %d\n", fil->v.c1, fil->v.c2, fil->v.c3, fil->v.l1, fil->v.l2, fil->v.l3);
@@ -74,8 +74,9 @@ void	loop(t_filler *fil, int fd, char *line)
 			//test1(fil);
 			//test6(fil);
 			test7(fil);
+			//test9(fil);
 			//test2(fil);
-		ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
+		//ft_putdbint(fil->iboard, fil->bx_max, fil->by_max);
 		resolve(fil);
 		py = -1;
 		by = -1;
@@ -96,6 +97,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		loop(fil, fd, line);
+		loop(fil, 0, line);
 	return (0);
 }

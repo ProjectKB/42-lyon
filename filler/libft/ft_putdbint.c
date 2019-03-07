@@ -6,7 +6,7 @@
 /*   By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/09 08:16:03 by rcepre       #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 15:17:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 17:02:34 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,11 +30,11 @@ void	ft_putdbint(int **dbint, int x, int y)
 				ft_printf("%05$d", dbint[i][j]);
 			else if (dbint[i][j] == 4)
 				ft_printf("%06$d", dbint[i][j]);
-			else if (dbint[i][j] == 8)
+			else if (dbint[i][j] == 500)
 				ft_printf("%01$d", dbint[i][j]);
-			else if (dbint[i][j] == 9)
+			else if (dbint[i][j] == 100)
 				ft_printf("%02$d", dbint[i][j]);
-			else if (dbint[i][j] == 7)
+			else if (dbint[i][j] == 200)
 				ft_printf("%04$d", dbint[i][j]);
 			else if (dbint[i][j] == 6)
 				ft_printf("%03$d", dbint[i][j]);
