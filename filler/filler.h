@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/07 21:57:41 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 23:17:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,30 +53,34 @@ typedef struct	s_filler {
 	char	c_los;
 	int		fx;
 	int		fy;
+	int		dir_x;
+	int		dir_y;
 	t_base	base;
 	t_last	last;
 	t_score	score;
 }				t_filler;
 
-/*
-** PARSING
-*/
+void	putdbstr(char **tab, int stop);
+
 void	bx_by_max(t_filler *fill, char *str);
 void	px_py_max(t_filler *fill, char *str);
+void	pxs_pxe(t_filler *fill, char **piece);
 void	fill_board(t_filler *fil, char *str, int s);
 void	fill_piece(t_filler *fil, char *str, int s);
+void	cut_piece(t_filler *f);
 
-/*
-** TOOLS
-*/
+int	calcul_dist(t_filler *f, int y, int x);
+int	calcul_dist_c(t_filler *f, int y, int x);
+
 void	define_player(t_filler *fil, char *str);
 void	define_fx_fy_pos(t_filler *fil);
 
-/*
-** ALGO
-*/
+void	transform_map(t_filler *f);
 void	resolve(t_filler *f);
 void	convert_board(t_filler *f);
+void	dist_line(t_filler *f, int *tab);
+void	dist_col(t_filler *f, int **tab, int j);
+
 void	heat_map(t_filler *f);
 
 #endif

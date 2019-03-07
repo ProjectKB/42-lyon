@@ -6,16 +6,16 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/07 22:46:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 23:19:42 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		exceed_board(t_filler *f, int sy, int sx)
+int		exceed_board(t_filler *f, int y, int x)
 {
-	return (sx + f->px_max >= f->bx_max || sy + f->py_max >= f->by_max ? 1 : 0);
+	return (x + f->px_max >= f->bx_max || y + f->py_max >= f->by_max ? 1 : 0);
 }
 
 int		occupied(t_filler *f, int sy, int sx)
@@ -37,7 +37,9 @@ int		occupied(t_filler *f, int sy, int sx)
 					if (f->piece[i][j] == '*')
 						f->score.c++;
 		}
-	return (f->score.c != 1 ? 1 : 0);
+	if (f->score.c != 1)
+		return (1);
+	return (0);
 }
 
 void	place_piece(t_filler *f, int sy, int sx)

@@ -6,21 +6,12 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/07 19:51:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/07 23:17:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void	putdbstr(char **tab, int y_max)
-{
-	int i;
-
-	i = -1;
-	while (++i < y_max)
-		ft_printf("|%s|\n", tab[i]);
-}
 
 t_filler *init_struct(void)
 {
