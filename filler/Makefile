@@ -6,22 +6,22 @@
 #    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2019/03/08 15:50:04 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/09 15:18:14 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = loiberti.filler
+NAME = loiberti.vm
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror -g
+CFLAGS= -Wall -Wextra -Werror -O0
 
 SRC_DIR = .
 
 SRC = $(SRC_DIR)/parser.c \
 	$(SRC_DIR)/tools.c \
-	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/main2.c \
 	$(SRC_DIR)/algo.c \
 	$(SRC_DIR)/transform_map.c \
 

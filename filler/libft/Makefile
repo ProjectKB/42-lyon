@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/14 18:49:50 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/08 16:32:49 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/09 13:02:37 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -93,6 +93,7 @@ SRC = 	ft_atoi.c\
 		ft_freedbtab.c \
 		ft_freedbint.c \
 		ft_putdbstr.c \
+		ft_putdbtab.c \
 		ft_dbstrnew.c \
 		ft_strfsub.c \
 		ft_getchar.c \
