@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/09 17:43:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 19:16:49 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-char	*parse_p2(char *line, char *p2)
+void	parse_p2(char *line, char **p2)
 {
 	int	count;
 	int	tmp;
@@ -26,27 +26,26 @@ char	*parse_p2(char *line, char *p2)
 		end++;
 	tmp = 25;
 	count = -1;
-	if (!(p2 = (char*)malloc(sizeof(*p2) * (end + 1))))
-		return (NULL);
+	if (!(*p2 = (char*)malloc(sizeof(*p2) * (end + 1))))
+		return ;
 	while (++count < end + 1)
-		p2[count] = line[tmp + count];
-	p2[count] = '\0';
-	return (p2);
+		(*p2)[count] = line[tmp + count];
+	(*p2)[count] = '\0';
 }
 
-char	*parser(t_filler *fil, int fd, char *p2)
+int	parser(t_filler *fil, char **p2)
 {
 	int		rt;
 	char	*line;
 
-	if (!(rt = get_next_line(fd, &line)))
-		exit(0);
+	if (!(rt = get_next_line(0, &line)))
+		return (1);
 	else if (!fil->player && ft_strstr(line, "loiberti.filler")
 			&& ft_find_char(line, '$'))
 		define_player(fil, line);
 	else if (ft_strstr(line, ".filler]")
 			&& ft_find_char(line, '$'))
-		p2 = parse_p2(line, p2);
+		parse_p2(line, p2);
 	else if (ft_strstr(line, "Plateau") && (fil->p.b = 1))
 		bx_by_max(fil, line);
 	else if (fil->p.b == 1 && ft_nb_char_occurs(line, ' ') != 4
@@ -58,7 +57,7 @@ char	*parser(t_filler *fil, int fd, char *p2)
 			&& ++fil->p.py < fil->py_max)
 		fill_piece(fil, line, fil->p.py);
 	free(line);
-	return (p2);
+	return (0);
 }
 
 void	count_char(t_filler *f, int *w, int *l)
@@ -94,17 +93,9 @@ void	putdbtab(t_filler *f)
 		while (++j < f->bx_max)
 		{
 			if (f->board[i][j] == f->c_win || f->board[i][j] == f->c_win + 32)
-			{
-				ft_putstr("\033[0;31m");
-				ft_putchar(f->board[i][j]);
-				ft_putstr("\033[0m");
-			}
+				ft_charcolor(f->board[i][j], 3, 1);
 			else if (f->board[i][j] == f->c_los || f->board[i][j] == f->c_los + 32)
-			{
-				ft_putstr("\033[0;32m");
-				ft_putchar(f->board[i][j]);
-				ft_putstr("\033[0m");
-			}
+				ft_charcolor(f->board[i][j], 3, 2);
 			else
 				ft_putchar(' ');
 		}
@@ -115,50 +106,62 @@ void	putdbtab(t_filler *f)
 		ft_putchar('_');
 }
 
-void	filler(t_filler *fil, int fd)
+int	filler(t_filler *fil, char **lose)
 {
 	int	count;
-	int lim;
 	int	w = 0;
 	int	l = 0;
-	char	*p1;
+	int u;
 	static char	*p2 = NULL;
 
 	count = 0;
-	p2 = parser(fil, fd, p2);
+	u = parser(fil, &p2);
+	*lose = p2;
 	if (fil->py_max && fil->p.py == fil->py_max - 1)
 	{
-		p1 = "loiberti";
 		fil->p.py = -1;
 		fil->p.by = -1;
 		fil->p.b = 0;
 		fil->py_max = 0;
 		fil->player = 1;
 		fil->start = 1;
-		lim = 0;
 		putdbtab(fil);
 		count_char(fil, &w, &l);
-		ft_printf("\n%01$s : %01$d || %02$s : %02$d\n", p1, w, p2, l);
+		ft_printf("\n%01$s : %01$d || %02$s : %02$d\n", "loiberti", w, p2, l);
+		l = 0;
 		if (fil->by_max == 100)
-			lim = 104;
+			l = 104;
 		else if (fil->by_max == 15)
-			lim = 19;
+			l = 19;
 		else if (fil->by_max == 24)
-			lim = 28;
-		while (++count < lim)
+			l = 28;
+		while (++count < l)
 			ft_putstr("\033[A");
 	}
+	return (u);
 }
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	int			fd;
 	t_filler	*fil;
+	int			u;
+	int			w;
+	int			l;
+	char		*p2;
 
-	(void)argc;
-	fd = open(argv[1], O_RDONLY);
+	u = 0;
+	w = 0;
+	l = 0;
 	fil = init_struct();
-	while (1)
-		filler(fil, 0);
+	while (!u)
+		u = filler(fil, &p2);
+	count_char(fil, &w, &l);
+	putdbtab(fil);
+	if (w > l)
+		ft_printf("\n\n%11$s won\n", "loiberti");
+	else if (l > w)
+		ft_printf("\n\n%12$s won\n", p2);
+	else
+		ft_printf("\n\ndraw\n", p2);
 	return (0);
 }

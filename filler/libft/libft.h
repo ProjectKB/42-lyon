@@ -6,7 +6,7 @@
 /*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/09 13:03:03 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 18:17:23 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putcolor(char *s, int type, int color);
+void				ft_charcolor(char c, int type, int color);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				ft_sort_integer_table(int *tab, int size);
