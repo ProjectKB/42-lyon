@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/22 11:48:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 20:06:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 22:09:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,20 +71,20 @@ int		transform_diag(t_filler *f, int i, int j, int v)
 
 	u = 0;
 	if (i - v >= 0 && j - v >= 0 && f->iboard[i][j] == 500 &&
-											f->iboard[i - v][j - v] != 500 &&
-									f->iboard[i - v][j - v] == 555 && (u = 1))
+		f->iboard[i - v][j - v] != 500 &&
+		f->iboard[i - v][j - v] == 555 && (u = 1))
 		f->iboard[i - v][j - v] = v * 100;
 	else if (i - v >= 0 && j + v < f->bx_max && f->iboard[i][j] == 500 &&
-											f->iboard[i - v][j + v] != 500 &&
-									f->iboard[i - v][j + v] == 555 && (u = 1))
+		f->iboard[i - v][j + v] != 500 &&
+		f->iboard[i - v][j + v] == 555 && (u = 1))
 		f->iboard[i - v][j + v] = v * 100;
 	else if (i + v < f->by_max && j + v < f->bx_max &&
-					f->iboard[i][j] == 500 && f->iboard[i + v][j + v] != 500 &&
-									f->iboard[i + v][j + v] == 555 && (u = 1))
+		f->iboard[i][j] == 500 && f->iboard[i + v][j + v] != 500 &&
+		f->iboard[i + v][j + v] == 555 && (u = 1))
 		f->iboard[i + v][j + v] = v * 100;
 	else if (i + v < f->by_max && j - v >= 0 && f->iboard[i][j] == 500 &&
-											f->iboard[i + v][j - v] != 500 &&
-									f->iboard[i + v][j - v] == 555 && (u = 1))
+		f->iboard[i + v][j - v] != 500 &&
+		f->iboard[i + v][j - v] == 555 && (u = 1))
 		f->iboard[i + v][j - v] = v * 100;
 	return (u == 1 ? 1 : 0);
 }
@@ -96,7 +96,7 @@ void	heat_map(t_filler *f)
 	int v;
 
 	v = 0;
-	while (v < 200 && (i = -1) && (++v))
+	while (v < 100 && (i = -1) && (++v))
 		while (++i < f->by_max && (j = -1))
 			while (++j < f->bx_max)
 			{

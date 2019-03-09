@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:50:26 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 16:01:56 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 22:06:41 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,16 +28,18 @@ int		occupied(t_filler *f, int sy, int sx)
 	while (++i < f->py_max && (j = -1))
 		while (++j < f->px_max)
 		{
-			if (f->board[sy + i][sx + j] == f->c_los ||
+			if (f->board[sy + i][sx + j] == f->c_los || \
 									f->board[sy + i][sx + j] == f->c_los + 32)
 				if (f->piece[i][j] == '*')
 					return (1);
-			if (f->board[sy + i][sx + j] == f->c_win ||
+			if (f->board[sy + i][sx + j] == f->c_win || \
 									f->board[sy + i][sx + j] == f->c_win + 32)
 				if (f->piece[i][j] == '*')
 					f->score.c++;
 		}
-	return (f->score.c != 1 ? 1 : 0);
+	if (f->score.c != 1)
+		return (1);
+	return (0);
 }
 
 void	place_piece(t_filler *f, int sy, int sx)
