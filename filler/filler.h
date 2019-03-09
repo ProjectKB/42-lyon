@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:20:06 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 17:07:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 19:31:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,12 +74,12 @@ void			fill_board(t_filler *fil, char *str, int s);
 void			fill_piece(t_filler *fil, char *str, int s);
 
 void			define_player(t_filler *fil, char *str);
+void			count_char(t_filler *f, int *w, int *l);
+void			parse_p2(char *line, char **p2);
 
 void			transform_map(t_filler *f);
 void			resolve(t_filler *f);
 void			convert_board(t_filler *f);
 void			heat_map(t_filler *f);
-
-void			global_free(t_filler *f);
 
 #endif

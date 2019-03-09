@@ -6,19 +6,19 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/11 13:03:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/09 12:47:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 19:57:26 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	parser(t_filler *fil, int fd)
+void	parser(t_filler *fil)
 {
 	int		rt;
 	char	*line;
 
-	if (!(rt = get_next_line(fd, &line)))
+	if (!(rt = get_next_line(0, &line)))
 		exit(0);
 	else if (!fil->player && ft_strstr(line, "loiberti.filler")
 													&& ft_find_char(line, '$'))
@@ -36,9 +36,9 @@ void	parser(t_filler *fil, int fd)
 	free(line);
 }
 
-void	filler(t_filler *fil, int fd)
+void	filler(t_filler *fil)
 {
-	parser(fil, fd);
+	parser(fil);
 	if (fil->py_max && fil->p.py == fil->py_max - 1)
 	{
 		convert_board(fil);
@@ -57,15 +57,12 @@ void	filler(t_filler *fil, int fd)
 	}
 }
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	int			fd;
 	t_filler	*fil;
 
-	(void)argc;
-	fd = open(argv[1], O_RDONLY);
 	fil = init_struct();
 	while (1)
-		filler(fil, 0);
+		filler(fil);
 	return (0);
 }

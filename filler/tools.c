@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 18:08:07 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 17:07:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/09 19:31:53 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,4 +49,41 @@ void		define_player(t_filler *fil, char *str)
 		fil->c_win = 'X';
 		fil->c_los = 'O';
 	}
+}
+
+void		count_char(t_filler *f, int *w, int *l)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < f->by_max && (j = -1))
+		while (++j < f->bx_max)
+		{
+			if (f->board[i][j] == f->c_win || f->board[i][j] == f->c_win + 32)
+				*w += 1;
+			else if (f->board[i][j] == f->c_los \
+					|| f->board[i][j] == f->c_los + 32)
+				*l += 1;
+		}
+}
+
+void		parse_p2(char *line, char **p2)
+{
+	int	count;
+	int	tmp;
+	int	end;
+
+	count = 25;
+	tmp = 25;
+	end = 0;
+	while (line[++tmp] != '.')
+		end++;
+	tmp = 25;
+	count = -1;
+	if (!(*p2 = (char*)malloc(sizeof(*p2) * (end + 1))))
+		return ;
+	while (++count < end + 1)
+		(*p2)[count] = line[tmp + count];
+	(*p2)[count] = '\0';
 }
