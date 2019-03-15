@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   tmp.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/14 12:55:47 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:26:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/15 11:26:54 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/15 11:28:22 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "../include/lem_in.h"
 
-int	main(int argc, char **argv)
+void	is_valid(t_data *data)
 {
-	int		fd;
-	int		rt;
-	char	*line;
-	t_data	data;
-
-	init_struct(&data);
-	/*fd = open(argv[1], O_RDONLY);
-	while ((rt = get_next_line(fd, &line)))
-		;*/
-	return (0);
+	if (
 }

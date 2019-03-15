@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 13:40:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 15:46:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:28:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,23 +29,6 @@ bool	is_command(char *line)
 	return (line[0] == '#' && line[1] == '#' ? true : false);
 }
 
-bool	is_room(char *line)
-{
-	int		i;
-	bool	check;
-
-	i = -1;
-	check = false;
-	while (line[++i])
-	{
-		if (line[i] == ' ')
-			check = true;
-		else if (check)
-			;
-	}
-	return (check);
-}
-
 void	parse_line(t_data *data, char *line)
 {
 	static int	start = 0;
@@ -58,7 +41,9 @@ void	parse_line(t_data *data, char *line)
 			;
 		else if (is_comment(line))
 			;
-		else if (!ft_strchr(line, '-'))
+		else if ()
+			;
+		else if (ft_nb_char_occurs(line, '-') == 1)
 			;
 	}
 }

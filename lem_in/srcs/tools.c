@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 14:36:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 16:11:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:57:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,11 +23,9 @@ void	init_struct(t_data *data)
 	data->b.lem = false;
 	data->b.room = false;
 	data->b.pipe = false;
-	if (!(data->room = (t_room**)malloc(sizeof(*data->room) * data->room_nb)))
-		return ;
 }
 
-void	realloc_struct(t_data *data, char type)
+/*void	realloc_struct(t_data *data, char type)
 {
 	t_room	**room;
 	t_pipe	**pipe;
@@ -37,7 +35,7 @@ void	realloc_struct(t_data *data, char type)
 	if (type == 'r' && (data->room_nb += 1))
 		if (!(room = (t_room**)malloc(sizeof(*room) * data->room_nb)))
 			return ;
-}
+}*/
 
 void	display_error(void)
 {
