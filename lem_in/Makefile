@@ -3,83 +3,115 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: rcepre <rcepre@student.42.fr>              +:+   +:    +:    +:+      #
+#    By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2018/11/07 09:01:58 by rcepre       #+#   ##    ##    #+#        #
-#    Updated: 2019/03/14 14:58:54 by loiberti    ###    #+. /#+    ###.fr      #
+#    Created: 2018/10/01 15:39:03 by rgermain     #+#   ##    ##    #+#        #
+#    Updated: 2019/03/21 04:04:08 by rgermain    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
+TYPE = "de l'executable"
 
-CC= clang
+LIBFT_M : 
+	@make -C libft/ all
+LIBFT_C : 
+	@make -C libft/ clean
+LIBFT_FC : 
+	@make -C libft/ fclean
+LIBFT_N : 
+	@make -C libft/ norme
+LIBFT_R : 
+	@make -C libft/ re
 
-CFLAGS= 
+#CFLAGS = -Wall -Werror -Wextra 
+CFLAGS =
 
-SRC_DIR = ./srcs
-HEADER_DIR = ./includes
+INCLUDE = -Iincludes
+INCLUDE2 = -Iminilibx
 
-SRC = $(SRC_DIR)/main.c \
-	$(SRC_DIR)/parser.c \
-	$(SRC_DIR)/tools.c \
+HEADER = lem_in.h color.h
 
-HEADER = $(HEADER_DIR)/lem_in.h
-LIBFT_PATH = ./libft
-LIBFT_OBJ = $(LIBFT_PATH)/*.o
+LIBFT = libft/libft.a
 
-OBJ_DIR = objects
-OBJECT = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+DSRC = srcs/
+DOBJ = obj/
+ALL_D = $(DSRC)
 
-####################################TEXT########################################
-RED = \033[1;31m
-OK  = \033[1;32m[OK]\n
-WHITE = \033[0;29m
-YELLOW = \033[1;33m
-PINK = \033[1;35m
-RM_PRINTF_OBJ = "$(PINK)lem_in :\t$(RED)rm $(PINK)objects\t\t$(WHITE)"
-RM_LIB_OBJ = "\n$(YELLOW)libft:\t\t$(RED)rm $(YELLOW)objects\t\t$(WHITE)"
-RM_LIB = "\t$(YELLOW)rm libft.a\t$(WHITE)"
-RM_EXEC = "\t\t$(RED)rm $(PINK)exec\t\t\t$(WHITE)"
-MAKE_PRINTF = "$(PINK)lem_in :\t$(RED)make $(PINK)lem_in\t\t$(WHITE)"
-MAKE_LIB =  "\n$(YELLOW)libft :\t\t$(RED)make $(YELLOW)libft\t\t$(WHITE)"
-####################################RULES######################################
+DHEADER = includes/
+
+CSRC = $(addprefix $(DSRC),$(SRC))
+COBJ = $(addprefix $(DOBJ),$(OBJ))
+CHEADER = $(addprefix $(DHEADER),$(HEADER))
+
+# *****************************************************************************#
+# 								ALL  SCRS									   #
+# *****************************************************************************#
+
+SRC =	main.c parser.c tools.c lemin_free.c debug.c find_pipe.c \
+		put_room.c put_pipe.c put_line.c find_is.c algo_lemin.c
+
+COUNT = "1"
+SPACE = "                    "
+.DEFAULT_GOAL := all
+ESC = $(shell printf '\033')
+
+print_name : 
+	@printf "\n----------------------------------------------------------------------\n\n\033[37m"
+	@printf	" \033[47m  \033[0m\033[37m                    [  Lem_in       ]             "
+	@printf "         \033[0m  \033[47m  \033[0m\n"
+	@printf	"\n----------------------------------------------------------------------\n\n"
+
+print_norme : 
+	@printf "\n----------------------------------------------------------------------\n\n\033[37m"
+	@printf	" \033[47m  \033[0m\033[37m                 [    lem_in  norme  ]          "
+	@printf "         \033[0m  \033[47m  \033[0m\n"
+	@printf	"\n----------------------------------------------------------------------\n\n"
 
 
+all: LIBFT_M print_name $(NAME)
+	@if [ $(COUNT) = "1" ]; then \
+		echo $(SPACE)"\033[1;34m   Nothing are changed !\033[0m"; \
+	fi
 
-$(NAME): $(OBJECT) $(HEADER)
-	@(cd $(LIBFT_PATH) && make) > /dev/null
-	@printf  $(MAKE_LIB)
-	@printf "$(OK)"
-	@$(CC) $(CFLAGS) -I $< -L $(LIBFT_PATH) -lft $(OBJECT) -o $(NAME)
-	@printf $(MAKE_PRINTF)
-	@printf "$(OK)\n"
+$(NAME): $(COBJ)
+	@echo $(SPACE)"\033[JCompilation des Objects \033[38;5;326mterminer\033[0m"
+	@echo $(SPACE)"Compilation" $(TYPE) "\033[34m" $(NAME) "\033[0m"
+	@gcc $(COBJ) $(CFLAGS) $(LIBFT) $(MLX_LNK) -o $(NAME)
 
-$(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+$(DOBJ)%.o : $(DSRC)%.c $(CHEADER) $(LIBFT)
+	@$(eval COUNT = "0")
+	@mkdir -p $(DOBJ)
+	@mkdir -p $(addprefix $(DOBJ), $(ALL_D))
+	@gcc $(CFLAGS) $(INCLUDE2) $(MLX_INC) $(INCLUDE) -c $< -o $@
+	@echo $(SPACE)"compilation de la fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
-	@printf "\033[0;36m>>>\tCompiling: $? ..."
-	@$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
-	@printf "   [ok]$(WHITE)\n"
+clean: LIBFT_C print_name
+	@rm -rf $(DOBJ)
+	@echo $(SPACE)"Suppresion des \033[38;5;265mobjects\033[0m"
 
-clean:
-	@printf $(RM_LIB_OBJ)
-	@(cd $(LIBFT_PATH) && make $@) > /dev/null
-	@printf "$(OK)"
-	@printf $(RM_PRINTF_OBJ)
-	@rm -rf $(OBJ_DIR)
-	@printf "$(OK)"
+clean_f: print_name
+	@rm -rf $(DOBJ)
+	@echo $(SPACE)"Suppresion des \033[38;5;265mobjects\033[0m"
 
-fclean: clean
-	@(cd $(LIBFT_PATH) && make $@) > /dev/null
-	@printf $(RM_EXEC)
-	@printf "$(OK)\n"
-	@rm -rf $(NAME)
+fclean: LIBFT_FC clean_f
+	@rm -f $(NAME)
+	@echo $(SPACE)"Suppresion "$(TYPE) "\033[38;5;265m"$(NAME) "\033[0m"
 
-re: fclean all
-	@(cd $(LIBFT_PATH) && make $@) > /dev/null
+re_clean:
+	@rm -rf $(DOBJ)
+	@echo $(SPACE)"Suppresion des \033[38;5;265mobjects\033[0m"
+	@rm -f $(NAME)
+	@echo $(SPACE)"Suppresion "$(TYPE) "\033[38;5;265m"$(NAME) "\033[0m"
 
-.PHONY: clean fclean
+re: LIBFT_R re_clean print_name $(NAME)
+
+norme : print_norme
+	@norminette $(CSRC) $(CHEADER) | sed "s,Norme,${ESC}[38;5;326m&${ESC}[0m," | sed "s/Error/  Error/g" | sed "s,Error,${ESC}[31m&${ESC}[0m,"
+
+normeall : LIBFT_N norme print_norme
+
+.PHONY: default all fclean clean_f fclean re re_clean norme normeall print_norme print_name

@@ -6,44 +6,45 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 13:40:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:28:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/21 03:43:53 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
-void	parse_nb_lem(t_data *data, char *line)
+static void	put_ants(t_data *data, char *line)
 {
-	if ((data->lem_nb = ft_atoi(line)) < 1)
-		display_error();
+	if ((data->ants_nb = ft_atol(line)) <= 0)
+		display_error(data);
+	data->b.ants = TRUE;
 }
 
-bool	is_comment(char *line)
+void		is_valid(t_data *data, char *line)
 {
-	return (line[0] == '#' ? true : false);
+	if (!data->b.start || !data->b.end || !data->b.ants || !data->b.pipe)
+		display_error(data);
+	data->b.general = FALSE;
 }
 
-bool	is_command(char *line)
+static void	put_comment(t_data *data, char *line)
 {
-	return (line[0] == '#' && line[1] == '#' ? true : false);
+	if (!ft_strncmp(line, "#Here is the number of lines required:", 38))
+		data->line_nb = ft_atoi(line + 39);
 }
 
-void	parse_line(t_data *data, char *line)
+void		parse_line(t_data *data, char **line)
 {
-	static int	start = 0;
-
-	if (!start && (start = 1))
-		parse_nb_lem(data, line);
+	if (!(data->b.ants))
+		put_ants(data, (*line));
+	else if (is_command(data, (*line)))
+		put_command(data, line);
+	else if (line && (*line)[0] == '#')
+		put_comment(data, (*line));
+	else if (is_room(data, (*line)))
+		put_room(data, (*line));
+	else if (is_pipe(data, (*line)))
+		put_pipe(data, line);
 	else
-	{
-		if (is_command(line))
-			;
-		else if (is_comment(line))
-			;
-		else if ()
-			;
-		else if (ft_nb_char_occurs(line, '-') == 1)
-			;
-	}
+		is_valid(data, (*line));
 }
