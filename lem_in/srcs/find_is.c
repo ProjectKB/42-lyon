@@ -6,7 +6,7 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/18 15:41:56 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/21 03:42:10 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 13:02:01 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@ static void	is_room_space(char *line, size_t *i, size_t *len, char index)
 	}
 }
 
-bool		is_room(t_data *data, char *line)
+t_bool		is_room(t_data *data, char *line)
 {
 	size_t	i;
 	size_t	len;
@@ -64,15 +64,17 @@ bool		is_room(t_data *data, char *line)
 	return (FALSE);
 }
 
-bool		is_command(t_data *data, char *line)
+t_bool		is_command(t_data *data, char *line)
 {
 	if ((!ft_strcmp(line, "##start") && !data->b.start) ||
 				(!ft_strcmp(line, "##end") && !data->b.end))
 		return (TRUE);
+	else if (!ft_strcmp(line, "##oriented"))
+		set_bit(&(data->matrix.oriented), 1);
 	return (FALSE);
 }
 
-bool		is_pipe(t_data *data, char *line)
+t_bool		is_pipe(t_data *data, char **line)
 {
 	int	i;
 	int	pipe;
@@ -83,9 +85,9 @@ bool		is_pipe(t_data *data, char *line)
 	j = 0;
 	if (!data->b.start || !data->b.end)
 		return (FALSE);
-	while (line[i] != '\0')
+	while ((*line)[i] != '\0')
 	{
-		if (line[i] == '-')
+		if ((*line)[i] == '-')
 		{
 			pipe++;
 			j = i;

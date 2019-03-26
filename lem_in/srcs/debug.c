@@ -6,7 +6,7 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 12:17:09 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 14:46:41 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 18:50:20 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,15 +26,15 @@ void	debug(t_data *data, int index)
 
 	if (index == 3 || index == 0)
 	{
-		if (data->start)
-			ft_printf("\n%s[START]%s\n  name = %s\n  x,y = [%3d,%3d]\n", T_BLUE, T_WHITE, data->start->name, data->start->x, data->start->y);
+		if (data->start.name)
+			ft_printf("\n%s[START]%s\n  name = %s\n  x,y = [%3d,%3d]\n", T_BLUE, T_WHITE, data->start.name, data->start.x, data->start.y);
 		else
 			ft_printf("\n%s[START]%s\n  NULL\n", T_BLUE, T_WHITE);
 	}
 	if (index == 4 || index == 0)
 	{
-		if (data->end)
-			ft_printf("\n%s[END]%s\n  name = %s\n  x,y = [%3d,%3d]\n", T_BLUE, T_WHITE, data->end->name, data->end->x, data->end->y);
+		if (data->end.name)
+			ft_printf("\n%s[END]%s\n  name = %s\n  x,y = [%3d,%3d]\n", T_BLUE, T_WHITE, data->end.name, data->end.x, data->end.y);
 		else
 			ft_printf("\n%s[END]%s\n  NULL\n", T_BLUE, T_WHITE);
 	}
@@ -95,4 +95,24 @@ void	debug(t_data *data, int index)
 			}
 	}
 	ft_printf("\n\n%s-------------[END DEBUG]----------------%s\n", T_LGREY, T_WHITE);
+}
+
+void	queue_print(t_data *data, int *node, char index)
+{
+	size_t	i;
+	size_t	len;
+
+	if (index == 1)
+	{
+		i = data->matrix.start_len;
+		len = data->matrix.end_len;
+	}
+	else
+	{
+		i = 0;
+		len = data->pipe_nb;
+	}
+	while (i < len)
+		ft_printf("[%2d]", node[i++]);
+	ft_printf("\n");
 }

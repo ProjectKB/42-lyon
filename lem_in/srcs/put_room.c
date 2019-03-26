@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 11:29:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/21 04:12:20 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 14:57:03 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,15 +16,10 @@
 static void	putnew_room(t_data *data, char **name, int x, int y)
 {
 	t_room	**tmp;
-	size_t	len;
 
 	tmp = &(data->room);
-	len = 0;
-	while (*tmp && ft_strcmp((*tmp)->name, *name))
-	{
+	while ((*tmp) && ft_strcmp((*tmp)->name, *name))
 		tmp = &((*tmp)->next);
-		len++;
-	}
 	if ((*tmp) && ft_strcmp((*tmp)->name, *name))
 	{
 		data->room_nb--;
@@ -34,22 +29,18 @@ static void	putnew_room(t_data *data, char **name, int x, int y)
 	if (!((*tmp) = (t_room*)ft_memalloc(sizeof(t_room))))
 	{
 		ft_memdel((void**)name);
-		display_error(data);
+		display_error(data, 0);
 	}
 	(*tmp)->name = *name;
 	(*tmp)->x = x;
 	(*tmp)->y = y;
-	(*tmp)->define = len;
 }
 
-static bool	put_infostartend(t_room **room, char **name, int x, int y)
+static void	put_infostartend(t_room *room, char **name, int x, int y)
 {
-	if (!((*room) = (t_room*)ft_memalloc(sizeof(t_room))))
-		return (FALSE);
-	(*room)->name = *name;
-	(*room)->x = x;
-	(*room)->y = y;
-	return (TRUE);
+	room->name = *name;
+	room->x = x;
+	room->y = y;
 }
 
 static void	put_room_startend(t_data *data, char *line, char index)
@@ -63,17 +54,15 @@ static void	put_room_startend(t_data *data, char *line, char index)
 	while (line[i] && line[i] != ' ')
 		i++;
 	if (!(name = ft_strsub(line, 0, i)))
-		display_error(data);
+		display_error(data, 0);
 	x = ft_atoi(line + ++i);
 	while (line[i] && line[i] != ' ')
 		i++;
 	y = ft_atoi(line + i);
-	if (index == 1 && !data->start &&
-			!put_infostartend(&(data->start), &name, x, y))
-		display_error(data);
-	else if (index == 0 && !data->end &&
-			!put_infostartend(&(data->end), &name, x, y))
-		display_error(data);
+	if (index == 1)
+		put_infostartend(&(data->start), &name, x, y);
+	else if (index == 0)
+		put_infostartend(&(data->end), &name, x, y);
 }
 
 void		put_room(t_data *data, char *line)
@@ -84,12 +73,14 @@ void		put_room(t_data *data, char *line)
 	int		y;
 
 	i = 0;
+	if (!data->room_nb)
+		lemin_info(data, "Put first room");
 	data->b.room = TRUE;
 	data->room_nb++;
 	while (line[i] && line[i] != ' ')
 		i++;
 	if (!(name = ft_strsub(line, 0, i)))
-		display_error(data);
+		display_error(data, 0);
 	x = ft_atoi(line + ++i);
 	while (line[i] && line[i] != ' ')
 		i++;
@@ -102,14 +93,18 @@ void		put_command(t_data *data, char **line)
 	int	index;
 
 	index = ft_strcmp(*line, "##start");
-	ft_memdel((void**)line);
-	if (get_next_line(0, line) != 1 || !is_room(data, *line))
+	put_line(data, line);
+	if (get_next_line(data->info.fd, line) != 1 || !is_room(data, *line))
 	{
 		if (line)
 			ft_memdel((void**)line);
-		display_error(data);
+		display_error(data, 0);
 	}
 	put_room_startend(data, *line, (index == 0 ? 1 : 0));
+	if (index == 0)
+		lemin_info(data, "Put Start");
+	else
+		lemin_info(data, "Put End");
 	if (index == 0)
 		data->b.start = TRUE;
 	else

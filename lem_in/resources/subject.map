@@ -2,27 +2,30 @@
 ##start
 START 12 3
 2 10 7
-#commentaire
 3 10 3
+#commentaire
 4 10 5
 5 8 3
 6 1 5
 7 4 8
 ##end
 END 6 5
+##oriented
 END-4
+##oriented
 END-6
 START-3
 4-3
-5-2
 3-5
 4-2
+5-2
 2-START
 7-6
 7-2
 7-4
 6-5
-7-END
+##oriented
+END-7
 START-4
 # names
 #           ______________

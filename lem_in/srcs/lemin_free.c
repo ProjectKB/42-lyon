@@ -6,24 +6,12 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 18:19:53 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 15:27:09 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 15:14:12 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	free_tmatrix(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < (data->room_nb + 2))
-		ft_memdel((void**)&(data->matrix.tab[i++]));
-	ft_memdel((void**)&(data->matrix.tab));
-	if (data->matrix.visited)
-		ft_memdel((void**)&(data->matrix.visited));
-}
 
 void	free_troom(t_room **room)
 {
@@ -34,6 +22,28 @@ void	free_troom(t_room **room)
 			ft_memdel((void**)&((*room)->name));
 		ft_memdel((void**)room);
 	}
+}
+
+void	free_soluce(t_data *data)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < data->soluce.nb_soluce)
+		ft_memdel((void**)&(data->soluce.tab[i++]));
+	ft_memdel((void**)&(data->soluce.path_occur));
+	ft_memdel((void**)&(data->soluce.path_cost));
+	ft_memdel((void**)&(data->soluce.tab));
+}
+
+void	free_troom2(t_room **room)
+{
+	size_t	i;
+
+	i = 0;
+	while (room[i])
+		ft_memdel((void**)&(room[i++]));
+	ft_memdel((void**)&room);
 }
 
 void	free_tfile(t_line **file)
@@ -52,22 +62,25 @@ void	lemin_free(t_data *data)
 	int i;
 
 	i = 0;
-	if (data->start)
-	{
-		if (data->start->name)
-			ft_memdel((void**)&((data->start)->name));
-		ft_memdel((void**)&(data->start));
-	}
-	if (data->end)
-	{
-		if (data->end->name)
-			ft_memdel((void**)&(data->end->name));
-		ft_memdel((void**)&(data->end));
-	}
+	lemin_info(data, "free all alocation");
+	if (data->start.name)
+		ft_memdel((void**)&(data->start.name));
+	if (data->end.name)
+		ft_memdel((void**)&(data->end.name));
 	if (data->file)
 		free_tfile(&(data->file));
 	if (data->room)
 		free_troom(&(data->room));
+	if (data->room2)
+		free_troom2(data->room2);
 	if (data->matrix.tab)
-		free_tmatrix(data);
+	{
+		while (i < (data->room_nb + 2))
+			ft_memdel((void**)&(data->matrix.tab[i++]));
+		ft_memdel((void**)&(data->matrix.tab));
+		if (data->matrix.visited)
+			ft_memdel((void**)&(data->matrix.visited));
+	}
+	if (data->soluce.tab)
+		free_soluce(data);
 }

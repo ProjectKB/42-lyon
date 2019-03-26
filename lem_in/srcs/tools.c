@@ -6,20 +6,19 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 14:36:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/21 15:41:36 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 15:10:49 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_line(t_line *file)
+void	lemin_info(t_data *data, char *str)
 {
-	if (file)
+	if (!test_bit(&(data->info.flags), 1))
 	{
-		write(1, file->line, ft_strlen(file->line));
-		ft_putchar('\n');
-		print_line(file->next);
+		ft_dprintf(2, "%s--INFO---%s\n ", T_LGREY, T_WHITE);
+		ft_dprintf(2, "%s%s%s\n\n", T_BLUE, str, T_WHITE);
 	}
 }
 
@@ -39,32 +38,23 @@ int		ft_atol(char *line)
 	return (nb);
 }
 
-void	display_error(t_data *data)
+char	*find_name(t_data *data, int nb)
 {
+	if (nb == 1 || nb == 0)
+		return (!nb ? data->start.name : data->end.name);
+	nb -= 2;
+	if (nb < data->room_nb)
+		return (data->room2[nb]->name);
+	return ("null");
+}
+
+void	display_error(t_data *data, char index)
+{
+	lemin_info(data, "Error");
 	lemin_free(data);
-	ft_putstr_fd("ERROR\n", 2);
+	if (index == 0)
+		ft_printf("%1.@", "error", "lem_in");
+	else
+		ft_putstr_fd("ERROR\n", 2);
 	exit(0);
-}
-
-void	set_or_clear_bit(char *bit, int bit_nb, int mode)
-{
-	if (!mode && !(*bit & (1 << bit_nb)))
-		*bit |= (1 << bit_nb);
-	else if (mode && (*bit & (1 << bit_nb)))
-		*bit ^= (1 << bit_nb);
-}
-
-bool	test_bit(char *bit, int bit_nb)
-{
-	return (!(*bit & (1 << bit_nb)) ? TRUE : FALSE);
-}
-
-void	set_bit(char *bit, int bit_nb)
-{
-	*bit |= (1 << bit_nb);
-}
-
-void	clear_bit(char *bit, int bit_nb)
-{
-	*bit ^= (1 << bit_nb);
 }
