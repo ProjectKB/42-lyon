@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 19:20:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 19:57:28 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,6 +119,17 @@ void	bfs(t_data *data);
 void	put_soluce(t_data *data, int **file, int **nb_file);
 
 /*
+** ALGO path
+*/
+void	is_repeat(int **tab, int **occur, int sol_nb);
+void	path_cost(int **tab, int **cost, int sol_nb);
+int		tabintlen(int *tab);
+int		count_occur(int *tab);
+void	path_occur_i(int *tab, int **occur_i, int sol_nb);
+void	set_occur_tab(int *path, int *ind, int ***occur, int s);
+void	wrong_path(int **occur, int **wrong_path, int limit);
+
+/*
 **	algo_queue.c
 */
 void	queue_print(t_data *data, int *node, char index);
@@ -163,11 +174,4 @@ void	set_or_clear_bit(char *bit, int bit_nb, int mode);
 t_bool	test_bit(char *bit, int bit_nb);
 void	set_bit(char *bit, int bit_nb);
 void	clear_bit(char *bit, int bit_nb);
-void	is_repeat(int **tab, int **occur, int sol_nb);
-void	path_cost(int **tab, int **cost, int sol_nb);
-int		tabintlen(int *tab);
-int		count_occur(int *tab);
-void	path_occur_i(int *tab, int **occur_i, int sol_nb);
-void	set_occur_tab(int *path, int *ind, int ***occur);
-void	wrong_path(int **occur, int **wrong_path, int limit);
 #endif

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/25 13:41:58 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 19:02:50 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 19:54:57 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,6 @@ t_bool	path_occur(int *p1, int *p2)
 				return (TRUE);
 	return (FALSE);
 }
-
 
 t_bool	int_occur(int *path, int v)
 {
@@ -54,7 +53,6 @@ void	is_repeat(int **tab, int **occur, int sol_nb)
 	ft_memset(*occur, -2, sizeof(int) * (sol_nb * sol_nb));
 	(*occur)[sol_nb] = -1;
 	while (++k < sol_nb && (i = -1))
-	{
 		while (++i < sol_nb)
 		{
 			if (i == k && k != sol_nb - 1)
@@ -65,7 +63,6 @@ void	is_repeat(int **tab, int **occur, int sol_nb)
 				(*occur)[++path_i] = i;
 			}
 		}
-	}
 	(*occur)[++path_i] = -1;
 }
 
@@ -111,15 +108,13 @@ void	path_occur_i(int *tab, int **occur_i, int sol_nb)
 	(*occur_i)[j] = -1;
 }
 
-void	set_occur_tab(int *path, int *ind, int ***occur)
+void	set_occur_tab(int *path, int *ind, int ***occur, int s)
 {
 	int	i;
 	int	j;
 	int	k;
-	int	s;
 
 	i = -1;
-	s = tabintlen(ind);
 	if (!(*occur = (int**)malloc(sizeof(int*) * s)))
 		;
 	while (++i < s && (j = 0) != -1)
@@ -142,33 +137,7 @@ void	set_occur_tab(int *path, int *ind, int ***occur)
 	}
 }
 
-t_bool	tabintcmp(int *p1, int *p2)
-{
-	int	i;
-	int	len1;
-	int	len2;
-	int	count1;
-	int	count2;
-
-	len1 = tabintlen(p1);
-	len2 = tabintlen(p2);
-	count1 = 0;
-	count2 = 0;
-	i = -1;
-	if (len1 != len2)
-		return (FALSE);
-	else if (len1 == 2)
-		return (p1[0] == p2[1] && p1[1] == p2[0] ? TRUE : FALSE);
-	else
-		while (p1[++i] != -1)
-		{
-			count1 += p1[i];
-			count2 += p2[i];
-		}
-	return (count1 == count2 ? TRUE : FALSE);
-}
-
-t_bool	path_occur2(int *p1, int *p2)
+t_bool	pathcmp(int *p1, int *p2)
 {
 	int	len1;
 	int	len2;
@@ -180,18 +149,14 @@ t_bool	path_occur2(int *p1, int *p2)
 	len2 = tabintlen(p2);
 	count1 = 0;
 	count2 = 0;
-	i = 1;
+	i = 0;
 	if (len1 != len2)
 		return (FALSE);
 	else if (len1 == 2)
 		return (p1[0] == p2[1] && p1[1] == p2[0] ? TRUE : FALSE);
 	else
-		while (p1[i] != -1)
-		{
-			count1 += p1[i];
+		while (p1[++i] != -1 && (count1 += p1[i]))
 			count2 += p2[i];
-			i++;
-		}
 	return (count1 == count2 ? FALSE : TRUE);
 }
 
@@ -209,10 +174,10 @@ void	wrong_path(int **occur, int **wrong_path, int limit)
 	{
 		while (++count && (i + count) < limit)
 		{
-			if (path_occur2(occur[i], occur[i + count]))
+			if (pathcmp(occur[i], occur[i + count]))
 				(*wrong_path)[++j] = occur[i + count][0];
 			else
-				break;
+				break ;
 		}
 		i += count - 1;
 	}

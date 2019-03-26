@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:48 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 19:20:50 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/26 19:50:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -143,7 +143,7 @@ void		put_soluce(t_data *data, int **file, int **nb_file)
 	is_repeat(data->soluce.tab, &data->soluce.path_occur, data->soluce.nb_soluce);
 	path_cost(data->soluce.tab, &data->soluce.path_cost, data->soluce.nb_soluce);
 	path_occur_i(data->soluce.path_occur, &data->soluce.occur_i, data->soluce.nb_soluce);
-	set_occur_tab(data->soluce.path_occur, data->soluce.occur_i, &data->soluce.occur);
+	set_occur_tab(data->soluce.path_occur, data->soluce.occur_i, &data->soluce.occur, tabintlen(data->soluce.occur_i));
 	int i = -1;
 	ft_printf("\n");
 	while (++i < data->soluce.nb_soluce)
