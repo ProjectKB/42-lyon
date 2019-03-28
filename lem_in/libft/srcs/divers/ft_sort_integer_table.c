@@ -6,7 +6,7 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/08/02 11:26:31 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 17:59:31 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 14:25:41 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void		ft_sort_integer_table(int *tab, int size)
 	a = size - 1;
 	while (a != 0)
 	{
-		if (tab[a] > tab[a - 1])
+		if (tab[a] < tab[a - 1])
 		{
 			b = tab[a];
 			tab[a] = tab[a - 1];

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 19:57:28 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/28 17:18:41 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,15 +19,44 @@
 # define TRUE	1
 # define FALSE	0
 
+typedef	struct	s_removeroom
+{
+	size_t	i;
+	size_t	j;
+	size_t	l;
+	size_t	k;
+}				t_rmroom;
+
+typedef	struct	s_final
+{
+	int	**start_final;
+	int	**end_final;
+	int	*start_cost;
+	int	*end_cost;
+	int	start_soluce;
+	int	end_soluce;
+}				t_final;
+
+typedef struct	s_algo
+{
+	int			i;
+	int			l;
+	int			room;
+	int			link;
+	int			*file;
+	int			*nb_file;
+}				t_algo;
+
 typedef struct	s_tabsoluce
 {
 	int	**tab;
 	int	nb_soluce;
 	int	*path_occur;
 	int	*occur_i;
-	int	*path_cost;
+	//int	*path_cost;
 	int	**occur;
 	int	*wrong_path;
+	int	*good_path;
 }				t_tabsoluce;
 
 typedef struct	s_soluce
@@ -88,6 +117,12 @@ typedef struct	s_room
 	struct s_room	*next;
 }				t_room;
 
+typedef	struct	s_way
+{
+	int	start;
+	int	end;
+}				t_way;
+
 typedef struct	s_data
 {
 	int			ants_nb;
@@ -102,6 +137,8 @@ typedef struct	s_data
 	t_room		**room2;
 	t_matrix	matrix;
 	t_tabsoluce	soluce;
+	t_final		final;
+	t_way		way;
 	t_info		info;
 }				t_data;
 
@@ -116,28 +153,22 @@ void	lemin_info(t_data *data, char *str);
 **	ALGO  algo_lemin.c
 */
 void	bfs(t_data *data);
-void	put_soluce(t_data *data, int **file, int **nb_file);
+void	put_soluce(t_data *data, t_algo *al);
 
 /*
 ** ALGO path
 */
-void	is_repeat(int **tab, int **occur, int sol_nb);
-void	path_cost(int **tab, int **cost, int sol_nb);
+void	is_repeat(t_data *data, int **tab, int **occur, int sol_nb);
+void	path_cost(int **tab, int **cost, int *good_path, int sol_nb);
 int		tabintlen(int *tab);
 int		count_occur(int *tab);
 void	path_occur_i(int *tab, int **occur_i, int sol_nb);
-void	set_occur_tab(int *path, int *ind, int ***occur, int s);
+void	set_occur_tab(int *path, int *ind, int ***occur, int sol_nb);
 void	wrong_path(int **occur, int **wrong_path, int limit);
+void	good_path(int **good_path, int *wrong_path, int nb_soluce);
+void	start_final_path(int ***s_tab, int *good_path, int *path_cost, int size, int **tab);
+void	end_final_path(int ***s_tab, int *good_path, int *path_cost, int size, int **tab, t_data *data);
 
-/*
-**	algo_queue.c
-*/
-void	queue_print(t_data *data, int *node, char index);
-void	queue_del(int **node, int **node2);
-int		queue_len(t_data *data, int *node);
-int		queue_pop(t_data *data, int *node);
-t_bool	queue_append(t_data *data, int *node, int add);
-int		*queue_create(t_data *data);
 
 /*
 **	IS_XXXX    find_is.c
@@ -162,6 +193,7 @@ t_bool	find_nopipe(t_data *data, char **line, int j);
 **	FREE
 */
 void	lemin_free(t_data *data);
+void	free_algo_utils(t_data *data);
 
 /*
 **	UTILS
@@ -174,4 +206,16 @@ void	set_or_clear_bit(char *bit, int bit_nb, int mode);
 t_bool	test_bit(char *bit, int bit_nb);
 void	set_bit(char *bit, int bit_nb);
 void	clear_bit(char *bit, int bit_nb);
+void	putint(t_data *data, int *tab, int mod);
+void	putdbint(t_data *data, int **tab, int limit, int mod);
+
+
+t_bool	create_visited(t_data *data);
+void	remove_room(t_data *data);
+void	add_newpath(t_data *data);
+void	calcul_path(t_data *data, int *count, int soluce);
+
+
+
+void	print_best_path(t_data *data);
 #endif

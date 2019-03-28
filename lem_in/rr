@@ -1,5 +1,5 @@
 rm -rf map_tmp
-./resources/generator --big-superposition >> map_tmp
+./resources/generator --big >> map_tmp
 time ./lem-in < map_tmp
 echo "\n"
 head map_tmp

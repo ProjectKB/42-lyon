@@ -6,12 +6,23 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 14:36:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 15:10:49 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/28 11:50:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_bool	create_visited(t_data *data)
+{
+	if (!(data->matrix.visited = (char*)ft_memalloc(
+					to_malloc(data->room_nb + 2))))
+		return (FALSE);
+	lemin_info(data, "Create visited");
+	data->matrix.start_len = 0;
+	data->matrix.end_len = 0;
+	return (TRUE);
+}
 
 void	lemin_info(t_data *data, char *str)
 {
@@ -57,4 +68,42 @@ void	display_error(t_data *data, char index)
 	else
 		ft_putstr_fd("ERROR\n", 2);
 	exit(0);
+}
+
+void	putint(t_data *data, int *tab, int mod)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i] != -1)
+	{
+		if (!mod)
+		{
+			if (!i || tab[i + 1] == -1)
+				ft_printf("|| %d || ", tab[i]);
+			else
+				ft_printf("[ %d ]", tab[i]);
+		}
+		else
+		{
+			if (!i || tab[i + 1] == -1)
+				ft_printf("|| %s || ", find_name(data, tab[i]));
+			else
+				ft_printf("[ %s ]", find_name(data, tab[i]));
+		}
+	}
+	ft_printf("\n\n");
+}
+
+void	putdbint(t_data *data, int **tab, int limit, int mod)
+{
+	int	i;
+
+	i = -1;
+	while (++i < limit)
+		putint(data, tab[i], mod);
+	if (!mod)
+		ft_printf("|| START : %d || END: %d ||\n\n", data->way.start, data->way.end);
+	else
+		ft_printf("|| START : %s || END: %s ||\n\n", find_name(data, data->way.start), find_name(data, data->way.end));
 }

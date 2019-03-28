@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 11:29:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 14:57:03 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 10:36:15 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ static void	putnew_room(t_data *data, char **name, int x, int y)
 	if ((*tmp) && ft_strcmp((*tmp)->name, *name))
 	{
 		data->room_nb--;
-		ft_printf("/!\\double room\n\n");
+		ft_dprintf(2, "/!\\double room\n\n");
 		return ;
 	}
 	if (!((*tmp) = (t_room*)ft_memalloc(sizeof(t_room))))

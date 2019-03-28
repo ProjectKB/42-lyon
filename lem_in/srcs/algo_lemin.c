@@ -5,90 +5,73 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/18 19:46:37 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 15:25:51 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/27 11:06:16 by rgermain     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/28 16:32:17 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	print_nbsoluce(int i)
+static void		queue_del(int **node, int **node2)
 {
-	static unsigned long long nb;
-
-	if (i == 0)
-		nb++;
-	else if (i == 2)
-		return (nb);
-	else
-		ft_printf("soluce = %d\n", nb);
-	return (1);
+	if ((*node))
+		ft_memdel((void**)node);
+	if ((*node2))
+		ft_memdel((void**)node2);
 }
 
-void	bfs(t_data *data)
+static t_bool	queue_append(t_data *data, int *node, int add)
 {
-	int	*file;
-	int	*nb_file;
-	int	node;
-	int node_tmp;
-	int	i;
-	int nb = 1;
-	int l = 0;
+	if (data->matrix.end_len >= data->pipe_nb)
+		return (FALSE);
+	set_bit(&(data->matrix.visited[add / 8]), add % 8);
+	node[data->matrix.end_len++] = add;
+	return (TRUE);
+}
 
-	lemin_info(data, "Algo start");
-	file = queue_create(data);
-	nb_file = queue_create(data);
-	queue_append(data, file, 0);
-	node = queue_pop(data, file);
-//	ft_printf("node : %10s   %10d\n", name(data, node), nb);
-int ee = 0;
-	while (101 && (i = -1))
+static int		queue_pop(t_data *data, int *node)
+{
+	if (data->matrix.start_len > data->matrix.end_len)
+		return (-1);
+	return (node[data->matrix.start_len++]);
+}
+
+static int		*queue_create(t_data *data)
+{
+	int *node;
+
+	if (!(node = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb +
+						data->room_nb))))
+		display_error(data, 0);
+	return (node);
+}
+
+void			bfs(t_data *data)
+{
+	t_algo	al;
+
+	ft_bzero(&al, sizeof(t_algo));
+	al.file = queue_create(data);
+	al.nb_file = queue_create(data);
+	queue_append(data, al.file, data->way.start);
+	al.room = queue_pop(data, al.file);
+	while ((data->matrix.end_len - data->matrix.start_len) >= 0 && (al.i = -1))
 	{
-		nb = 0;
-		while (++i < (data->room_nb + 2))
-		{
-			if (!test_bit(&(data->matrix.tab[node][i / 8]), i % 8) && test_bit(&(data->matrix.visited[i / 8]), i % 8))
+		al.link = 0;
+		while (++al.i < (data->room_nb + 2))
+			if (!test_bit(&(data->matrix.tab[al.room][al.i / 8]), al.i % 8)
+					&& test_bit(&(data->matrix.visited[al.i / 8]), al.i % 8))
 			{
-				
-				if (i != 1)
-				{
-					nb++;
-					queue_append(data, file, i);
-				}
+				if (al.i != data->way.end && (++al.link))
+					queue_append(data, al.file, al.i);
 				else
-				{
-					ee = 9;
-					print_nbsoluce(0);
 					break ;
-					//ft_printf("[OK]\n");
-				}
 			}
-		}
-		if (!queue_len(data, file))
-		{
-			if (ee == 9)
-				nb_file[l++] = -1;
-			else
-				nb_file[l++] = nb;
-	
-			break;
-		}
-		else
-		{
-			if (ee == 9)
-				nb_file[l++] = -1;
-			else
-				nb_file[l++] = nb;
-			ee = 0;
-			nb = 0;
-			node_tmp = node;
-			node = queue_pop(data, file);
-			//ft_printf("parent = [%10s][%10d]   mp = [%10s]\n", find_name(data, node_tmp), nb, find_name(data, node));
-		}
+		al.nb_file[al.l++] = (al.i == data->way.end ? -1 : al.link);
+		if ((data->matrix.end_len - data->matrix.start_len) >= 0)
+			al.room = queue_pop(data, al.file);
 	}
-	lemin_info(data, "Algo end");
-	put_soluce(data, &file, &nb_file);
-	print_nbsoluce(1);
-//	queue_del(&file, &nb_file);
+	put_soluce(data, &al);
+	queue_del(&(al.file), &(al.nb_file));
 }

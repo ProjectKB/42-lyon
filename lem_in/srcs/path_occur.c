@@ -6,14 +6,14 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/25 13:41:58 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/26 19:54:57 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/28 16:27:21 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_bool	path_occur(int *p1, int *p2)
+t_bool	path_occur(t_data *data, int *p1, int *p2)
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ t_bool	path_occur(int *p1, int *p2)
 	i = -1;
 	while (p1[++i] != -1 && (j = -1))
 		while (p2[++j] != -1)
-			if (p1[i] != 1 && p1[i] == p2[j])
+			if (p1[i] != data->way.end  && p1[i] != data->way.start && p1[i] == p2[j])
 				return (TRUE);
 	return (FALSE);
 }
@@ -37,7 +37,7 @@ t_bool	int_occur(int *path, int v)
 	return (FALSE);
 }
 
-void	is_repeat(int **tab, int **occur, int sol_nb)
+void	is_repeat(t_data *data, int **tab, int **occur, int sol_nb)
 {
 	int	i;
 	int	k;
@@ -48,16 +48,16 @@ void	is_repeat(int **tab, int **occur, int sol_nb)
 	k = -1;
 	count = -1;
 	path_i = -1;
-	if (!(*occur = (int*)malloc(sizeof(int) * (sol_nb * sol_nb))))
+	if (!(*occur = (int*)malloc(sizeof(int) * (sol_nb * data->room_nb))))
 		;
-	ft_memset(*occur, -2, sizeof(int) * (sol_nb * sol_nb));
+	ft_memset(*occur, -2, sizeof(int) * (sol_nb * data->room_nb));
 	(*occur)[sol_nb] = -1;
 	while (++k < sol_nb && (i = -1))
 		while (++i < sol_nb)
 		{
 			if (i == k && k != sol_nb - 1)
 				i++;
-			if (path_occur(tab[k], tab[i]))
+			if (path_occur(data, tab[k], tab[i]))
 			{
 				(*occur)[++path_i] = k;
 				(*occur)[++path_i] = i;
@@ -71,12 +71,16 @@ int		tabintlen(int *tab)
 	int	i;
 
 	i = -1;
-	while (tab[++i] != -1)
-		;
-	return (i);
+	if (tab)
+	{
+		while (tab[++i] != -1)
+			;
+		return (i);
+	}
+	return (0);
 }
 
-void	path_cost(int **tab, int **cost, int sol_nb)
+void	path_cost(int **tab, int **cost, int *good_path, int sol_nb)
 {
 	int	i;
 
@@ -84,7 +88,7 @@ void	path_cost(int **tab, int **cost, int sol_nb)
 	if (!(*cost = (int*)malloc(sizeof(int) * (sol_nb + 1))))
 		;
 	while (++i < sol_nb)
-		(*cost)[i] = tabintlen(tab[i]);
+		(*cost)[i] = tabintlen(tab[good_path[i]]) - 1;
 	(*cost)[i] = -1;
 }
 
@@ -95,9 +99,9 @@ void	path_occur_i(int *tab, int **occur_i, int sol_nb)
 
 	i = -1;
 	j = 0;
-	if (!(*occur_i = (int*)malloc(sizeof(int) * (sol_nb + 1))))
+	if (!(*occur_i = (int*)malloc(sizeof(int) * (sol_nb * sol_nb + 1))))
 		;
-	ft_memset(*occur_i, -2, sizeof(int) * (sol_nb + 1));
+	ft_memset(*occur_i, -2, sizeof(int) * (sol_nb * sol_nb + 1));
 	(*occur_i)[sol_nb] = -1;
 	while (tab[++i] != -1)
 		if (!int_occur(*occur_i, tab[i]))
@@ -108,18 +112,20 @@ void	path_occur_i(int *tab, int **occur_i, int sol_nb)
 	(*occur_i)[j] = -1;
 }
 
-void	set_occur_tab(int *path, int *ind, int ***occur, int s)
+void	set_occur_tab(int *path, int *ind, int ***occur, int sol_nb)
 {
 	int	i;
 	int	j;
 	int	k;
+	int	s;
 
 	i = -1;
-	if (!(*occur = (int**)malloc(sizeof(int*) * s)))
+	s = tabintlen(ind);
+	if (!(*occur = (int**)malloc(sizeof(int*) * (s))))
 		;
 	while (++i < s && (j = 0) != -1)
 	{
-		if (!((*occur)[i] = (int*)malloc(sizeof(int) * (s + 1))))
+		if (!((*occur)[i] = (int*)malloc(sizeof(int) * (s * s + 1))))
 			;
 		k = 1;
 		while (j < tabintlen(path))
@@ -168,7 +174,7 @@ void	wrong_path(int **occur, int **wrong_path, int limit)
 
 	i = -1;
 	j = -1;
-	if (!(*wrong_path = (int*)malloc(sizeof(int) * (limit + 1))))
+	if (!(*wrong_path = (int*)malloc(sizeof(int) * (limit * limit + 1))))
 		;
 	while (++i < limit - 1 && (count = 0) != -1)
 	{
@@ -182,4 +188,31 @@ void	wrong_path(int **occur, int **wrong_path, int limit)
 		i += count - 1;
 	}
 	(*wrong_path)[++j] = -1;
+	if (j > 0)
+		ft_sort_integer_table(*wrong_path, j);
+}
+
+void	good_path(int **good_path, int *wrong_path, int nb_soluce)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	s;
+	int	s_w;
+
+	i = -1;
+	j = -1;
+	k = 0;
+	s_w = tabintlen(wrong_path);
+	s = nb_soluce - s_w;
+	if (!(*good_path = (int*)malloc(sizeof(int) * (s + 1))))
+		return ;
+	while (++i < nb_soluce)
+	{
+		if (s_w)
+			i == wrong_path[k] ? k++ : ((*good_path)[++j] = i);
+		else
+			(*good_path)[++j] = i;
+	}
+	(*good_path)[++j] = -1;
 }
