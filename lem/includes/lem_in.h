@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 19:50:22 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 20:14:26 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -120,7 +120,6 @@ typedef struct	s_data
 ** ERROR && DEBUG
 */
 void			display_error(t_data *data, char index);
-void			debug(t_data *data, int index);
 void			lemin_info(t_data *data, char *str);
 
 /*

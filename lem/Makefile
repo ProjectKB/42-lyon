@@ -6,7 +6,7 @@
 #    By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/01 15:39:03 by rgermain     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/18 18:56:42 by rgermain    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/18 20:14:45 by rgermain    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -53,7 +53,7 @@ CHEADER = $(addprefix $(DHEADER),$(HEADER))
 
 SRC =	main.c algo.c algo_astar.c algo_astarsoluce.c display_path.c print_ants.c \
 		parser.c find_pipe.c put_room.c put_pipe.c find_is.c \
-		tools.c lemin_free.c tools_bits.c
+		tools.c lemin_free.c tools_bits.c tools_display.c
 
 COUNT = "1"
 SPACE = "                    "
