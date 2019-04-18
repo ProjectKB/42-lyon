@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 11:29:03 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 20:04:00 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 10:54:40 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ void		put_command(t_data *data, char **line)
 	{
 		if (line)
 			ft_memdel((void**)line);
-		display_error(data, 0);
+		display_error(data, 1);
 	}
 	put_room_startend(data, *line, (index == 0 ? 1 : 0));
 	if (index == 0)

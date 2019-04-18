@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:05 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 13:24:42 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 19:25:53 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,9 +21,6 @@ void		zero_astar(t_data *data, t_algostar *st, t_algo *al)
 	st->c_endlen = 0;
 	al->i = 0;
 	al->l = 0;
-	al->room = 0;
-	al->link = 0;
-	data->matrix.start_len = 0;
 	data->matrix.end_len = 0;
 	ft_bzero(st->hs, sizeof(int) * (data->room_nb + 2));
 	ft_bzero(st->olst, sizeof(int) * (data->pipe_nb));
@@ -51,7 +48,6 @@ int			count_connetion(t_data *data)
 		i++;
 	}
 	return (MIN(end, start));
-
 }
 
 static void	alloc_star(t_data *data, t_algostar *st, t_algo *al)
@@ -60,11 +56,11 @@ static void	alloc_star(t_data *data, t_algostar *st, t_algo *al)
 	ft_bzero(al, sizeof(t_algo));
 	lemin_info(data, "alloc algo A *");
 	if (!(st->hs = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
-			!(st->olst = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))) ||
-			!(st->clst = (int*)ft_memalloc(sizeof(int) * (data->room_nb))) ||
-			!(st->cost = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
-			!(al->file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))) ||
-			!(al->nb_file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))))
+		!(st->olst = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))) ||
+		!(st->clst = (int*)ft_memalloc(sizeof(int) * (data->room_nb))) ||
+		!(st->cost = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
+		!(al->file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))) ||
+		!(al->nb_file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))))
 	{
 		if (st->hs)
 			ft_memdel((void**)&(st->hs));
@@ -80,22 +76,21 @@ static void	alloc_star(t_data *data, t_algostar *st, t_algo *al)
 	}
 }
 
-void	algo(t_data *data)
+void		algo(t_data *data)
 {
-	int max;
-	int i;
+	int			max;
+	int			i;
 	t_algostar	st;
 	t_algo		al;
 
-	max = count_connetion(data);
+	if (!(max = count_connetion(data)))
+		display_error(data, 1);
 	i = 0;
 	alloc_star(data, &st, &al);
 	if (!(data->soluce.tab = (int**)malloc(sizeof(int*) * (max + 1))) ||
-				!(data->soluce.path_cost = (int*)malloc(sizeof(int) * (max + 1))))
-			display_error(data, 0);
+			!(data->soluce.path_cost = (int*)malloc(sizeof(int) * (max + 1))))
+		display_error(data, 0);
 	while (i++ < max && algo_astar(data, &st, &al))
 		zero_astar(data, &st, &al);
 	data->soluce.path_cost[data->soluce.nb_soluce] = -1;
-	putint(data, data->soluce.path_cost, 0);
-	print_tab(data);
 }

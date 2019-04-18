@@ -6,14 +6,14 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/01 15:43:07 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 12:46:30 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 19:46:30 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_bool	find_path(t_data *data, t_algostar *st, t_algo *al)
+static t_bool	find_path(t_data *data, t_algo *al)
 {
 	al->nb_file[al->l++] = -1;
 	lemin_info(data, "fin algo A *");
@@ -32,7 +32,7 @@ static t_bool	find_occur(int *node, int start, int end, int occur)
 	return (FALSE);
 }
 
-static t_bool	exist_neighbor(t_data *data, t_algostar *st, int room, int voisin)
+static t_bool	exist_neighbor(t_algostar *st, int room, int voisin)
 {
 	if ((find_occur(st->olst, st->o_startlen, st->o_endlen, voisin) &&
 			st->hs[room] > st->hs[voisin]) ||
@@ -44,41 +44,48 @@ static t_bool	exist_neighbor(t_data *data, t_algostar *st, int room, int voisin)
 	return (FALSE);
 }
 
-static int	neighbor_pop(t_data *data, t_algostar *st, int room, int *i)
+static int		neighbor_pop(t_data *data, int room, int *i, t_algostar *st)
 {
+	int	voisin;
+
+	voisin = -1;
 	while ((*i) < (data->room_nb + 2))
 	{
 		if (!test_bit(&(data->matrix.tab[room][(*i) / 8]), (*i) % 8))
-			return ((*i));
+		{
+			voisin = ((*i));
+			break ;
+		}
 		(*i)++;
 	}
-	return (-1);	
+	if (voisin == -1)
+		return (-1);
+	if (!exist_neighbor(st, room, voisin) || voisin == ROOM_END)
+	{
+		st->cost[voisin] = st->cost[room] + 1;
+		st->hs[voisin] += st->cost[voisin] + st->cost[ROOM_END];
+		st->olst[st->o_endlen++] = voisin;
+		return (1);
+	}
+	return (-1);
 }
 
-int		algo_astar(t_data *data, t_algostar *st, t_algo *al)
+int				algo_astar(t_data *data, t_algostar *st, t_algo *al)
 {
-	int			room;
-	int			voisin;
-	int			i;
+	int	room;
+	int	i;
 
 	lemin_info(data, "debut algo A *");
-	st->olst[st->o_endlen++] = data->way.start;
+	st->olst[st->o_endlen++] = ROOM_START;
 	while (st->o_endlen > st->c_endlen && (i = -1) != 0)
 	{
 		room = st->olst[st->o_startlen];
 		al->file[data->matrix.end_len++] = room;
-		if (room == data->way.end)
-			return (find_path(data, st, al));
-		while (++i < (data->room_nb + 2) && (voisin = neighbor_pop(data, st, room, &i)) != -1)
-		{	
-			if (!exist_neighbor(data, st, room, voisin) || voisin == data->way.end)
-			{
+		if (room == ROOM_END)
+			return (find_path(data, al));
+		while (++i < (data->room_nb + 2))
+			if (neighbor_pop(data, room, &i, st) == 1)
 				al->nb_file[al->l]++;
-				st->cost[voisin] = st->cost[room] + 1;
-				st->hs[voisin] += st->cost[voisin] + st->cost[data->way.end];
-				st->olst[st->o_endlen++] = voisin;
-			}
-		}
 		al->l++;
 		st->clst[st->c_endlen++] = room;
 		st->o_startlen++;

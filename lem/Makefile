@@ -6,7 +6,7 @@
 #    By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/01 15:39:03 by rgermain     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/17 13:59:58 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/18 18:56:42 by rgermain    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -26,12 +26,12 @@ LIBFT_R :
 	@make -C libft/ re
 
 CFLAGS = -Wall -Werror -Wextra
-CFLAGS = -g
+#CFLAGS = -g
 
 INCLUDE = -Iincludes
 INCLUDE2 = -Iminilibx
 
-HEADER = lem_in.h color.h
+HEADER = lem_in.h
 
 LIBFT = libft/libft.a
 
@@ -51,10 +51,9 @@ CHEADER = $(addprefix $(DHEADER),$(HEADER))
 # 								ALL  SCRS									   #
 # *****************************************************************************#
 
-SRC =	main.c parser.c tools.c lemin_free.c find_pipe.c \
-		put_room.c put_pipe.c put_line.c find_is.c algo_bfs.c algo_bfssoluce.c \
-		tools_bits.c path_occur.c final_path.c debug.c \
-		algo.c algo_astar.c algo_astarsoluce.c display_path.c \
+SRC =	main.c algo.c algo_astar.c algo_astarsoluce.c display_path.c print_ants.c \
+		parser.c find_pipe.c put_room.c put_pipe.c find_is.c \
+		tools.c lemin_free.c tools_bits.c
 
 COUNT = "1"
 SPACE = "                    "

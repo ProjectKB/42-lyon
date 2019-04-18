@@ -6,14 +6,14 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/01 17:51:03 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 14:44:39 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 19:30:16 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	remove_node2(t_data *data, int room)
+void		remove_node2(t_data *data, int room)
 {
 	int i;
 
@@ -29,7 +29,7 @@ void	remove_node2(t_data *data, int room)
 	}
 }
 
-void	remove_node(t_data *data, t_soluce *st)
+void		remove_node(t_data *data)
 {
 	int i;
 	int j;
@@ -45,12 +45,11 @@ void	remove_node(t_data *data, t_soluce *st)
 	data->matrix.end_len = 0;
 }
 
-static void	alloc_path(t_data *data, t_soluce *st, int **file,
-		int **nb_file)
+static void	alloc_path(t_data *data, t_soluce *st, int **file, int **nb_file)
 {
-			ft_bzero(st, sizeof(t_soluce));
-			if (!(st->path = (int*)ft_memalloc(sizeof(int) *
-											(data->matrix.end_len + 1))))
+	ft_bzero(st, sizeof(t_soluce));
+	if (!(st->path = (int*)ft_memalloc(sizeof(int) *
+												(data->matrix.end_len + 1))))
 	{
 		ft_memdel((void**)file);
 		ft_memdel((void**)nb_file);
@@ -58,16 +57,15 @@ static void	alloc_path(t_data *data, t_soluce *st, int **file,
 	}
 }
 
-void	put_soluceastar(t_data *data, t_algo *al)
+void		put_soluceastar(t_data *data, t_algo *al)
 {
 	t_soluce st;
 
 	lemin_info(data, "start put_soluce A *");
-
 	alloc_path(data, &st, &(al->file), &(al->nb_file));
 	while (st.pos < al->l && al->nb_file[st.pos] != -1)
 		st.pos++;
-	st.path[st.l++] = data->way.end;
+	st.path[st.l++] = ROOM_END;
 	al->file[st.pos] = 0;
 	al->nb_file[st.pos] = 0;
 	while (st.pos > 0)
@@ -82,6 +80,6 @@ void	put_soluceastar(t_data *data, t_algo *al)
 	st.path[st.l] = -1;
 	data->soluce.path_cost[data->soluce.nb_soluce] = st.l - 2;
 	data->soluce.tab[data->soluce.nb_soluce++] = st.path;
-	remove_node(data, &st);
+	remove_node(data);
 	lemin_info(data, "End put_soluce A *");
 }

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:05 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 16:45:40 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 19:23:37 by rgermain    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,11 @@ static void	put_flags(t_data *data, int argc, char **argv)
 	while (i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-i"))
+		{
 			set_bit(&(data->info.flags), 1);
+			if (i < (argc - 1))
+				data->info.time = ft_atoi(argv[i + 1]);
+		}
 		else if (!ft_strcmp(argv[i], "-p"))
 			set_bit(&(data->info.flags), 2);
 		else if (!ft_strcmp(argv[i], "-o"))
@@ -46,17 +50,18 @@ int			main(int argc, char **argv)
 	ft_bzero(&data, sizeof(t_data));
 	data.b.general = TRUE;
 	put_flags(&data, argc, argv);
-	data.final.min = INT_MAX;
 	while (data.b.general && get_next_line(data.info.fd, &line) == 1)
 	{
 		parse_line(&data, &line);
 		put_line(&data, &line);
 	}
+	is_valid(&data);
+	if (test_bit(&(data.info.flags), 2))
+		ft_printf("\n");
 	lemin_info(&data, "Finish to take info");
-	data.way.start = 0;
-	data.way.end = 1;
 	algo(&data);
 	nb_ants_by_path(&data, &data.soluce.good_path, data.soluce.path_cost);
+	print_ants(&data);
 	lemin_free(&data);
 	return (0);
 }
