@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:21 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/23 13:07:19 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 19:37:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -151,7 +151,7 @@ t_bool			is_command(t_data *data, char *line);
 /*
 **	PUT_IN STRUCTS
 */
-void			parse_line(t_data *data, char **line);
+int				parse_line(t_data *data, char **line);
 void			put_command(t_data *data, char **line);
 void			put_room(t_data *data, char **line);
 void			put_line(t_data *data, char **line);

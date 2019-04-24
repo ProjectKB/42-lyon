@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/14 13:40:11 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/23 13:24:24 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 19:49:07 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,18 +33,23 @@ void		is_valid(t_data *data)
 	data->b.general = FALSE;
 }
 
-void		parse_line(t_data *data, char **line)
+int			parse_line(t_data *data, char **line)
 {
 	if (!(data->b.ants))
 		put_ants(data, (*line));
 	else if (is_command(data, (*line)))
 		put_command(data, line);
 	else if (line && (*line)[0] == '#')
+	{
 		put_comment(data, (*line));
+		ft_memdel((void**)(line));
+		return (1);
+	}
 	else if (is_room(data, (*line)))
 		put_room(data, line);
 	else if (is_pipe(data, line))
 		put_pipe(data, line);
 	else
 		is_valid(data);
+	return (0);
 }

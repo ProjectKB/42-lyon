@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:05 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/24 19:21:39 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 19:44:30 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,10 +70,8 @@ int			main(int argc, char **argv)
 	data.b.general = TRUE;
 	put_flags(&data, argc, argv);
 	while (data.b.general && get_next_line(data.info.fd, &line) == 1)
-	{
-		parse_line(&data, &line);
-		put_line(&data, &line);
-	}
+		if (!(parse_line(&data, &line)))
+			put_line(&data, &line);
 	is_valid(&data);
 	lemin_info(&data, "Finish to take info");
 	algo(&data);
