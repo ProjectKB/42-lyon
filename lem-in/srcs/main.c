@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:05 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/19 19:34:33 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 19:21:39 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,13 +33,32 @@ static void	put_flags(t_data *data, int argc, char **argv)
 		else if (!ft_strcmp(argv[i], "-f"))
 		{
 			if (argc < (i + 1) ||
-				(data->info.fd = open(argv[++i], O_RDONLY)) < 0)
+					(data->info.fd = open(argv[++i], O_RDONLY)) < 0)
 				ft_dprintf(2, "%1@", "error", "lem_in", "can't open file");
 		}
 		else
 			data->info.fd = 0;
 		i++;
 	}
+}
+
+static void	check_start_end_path(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (!(*data->soluce.path_cost))
+	{
+		data->soluce.path_cost[1] = -1;
+		while (++i < data->ants_nb)
+			ft_printf("L%d-%s ", i, find_name(data, 1));
+		ft_printf("L%d-%s\n", i, find_name(data, 1));
+		lemin_info(data, "Print ants end");
+		ft_memdeltab_int(&data->soluce.tab, data->soluce.nb_soluce);
+		return ;
+	}
+	nb_ants_by_path(data, &data->soluce.good_path, data->soluce.path_cost);
+	print_ants(data);
 }
 
 int			main(int argc, char **argv)
@@ -63,8 +82,7 @@ int			main(int argc, char **argv)
 	print_line(data.file);
 	if (test_bit(&(data.info.flags), 2))
 		ft_printf("\n");
-	nb_ants_by_path(&data, &data.soluce.good_path, data.soluce.path_cost);
-	print_ants(&data);
+	check_start_end_path(&data);
 	lemin_free(&data);
 	return (0);
 }

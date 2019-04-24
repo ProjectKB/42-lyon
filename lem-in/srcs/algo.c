@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/26 19:20:05 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/23 15:16:05 by rgermain    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 18:08:44 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ static void	zero_astar(t_data *data, t_algostar *st, t_algo *al)
 	ft_bzero(st->hs, sizeof(int) * (data->room_nb + 2));
 	ft_bzero(st->cost, sizeof(int) * (data->room_nb + 2));
 	ft_bzero(st->olst, sizeof(int) * (st->alloc));
-	ft_bzero(st->clst, sizeof(int) * (data->room_nb));
+	ft_bzero(st->clst, sizeof(int) * (data->room_nb + 2));
 	ft_bzero(al->file, sizeof(int) * (data->pipe_nb));
 	ft_bzero(al->nb_file, sizeof(int) * (data->pipe_nb));
 }
@@ -45,11 +45,11 @@ static void	alloc_star(t_data *data, t_algostar *st, t_algo *al)
 	ft_bzero(st, sizeof(t_algostar));
 	ft_bzero(al, sizeof(t_algo));
 	lemin_info(data, "alloc algo A *");
-	st->alloc = data->room_nb;
+	st->alloc = data->room_nb + 2;
 	if (!(st->hs = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
 		!(st->cost = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
 		!(st->olst = (int*)ft_memalloc(sizeof(int) * (st->alloc))) ||
-		!(st->clst = (int*)ft_memalloc(sizeof(int) * (data->room_nb))) ||
+		!(st->clst = (int*)ft_memalloc(sizeof(int) * (data->room_nb + 2))) ||
 		!(al->file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))) ||
 		!(al->nb_file = (int*)ft_memalloc(sizeof(int) * (data->pipe_nb))))
 	{
