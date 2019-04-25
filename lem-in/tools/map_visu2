@@ -1,4 +1,4 @@
-214
+14
 ##start
 START 12 3
 2 10 7
@@ -6,19 +6,18 @@ START 12 3
 #commentaire
 4 10 5
 5 8 3
-6 5 5
-8 5 5
+6 10 10
+8 15 15
 7 4 8
 ##end
 END 5 5
-##oriented
+##oriente
 END-4
 ##oriented
 START-3
 4-3
 3-5
 6-5
-8-9
 4-2
 5-2
 2-START

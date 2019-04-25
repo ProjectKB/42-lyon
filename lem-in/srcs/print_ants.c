@@ -6,7 +6,7 @@
 /*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/17 16:27:39 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/24 19:09:58 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/25 11:34:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,14 +70,13 @@ static int	**alloc_ants(t_data *data)
 	return (tab);
 }
 
-static int	print_ants2(t_data *data, int **tab)
+static int	print_ants2(t_data *data, int **tab, int *name, int *saved)
 {
 	int	i;
 	int	j;
-	int	saved;
 
 	i = -1;
-	saved = 0;
+	add_ants(data, tab, name);
 	while (++i < data->soluce.nb_soluce)
 	{
 		j = -1;
@@ -86,7 +85,7 @@ static int	print_ants2(t_data *data, int **tab)
 			if (tab[i][j] >= 0)
 			{
 				if (j == 0)
-					saved++;
+					(*saved)++;
 				if (test_bit(&(data->info.flags), 2))
 					ft_printf("L%d-%s", tab[i][j],
 							find_name(data, data->soluce.tab[i][j]));
@@ -95,7 +94,8 @@ static int	print_ants2(t_data *data, int **tab)
 			}
 		}
 	}
-	return (saved);
+	move_ants(data, tab);
+	return (1);
 }
 
 void		print_ants(t_data *data)
@@ -107,21 +107,19 @@ void		print_ants(t_data *data)
 	name = 1;
 	saved = 0;
 	tab = alloc_ants(data);
-	while (saved < data->ants_nb)
-	{
-		add_ants(data, tab, &name);
-		saved += print_ants2(data, tab);
+	while (saved < data->ants_nb && print_ants2(data, tab, &name, &saved))
 		if ((++data->info.line_print) && test_bit(&(data->info.flags), 2))
 			ft_printf("\n");
-		move_ants(data, tab);
-	}
 	if (!test_bit(&(data->info.flags), 2))
 	{
 		lemin_info(data, "Print line");
-		ft_printf("%s[  %d   ]%s\n", T_BLUE, data->info.line_print, T_WHITE);
-		(data->info.line_print <= data->info.line_indice) ?
-			ft_printf("\n%s GOOD%s\n", T_GREEN, T_WHITE) :
-			ft_printf("\n%s FUCK%s\n", T_RED, T_WHITE);
+		ft_printf("%s[  %4d   ]%s\n", T_BLUE, data->info.line_print, T_WHITE);
+		ft_printf("%s[  %4d   ]%s\n", T_PURPLE, data->info.line_print -
+											data->info.line_indice, T_WHITE);
+		if (data->info.line_print <= data->info.line_indice)
+			ft_printf("\n%s GOOD%s\n", T_GREEN, T_WHITE);
+		else
+			ft_printf("\n%s NOT GOOD%s\n", T_RED, T_WHITE);
 	}
 	ft_memdeltab_int(&tab, data->soluce.nb_soluce);
 	lemin_info(data, "Print ants end");
