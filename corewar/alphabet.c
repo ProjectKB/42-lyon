@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/05 17:01:19 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/05 22:05:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/05 23:01:31 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -261,7 +261,7 @@ int		size_word(char *str, int s, int mod)
 		size++;
 		s++;
 	}
-	size_word = (size * 5) + size - 1 + 3;
+	size_word = (size * 5) + size - 1;
 	return (!mod ? size : size_word);
 }
 
@@ -273,11 +273,27 @@ void	print_word(char *word, unsigned char *arena, const t_letter *alphabet, int 
 
 	i= -1;
 	len = size_word(word, w_start, 0);
-	printf("%d\n", len);
 	while (++i < len)
 		print_letter(word[w_start++], arena, alphabet, &start);
 }
 
+void	print_line(char *str, unsigned char *arena, const t_letter *alphabet)
+{
+	int	size_line;
+	int	size_w;
+	int	count;
+	
+	size_line = 0;
+	count = 0;
+	size_w = 0;
+	while (size_line < 60)
+	{
+		size_line += size_word(str, size_w + 1, 1);
+		size_w += size_word(str, size_w + 1, 0);
+		printf("%d %d count : %d\n", size_w, size_line, count);
+		count++;
+	}
+}
 
 int	main(void)
 {
@@ -289,9 +305,7 @@ int	main(void)
 	bzero(arena, 4096);
 	alphabet = get_alphabet();
 	print_word("CORE BLA", arena, alphabet, 0, 0);
-	print_word("CORE BLA", arena, alphabet, 512, 5);
-	//printf("%d\n", size_word("coucou", 0, 1));
-	//printf("%d\n", size_word("coucou", 0, 0));
+	//print_line("CORE BLA COUCOU LALALALALALAL", arena, alphabet);
 	print_arena(arena);
 	return (0);
 }
