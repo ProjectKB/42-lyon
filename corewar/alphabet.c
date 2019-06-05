@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/05 17:01:19 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/05 19:08:03 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/05 22:05:53 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -216,6 +216,19 @@ const t_letter	*get_alphabet(void)
 	return (alphabet);
 }
 
+int		count_word(char *str)
+{
+	int	i;
+	int	count;
+
+	i = -1;
+	count = 0;
+	while (str[++i])
+		if (str[i + 1] == ' ' || !str[i + 1])
+			count++;
+	return (count);
+}
+
 void	print_letter(char letter, unsigned char *arena, const t_letter *alphabet, int *pos)
 {
 	int	i;
@@ -236,23 +249,35 @@ void	print_letter(char letter, unsigned char *arena, const t_letter *alphabet, i
 	*pos += 6;
 }
 
-void	print_word(char *word, unsigned char *arena, const t_letter *alphabet)
+int		size_word(char *str, int s, int mod)
 {
-	static int	pos = 65;
-	int	w_start;
-	int	w_size;
-	int	i;
-	int	len;
+	int			size_word;
+	int			size;
 
-	i = -1;
-	len = strlen(word);
-	w_size = (len * 5) + len - 1;
-	w_start = (64 - w_size) / 2 - 1;
-	printf("len : %d start : %d size : %d\n", len, w_start, w_size);
-	pos += w_start;
-	while (++i < len)
-		print_letter(word[i], arena, alphabet, &pos);
+	size_word = 0;
+	size = 0;
+	while (str[s] && str[s] != ' ')
+	{
+		size++;
+		s++;
+	}
+	size_word = (size * 5) + size - 1 + 3;
+	return (!mod ? size : size_word);
 }
+
+void	print_word(char *word, unsigned char *arena, const t_letter *alphabet, int start, int w_start)
+{
+	int	w_size;
+	int	len;
+	int	i;
+
+	i= -1;
+	len = size_word(word, w_start, 0);
+	printf("%d\n", len);
+	while (++i < len)
+		print_letter(word[w_start++], arena, alphabet, &start);
+}
+
 
 int	main(void)
 {
@@ -263,7 +288,10 @@ int	main(void)
 	i = -1;
 	bzero(arena, 4096);
 	alphabet = get_alphabet();
-	print_word("COREWAR", arena, alphabet);
+	print_word("CORE BLA", arena, alphabet, 0, 0);
+	print_word("CORE BLA", arena, alphabet, 512, 5);
+	//printf("%d\n", size_word("coucou", 0, 1));
+	//printf("%d\n", size_word("coucou", 0, 0));
 	print_arena(arena);
 	return (0);
 }
