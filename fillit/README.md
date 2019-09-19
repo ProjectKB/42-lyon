@@ -17,7 +17,7 @@ Ce projet est aussi un prétexte pour nous donner une application basique au bac
 
 Une fois le repo téléchargé sur votre machine vous aurez juste à utiliser `make`.
 
-Vous l'exécuterez à l'aide de `./fillit vos_tetriminos`
+Vous l'exécuterez à l'aide de `./fillit vos_tetriminos`.
 
 Le fichier `vos_tetriminos` contient une liste de tetriminos que l'algorithme de backtracking devra ordonner.
 
