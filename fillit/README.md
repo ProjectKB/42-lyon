@@ -15,7 +15,7 @@ Ce projet est aussi un prétexte pour nous donner une application basique au bac
 <br><br>
 ### LANCER LE PROJET
 
-Pour compiler le projet une fois le repo téléchargé sur votre machine vous aurez juste à utiliser `make`.
+Une fois le repo téléchargé sur votre machine vous aurez juste à utiliser `make`.
 
 Vous l'exécuterez à l'aide de `./fillit vos_tetriminos`
 
