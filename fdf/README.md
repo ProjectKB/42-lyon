@@ -34,7 +34,7 @@ Les événements suivant ont été implémentés :
 * Affichage ou non de l'HUD
 * Changement d'algorithme de tracé (l'un développé par un étudiant de l'école l'autre par Xiaolin-Wu)
 * Changement de projection
-
+<br>
 <div>
   <img src="img/hud.png" width="100%">
    <p align="center">Vu de base du projet (avec HUD)</p>
