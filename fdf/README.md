@@ -52,6 +52,6 @@ Les événements suivant ont été implémentés :
 <br>
 <div>
   <img src="img/rot.gif" width="100%">
-  <p align="center">Rotations axe X/Y/Z</p>
+  <p align="center">Rotations axe X/Y/Z et couleurs</p>
 </div>
 
