@@ -18,8 +18,8 @@ Le dossier `map` contient plusieurs cartes pour tester le programme.
 Nous devions réaliser deux type de projections, j'ai choisi pour ma part d'implémenter la parallèle et l'isométrique.
 
 <div>
-  <img src="fdf/img/parallele.png" width="340">
-  <img align="right" src="fdf/img/iso.png" width="522">
+  <img src="img/parallele.png" width="340">
+  <img align="right" src="img/iso.png" width="522">
 </div>
 <br>
 
@@ -36,18 +36,18 @@ Les événements suivant ont été implémentés :
 * Changement de projection
 
 <div>
-  <img src="fdf/img/hud.png" width="1000">
+  <img src="img/hud.png" width="1000">
 </div>
 <div>
-  <img src="fdf/img/jordan.png" width="438">
-  <img src="fdf/img/xiaolin_wu.png" width="438">
+  <img src="img/jordan.png" width="438">
+  <img src="img/xiaolin_wu.png" width="438">
 </div>
 <div>
-  <img src="fdf/img/details.png" width="438">
-  <img src="fdf/img/details2.png" width="438">
+  <img src="img/details.png" width="438">
+  <img src="img/details2.png" width="438">
 </div>
 <div>
-  <img src="fdf/img/z.gif" width="291">
-  <img src="fdf/img/y.gif" width="291">
-  <img src="fdf/img/x.gif" width="291">
+  <img src="img/z.gif" width="291">
+  <img src="img/y.gif" width="291">
+  <img src="img/x.gif" width="291">
 </div>
