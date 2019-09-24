@@ -17,9 +17,9 @@ Le dossier `map` contient plusieurs cartes pour tester le programme.
 
 Nous devions réaliser deux type de projections, j'ai choisi pour ma part d'implémenter la parallèle et l'isométrique.
 
-<div>
-  <img src="img/parallele.png" width="340">
-  <img align="right" src="img/iso.png" width="522">
+<div >
+  <img src="img/parallele.png" width="35%">
+  <img align="right" src="img/iso.png" width="60%">
 </div>
 <br>
 
@@ -36,18 +36,14 @@ Les événements suivant ont été implémentés :
 * Changement de projection
 
 <div>
-  <img src="img/hud.png" width="1000">
+  <img src="img/hud.png" width="100%">
 </div>
 <div>
-  <img src="img/jordan.png" width="438">
-  <img src="img/xiaolin_wu.png" width="438">
+  <img src="img/jordan.png" width="48.85%">
+  <img align="right" src="img/xiaolin_wu.png" width="48.85%">
 </div>
 <div>
-  <img src="img/details.png" width="438">
-  <img src="img/details2.png" width="438">
+  <img src="img/details.png" width="48.85%">
+  <img align="right" src="img/details2.png" width="48.85%">
 </div>
-<div>
-  <img src="img/z.gif" width="291">
-  <img src="img/y.gif" width="291">
-  <img src="img/x.gif" width="291">
-</div>
+
