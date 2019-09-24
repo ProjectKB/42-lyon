@@ -39,11 +39,12 @@ Les événements suivant ont été implémentés :
   <img src="img/hud.png" width="100%">
 </div>
 <div>
-  <img src="img/jordan.png" width="48.85%">
-  <img align="right" src="img/xiaolin_wu.png" width="48.85%">
+  <img src="img/proj.png" width="100%">
 </div>
 <div>
-  <img src="img/details.png" width="48.85%">
-  <img align="right" src="img/details2.png" width="48.85%">
+  <img src="img/details.png" width="100%">
+</div>
+<div>
+  <img src="img/rot.gif" width="100%">
 </div>
 
