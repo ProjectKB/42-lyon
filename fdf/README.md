@@ -37,6 +37,7 @@ Les événements suivant ont été implémentés :
 
 <div>
   <img src="img/hud.png" width="100%">
+   <p align="center">Vu de base du projet (avec HUD)</p>
 </div>
 <div>
   <img src="img/proj.png" width="100%">
@@ -48,5 +49,6 @@ Les événements suivant ont été implémentés :
 </div>
 <div>
   <img src="img/rot.gif" width="100%">
+  <p align="center">Rotations axe X/Y/Z</p>
 </div>
 
