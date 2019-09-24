@@ -40,6 +40,7 @@ LIBFT_OBJ = $(LIBFT_PATH)/*.o
 OBJ_DIR = objects
 OBJECT = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LMLX = ./minilibx_macos/libmlx.a
+MINILIB_PATH = ./minilibx_macos
 FRAMEWORK = -framework OpenGL -framework Appkit
 
 all: $(NAME)
@@ -62,6 +63,7 @@ MAKE_LIB =  "\n$(YELLOW)libft :\t\t$(RED)make $(YELLOW)libft\t\t$(WHITE)"
 
 $(NAME): $(OBJECT) $(HEADER)
 	@(cd $(LIBFT_PATH) && make) > /dev/null
+	@(cd $(MINILIB_PATH) && make) > /dev/null
 	@printf  $(MAKE_LIB)
 	@printf "$(OK)"
 	@$(CC) $(CFLAGS) -L $(LIBFT_PATH) -lft $(OBJECT) -o $@ $(LMLX) $(FRAMEWORK)
