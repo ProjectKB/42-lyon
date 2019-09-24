@@ -32,7 +32,7 @@ Les événements suivant ont été implémentés :
 * Rotation axe X/Y/Z
 * Zoom
 * Affichage ou non de l'HUD
-* Changement d'algorithme de tracé (l'un développé par un étudiant de l'école l'autre de Xiaolin-Wu)
+* Changement d'algorithme de tracé (l'un développé par un étudiant de l'école l'autre par Xiaolin-Wu)
 * Changement de projection
 
 <div>
