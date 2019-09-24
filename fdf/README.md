@@ -40,9 +40,11 @@ Les événements suivant ont été implémentés :
 </div>
 <div>
   <img src="img/proj.png" width="100%">
+  <p align="center">Différence entre les deux algos de tracé de segment</p>
 </div>
 <div>
   <img src="img/details.png" width="100%">
+  <p align="center">Détails des fractales Mandelbrot et Julia</p>
 </div>
 <div>
   <img src="img/rot.gif" width="100%">
