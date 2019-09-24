@@ -39,14 +39,17 @@ Les événements suivant ont été implémentés :
   <img src="img/hud.png" width="100%">
    <p align="center">Vu de base du projet (avec HUD)</p>
 </div>
+<br>
 <div>
   <img src="img/proj.png" width="100%">
   <p align="center">Différence entre les deux algos de tracé de segment</p>
 </div>
+<br>
 <div>
   <img src="img/details.png" width="100%">
   <p align="center">Détails des fractales Mandelbrot et Julia</p>
 </div>
+<br>
 <div>
   <img src="img/rot.gif" width="100%">
   <p align="center">Rotations axe X/Y/Z</p>
