@@ -5,7 +5,7 @@ surtout comment observer la scène depuis un certain point de vue.
 C'est égalemet à cette occasion que nous découvrirons notre première bibliothèque graphique : La miniLibX.
 Cette bibliothèque développée en interne rassemble le minimum nécéssaire pour ouvrir une
 fenêtre, allumer un pixel et gérer les évènements lié à cette fenêtre : le clavier et la souris.
-C'est pour nous l’occasion de nous initier à la programmation dite “evenementielle”.
+C'est pour nous l’occasion de nous initier à la programmation dite “événementielle”.
 <br><br>
 ## LANCER LE PROJET
 
@@ -32,18 +32,26 @@ Les événements suivant ont été implémentés :
 * Rotation axe X/Y/Z
 * Zoom
 * Affichage ou non de l'HUD
-* Changement d'algorithme de tracé (l'un développé par un étudiant de l'école l'autre de Xiaolin-Wu)
+* Changement d'algorithme de tracé (l'un développé par un étudiant de l'école l'autre par Xiaolin-Wu)
 * Changement de projection
-
+<br>
 <div>
   <img src="img/hud.png" width="100%">
+   <p align="center">Vu de base du projet (avec HUD)</p>
 </div>
+<br>
 <div>
-  <img src="img/jordan.png" width="48.85%">
-  <img align="right" src="img/xiaolin_wu.png" width="48.85%">
+  <img src="img/proj.png" width="100%">
+  <p align="center">Différence entre les deux algos de tracé de segment</p>
 </div>
+<br>
 <div>
-  <img src="img/details.png" width="48.85%">
-  <img align="right" src="img/details2.png" width="48.85%">
+  <img src="img/details.png" width="100%">
+  <p align="center">Détails des fractales Mandelbrot et Julia</p>
+</div>
+<br>
+<div>
+  <img src="img/rot.gif" width="100%">
+  <p align="center">Rotations axe X/Y/Z et couleurs</p>
 </div>
 
