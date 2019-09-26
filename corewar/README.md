@@ -97,29 +97,29 @@ cycle.
 
 * Les instructions 
 
-<img src="corewar/img/instructions_tab.jpg">
+<img src="img/instructions_tab.jpg">
 <br>
 
 ## BONUS
 
-<img width="100%" src="corewar/img/usage.png">
+<img width="100%" src="img/usage.png">
 
 ### Partie Graphique
 
 Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
 <br><br>
 <div> 
-  <img width="100%" src="corewar/img/game_on.gif">
-  <img width="100%" src="corewar/img/light.gif">
-  <img width="100%" src="corewar/img/responsive.gif">
+  <img width="100%" src="img/game_on.gif">
+  <img width="100%" src="img/light.gif">
+  <img width="100%" src="img/responsive.gif">
 </div>
 
 <br>
 Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie (optionnelle).
 <br><br>
 <div> 
-  <img width="100%" src="corewar/img/start.gif">
-  <img width="100%" src="corewar/img/end.gif">
+  <img width="100%" src="img/start.gif">
+  <img width="100%" src="img/end.gif">
 </div>
 
 <br><br>
