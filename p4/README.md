@@ -9,6 +9,6 @@ Pour rappel les règles du puissance 4 sont les suivantes :
 Qui du joueur ou du programme commence la partie est déterminé aléaoirement : 
 
 <div> 
-  <img width="100%" src="img/player_start.png">
-  <img width="100%" src="img/IA_start.png">
+  <img src="img/player_start.png" width="20%">
+  <img align="right" src="img/AI_start.png" width="20%">
 </div>
