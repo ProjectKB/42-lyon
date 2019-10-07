@@ -19,4 +19,4 @@ printf
 
 Les codes couleurs sont les suivants :
 <img src="img/code.png">
-<img src="img/output.png">
+
