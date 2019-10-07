@@ -39,9 +39,9 @@ Deux cas de figure sont possibles :
 
 Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
 
-Les déplacements des fourmis sont exprimé comme suit :
-<br>1er tour | `L1-salleX L2-salleY L3-salleZ`
-<br>2e  tour | `L1-salleA L2-salleB L3-salleC L4`
+Les déplacements des fourmis sont exprimé comme suit (L**numéro de fourmi**-**nom de salle**):
+<br>1er tour | `L1-salleA L2-salleB L3-salleC`
+<br>2e  tour | `L1-salleD L2-salleE L3-salleF`
 
 Il est important de comprendre que notre algorithme nous fournira dans la plupart des cas un nombre de chemins valides supérieur à celui dont nous aurons réellement besoin.
 
@@ -49,7 +49,7 @@ Imaginons que l'on trouve 5 chemins empruntables, qu'on ai 5 fourmis à placer e
 
 On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les trois premier chemin.
 
-En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre deux pour le second.
+En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre 2 pour le second.
 
 Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
 
