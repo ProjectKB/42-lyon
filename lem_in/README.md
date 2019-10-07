@@ -1,7 +1,7 @@
 ## LE PROJET EN LUI MÊME
 
 Ce projet est une introduction à la problématique des algos de pathfinding et aux parcours de graphes.
-<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non.
+<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non // rajouter le nombre importants ou non de parcourant.
 
 Le fichier que l'on fera lire par notre programme décrit une fourmilière caractérisée par :
 * Son nombre de fourmis
@@ -39,6 +39,8 @@ Deux cas de figure sont possibles :
 
 Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour) ; Lx-y Lz-w Lr-o ...
 Où x, z, r sont des numéros de fourmis (allant de 1 à nombre_de_fourmis) et y, w, o des noms de salles.
+
+// à préciser
 
 Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
 
