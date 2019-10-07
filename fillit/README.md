@@ -42,7 +42,7 @@ Nous avons choisis d'implémenter trois type d'affichage supplémentaires :
 <img src="ressources/color.png" height="300">
 <br>
 
-* Le même mode avec une option "step by step" pour bien visualiser le fonctionnement de l'algorithme,<br>utiliser `make re GRAPHIC=step`.
+* Le même mode avec une option "step by step" pour bien visualiser le fonctionnement de l'algorithme,<br>utiliser `make re GRAPHIC=step` la touche `entrée` du clavier vous permettra de lancer l'itération suivante.
 
 <img src="ressources/demo.gif" height="300">
 <br>

@@ -10,7 +10,7 @@ avec deux joueurs que le filler prend tout son intérêt. Chaque joueur a pour b
 un maximum de pièces tout en tentant d’empêcher son adversaire de le faire. A la fin de
 la partie, celui avec le plus de point remporte le match.
 
-Pour ce projet, j'ai choisi de mettre en place un algorithme de heat map, l'idée est d'à partir de l'état actuelle de la grille de déterminer la meilleur position possible où poser sa pièce.
+Pour ce projet, j'ai choisi de mettre en place un algorithme d'heat map, l'idée est d'à partir de l'état actuelle de la grille de déterminer la meilleur position possible où poser sa pièce.
 
 Le projet se compile avec `make` et se lance à l'aide d'une vm fournit dans les ressources disponibles au début du projet.
 Il existe trois tailles de map pour ce projet, il est également possible de changer le point de départ de la partie en précisant le numéro de player des joueurs.

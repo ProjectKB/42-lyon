@@ -115,7 +115,7 @@ Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
 </div>
 
 <br>
-Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie (optionnelle).
+Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie (optionnel).
 <br><br>
 <div> 
   <img width="100%" src="img/start.gif">
