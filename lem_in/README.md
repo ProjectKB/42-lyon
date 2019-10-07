@@ -48,7 +48,7 @@ Il est important de comprendre que notre algorithme nous fournira dans la plupar
 
 Imaginons que l'on trouve 5 chemins empruntables, qu'on ai 5 fourmis à placer et que les 3 premiers chemins ne requiert que 2 coups alors que les 2 restant nécessitent 4 coups.
 
-On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les trois premier chemin.
+On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les 3 premiers chemins.
 
 En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre 2 pour le second.
 
