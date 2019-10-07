@@ -10,5 +10,6 @@ Le fichier que l'on fera lire par notre programme décrit une fourmilière carac
 Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la fourmilière transmise est valide le programme s'arrête quand toute les fourmis ont atteint la salle `end`.
 <br>Il ne peut y avoir qu'une fourmi par salle et elles ne peuvent passer que d'une salle à l'autre par tour.
 
-<img href="img/demo_file.png">
+Pour une meilleure compréhension, voici un descriptif du fichier à passer en argument au programme : 
 
+<img src="img/demo_file.png width="50%">
