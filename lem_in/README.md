@@ -67,7 +67,7 @@ Ces scripts produiront la sortie suivante :
 
 Où l'on peut voir dans l'ordre :
 * en bleu le nombre de tour nécessaire à notre programme pour placer toute les fourmis
-* en rose la différence avec la recommandation donnée par le générateur de map
+* en magenta la différence avec la recommandation donnée par le générateur de map
 * en vert `GOOD` si le résultat est égal/inférieur à la recommandation ou en rouge `FALSE` dans le cas contraire
 * le temps prit par le programme
 * le nombre de fourmis présentes dans la fourmilière
