@@ -9,7 +9,7 @@ C'est pour nous l’occasion de nous initier à la programmation dite “événe
 <br><br>
 ## LANCER LE PROJET
 
-Une fois le repo téléchargé un simple `make` suffira à compiler le projet.
+Pour compiler le projet vous aurez besoin de la commande `make`.
 
 Vous l'exécuterez à l'aide de la commande `./fdf votre_map`.
 
