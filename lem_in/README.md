@@ -39,7 +39,7 @@ Deux cas de figure sont possibles :
 
 Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
 
-Exemple de déplacements réalisés par les fourmis (le contenu de la fourmilière n'est pas présent pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
+Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
 
 <img src="img/ants_output.png" width="70%">
 
