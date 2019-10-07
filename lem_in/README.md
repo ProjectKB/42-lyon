@@ -1,7 +1,7 @@
 ## LE PROJET EN LUI MÊME
 
 Ce projet est une introduction à la problématique des algos de pathfinding et aux parcours de graphes.
-<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non // rajouter le nombre importants ou non de parcourant.
+<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non par un ou plusieurs objets.
 
 Le fichier que l'on fera lire par notre programme décrit une fourmilière caractérisée par :
 * Son nombre de fourmis
@@ -37,10 +37,19 @@ Deux cas de figure sont possibles :
 
 ## CAS D'UNE FOURMILIÈRE VALIDE
 
-Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour) ; Lx-y Lz-w Lr-o ...
-Où x, z, r sont des numéros de fourmis (allant de 1 à nombre_de_fourmis) et y, w, o des noms de salles.
+Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
 
-// à préciser
+Les déplacements des fourmis sont exprimé comme suit :
+<br>1er tour | `L1-salleX L2-salleY L3-salleZ`
+<br>2e  tour | `L1-salleA L2-salleB L3-salleC L4`
+
+Il est important de comprendre que notre algorithme nous fournira dans la plupart des cas un nombre de chemins valides supérieur à celui dont nous aurons réellement besoin.
+
+Imaginons que l'on trouve 5 chemins empruntables, qu'on ai 5 fourmis à placer et que les 3 premiers chemins ne requiert que 2 coups alors que les 2 restant nécessitent 4 coups.
+
+On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les trois premier chemin.
+
+En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre deux pour le second.
 
 Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
 
