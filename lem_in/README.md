@@ -1,6 +1,7 @@
 ## LE PROJET EN LUI MÊME
 
 Ce projet est une introduction à la problématique des algos de pathfinding.
+<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non.
 
 Le fichier que l'on fera lire par notre programme décrit une fourmilière caractérisée par :
 * Son nombre de fourmis
