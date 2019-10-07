@@ -12,4 +12,4 @@ Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la 
 
 Pour une meilleure compréhension, voici un descriptif du fichier à passer en argument au programme : 
 
-<img src="img/demo_file.png width="50%">
+<img src="img/demo_file.png" width="70%">
