@@ -96,13 +96,24 @@ cycle.
 
 * Les instructions
 
-<img src="img/instructions_tab.jpg">
-<br>
+<table>
+    <td>LIVE
+        <tr>
+            <td align="center">value</td>
+            <td align="center">value</td>
+            <td align="center">value</td>
+        </tr>
+    </td>
+        <tr>
+            <td align="center">value</td>
+            <td align="center">value</td>
+            <td align="center">value</td>
+        </tr>
+   <td>
+    TEST
+   </td>
+</table>
 
-<tr>LIVE</tr>
-<td>LIVE</td>
-<td>LIVE</td>
-<td>LIVE</td>
 L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie. Pas d’octet de codage des paramètres, opcode 0x01. Oh, et son seul paramètre est sur 4 octets.
 
 ld : Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre. Son opcode est 10 en binaire, et il changera le carry.
