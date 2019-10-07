@@ -21,3 +21,4 @@ Un exemple de lancement du programme : `./resources/filler_vm -f resources/maps/
 
 Un visualisateur est disponible en rajoutant un `|./loiberti.vm` à la fin de votre commande.
 
+<img src="img/filler.png" width="100%">
