@@ -14,3 +14,31 @@ Pour une meilleure compréhension, voici un descriptif du type de fichier (la fo
 
 <img src="img/demo_file.png" width="70%">
 
+## CAS D'UNE FOURMILIÈRE PARTIELLEMENT/COMPLÈTEMENT INVALIDE
+
+Ce fichier peut être invalide pour différentes raisons :
+* Fichier invalide (problème de droit, pas un fichier texte...)
+* Il manque le nombre de fourmis/la description des salles/les liaisons
+* Il n'y a aucun chemin permettant de relier les salle `start` et `end`
+* Les salles `start`/`end` ne sont pas présentes
+
+Dans ces cas, `ERROR` sera imprimé sur la sortie standard.
+
+Si une ligne de la fourmilière n'est pas valide, à savoir :
+* Une commande (##something) n'étant pas suivi de `start` ou `end`
+* La répétition d'une commande valide déja fournit, d'une salle, ou d'une liaison
+* Tout autre chose qui n'a rien a faire là
+
+Deux cas de figure sont possibles :
+
+* Si les informations précédents cette ligne fournissent une fourmilière valide, on la traite telle quelle et on ignore le reste du fichier à partir de cette ligne
+* Sinon, `ERROR` sera affiché sur la sortie standard
+
+## CAS D'UNE FOURMILIÈRE VALIDE
+
+Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
+
+Exemple de déplacements réalisés par les fourmis (le contenu de la fourmilière n'est pas présent pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
+
+<img src="img/ants_output.png" width="70%">
+
