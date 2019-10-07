@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/07 13:23:50 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/07 13:50:07 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/07 13:55:45 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,9 +15,7 @@
 
 int main(int argc, char **argv)
 {
-	ft_printf("\n");
 	ft_printf("| %01$s | %02$s | %03$s | %04$s | %05$s | %06$s |\n", "je", "suis", "un", "test", "couleur", "!");
 	ft_printf("| %11$s | %21$s | %31$s | %41$s | %71$s |\n", "je", "suis", "un", "second", "test", "!");
-	ft_printf("\n");
 	return (0);
 }
