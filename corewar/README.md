@@ -27,11 +27,11 @@ savoir un code machine qui sera directement interprété par la machine virtuell
 entrée un fichier écrit en assembleur (le langage), et sortir un champion qui sera
 compréhensible par la machine virtuelle.
 * Il se lance de la façon suivante : `./asm monchampion.s`.
-* Il va lire le code assembleur à traiter depuis le fichier .s passé en paramètre, et
+* Il va lire le code assembleur à traiter depuis le fichier `.s` passé en paramètre, et
 écrire le bytecode résultant dans un fichier nommé comme l’entrée en remplaçant
-l’extension .s par .cor .
+l’extension `.s` par `.cor`.
 * En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
-et ne pas produire de fichier .cor
+et ne pas produire de fichier `.cor`
 <br><br>
 ## LA VM
   
@@ -80,8 +80,7 @@ opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
   * Registre : (r1 <–> rx avec x = REG_NUMBER)
   * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
 label (précédé par LABEL_CHAR), ce qui représente une valeur directe.
-  * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du
-processus courant.
+  * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
   * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
 d’avant l’instruction qu’il concerne.
   * Le caractère COMMENT_CHAR démarre un commentaire.
@@ -95,10 +94,48 @@ tableau op_tab déclaré dans op.c. Les cycles sont toujours consommés.
   * Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
 cycle.
 
-* Les instructions 
+* Les instructions
 
 <img src="img/instructions_tab.jpg">
 <br>
+
+<tr>LIVE</tr>
+<td>LIVE</td>
+<td>LIVE</td>
+<td>LIVE</td>
+L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie. Pas d’octet de codage des paramètres, opcode 0x01. Oh, et son seul paramètre est sur 4 octets.
+
+ld : Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre. Son opcode est 10 en binaire, et il changera le carry.
+
+st : Prend un registre et un registre ou un indirect, et stocke la valeur du registre vers le second paramètre. Son opcode est 0x03. Par exemple, st r1, 42 stocke la valeur de r1 à l’adresse (PC + (42 % IDX_MOD))
+
+add : Opcode 4. Prend trois registres, additionne les 2 premiers, et met le résultat dans le troisième, juste avant de modifier le carry.
+
+sub : Pareil que add, mais l’opcode est 0b101, et utilise une soustraction.
+
+and : Applique un & (ET bit-à-bit) sur les deux premiers paramètres, et stocke le résultat dans le registre qui est le 3ème paramètre. Opcode 0x06. Modifie le carry.
+
+or : Cette opération est un OU bit-à-bit, suivant le même principe que and, son opcode est donc évidemment 7.
+
+xor : Fait comme and avec un OU exclusif. Comme vous l’aurez deviné, son opcode en octal est 10.
+
+zjmp : Il n’y a jamais eu, n’y a pas, et n’y aura jamais d’octet de codage des paramètres derrière cette opération dont l’opcode est de 9. Elle prendra un index, et fait un saut à cette adresse si le carry est à 1.
+
+ldi : ldi, comme son nom l’indique, n’implique nullement de se baigner dans de la crème de marrons, même si son opcode est 0x0a. Au lieu de ça, ca prend 2 index et 1 registre, additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de la taille d’un registre et la met dans le 3eme.
+
+sti : Opcode 11. Prend un registre, et deux index (potentiellement des registres). Additionne les deux derniers, utilise cette somme comme une adresse ou sera copiée la valeur du premier paramètre.
+
+fork : Pas d’octet de codage des paramètres, prend un index, opcode 0x0c. Crée un nouveau processus, qui hérite des différents états de son père, à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
+
+lld : Signifie long-load, donc son opcode est évidemment 13. C’est la même chose que ld, mais sans % IDX_MOD. Modifie le carry.
+
+lldi : Opcode 0x0e. Pareil que ldi, mais n’applique aucun modulo aux adresses. Modifiera, par contre, le carry.
+
+lfork : Ca signifie long-fork, pour pouvoir fourcher de la paille à une distance de 15 mètres, exactement comme son opcode. Pareil qu’un fork sans modulo à l’adresse.
+
+aff : L’opcode est 10 en hexadécimal. Il y a un octet de codage des paramètres, même si c’est un peu bête car il n’y a qu’un paramètre, qui est un registre, dont le contenu est interprété comme la valeur ASCII d’un caractère à afficher sur la sortie standard. Ce code est modulo 256.
+
+
 
 ## BONUS
 
