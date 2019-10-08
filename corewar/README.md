@@ -107,12 +107,16 @@ gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**<
 ### Les processus (<a href="shared_includes/op.h">détails des macros<a/>)
 
 Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres :
-  * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
+
+  * `REG_NUMBER` registres qui font chacun une taille de `REG_SIZE` octets.
 Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
+
   * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
 dans la mémoire de la machine virtuelle, de la prochaine instruction à décoder et exécuter.
+
   * Un flag nommé carry, qui vaut 1 si la dernière opération a réussi. Seules
 certaines opérations vont modifier le carry.
+
   * Le numéro du joueur est généré par la machine ou spécifié au lancement, et est
 fourni aux champions via le registre r1 de leur premier processus au démarrage.
 Tous les autres registres sont mis à 0. Sauf le PC.<br><br>
@@ -128,7 +132,7 @@ cycle.
 
 * Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
 
-* Les instructions : 
+Les instructions : 
 <br><table>
        <tr>
             <th>LIVE</th>
@@ -579,6 +583,7 @@ sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
 <br><br>
+ 
 ### Compilation et lancement de la VM
 
 La VM se compile à l'aide de `make`.
