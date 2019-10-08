@@ -65,7 +65,7 @@ Le même fichier assemblé en `.cor` et convertit en hexadécimale :<br>
 La VM va commencer par extraire les informations fournis par les joueurs et à les inscrire sur l'arène de combat.
 
 Un dump de la mémoire avec le joueur décrit dans la partie assembleur :<br>
-
+<img src="img/dump.png">
 
 * Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres (<a href="shared_includes/op.h">détails des macros<a/>):
   * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
