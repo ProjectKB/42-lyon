@@ -56,7 +56,7 @@ On pourrait choisir d'utiliser tout les chemins mais on serait alors moins effic
 
 ## ALGO ET OPTIMISATION
 
-Pour avoir le maximum de point dans ce projet nous avions deux problématiques à concilier, le fait d'avoir un algo nous permettant de trouver le plus de chemins cours sans intersection entre eux et le fait d'avoir un algo le plus rapide possible.
+Pour réussir au mieux ce projet nous avions deux problématiques à concilier, le fait d'avoir un algo nous permettant de trouver le plus de chemins cours sans intersection entre eux et le fait d'avoir un algo le plus rapide possible.
 
 Nous avons donc choisis d'implémenter <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">l'algorithme A*<a/> offrant un bon équillibre entre ces deux problématiques et de faire nos parcours de chemin pour la résolution à travers une <a href="https://fr.wikipedia.org/wiki/Matrice_d%27adjacence">matrice d'adjacence<a/> offrant ainsi la possibilitée d'utiliser des opérateurs binaires et d'allouer la mémoire au bit prêt et donc d'obtenir un gain de temps considerable.<br><br>
 
