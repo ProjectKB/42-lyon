@@ -13,7 +13,7 @@ Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la 
 
 Pour une meilleure compréhension, voici un descriptif du type de fichier (la fourmilière) à passer en argument au programme : 
 
-<img src="img/demo_file.png" width="70%"><br>
+<img src="img/demo_file.png" width="70%"><br><br>
 
 ## CAS D'UNE FOURMILIÈRE PARTIELLEMENT/COMPLÈTEMENT INVALIDE
 
@@ -33,7 +33,7 @@ Si une ligne de la fourmilière n'est pas valide, à savoir :
 Deux cas de figure sont possibles :
 
 * Si les informations précédents cette ligne fournissent une fourmilière valide, on la traite telle quelle et on ignore le reste du fichier à partir de cette ligne
-* Sinon, `ERROR` sera affiché sur la sortie standard.<br>
+* Sinon, `ERROR` sera affiché sur la sortie standard.<br><br>
 
 ## CAS D'UNE FOURMILIÈRE VALIDE
 
@@ -52,13 +52,13 @@ Il est important de comprendre que notre algorithme nous fournira dans la plupar
 
 Imaginons que l'on trouve 5 chemins empruntables, qu'on ai 5 fourmis à placer et que les 3 premiers chemins ne requiert que 2 coups alors que les 2 restant nécessitent 4 coups.
 
-On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les 3 premiers chemins. En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre 3 pour le second.<br>
+On pourrait choisir d'utiliser tout les chemins mais on serait alors moins efficace qu'en utilisant seulement les 3 premiers chemins. En effet, dans le premier cas il nous faudrait 4 coups pour placer toute les fourmis contre 3 pour le second.<br><br>
 
 ## ALGO ET OPTIMISATION
 
 Pour avoir le maximum de point dans ce projet nous avions deux problématiques à concilier, le fait d'avoir un algo nous permettant de trouver le plus de chemins cours sans intersection entre eux et le fait d'avoir un algo le plus rapide possible.
 
-Nous avons donc choisis d'implémenter <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">l'algorithme A*<a/> offrant un bon équillibre entre ces deux problématiques et de faire nos parcours de chemin pour la résolution à travers une <a href="https://fr.wikipedia.org/wiki/Matrice_d%27adjacence">matrice d'adjacence<a/> offrant ainsi la possibilitée d'utiliser des opérateurs binaires et d'allouer la mémoire au bit prêt et donc d'obtenir un gain de temps considerable.<br>
+Nous avons donc choisis d'implémenter <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">l'algorithme A*<a/> offrant un bon équillibre entre ces deux problématiques et de faire nos parcours de chemin pour la résolution à travers une <a href="https://fr.wikipedia.org/wiki/Matrice_d%27adjacence">matrice d'adjacence<a/> offrant ainsi la possibilitée d'utiliser des opérateurs binaires et d'allouer la mémoire au bit prêt et donc d'obtenir un gain de temps considerable.<br><br>
 
 ## COMPILATION ET BONUS
 
