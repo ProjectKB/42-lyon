@@ -597,6 +597,24 @@ Pour un lancement classique il produira la sortie suivante :<br>
 <br><br>
 ## BONUS
 
+### Verbose
+
+Nous avons implémentés une verbose selon la logique suivante : 
+
+`./corewar ... --verbose (-v)   <Number>` pour controlé le défilement de la verbose ajouter le flag `-s`.
+
+verbose mode :
+* 1 : print base
+* 2 : Print cycle_to_die
+* 4 : Print instruction
+* 8 : Print Kill process
+* 16 : Print pc mouvement
+
+Un exemple en situation :<br>
+<img src="img/verbose.gif">
+
+<br><br>
+
 ### Partie Graphique
 
 Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
