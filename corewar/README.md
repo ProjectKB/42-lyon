@@ -131,7 +131,7 @@ cycle.
 
 * Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
 
-<table>
+<br><table>
        <tr>
             <th>LIVE</th>
        </tr>
