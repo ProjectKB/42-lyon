@@ -67,9 +67,49 @@ La VM va commencer par extraire les informations fournis par les joueurs puis in
 Un dump de la mémoire avec le joueur décrit dans la partie assembleur :<br>
 <img src="img/dump.png">
 
-### Les processus
+### Généralités (<a href="shared_includes/op.h">détails des macros<a/>)
 
-Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres (<a href="shared_includes/op.h">détails des macros<a/>):
+* Les champions sont chargés en mémoire de façon à espacer équitablement leurs
+points d’entrée.
+
+* La machine virtuelle va créer un espace mémoire dédié au combat des joueurs, puis
+y charger les champions et leurs processus associés, et les exécuter séquentiellement
+jusqu’à ce que mort s’ensuive.
+
+* Tous les CYCLE_TO_DIE cycles, la machine doit s’assurer que chaque processus
+a exécuté au moins un live depuis la dernière vérification. Un processus qui ne se
+soumet pas à cette règle sera mis à mort.
+
+* Si au cours d’une de ces vérifications on se rend compte qu’il y a eu au moins
+NBR_LIVE exécutions de live depuis la dernière vérification en date, on décrémente CYCLE_TO_DIE de CYCLE_DELTA unités.
+
+* Quand il n’y a plus de processus en vie, la partie est terminée.
+
+* Le gagnant est le dernier joueur qui a été rapporté comme étant en vie. La machine va ensuite afficher : "le joueur x(nom_champion) a gagne", où x est le numéro du joueur et nom_champion le nom de son champion.
+
+* A chaque exécution valide de l’instruction live, la machine doit afficher : "un processus dit que le joueur x(nom_champion) est en vie"
+
+* En tout état de cause, la mémoire est circulaire et fait MEM_SIZE octets.
+
+* En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
+
+* Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications,
+on le décrémente.
+
+* Au bout de nbr_cycles cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal, avec 32 octets par ligne.
+
+* Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
+erreur.
+
+* Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
+lfork.
+
+**Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
+gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**
+
+### Les processus (<a href="shared_includes/op.h">détails des macros<a/>)
+
+Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres :
   * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
 Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
   * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
@@ -79,44 +119,18 @@ certaines opérations vont modifier le carry.
   * Le numéro du joueur est généré par la machine ou spécifié au lancement, et est
 fourni aux champions via le registre r1 de leur premier processus au démarrage.
 Tous les autres registres sont mis à 0. Sauf le PC.
-  * Les champions sont chargés en mémoire de façon à espacer équitablement leurs
-points d’entrée.
-  * La machine virtuelle va créer un espace mémoire dédié au combat des joueurs, puis
-y charger les champions et leurs processus associés, et les exécuter séquentiellement
-jusqu’à ce que mort s’ensuive.
-  * Tous les CYCLE_TO_DIE cycles, la machine doit s’assurer que chaque processus
-a exécuté au moins un live depuis la dernière vérification. Un processus qui ne se
-soumet pas à cette règle sera mis à mort.
-  * Si au cours d’une de ces vérifications on se rend compte qu’il y a eu au moins
-NBR_LIVE exécutions de live depuis la dernière vérification en date, on décrémente CYCLE_TO_DIE de CYCLE_DELTA unités.
-  * Quand il n’y a plus de processus en vie, la partie est terminée.
-  * Le gagnant est le dernier joueur qui a été rapporté comme étant en vie. La machine va ensuite afficher : "le joueur x(nom_champion) a gagne", où x est le numéro
-du joueur et nom_champion le nom de son champion.
-  * A chaque exécution valide de l’instruction live, la machine doit afficher :
-"un processus dit que le joueur x(nom_champion) est en vie"
-  * En tout état de cause, la mémoire est circulaire et fait MEM_SIZE octets.
-  * En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
-  * Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications,
-on le décrémente.
-  * Au bout de nbr_cycles cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal,
-avec 32 octets par ligne.
-  * Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
-erreur.
- 
-* Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
-lfork.
-* Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
-nombre de paramètres et les types de paramètres possibles sont décrits dans le
-tableau op_tab déclaré <a href="vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
-* Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
-cycle.
-* La machine virtuelle est supposée émuler une machine parfaitement parallèle mais pour des raisons d’implémentation, on supposera que chaque instruction s’exécute entièrement a la fin de son dernier cycle et attend durant toute sa durée.
-* Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
-
-**Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
-gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**
 
 ### Les instructions
+
+* Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
+nombre de paramètres et les types de paramètres possibles sont décrits dans le tableau op_tab déclaré <a href="vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
+
+* Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
+cycle.
+
+* La machine virtuelle est supposée émuler une machine parfaitement parallèle mais pour des raisons d’implémentation, on supposera que chaque instruction s’exécute entièrement a la fin de son dernier cycle et attend durant toute sa durée.
+
+* Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
 
 <table>
        <tr>
