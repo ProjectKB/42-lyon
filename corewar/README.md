@@ -23,14 +23,84 @@ savoir un code machine qui sera directement interprété par la machine virtuell
 Un extrait d'une partie entre 4 joueurs :<br>
 <img width="100%" src="img/random_game.gif"><br><br>
   
-## LE LANGAGE ET LES INSTRUCTIONS
+## L'ASSEMBLEUR
 
-  * Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
+* Notre machine virtuelle va exécuter du code machine (ou "bytecode"), qui devra
+être généré par notre assembleur. L’assembleur (le programme) va prendre en
+entrée un fichier écrit en assembleur (le langage), et sortir un champion qui sera
+compréhensible par la machine virtuelle.
+* Il se lance de la façon suivante : `./asm monchampion.s`.
+* Il va lire le code assembleur à traiter depuis le fichier `.s` passé en paramètre, et
+écrire le bytecode résultant dans un fichier nommé comme l’entrée en remplaçant
+l’extension `.s` par `.cor`.
+* En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
+et ne pas produire de fichier `.cor`
+
+* Le langage assembleur est composé d’une instruction par ligne.
+* Une instruction peut se composer d'un label (optionnel), un
+opcode et de ses paramètres.
+* Un paramètre peut être de trois types :
+    * Registre
+    * Direct
+    * Indirect : Une valeur ou un label représentant la valeur qui se trouve à l’adresse du paramètre, relative au PC du processus courant.
+    
+<div><img align="center" src="img/arg_tab.png" width="50%"></div><br>
+
+* Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
+d’avant l’instruction qu’il concerne.
+* Le caractère `'#'` démarre un commentaire.
+* Un champion comportera également un nom et une description, qui sont présents
+sur une ligne après les marqueurs `.name` et `.comment`.
+
+Un exemple de fichier `.s` :<br>
+<img src="img/demo_s.png" width="70%">
+
+Le même fichier assemblé en `.cor` et convertit en hexadécimale :<br>
+<img src="img/demo_vm.png" width="100%">
+
+<br><br>
+
+## LA VM
+  
+* Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres :
+  * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
+Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
+  * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
+dans la mémoire de la machine virtuelle, de la prochaine instruction à décoder et exécuter.
+  * Un flag nommé carry, qui vaut 1 si la dernière opération a réussi. Seules
+certaines opérations vont modifier le carry.
+  * Le numéro du joueur est généré par la machine ou spécifié au lancement, et est
+fourni aux champions via le registre r1 de leur premier processus au démarrage.
+Tous les autres registres sont mis à 0. Sauf le PC.
+  * Les champions sont chargés en mémoire de façon à espacer équitablement leurs
+points d’entrée.
+  * La machine virtuelle va créer un espace mémoire dédié au combat des joueurs, puis
+y charger les champions et leurs processus associés, et les exécuter séquentiellement
+jusqu’à ce que mort s’ensuive.
+  * Tous les CYCLE_TO_DIE cycles, la machine doit s’assurer que chaque processus
+a exécuté au moins un live depuis la dernière vérification. Un processus qui ne se
+soumet pas à cette règle sera mis à mort.
+  * Si au cours d’une de ces vérifications on se rend compte qu’il y a eu au moins
+NBR_LIVE exécutions de live depuis la dernière vérification en date, on décrémente CYCLE_TO_DIE de CYCLE_DELTA unités.
+  * Quand il n’y a plus de processus en vie, la partie est terminée.
+  * Le gagnant est le dernier joueur qui a été rapporté comme étant en vie. La machine va ensuite afficher : "le joueur x(nom_champion) a gagne", où x est le numéro
+du joueur et nom_champion le nom de son champion.
+  * A chaque exécution valide de l’instruction live, la machine doit afficher :
+"un processus dit que le joueur x(nom_champion) est en vie"
+  * En tout état de cause, la mémoire est circulaire et fait MEM_SIZE octets.
+  * En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
+  * Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications,
+on le décrémente.
+  * Au bout de nbr_cycles cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal,
+avec 32 octets par ligne.
+  * Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
+erreur.
+* Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
 lfork.
-  * Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
+* Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
 nombre de paramètres et les types de paramètres possibles sont décrits dans le
 tableau op_tab déclaré <a href="vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
-  * Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
+* Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
 cycle.
 
 * Les instructions
@@ -484,80 +554,7 @@ cycle.
 sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
- 
- 
-## L'ASSEMBLEUR
 
-* Notre machine virtuelle va exécuter du code machine (ou "bytecode"), qui devra
-être généré par notre assembleur. L’assembleur (le programme) va prendre en
-entrée un fichier écrit en assembleur (le langage), et sortir un champion qui sera
-compréhensible par la machine virtuelle.
-* Il se lance de la façon suivante : `./asm monchampion.s`.
-* Il va lire le code assembleur à traiter depuis le fichier `.s` passé en paramètre, et
-écrire le bytecode résultant dans un fichier nommé comme l’entrée en remplaçant
-l’extension `.s` par `.cor`.
-* En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
-et ne pas produire de fichier `.cor`
-
-* Le langage assembleur est composé d’une instruction par ligne.
-* Une instruction peut se composer d'un label (optionnel), un
-opcode et de ses paramètres.
-* Un paramètre peut être de trois types :
-    * Registre
-    * Direct
-    * Indirect : Une valeur ou un label représentant la valeur qui se trouve à l’adresse du paramètre, relative au PC du processus courant.
-    
-<div><img align="center" src="img/arg_tab.png" width="50%"></div><br>
-
-* Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
-d’avant l’instruction qu’il concerne.
-* Le caractère `'#'` démarre un commentaire.
-* Un champion comportera également un nom et une description, qui sont présents
-sur une ligne après les marqueurs `.name` et `.comment`.
-
-Un exemple de fichier `.s` :<br>
-<img src="img/demo_s.png" width="70%">
-
-Le même fichier assemblé en `.cor` et convertit en hexadécimale :<br>
-<img src="img/demo_vm.png" width="100%">
-
-<br><br>
-
-## LA VM
-  
-* Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres :
-  * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
-Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
-  * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
-dans la mémoire de la machine virtuelle, de la prochaine instruction à décoder et exécuter.
-  * Un flag nommé carry, qui vaut 1 si la dernière opération a réussi. Seules
-certaines opérations vont modifier le carry.
-  * Le numéro du joueur est généré par la machine ou spécifié au lancement, et est
-fourni aux champions via le registre r1 de leur premier processus au démarrage.
-Tous les autres registres sont mis à 0. Sauf le PC.
-  * Les champions sont chargés en mémoire de façon à espacer équitablement leurs
-points d’entrée.
-  * La machine virtuelle va créer un espace mémoire dédié au combat des joueurs, puis
-y charger les champions et leurs processus associés, et les exécuter séquentiellement
-jusqu’à ce que mort s’ensuive.
-  * Tous les CYCLE_TO_DIE cycles, la machine doit s’assurer que chaque processus
-a exécuté au moins un live depuis la dernière vérification. Un processus qui ne se
-soumet pas à cette règle sera mis à mort.
-  * Si au cours d’une de ces vérifications on se rend compte qu’il y a eu au moins
-NBR_LIVE exécutions de live depuis la dernière vérification en date, on décrémente CYCLE_TO_DIE de CYCLE_DELTA unités.
-  * Quand il n’y a plus de processus en vie, la partie est terminée.
-  * Le gagnant est le dernier joueur qui a été rapporté comme étant en vie. La machine va ensuite afficher : "le joueur x(nom_champion) a gagne", où x est le numéro
-du joueur et nom_champion le nom de son champion.
-  * A chaque exécution valide de l’instruction live, la machine doit afficher :
-"un processus dit que le joueur x(nom_champion) est en vie"
-  * En tout état de cause, la mémoire est circulaire et fait MEM_SIZE octets.
-  * En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
-  * Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications,
-on le décrémente.
-  * Au bout de nbr_cycles cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal,
-avec 32 octets par ligne.
-  * Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
-erreur.
 <br><br>
 ## BONUS
 
