@@ -500,9 +500,8 @@ l’extension `.s` par `.cor`.
 et ne pas produire de fichier `.cor`
 
 * Le langage assembleur est composé d’une instruction par ligne.
-* Une instruction se compose de trois éléments : Un label (optionnel), composé
-d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
-opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
+* Une instruction peut se composer d'un label (optionnel), un
+opcode et de ses paramètres. <br>Un paramètre peut
 être de trois types :
     * Registre
     * Direct
@@ -512,9 +511,9 @@ opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
 
 * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
 d’avant l’instruction qu’il concerne.
-* Le caractère COMMENT_CHAR démarre un commentaire.
+* Le caractère `'#'` démarre un commentaire.
 * Un champion comportera également un nom et une description, qui sont présents
-sur une ligne après les marqueurs NAME_CMD_STRING et COMMENT_CMD_STRING.
+sur une ligne après les marqueurs `.name` et `.comment`.
 
 Un exemple de fichier `.s` :<br>
 <img src="img/demo_s.png" width="70%">
