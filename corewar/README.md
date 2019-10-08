@@ -67,7 +67,9 @@ La VM va commencer par extraire les informations fournis par les joueurs puis in
 Un dump de la mémoire avec le joueur décrit dans la partie assembleur :<br>
 <img src="img/dump.png">
 
-* Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres (<a href="shared_includes/op.h">détails des macros<a/>):
+### Les processus
+
+Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres (<a href="shared_includes/op.h">détails des macros<a/>):
   * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
 Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
   * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
@@ -100,6 +102,7 @@ on le décrémente.
 avec 32 octets par ligne.
   * Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
 erreur.
+ 
 * Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
 lfork.
 * Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
@@ -107,8 +110,13 @@ nombre de paramètres et les types de paramètres possibles sont décrits dans l
 tableau op_tab déclaré <a href="vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
 * Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
 cycle.
+* La machine virtuelle est supposée émuler une machine parfaitement parallèle mais pour des raisons d’implémentation, on supposera que chaque instruction s’exécute entièrement a la fin de son dernier cycle et attend durant toute sa durée.
+* Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
 
-* Les instructions
+**Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
+gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**
+
+### Les instructions
 
 <table>
        <tr>
@@ -559,13 +567,6 @@ cycle.
 sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
- 
-* La machine virtuelle est supposée émuler une machine parfaitement parallèle mais pour des raisons d’implémentation, on supposera que chaque instruction s’exécute entièrement a la fin de son dernier cycle et attend durant toute sa durée.
-* Les instructions qui se terminent à un même cycle s’exécutent dans l’ordre décroissant des numéros de processus.
-
-
-**Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
-gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**
 
 <br><br>
 ## BONUS
