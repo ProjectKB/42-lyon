@@ -484,7 +484,32 @@ cycle.
 sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
- <table>
+ 
+ 
+## L'ASSEMBLEUR
+
+* Notre machine virtuelle va exécuter du code machine (ou "bytecode"), qui devra
+être généré par notre assembleur. L’assembleur (le programme) va prendre en
+entrée un fichier écrit en assembleur (le langage), et sortir un champion qui sera
+compréhensible par la machine virtuelle.
+* Il se lance de la façon suivante : `./asm monchampion.s`.
+* Il va lire le code assembleur à traiter depuis le fichier `.s` passé en paramètre, et
+écrire le bytecode résultant dans un fichier nommé comme l’entrée en remplaçant
+l’extension `.s` par `.cor`.
+* En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
+et ne pas produire de fichier `.cor`
+
+* Le langage en lui même
+  * Le langage assembleur est composé d’une instruction par ligne.
+  * Une instruction se compose de trois éléments : Un label (optionnel), composé
+d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
+opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
+être de trois types :
+    * Registre
+    * Direct
+    * Indirect : Une valeur ou un label, représentant la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
+    
+<table>
        <tr>
             <th>ARGUMENTS</th>
        </tr>
@@ -513,30 +538,7 @@ sortie standard. Ce code est modulo 256.</td>
             <td align="center">1</td>
       </tr>
 </table>
- 
-## L'ASSEMBLEUR
 
-* Notre machine virtuelle va exécuter du code machine (ou "bytecode"), qui devra
-être généré par notre assembleur. L’assembleur (le programme) va prendre en
-entrée un fichier écrit en assembleur (le langage), et sortir un champion qui sera
-compréhensible par la machine virtuelle.
-* Il se lance de la façon suivante : `./asm monchampion.s`.
-* Il va lire le code assembleur à traiter depuis le fichier `.s` passé en paramètre, et
-écrire le bytecode résultant dans un fichier nommé comme l’entrée en remplaçant
-l’extension `.s` par `.cor`.
-* En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
-et ne pas produire de fichier `.cor`
-
-* Le langage en lui même
-  * Le langage assembleur est composé d’une instruction par ligne.
-  * Une instruction se compose de trois éléments : Un label (optionnel), composé
-d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
-opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
-être de trois types :
-    * Registre : (r1 <–> rx avec x = REG_NUMBER)
-    * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
-label (précédé par LABEL_CHAR), ce qui représente une valeur directe.
-    * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
   * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
 d’avant l’instruction qu’il concerne.
   * Le caractère COMMENT_CHAR démarre un commentaire.
