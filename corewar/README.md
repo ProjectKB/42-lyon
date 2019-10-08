@@ -65,8 +65,7 @@ Le même fichier assemblé en `.cor` et convertit en hexadécimale :<br>
 La VM va commencer par extraire les informations fournis par les joueurs puis inscrira les instructions correspondantes sur l'arène de combat.
 
 Un dump de la mémoire avec le joueur décrit dans la partie assembleur :<br>
-<img src="img/dump.png">
-
+<img src="img/dump.png"><br><br>
 ### Généralités (<a href="shared_includes/op.h">détails des macros<a/>)
 
 * Les champions (de 1 à 4) sont chargés en mémoire de façon à espacer équitablement leurs
@@ -104,8 +103,7 @@ erreur.
 lfork.
 
 **Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
-gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**
-
+gagnant est le dernier joueur à avoir été rapporté comme étant "en vie".**<br><br>
 ### Les processus (<a href="shared_includes/op.h">détails des macros<a/>)
 
 Au début de la partie chaque joueur possède un processus qui aura à sa disposition les éléments suivants, qui lui sont propres :
@@ -117,8 +115,7 @@ dans la mémoire de la machine virtuelle, de la prochaine instruction à décode
 certaines opérations vont modifier le carry.
   * Le numéro du joueur est généré par la machine ou spécifié au lancement, et est
 fourni aux champions via le registre r1 de leur premier processus au démarrage.
-Tous les autres registres sont mis à 0. Sauf le PC.
-
+Tous les autres registres sont mis à 0. Sauf le PC.<br><br>
 ### Les instructions
 
 * Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
