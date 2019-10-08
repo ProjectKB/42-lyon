@@ -610,7 +610,7 @@ Differents modes sont disponibles :
 * 8 : Imprime les morts des processus
 * 16 : Imprime les déplacement des PC
 
-Pour afficher plusieurs modes simultanément, additioner les numéros leurs correspondant (ex tout les modes en même temps = `-v 31`);
+Pour afficher plusieurs modes simultanément, additionez les numéros leurs correspondant (ex tout les modes en même temps = `-v 31`).
 
 Un exemple en situation :<br>
 <img src="img/verbose.gif">
