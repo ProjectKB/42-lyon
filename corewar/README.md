@@ -76,12 +76,12 @@ points d’entrée.
 y charger les champions et leurs processus associés, et les exécuter séquentiellement
 jusqu’à ce que mort s’ensuive.
 
-* Tous les CYCLE_TO_DIE cycles, la machine doit s’assurer que chaque processus
+* Tous les `CYCLE_TO_DIE` cycles, la machine doit s’assurer que chaque processus
 a exécuté au moins un live depuis la dernière vérification. Un processus qui ne se
 soumet pas à cette règle sera mis à mort.
 
 * Si au cours d’une de ces vérifications on se rend compte qu’il y a eu au moins
-NBR_LIVE exécutions de live depuis la dernière vérification en date, on décrémente CYCLE_TO_DIE de CYCLE_DELTA unités.
+`NBR_LIVE` exécutions de live depuis la dernière vérification en date, on décrémente `CYCLE_TO_DIE` de `CYCLE_DELTA` unités.
 
 * Quand il n’y a plus de processus en vie, la partie est terminée.
 
@@ -89,19 +89,18 @@ NBR_LIVE exécutions de live depuis la dernière vérification en date, on décr
 
 * A chaque exécution valide de l’instruction live, la machine doit afficher : "un processus dit que le joueur x(nom_champion) est en vie"
 
-* En tout état de cause, la mémoire est circulaire et fait MEM_SIZE octets.
+* En tout état de cause, la mémoire est circulaire et fait `MEM_SIZE` octets.
 
 * En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
 
-* Si on n’a pas décrémenté CYCLE_TO_DIE depuis MAX_CHECKS vérifications,
-on le décrémente.
+* Si on n’a pas décrémenté `CYCLE_TO_DIE` depuis `MAX_CHECK`S vérifications, on le décrémente.
 
-* Au bout de nbr_cycles cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal, avec 32 octets par ligne.
+* Au bout de `nbr_cycles` cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal, avec 32 octets par ligne.
 
-* Les champions ne peuvent pas dépasser CHAMP_MAX_SIZE, sinon c’est une
+* Les champions ne peuvent pas dépasser `CHAMP_MAX_SIZE`, sinon c’est une
 erreur.
 
-* Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
+* Tous les adressages sont relatifs au PC et à `IDX_MOD` sauf pour lld, lldi et
 lfork.
 
 **Pour rappel le jeu se termine quand plus aucun processus n’est en vie. À ce moment là, le
