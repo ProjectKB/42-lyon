@@ -158,7 +158,7 @@ cycle.
       <tr>
             <td colspan="8">L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>LD</th>
@@ -186,7 +186,7 @@ cycle.
       <tr>
             <td colspan="8">Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>ST</th>
@@ -214,7 +214,7 @@ cycle.
       <tr>
             <td colspan="8">Prend un registre et un registre ou un indirect, et stocke la valeur du registre vers le second paramètre. Par exemple, st r1, 42 stocke la valeur de r1 à l’adresse (PC + (42 % IDX_MOD)).</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>ADD</th>
@@ -242,7 +242,7 @@ cycle.
       <tr>
             <td colspan="8">Prend trois registres, additionne les 2 premiers, et met le résultat dans le troisième.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>SUB</th>
@@ -270,7 +270,7 @@ cycle.
       <tr>
             <td colspan="8">Prend trois registres, soustrait les 2 premiers, et met le résultat dans le troisième.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>AND</th>
@@ -298,7 +298,7 @@ cycle.
       <tr>
             <td colspan="8">Prend trois registres, fait un ET logique entre les 2 premiers, et met le résultat dans le troisième.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>OR</th>
@@ -326,7 +326,7 @@ cycle.
       <tr>
             <td colspan="8">Prend trois registres, fait un OU inclusif entre les 2 premiers, et met le résultat dans le troisième.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>XOR</th>
@@ -354,7 +354,7 @@ cycle.
       <tr>
             <td colspan="8">Prend trois registres, fait un OU exclusif entre les 2 premiers, et met le résultat dans le troisième.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>ZJMP</th>
@@ -382,7 +382,7 @@ cycle.
       <tr>
             <td colspan="8">Prend un index, et fait un saut à cette adresse si le carry est à 1.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>LDI</th>
@@ -410,7 +410,7 @@ cycle.
       <tr>
             <td colspan="8">Prend 2 index et 1 registre, additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de la taille d’un registre et la met dans le 3eme.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>STI</th>
@@ -438,7 +438,7 @@ cycle.
       <tr>
             <td colspan="8">Prend un registre, et deux index (potentiellement des registres). Additionne les deux derniers, utilise cette somme comme une adresse ou sera copiée la valeur du premier paramètre.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>FORK</th>
@@ -466,7 +466,7 @@ cycle.
       <tr>
             <td colspan="8">Crée un nouveau processus, qui hérite des différents états de son père, à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>LLD</th>
@@ -494,7 +494,7 @@ cycle.
       <tr>
             <td colspan="8">C’est la même chose que ld, mais sans % IDX_MOD.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>LLDI</th>
@@ -522,7 +522,7 @@ cycle.
       <tr>
             <td colspan="8">C'est la même chose que ldi, mais sans % IDX_MOD.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>LFORK</th>
@@ -550,7 +550,7 @@ cycle.
       <tr>
             <td colspan="8">C'est la même chose que lfork, mais sans % IDX_MOD.</td>
       </tr>
-</table>
+</table><br>
 <table>
        <tr>
             <th>AFF</th>
