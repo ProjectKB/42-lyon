@@ -13,7 +13,7 @@ Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la 
 
 Pour une meilleure compréhension, voici un descriptif du type de fichier (la fourmilière) à passer en argument au programme : 
 
-
+<img src="img/demo_file.png" width="70%">
 
 ## CAS D'UNE FOURMILIÈRE PARTIELLEMENT/COMPLÈTEMENT INVALIDE
 
