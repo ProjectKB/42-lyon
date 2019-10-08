@@ -642,6 +642,8 @@ NB : Le son se désactive automatiquement au dela d'une certaine vitesse d'exéc
  
   * Même possibilité que pour le mode précédent, il est également possible d'allumer/éteindre la lumière en cliquant sur l'interrupteur de la lampe et d'allumer/éteindre de la musique en appuyant sur le bouton power de l'autoradio.
   <img width="100%" src="img/light.gif"><br><br>
+  
+  * Le mode responsif :
   <img width="100%" src="img/responsive.gif">
 </div>
 
