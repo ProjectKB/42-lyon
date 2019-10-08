@@ -542,8 +542,8 @@ l’extension `.s` par `.cor`.
 * En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
 et ne pas produire de fichier `.cor`
 
-Un exemple de fichier `.s` :
-<img src="img/demo_asm.png" width="70%">
+Un exemple de fichier `.s` :<br>
+
 <br><br>
 
 ## LA VM
@@ -589,7 +589,7 @@ erreur.
 ### Partie Graphique
 
 Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
-<br><br>
+<br>
 <div> 
   <img width="100%" src="img/game_on.gif">
   <img width="100%" src="img/light.gif">
@@ -598,7 +598,7 @@ Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
 
 <br>
 Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie (optionnel).
-<br><br>
+<br>
 <div> 
   <img width="100%" src="img/start.gif">
   <img width="100%" src="img/end.gif">
