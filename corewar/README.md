@@ -69,7 +69,7 @@ Un dump de la mémoire avec le joueur décrit dans la partie assembleur :<br>
 
 ### Généralités (<a href="shared_includes/op.h">détails des macros<a/>)
 
-* Les champions sont chargés en mémoire de façon à espacer équitablement leurs
+* Les champions (de 1 à 4) sont chargés en mémoire de façon à espacer équitablement leurs
 points d’entrée.
 
 * La machine virtuelle va créer un espace mémoire dédié au combat des joueurs, puis
@@ -580,11 +580,19 @@ cycle.
 sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
+ 
+### Compilation
+
+La VM se compile à l'aide de `make`.
+
+La partie se lance selon l'usage suivant :<br>
+<img width="100%" src="img/usage.png">
+
+Pour un lancement classique il produira la sortie suivante :<br>
+<img src="img/basic_compilation.png">
 
 <br><br>
 ## BONUS
-
-<img width="100%" src="img/usage.png">
 
 ### Partie Graphique
 
@@ -596,8 +604,8 @@ Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
   <img width="100%" src="img/responsive.gif">
 </div>
 
-<br>
-Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie (optionnel).
+<br><br>
+Nous avons également implémenté la possibilité d'afficher des animations au début et à la fin de chaque partie.
 <br>
 <div> 
   <img width="100%" src="img/start.gif">
