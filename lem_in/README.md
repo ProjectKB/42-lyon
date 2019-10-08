@@ -48,7 +48,7 @@ Exemple de déplacements réalisés par les fourmis (la description de la fourmi
 
 <img src="img/ants_output.png" width="70%">
 
-Il est important de comprendre que notre algorithme nous fournira dans la plupart des cas un nombre de chemins valides supérieur à celui dont nous aurons réellement besoin.
+Il est important de comprendre que notre algorithme nous fournira dans la plupart des cas un nombre de chemins valides supérieurs à celui dont nous aurons réellement besoin.
 
 Imaginons que l'on trouve 5 chemins empruntables, qu'on ai 5 fourmis à placer et que les 3 premiers chemins ne requiert que 2 coups alors que les 2 restant nécessitent 4 coups.
 
