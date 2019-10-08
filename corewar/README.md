@@ -578,8 +578,8 @@ cycle.
 sortie standard. Ce code est modulo 256.</td>
       </tr>
 </table>
- 
-### Compilation
+<br><br>
+### Compilation et lancement de la VM
 
 La VM se compile à l'aide de `make`.
 
