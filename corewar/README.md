@@ -24,7 +24,6 @@ Un extrait d'une partie entre 4 joueurs :
 
 <img width="100%" src="img/random_game.gif">
   
-<br><br>
 ## LE LANGAGE ET LA COMPILATION
 
 * Le langage assembleur
