@@ -61,8 +61,8 @@ Le même fichier assemblé en `.cor` et convertit en hexadécimale :<br>
 <br><br>
 
 ## LA VM
-  
-* Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres :
+
+* Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres (<a href="42-lyon/corewar/shared_includes/op.h">détails des macros<a/>):
   * REG_NUMBER registres qui font chacun une taille de REG_SIZE octets.
 Un registre est une petite "case" mémoire, qui ne contient qu’une seule valeur.
   * Un PC ("Program Counter"). C’est un registre spécial, qui contient juste l’adresse,
