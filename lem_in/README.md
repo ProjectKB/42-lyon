@@ -39,9 +39,9 @@ Deux cas de figure sont possibles :
 
 Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
 
-Les déplacements des fourmis sont exprimé comme suit (L`numéro de fourmi`-`nom de salle`) :
-<br>1er tour | `L1-salleA L2-salleB L3-salleC`
-<br>2e  tour | `L1-salleD L2-salleE L3-salleF`
+Les déplacements des fourmis sont exprimé comme suit (L`numéro de fourmi`-`nom de salle`) :<br>
+* 1er tour | `L1-salleA L2-salleB L3-salleC`<br>
+* 2e  tour | `L1-salleD L2-salleE L3-salleF`
 <br>... etc jusqu'à ce que toute les fourmis soient arrivé à bon port.
 
 Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
