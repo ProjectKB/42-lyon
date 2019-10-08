@@ -509,7 +509,7 @@ opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
     * Direct
     * Indirect : Une valeur ou un label, représentant la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
     
-<img src="img/arg_tab.png" align="center" width="50%">
+<div><img align="center" src="img/arg_tab.png" width="50%"></div>
 
   * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
 d’avant l’instruction qu’il concerne.
