@@ -77,10 +77,10 @@ erreur.
 d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
 opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
 être de trois types :
-  * Registre : (r1 <–> rx avec x = REG_NUMBER)
-  * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
+    * Registre : (r1 <–> rx avec x = REG_NUMBER)
+    * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
 label (précédé par LABEL_CHAR), ce qui représente une valeur directe.
-  * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
+    * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
   * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
 d’avant l’instruction qu’il concerne.
   * Le caractère COMMENT_CHAR démarre un commentaire.
@@ -532,7 +532,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">16</td>
-            <td align="center"><T_REG</td>
+            <td align="center">T_REG</td>
             <td align="center">00010000</td>
             <td align="center">0x10</td>
             <td align="center">Non</td>
@@ -542,6 +542,35 @@ cycle.
       </tr>
       <tr>
             <td colspan="8">C'est la même chose que lfork, mais sans % IDX_MOD.</td>
+      </tr>
+</table>
+ <table>
+       <tr>
+            <th>ARGUMENTS</th>
+       </tr>
+       <tr>
+            <td align="center">Nom</td>
+            <td align="center">Symbole</td>
+            <td align="center">Binaire</td>
+            <td align="center">Nombre d'octet(s)</td>
+      </tr>
+      <tr>
+            <td align="center">T_DIR</td>
+            <td align="center">%</td>
+            <td align="center">10</td>
+            <td align="center">2-4</td>
+      </tr>
+      <tr>
+            <td align="center">T_IND</td>
+            <td align="center"></td>
+            <td align="center">11</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td align="center">T_REG</td>
+            <td align="center">r</td>
+            <td align="center">01</td>
+            <td align="center">1</td>
       </tr>
 </table>
 
