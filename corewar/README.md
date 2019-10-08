@@ -602,8 +602,8 @@ Pour un lancement classique il produira la sortie suivante :<br>
 Pour ce projet nous avons mis en place 3 modes d'affichages à l'aide la SDL :
 <br>
 <div> 
-  <img width="100%" src="img/game_on.gif">
-  <img width="100%" src="img/light.gif">
+  <img width="100%" src="img/game_on.gif"><br>
+  <img width="100%" src="img/light.gif"><br>
   <img width="100%" src="img/responsive.gif">
 </div>
 
