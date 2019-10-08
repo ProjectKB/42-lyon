@@ -364,7 +364,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">10</td>
-            <td align="center"><T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
+            <td align="center">T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
             <td align="center">00001010</td>
             <td align="center">0x0A</td>
             <td align="center">Non</td>
@@ -392,7 +392,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">11</td>
-            <td align="center"><T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG</td>
+            <td align="center">T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG</td>
             <td align="center">00001011</td>
             <td align="center">0x0B</td>
             <td align="center">Non</td>
@@ -420,7 +420,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">12</td>
-            <td align="center"><T_DIR</td>
+            <td align="center">T_DIR</td>
             <td align="center">00001100</td>
             <td align="center">0x0C</td>
             <td align="center">Non</td>
@@ -448,7 +448,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">13</td>
-            <td align="center"><T_DIR | T_IND, T_REG</td>
+            <td align="center">T_DIR | T_IND, T_REG</td>
             <td align="center">00001101</td>
             <td align="center">0x0D</td>
             <td align="center">Oui</td>
@@ -476,7 +476,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">14</td>
-            <td align="center"><T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
+            <td align="center">T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
             <td align="center">00001110</td>
             <td align="center">0x0E</td>
             <td align="center">Oui</td>
@@ -504,7 +504,7 @@ cycle.
       </tr>
       <tr>
             <td align="center">15</td>
-            <td align="center"><T_DIR</td>
+            <td align="center">T_DIR</td>
             <td align="center">00001111</td>
             <td align="center">0x0F</td>
             <td align="center">Non</td>
