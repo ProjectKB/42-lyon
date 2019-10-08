@@ -543,6 +543,7 @@ l’extension `.s` par `.cor`.
 et ne pas produire de fichier `.cor`
 
 Un exemple de fichier `.s` :<br>
+<img src="img/demo_s.png" width="70%">
 
 <br><br>
 
