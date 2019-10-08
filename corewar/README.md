@@ -603,14 +603,14 @@ Nous avons implémentés une verbose selon la logique suivante :
 
 `./corewar ... --verbose (-v)   <Number>` pour controler le défilement de la verbose à l'aide de la touche `entrée` ajouter le flag `-s`.
 
-verbose mode :
-* 1 : print base
-* 2 : Print cycle_to_die
-* 4 : Print instruction
-* 8 : Print Kill process
-* 16 : Print pc mouvement
+Differents modes sont disponibles :
+* 1 : Les infos les plus basiques
+* 2 : Imprime les `CYCLE_TO_DIE`
+* 4 : Imprime les instructions
+* 8 : Imprime les morts des processus
+* 16 : Imprime les déplacement des PC
 
-Pour afficher plusieurs modes simultanément, additioner les numéros leur correspondant (ex tout les modes en même temps = `-v 31`);
+Pour afficher plusieurs modes simultanément, additioner les numéros leurs correspondant (ex tout les modes en même temps = `-v 31`);
 
 Un exemple en situation :<br>
 <img src="img/verbose.gif">
@@ -619,24 +619,27 @@ Un exemple en situation :<br>
 
 ### Partie Graphique
 
+Rappel des flags de compilation :
+* `-V/--visu` : active le mode graphique
+* `-a / --animation` : active les animations de début et de fin
+
 Rappel des touches de controles :
-* `entrée` -> mettre en pause/relancer la partie
-* `+/-` -> accélérer/ralentir la vitesse d'exécution de la partie
-* `p` -> switcher de mode graphique (seulement en mode plein écran)
-* `r` -> activer/désactiver le mode responsif
-* `m` -> activer/désactiver les sons
+* `entrée` : mettre en pause/relancer la partie
+* `+/-` : accélérer/ralentir la vitesse d'exécution de la partie
+* `p` : switcher de mode graphique (seulement en mode plein écran)
+* `r` : activer/désactiver le mode responsif
+* `m` : activer/désactiver les sons
+* `esc` : fermer la fenêtre
 
 NB : Le son se désactive automatiquement au dela d'une certaine vitesse d'exécution.
-
-Rappel des flags de compilation :
-* `-V/--visu` -> active le mode graphique
-* `-a / --animation` -> active les animations de début et de fin
 
 À l'aide de la SDL, nous avons mis en place 3 modes d'affichages :
 <br>
 <div> 
   <img width="100%" src="img/game_on.gif"><br>
+  Pour ce mode, il est possible d'arrêter la partie en appuyant sur le bouton power de l'image.
   <img width="100%" src="img/light.gif"><br>
+  Même possibilité que pour le mode précédent
   <img width="100%" src="img/responsive.gif">
 </div>
 
