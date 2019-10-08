@@ -106,7 +106,7 @@ cycle.
             <td align="center">Binaire</td>
             <td align="center">Hexa</td>
             <td align="center">Carry</td>
-            <td align="center">Octal</td>
+            <td align="center">Ocp</td>
             <td align="center">Cycles</td>
             <td align="center">Dir size</td>
       </tr>
@@ -121,43 +121,429 @@ cycle.
             <td align="center">4</td>
       </tr>
       <tr>
-            <td collspan="8">L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie.</td>
+            <td colspan="8">L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie.</td>
       </tr>
 </table>
-
- Pas d’octet de codage des paramètres, opcode 0x01. Oh, et son seul paramètre est sur 4 octets.
-
-ld : Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre. Son opcode est 10 en binaire, et il changera le carry.
-
-st : Prend un registre et un registre ou un indirect, et stocke la valeur du registre vers le second paramètre. Son opcode est 0x03. Par exemple, st r1, 42 stocke la valeur de r1 à l’adresse (PC + (42 % IDX_MOD))
-
-add : Opcode 4. Prend trois registres, additionne les 2 premiers, et met le résultat dans le troisième, juste avant de modifier le carry.
-
-sub : Pareil que add, mais l’opcode est 0b101, et utilise une soustraction.
-
-and : Applique un & (ET bit-à-bit) sur les deux premiers paramètres, et stocke le résultat dans le registre qui est le 3ème paramètre. Opcode 0x06. Modifie le carry.
-
-or : Cette opération est un OU bit-à-bit, suivant le même principe que and, son opcode est donc évidemment 7.
-
-xor : Fait comme and avec un OU exclusif. Comme vous l’aurez deviné, son opcode en octal est 10.
-
-zjmp : Il n’y a jamais eu, n’y a pas, et n’y aura jamais d’octet de codage des paramètres derrière cette opération dont l’opcode est de 9. Elle prendra un index, et fait un saut à cette adresse si le carry est à 1.
-
-ldi : ldi, comme son nom l’indique, n’implique nullement de se baigner dans de la crème de marrons, même si son opcode est 0x0a. Au lieu de ça, ca prend 2 index et 1 registre, additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de la taille d’un registre et la met dans le 3eme.
-
-sti : Opcode 11. Prend un registre, et deux index (potentiellement des registres). Additionne les deux derniers, utilise cette somme comme une adresse ou sera copiée la valeur du premier paramètre.
-
-fork : Pas d’octet de codage des paramètres, prend un index, opcode 0x0c. Crée un nouveau processus, qui hérite des différents états de son père, à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
-
-lld : Signifie long-load, donc son opcode est évidemment 13. C’est la même chose que ld, mais sans % IDX_MOD. Modifie le carry.
-
-lldi : Opcode 0x0e. Pareil que ldi, mais n’applique aucun modulo aux adresses. Modifiera, par contre, le carry.
-
-lfork : Ca signifie long-fork, pour pouvoir fourcher de la paille à une distance de 15 mètres, exactement comme son opcode. Pareil qu’un fork sans modulo à l’adresse.
-
-aff : L’opcode est 10 en hexadécimal. Il y a un octet de codage des paramètres, même si c’est un peu bête car il n’y a qu’un paramètre, qui est un registre, dont le contenu est interprété comme la valeur ASCII d’un caractère à afficher sur la sortie standard. Ce code est modulo 256.
-
-
+<table>
+       <tr>
+            <th>LD</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">2</td>
+            <td align="center">T_DIR | T_IND, T_REG</td>
+            <td align="center">00000010</td>
+            <td align="center">0x02</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">5</td>
+            <td align="center">4</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>ST</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">3</td>
+            <td align="center">T_REG, T_IND | T_REG</td>
+            <td align="center">00000011</td>
+            <td align="center">0x03</td>
+            <td align="center">Non</td>
+            <td align="center">Oui</td>
+            <td align="center">5</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend un registre et un registre ou un indirect, et stocke la valeur du registre vers le second paramètre. Par exemple, st r1, 42 stocke la valeur de r1 à l’adresse (PC + (42 % IDX_MOD)).</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>ADD</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">4</td>
+            <td align="center">T_REG | T_REG | T_REG</td>
+            <td align="center">00000100</td>
+            <td align="center">0x04</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend trois registres, additionne les 2 premiers, et met le résultat dans le troisième.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>SUB</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">5</td>
+            <td align="center">T_REG | T_REG | T_REG</td>
+            <td align="center">00000101</td>
+            <td align="center">0x05</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend trois registres, soustrait les 2 premiers, et met le résultat dans le troisième.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>AND</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">6</td>
+            <td align="center">T_REG | T_REG | T_REG</td>
+            <td align="center">00000110</td>
+            <td align="center">0x06</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend trois registres, fait un ET logique entre les 2 premiers, et met le résultat dans le troisième.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>OR</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">7</td>
+            <td align="center">T_REG | T_REG | T_REG</td>
+            <td align="center">00000111</td>
+            <td align="center">0x07</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend trois registres, fait un OU inclusif entre les 2 premiers, et met le résultat dans le troisième.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>XOR</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">8</td>
+            <td align="center">T_REG | T_REG | T_REG</td>
+            <td align="center">00001000</td>
+            <td align="center">0x08</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend trois registres, fait un OU exclusif entre les 2 premiers, et met le résultat dans le troisième.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>ZJMP</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">9</td>
+            <td align="center"><T_DIR/td>
+            <td align="center">00001001</td>
+            <td align="center">0x09</td>
+            <td align="center">Non</td>
+            <td align="center">Non</td>
+            <td align="center">20</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend un index, et fait un saut à cette adresse si le carry est à 1.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>LDI</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">10</td>
+            <td align="center"><T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
+            <td align="center">00001010</td>
+            <td align="center">0x0A</td>
+            <td align="center">Non</td>
+            <td align="center">Oui</td>
+            <td align="center">25</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend 2 index et 1 registre, additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de la taille d’un registre et la met dans le 3eme.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>STI</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">11</td>
+            <td align="center"><T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG</td>
+            <td align="center">00001011</td>
+            <td align="center">0x0B</td>
+            <td align="center">Non</td>
+            <td align="center">Oui</td>
+            <td align="center">25</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">Prend un registre, et deux index (potentiellement des registres). Additionne les deux derniers, utilise cette somme comme une adresse ou sera copiée la valeur du premier paramètre.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>FORK</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">12</td>
+            <td align="center"><T_DIR</td>
+            <td align="center">00001100</td>
+            <td align="center">0x0C</td>
+            <td align="center">Non</td>
+            <td align="center">Non</td>
+            <td align="center">800</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">Crée un nouveau processus, qui hérite des différents états de son père, à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>LLD</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">13</td>
+            <td align="center"><T_DIR | T_IND, T_REG</td>
+            <td align="center">00001101</td>
+            <td align="center">0x0D</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">4</td>
+      </tr>
+      <tr>
+            <td colspan="8">C’est la même chose que ld, mais sans % IDX_MOD.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>LLDI</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">14</td>
+            <td align="center"><T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG</td>
+            <td align="center">00001110</td>
+            <td align="center">0x0E</td>
+            <td align="center">Oui</td>
+            <td align="center">Oui</td>
+            <td align="center">50</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">C'est la même chose que ldi, mais sans % IDX_MOD.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>LFORK</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">15</td>
+            <td align="center"><T_DIR</td>
+            <td align="center">00001111</td>
+            <td align="center">0x0F</td>
+            <td align="center">Non</td>
+            <td align="center">Non</td>
+            <td align="center">1000</td>
+            <td align="center">2</td>
+      </tr>
+      <tr>
+            <td colspan="8">C'est la même chose que lfork, mais sans % IDX_MOD.</td>
+      </tr>
+</table>
+<table>
+       <tr>
+            <th>AFF</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Ocp</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">16</td>
+            <td align="center"><T_REG</td>
+            <td align="center">00010000</td>
+            <td align="center">0x10</td>
+            <td align="center">Non</td>
+            <td align="center">Oui</td>
+            <td align="center">2</td>
+            <td align="center">/</td>
+      </tr>
+      <tr>
+            <td colspan="8">C'est la même chose que lfork, mais sans % IDX_MOD.</td>
+      </tr>
+</table>
 
 ## BONUS
 
