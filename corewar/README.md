@@ -25,21 +25,6 @@ Un extrait d'une partie entre 4 joueurs :<br>
   
 ## LE LANGAGE ET LES INSTRUCTIONS
 
-* Le langage assembleur
-  * Le langage assembleur est composé d’une instruction par ligne.
-  * Une instruction se compose de trois éléments : Un label (optionnel), composé
-d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
-opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
-être de trois types :
-    * Registre : (r1 <–> rx avec x = REG_NUMBER)
-    * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
-label (précédé par LABEL_CHAR), ce qui représente une valeur directe.
-    * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
-  * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
-d’avant l’instruction qu’il concerne.
-  * Le caractère COMMENT_CHAR démarre un commentaire.
-  * Un champion comportera également un nom et une description, qui sont présents
-sur une ligne après les marqueurs NAME_CMD_STRING et COMMENT_CMD_STRING.
   * Tous les adressages sont relatifs au PC et à IDX_MOD sauf pour lld, lldi et
 lfork.
   * Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
@@ -541,6 +526,22 @@ compréhensible par la machine virtuelle.
 l’extension `.s` par `.cor`.
 * En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
 et ne pas produire de fichier `.cor`
+
+* Le langage en lui même
+  * Le langage assembleur est composé d’une instruction par ligne.
+  * Une instruction se compose de trois éléments : Un label (optionnel), composé
+d’une chaîne de caractères parmi LABEL_CHARS suivi par LABEL_CHAR ; un
+opcode ; et ses paramètres, séparés par SEPARATOR_CHAR. Un paramètre peut
+être de trois types :
+    * Registre : (r1 <–> rx avec x = REG_NUMBER)
+    * Direct : Le caractère DIRECT_CHAR suivi d’une valeur numérique ou d’un
+label (précédé par LABEL_CHAR), ce qui représente une valeur directe.
+    * Indirect : Une valeur ou un label (précédé de LABEL_CHAR), ce qui représente la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
+  * Un label peut n’avoir aucune instruction à sa suite, ou être placé sur la ligne
+d’avant l’instruction qu’il concerne.
+  * Le caractère COMMENT_CHAR démarre un commentaire.
+  * Un champion comportera également un nom et une description, qui sont présents
+sur une ligne après les marqueurs NAME_CMD_STRING et COMMENT_CMD_STRING.
 
 Un exemple de fichier `.s` :<br>
 <img src="img/demo_s.png" width="70%">
