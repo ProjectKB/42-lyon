@@ -44,7 +44,7 @@ sur une ligne après les marqueurs NAME_CMD_STRING et COMMENT_CMD_STRING.
 lfork.
   * Le nombre de cycles de chaque instruction, leur représentation mnémonique, leur
 nombre de paramètres et les types de paramètres possibles sont décrits dans le
-tableau op_tab déclaré <a href"vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
+tableau op_tab déclaré <a href="vm_dir/srcs/utils_get_op_tab.c">ici</a>. Les cycles sont toujours consommés.
   * Tous les autres codes n’ont aucune action a part passer au suivant et perdre un
 cycle.
 
