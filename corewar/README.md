@@ -24,7 +24,7 @@ Un extrait d'une partie entre 4 joueurs :
 
 <img width="100%" src="img/random_game.gif"><br><br>
   
-## LE LANGAGE ET LA COMPILATION
+## LE LANGAGE ET LES INSTRUCTIONS
 
 * Le langage assembleur
   * Le langage assembleur est composé d’une instruction par ligne.
@@ -542,7 +542,11 @@ compréhensible par la machine virtuelle.
 l’extension `.s` par `.cor`.
 * En cas d’erreur, nous devrons afficher un message pertinent sur la sortie d’erreur,
 et ne pas produire de fichier `.cor`
+
+Un exemple de fichier `.s` :
+<img src="img/demo_asm.png" width="70%">
 <br><br>
+
 ## LA VM
   
 * Chaque processus aura à sa disposition les éléments suivants, qui lui sont propres :
