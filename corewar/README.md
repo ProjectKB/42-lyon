@@ -22,7 +22,7 @@ savoir un code machine qui sera directement interprété par la machine virtuell
 
 Un extrait d'une partie entre 4 joueurs :
 
-<img width="100%" src="img/random_game.gif">
+<img width="100%" src="img/random_game.gif"><br><br>
   
 ## LE LANGAGE ET LA COMPILATION
 
