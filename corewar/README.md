@@ -636,10 +636,10 @@ NB : Le son se désactive automatiquement au dela d'une certaine vitesse d'exéc
 À l'aide de la SDL, nous avons mis en place 3 modes d'affichages :
 <br>
 <div> 
-  <img width="100%" src="img/game_on.gif"><br>
-  Pour ce mode, il est possible d'arrêter la partie en appuyant sur le bouton power de l'image.
-  <img width="100%" src="img/light.gif"><br>
-  Même possibilité que pour le mode précédent
+  <img width="100%" src="img/game_on.gif">
+  Pour ce mode, il est possible d'arrêter la partie en appuyant sur le bouton power de l'image.<br>
+  <img width="100%" src="img/light.gif">
+  Même possibilité que pour le mode précédent, il est également possible d'allumer/éteindre la lumière en cliquant sur l'interrupteur de la lampe et d'allumer/éteindre de la musique en appuyant sur le bouton power de l'autoradio.<br>
   <img width="100%" src="img/responsive.gif">
 </div>
 
