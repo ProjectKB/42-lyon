@@ -1,15 +1,19 @@
 ## LE PROJET EN LUI MÊME
 
 Ce projet est une introduction à la problématique des algos de pathfinding et aux parcours de graphes.
-<br> Il s'agit de trouver la meilleure solution possible pour relier un point A à un point B jalonné de plusieurs étapes ou non par un ou plusieurs objets.
+
+<br> Il s'agit de trouver la meilleure solution possible pour relier une salle `START` à une salle `END`.<br>
+Ces salles peuvent être reliés par un nombre X d'autres salles et doivent être parcourues par un nombre Y de fourmis.<br>
+Il ne peut y avoir qu'une fourmi par salle (sauf pour `start` et `end`) et elles ne peuvent se déplacer que d'une salle par tour.<br>
+Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la fourmilière transmise est valide le programme s'arrête quand toute les fourmis ont atteint la salle `end`.
 
 Le fichier que l'on fera lire par notre programme décrit une fourmilière caractérisée par :
 * Son nombre de fourmis
 * Ses salles
 * Les liaisons entre ces salles
 
-Au premier tour toutes les fourmis sont présentes dans la salle `start`, si la fourmilière transmise est valide le programme s'arrête quand toute les fourmis ont atteint la salle `end`.
-<br>Il ne peut y avoir qu'une fourmi par salle (sauf pour `start` et `end`) et elles ne peuvent se déplacer que d'une salle par tour.
+
+
 
 Pour une meilleure compréhension, voici un descriptif du type de fichier (la fourmilière) à passer en argument au programme : 
 
