@@ -20,8 +20,7 @@ savoir un code machine qui sera directement interprété par la machine virtuell
     Il va de soi qu’elle permet d’exécuter plusieurs processus en simultané.
   * Le champion : Il nous est également demandé d'écrire un champion capable de battre un des champions de base fournis dans les ressources du sujet, démontrant ainsi que nous avons compris le fonctionnement basique de ce dernier.
 
-Un extrait d'une partie entre 4 joueurs :
-
+Un extrait d'une partie entre 4 joueurs :<br>
 <img width="100%" src="img/random_game.gif"><br><br>
   
 ## LE LANGAGE ET LES INSTRUCTIONS
