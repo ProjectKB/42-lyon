@@ -12,7 +12,7 @@ Le fichier descriptif de la fourmilière est caractérisé par :
 * Ses salles
 * Les liaisons entre ces salles
 
-Pour une meilleure compréhension, voici un descriptif du type de fichier (la fourmilière) à passer en argument au programme : 
+Pour une meilleure compréhension, voici un exemeple de fourmilière valide : 
 
 <img src="img/demo_file.png" width="70%"><br><br>
 
