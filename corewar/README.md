@@ -92,7 +92,7 @@ soumet pas à cette règle sera mis à mort.
 
 * En cas d’erreur, vous devrez afficher un message pertinent sur la sortie d’erreur.
 
-* Si on n’a pas décrémenté `CYCLE_TO_DIE` depuis `MAX_CHECK`S vérifications, on le décrémente.
+* Si on n’a pas décrémenté `CYCLE_TO_DIE` depuis `MAX_CHECKS` vérifications, on le décrémente.
 
 * Au bout de `nbr_cycles` cycles d’exécution, dump la mémoire sur la sortie standard, puis quitte la partie. La mémoire doit être dumpée au format hexadécimal, avec 32 octets par ligne.
 
