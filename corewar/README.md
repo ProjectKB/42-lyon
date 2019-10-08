@@ -97,24 +97,35 @@ cycle.
 * Les instructions
 
 <table>
-    <td>LIVE
-        <tr>
-            <td align="center">value</td>
-            <td align="center">value</td>
-            <td align="center">value</td>
-        </tr>
-    </td>
-        <tr>
-            <td align="center">value</td>
-            <td align="center">value</td>
-            <td align="center">value</td>
-        </tr>
-   <td>
-    TEST
-   </td>
+       <tr>
+            <th>LIVE</th>
+       </tr>
+       <tr>
+            <td align="center">Opcode</td>
+            <td align="center">Args</td>
+            <td align="center">Binaire</td>
+            <td align="center">Hexa</td>
+            <td align="center">Carry</td>
+            <td align="center">Octal</td>
+            <td align="center">Cycles</td>
+            <td align="center">Dir size</td>
+      </tr>
+      <tr>
+            <td align="center">1</td>
+            <td align="center">T_DIR</td>
+            <td align="center">00000001</td>
+            <td align="center">0x01</td>
+            <td align="center">Non</td>
+            <td align="center">Oui</td>
+            <td align="center">10</td>
+            <td align="center">4</td>
+      </tr>
+      <tr>
+            <td collspan="8">L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie.</td>
+      </tr>
 </table>
 
-L’instruction qui permet à un processus de rester vivant. A également pour effet de rapporter que le joueur dont le numéro est en paramètre est en vie. Pas d’octet de codage des paramètres, opcode 0x01. Oh, et son seul paramètre est sur 4 octets.
+ Pas d’octet de codage des paramètres, opcode 0x01. Oh, et son seul paramètre est sur 4 octets.
 
 ld : Prend un paramètre quelconque et un registre. Charge la valeur du premier paramètre dans le registre. Son opcode est 10 en binaire, et il changera le carry.
 
