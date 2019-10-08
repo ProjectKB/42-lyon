@@ -501,11 +501,11 @@ et ne pas produire de fichier `.cor`
 
 * Le langage assembleur est composé d’une instruction par ligne.
 * Une instruction peut se composer d'un label (optionnel), un
-opcode et de ses paramètres. <br>Un paramètre peut
-être de trois types :
+opcode et de ses paramètres.
+* Un paramètre peut être de trois types :
     * Registre
     * Direct
-    * Indirect : Une valeur ou un label, représentant la valeur qui se trouve à l’adresse du paramètre, relativement au PC du processus courant.
+    * Indirect : Une valeur ou un label représentant la valeur qui se trouve à l’adresse du paramètre, relative au PC du processus courant.
     
 <div><img align="center" src="img/arg_tab.png" width="50%"></div><br>
 
