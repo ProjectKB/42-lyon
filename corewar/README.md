@@ -599,18 +599,18 @@ Pour un lancement classique il produira la sortie suivante :<br>
 
 ### Verbose
 
-Nous avons implémentés une verbose selon la logique suivante : 
+Nous avons implémenté une verbose selon la logique suivante : 
 
-`./corewar ... --verbose (-v)   <Number>` pour controler le défilement de la verbose à l'aide de la touche `entrée` ajouter le flag `-s`.
+`./corewar ... --verbose/-v   <Number>` pour controler le défilement de la verbose à l'aide de la touche `entrée` ajouter le flag `-s`.
 
 Differents modes sont disponibles :
 * 1 : Les infos les plus basiques
 * 2 : Imprime les `CYCLE_TO_DIE`
 * 4 : Imprime les instructions
-* 8 : Imprime les morts des processus
+* 8 : Imprime les morts de processus
 * 16 : Imprime les déplacement des PC
 
-Pour afficher plusieurs modes simultanément, additionez les numéros leurs correspondant (ex tout les modes en même temps = `-v 31`).
+Pour afficher plusieurs modes simultanément, additionez les numéros leurs correspondants (ex tout les modes en même temps = `-v 31`).
 
 Un exemple en situation :<br>
 <img src="img/verbose.gif">
@@ -671,7 +671,7 @@ Un fichier `Random_Commodore.s` sera ajouté dans `ressource/source/` et un `Ran
 Un fichier `ChampToBeat_Nemesis.s` sera ajouté dans `ressource/source/` et un `ChampToBeat_Nemesis.cor` dans `ressource/compile/`.
 * Un améliorateur de champion qui fera jouer un champion passé en premier paramètre contre des joueurs générés aléatoirement jusqu'à ce qu'un de ces joueurs arrivent à battre votre joueur.
 Il vérifiera également que ce champion arrive à battre à minima les mêmes champions que le votre.
-Si c'est le cas `Darwin.s` et un `Darwin.cor` seront ajoutés aux mêmes endroits que précédemment sinon le script continuera simplement à boucler.
+Si c'est le cas un `Darwin.s` et un `Darwin.cor` seront ajoutés aux mêmes endroits que précédemment sinon, le script continuera simplement à boucler.
 Ce script ce test à l'aide de `sh ./script/train_champion.sh <your_champ.cor>`
 
 
