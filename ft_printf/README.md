@@ -15,7 +15,7 @@ printf
 
 ## BONUS
 
-<a href="http://www.linux-france.org/article/man-fr/man3/printf-3.html">Sprintf</a> a été implémentés et les couleurs ont également été ajouté selon la logique suivante : <br>`ft_printf("%<your_color_code><your_type_of_conversion>", your_var)`
+<a href="http://www.linux-france.org/article/man-fr/man3/printf-3.html">Sprintf</a> a été implémentés et les couleurs ont également été ajouté selon la logique suivante : <br>`ft_printf("%<your_color_code>$<your_type_of_conversion>", your_var)`
 
 Les codes couleurs sont les suivants :
 
