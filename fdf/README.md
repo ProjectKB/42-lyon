@@ -1,11 +1,7 @@
 ## LE PROJET EN LUI MÊME
 
-Fdf est un projet nous permettant de découvrir les bases de la programmation graphique, et en particulier, le placement de points dans l’espace, comment les relier avec des segments et
-surtout comment observer la scène depuis un certain point de vue.
-C'est égalemet à cette occasion que nous découvrirons notre première bibliothèque graphique : La miniLibX.
-Cette bibliothèque développée en interne rassemble le minimum nécéssaire pour ouvrir une
-fenêtre, allumer un pixel et gérer les évènements lié à cette fenêtre : le clavier et la souris.
-C'est pour nous l’occasion de nous initier à la programmation dite “événementielle”.
+Fdf est un projet nous permettant de découvrir les bases de la programmation graphique, et en particulier, le placement de points dans l’espace, comment les relier avec des segments et surtout comment observer la scène depuis un certain point de vue. C'est égalemet à cette occasion que nous découvrirons notre première bibliothèque graphique : La miniLibX.
+Cette bibliothèque développée en interne rassemble le minimum nécéssaire pour ouvrir une fenêtre, allumer un pixel et gérer les évènements lié à cette fenêtre : le clavier et la souris. C'est pour nous l’occasion de nous initier à la programmation dite "événementielle".
 <br><br>
 ## LANCER LE PROJET
 
@@ -25,7 +21,7 @@ Nous devions réaliser deux type de projections, j'ai choisi pour ma part d'impl
 
 ## ÉVÉNEMENTS
 
-Les événements suivant ont été implémentés :
+Les événements suivants ont été implémentés :
 * Déplacements hauts/bas/gauches/droites
 * Modification de l'élévation (axe z)
 * Changement des couleurs (en dégradé)
