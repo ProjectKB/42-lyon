@@ -37,7 +37,7 @@ La sortie donnée par le programme est l'état final de la map contenant les té
 Nous avons choisis d'implémenter trois type d'affichage supplémentaires :
 <br><br>
 
-* Un mode coloré pour mieux distingué les différentes pièces, utiliser `make re GRAPHIC=yes`.
+* Un mode coloré pour mieux distinguer les différentes pièces, utiliser `make re GRAPHIC=yes`.
 
 <img src="ressources/color.png" height="300">
 <br>
