@@ -40,10 +40,10 @@ Deux cas de figure sont possibles :
 
 Dans ce cas, le programme imprimera en premier le contenu du fichier exploité, suivit des déplacements des fourmis (une ligne correspondant à un tour).
 
-Les déplacements des fourmis sont exprimé comme suit (L`numéro de fourmi`-`nom de salle`) :<br>
+Les déplacements des fourmis sont exprimés comme suit (L`numéro de fourmi`-`nom de salle`) :<br>
 * 1er tour | `L1-salleA L2-salleB L3-salleC`<br>
 * 2e  tour | `L1-salleD L2-salleE L3-salleF`
-<br>... etc jusqu'à ce que toute les fourmis soient arrivé à bon port.
+<br>... etc jusqu'à ce que toute les fourmis soient arrivées à bon port.
 
 Exemple de déplacements réalisés par les fourmis (la description de la fourmilière n'est pas présente pour des soucis de lisibilité mais est disponible <a href="map_tmp">ici</a>) : 
 
@@ -59,7 +59,7 @@ On pourrait choisir d'utiliser tout les chemins mais on serait alors moins effic
 
 Pour réussir au mieux ce projet nous avions deux problématiques à concilier, le fait d'avoir un algo nous permettant de trouver le plus de chemins cours sans intersection entre eux et le fait d'avoir un algo le plus rapide possible.
 
-Nous avons donc choisis d'implémenter <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">l'algorithme A*<a/> offrant un bon équillibre entre ces deux problématiques et de faire nos parcours de chemin pour la résolution à travers une <a href="https://fr.wikipedia.org/wiki/Matrice_d%27adjacence">matrice d'adjacence<a/> offrant ainsi la possibilitée d'utiliser des opérateurs binaires et d'allouer la mémoire au bit prêt et donc d'obtenir un gain de temps considerable.<br><br>
+Nous avons donc choisis d'implémenter <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">l'algorithme A*<a/> offrant un bon équillibre entre ces deux problématiques et de faire nos parcours de chemin pour la résolution à travers une <a href="https://fr.wikipedia.org/wiki/Matrice_d%27adjacence">matrice d'adjacence<a/> offrant ainsi la possibilitée d'utiliser des opérateurs binaires et d'allouer la mémoire au bit prêt et donc d'obtenir un gain de temps considérable.<br><br>
 
 ## COMPILATION ET BONUS
 
@@ -70,7 +70,7 @@ Un générateur de map nous est fournit au commencement du projet, nous avons im
 * `./tools/fl-10` générera une map avec 10 fourmis
 * `./tools/fl-100` générera une map avec 100 fourmis
 * `./tools/big` générera une map avec beaucoup de fourmis et beaucoup de salles
-* `./tools/big-s` idem que pour les `big` mais avec énormément de connexion entre les salles
+* `./tools/big-s` idem que pour les `big` mais avec énormément d'inter connexion entre les salles
 
 Ces scripts produiront la sortie suivante :
 
