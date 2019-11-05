@@ -6,13 +6,14 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/05 17:36:41 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/05 21:11:42 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/05 22:08:02 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 import sys
 import re
+import math
 import parsing
 
 def calcul_delta(reduce_data):
@@ -26,7 +27,7 @@ def calcul_delta(reduce_data):
     if isinstance(delta, int):
         delta = int(delta)
     print("Polynomial form ( ax ^ 2 + bx + c ):")
-    print("\ta:", ordered_data['a'], "b:", ordered_data['b'], "c:", ordered_data['c'], "\n")
+    print("\ta:", ordered_data['a'], "| b:", ordered_data['b'], "| c:", ordered_data['c'], "\n")
     print("Delta calculation ( b ^ 2 - 4ac ):")
     print("\t=", ordered_data['b'] ** 2, "- 4 *", ordered_data['a'], "*", ordered_data['c'], "")
     print("\t=", delta, "\n")
@@ -36,12 +37,24 @@ def second_degree(ordered_data, delta):
     if delta < 0:
         print("Delta is smaller than 0 so there is no solution to the equation.")
     elif delta == 0:
-        print("Delta is equal to 0, resolution formula is : -(b / 2a)")
+        print("Delta is equal to 0, resolution formula is : -( b / 2a )")
         print("The solution is:\n\t= -(", ordered_data['b'], "/ ( 2 *", ordered_data['a'], ") )")
         resultat = (ordered_data['b'] / (2 * ordered_data['a'])) * -1
         if resultat.is_integer():
             resultat = int(resultat)
         print("\t= ", resultat)
+    elif delta > 0:
+        print("Delta is greater than 0, there are two solutions to the equation.")
+        x1 = (ordered_data['b'] * -1 - math.sqrt(delta)) / (2 * ordered_data['a'])
+        x1 = int(x1) if x1.is_integer() else round(x1, 3)
+        x2 = (ordered_data['b'] * -1 + math.sqrt(delta)) / (2 * ordered_data['a'])
+        x2 = int(x2) if x2.is_integer() else round(x2, 3)
+        print("\tx1 = ( -b - sqrt(delta) ) / 2a")
+        print("\t   = (", ordered_data['b'] * -1, "-", round(math.sqrt(delta), 3), ") /", 2 * ordered_data['a'])
+        print("\t   =", x1)
+        print("\tx2 = ( -b + sqrt(delta) ) / 2a")
+        print("\t   = (", ordered_data['b'] * -1, "+", round(math.sqrt(delta), 3), ") /", 2 * ordered_data['a'])
+        print("\t   =", x2)
 
 def define_method(reduce_data, max_degree):
     if max_degree == 0:
