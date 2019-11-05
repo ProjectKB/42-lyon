@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/24 18:10:47 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/04 20:20:38 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/05 15:04:33 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -60,8 +60,10 @@ def main():
             if arg is not -1:
                 args.append(arg)
         degs_order = format_degrees(args)
+        print(args)
+        print(degs_order)
         reduce_data = get_reduce_data(args, degs_order)
-        print_reduce_form(reduce_data)
+        #print_reduce_form(reduce_data)
 
 if __name__ == "__main__":
     main()
