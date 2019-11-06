@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/24 18:10:47 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 20:11:13 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/06 21:10:13 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -60,7 +60,6 @@ def check_data_before_processing(degrees, m_degree, f_num, s_num, f_deg, s_deg):
         if not (deg == 0 or deg == 1 or deg == 2):
             print("\n\tOne of the polynomial degree isn't an integer, I can't solve.\n")
             exit(0)
-
 
 def get_reduce_form(args):
     f_part = args[:args.find('=')]
