@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/24 18:10:47 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 21:10:13 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/06 21:31:09 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -43,8 +43,8 @@ def find_max_degree(degrees):
         degrees_tmp.append(deg)
     return t.roundornot(max(degrees_tmp))
 
-def check_data_before_processing(degrees, m_degree, f_num, s_num, f_deg, s_deg):
-    if f_num == s_num and f_deg == s_deg:
+def check_data_before_processing(degrees, m_degree, c_num, c_deg):
+    if c_num == True and c_deg == True:
         print("\n\tThis is a special case, all real numbers are true for this equation.\n")
         exit(0)
     elif m_degree == 0:
@@ -71,5 +71,5 @@ def get_reduce_form(args):
     m_degree = find_max_degree(degrees)
     r_data = get_reduce_data(degrees, numbers)
     t.print_reduce_form_and_polynomial_degree(r_data, m_degree, f_num == s_num, args)
-    check_data_before_processing(degrees, m_degree, f_num, s_num, f_deg, s_deg)
+    check_data_before_processing(degrees, m_degree, f_num == s_num, f_deg == s_deg)
     return r_data, m_degree
