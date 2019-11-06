@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/06 12:59:58 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 21:06:22 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/06 21:45:20 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -48,13 +48,14 @@ def print_delta(delta, a, b, c):
 
 def print_second_degree(delta, a, b, c, resultat, x1, x2):
     if delta < 0:
-        print("\tDelta is smaller than 0 so there is no solution to the equation.\n")
+        print("\tDelta is smaller than 0, there is no solution to the equation.\n")
     elif delta == 0:
-        print("\tDelta is equal to 0.\n\t" + "Resolution formula: -(b / 2a)\n\n" + \
+        print("\tDelta is equal to 0, there is one solution to the equation.\n\t" + \
+            "Resolution formula: -(b / 2a)\n\n" + \
             "\tThe solution is:\n\t= -(" + str(b) + "/ (2 *", str(a) + ")\n" + \
             "\t= " + str(resultat) + "\n")
     elif delta > 0:
-        print("\tDelta is greater than 0, there are two solutions to the equation.\n\n" + \
+        print("\tDelta is greater than 0, there are two solutions to the equation.\n" + \
             "\tResolution formula: x\u2081, x\u2082 = (-b ± \u221A\u0394) / 2a\n\n" + \
             "\tSolutions are:\n" + \
             "\tx\u2081 = (", b * -1, "-", round(delta ** 0.5, 3), ") /", 2 * a, "\n" + \
