@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/24 18:10:47 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 14:14:56 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/06 20:11:13 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,12 +14,14 @@
 import re
 import tools as t
 
-def extract_data(args, part):
+def multiply_list_by(nb):
+    return nb * -1
+
+def extract_data(args):
     degrees = re.findall(r'X\^-?\d*\.?\d+', args)
     degrees = [float(degree.replace('X^', '')) for degree in degrees]
     numbers = re.findall(r'-?\d*\.?\d*\*', args)
-    numbers = [number.replace('*', '') for number in numbers] if part == 1 \
-                else [float(number.replace('*', '')) * -1 for number in numbers]
+    numbers = [float(number.replace('*', '')) for number in numbers]
     return degrees, numbers
 
 def get_reduce_data(degrees, numbers):
@@ -39,27 +41,36 @@ def find_max_degree(degrees):
     degrees_tmp = []
     for deg in degrees:
         degrees_tmp.append(deg)
-    return t.roundornot(max(degrees_tmp), 1)
+    return t.roundornot(max(degrees_tmp))
 
-def check_data_before_processing(degrees):
-    if max(degrees) > 2:
-        print("The polynomial degree is stricly greater than 2, I can't solve.")
+def check_data_before_processing(degrees, m_degree, f_num, s_num, f_deg, s_deg):
+    if f_num == s_num and f_deg == s_deg:
+        print("\n\tThis is a special case, all real numbers are true for this equation.\n")
+        exit(0)
+    elif m_degree == 0:
+        print("\n\tThere is no solution to this equation.\n")
+        exit(0)
+    elif max(degrees) > 2:
+        print("\n\tThe polynomial degree is stricly greater than 2, I can't solve.\n")
+        exit(0)
+    elif min(degrees) < 0:
+        print("\n\tOne of the polynomial degree is negative, I can't solve.\n")
         exit(0)
     for deg in degrees:
         if not (deg == 0 or deg == 1 or deg == 2):
-            print("One of the polynomial degree is invalid ", \
-                                        "(negative or float), I can't solve.")
+            print("\n\tOne of the polynomial degree isn't an integer, I can't solve.\n")
             exit(0)
+
 
 def get_reduce_form(args):
     f_part = args[:args.find('=')]
     s_part = args[args.find('=') + 1:]
-    f_deg, f_num = extract_data(f_part, 1)
-    s_deg, s_num = extract_data(s_part, 2)
+    f_deg, f_num = extract_data(f_part)
+    s_deg, s_num = extract_data(s_part)
     degrees = f_deg + s_deg
-    numbers = f_num + s_num
-    r_data = get_reduce_data(degrees, numbers)
+    numbers = f_num + list(map(multiply_list_by, s_num))
     m_degree = find_max_degree(degrees)
-    t.print_reduce_form_and_polynomial_degree(r_data, m_degree)
-    check_data_before_processing(degrees)
+    r_data = get_reduce_data(degrees, numbers)
+    t.print_reduce_form_and_polynomial_degree(r_data, m_degree, f_num == s_num, args)
+    check_data_before_processing(degrees, m_degree, f_num, s_num, f_deg, s_deg)
     return r_data, m_degree
