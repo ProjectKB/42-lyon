@@ -14,4 +14,4 @@ Ce programme **ne résoudra pas de polynome supérieur au second degré.**
 
 Les différentes sorties implémentées :
 
-
+<img width="100%" src="img/output.png"><br><br>
