@@ -11,4 +11,4 @@
 * 03/2019 | C | <a href="filler/">Filler</a> | algorithme de map de chaleur
 * 04/2019 -> 05/2019 | C | <a href="lem_in/">Lem_in</a> | parcours de graphe, pathfinding, matrice d'adjacence
 * 05/2019 -> 06/2019 | C/Bash | <a href="corewar/">Corewar</a> | machine virtuelle, asm, scripts
-* 11/2019 | Python | <a href="CPV1/">CPV1</a> | calculateur de polynome
+* 11/2019 | Python | <a href="CPV1/">Computer V1</a> | calculateur de polynome
