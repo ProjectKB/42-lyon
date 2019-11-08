@@ -1,7 +1,7 @@
 ### PROJETS
 
 * 10/2018 | C | <a href="piscine-reloaded/">Piscine Reloaded</a> | refaire les exercices principaux de notre concours d'entrée
-* 10/2018 | C | <a href="libft/">Libft</a> | recoder un grand nombre de fonction dans le but de créer notre propre librairie
+* 10/2018 | C | <a href="libft/">Libft</a> | recoder un grand nombre de fonction de la Libc dans le but de créer notre propre librairie
 * 10/2018 | C | <a href="gnl/">Get_Next_Line</a> | introduction à la lecture de fichier et aux variables statiques
 * 11/2018 | C | <a href="fillit/">Fillit</a> | premier projet en groupe et algorithme de backtracking
 * 12/2018 | C | <a href="p4/">Puissance4</a> | création d'un jeu de puissance4
