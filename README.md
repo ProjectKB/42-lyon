@@ -13,4 +13,6 @@
 * 05/2019 -> 06/2019 | C/Bash | <a href="corewar/">Corewar</a> | machine virtuelle, asm, scripts
 * 11/2019 | Python | <a href="CPV1/">Computer V1</a> | calculateur de polynome
 
+Tous les projets écrits en C sont soumis à une <a href="ressources/norme.fr.pdf">norme</a>.
+
 Pour voir mon CV, clickez <a href="CV/Bertin_Loic_CV.pdf/">ici</a>.
