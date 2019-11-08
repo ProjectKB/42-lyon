@@ -6,11 +6,13 @@
 * 11/2018 | C | <a href="fillit/">Fillit</a> | premier projet en groupe et algorithme de backtracking
 * 12/2018 | C | <a href="p4/">Puissance4</a> | création d'un jeu de puissance4
 * 12/2018 | C | <a href="init/">Init</a> | découverte des commandes system de base et virtualisation
-* 12/2018 -> 01/2019 | <a href="ft_printf/">Ft_Printf</a> | recoder la fonction printf de la libc
+* 12/2018 -> 01/2019 | <a href="ft_printf/">Ft_Printf</a> | recoder la fonction printf de la Libc
 * 02/2019 | C | <a href="fdf/">FDF</a> | découverte d'une librairie graphique, algo de tracé de segment et programmation événementielle
 * 03/2019 | C | <a href="filler/">Filler</a> | algorithme de map de chaleur
 * 04/2019 -> 05/2019 | C | <a href="lem_in/">Lem_in</a> | parcours de graphe, pathfinding, matrice d'adjacence
 * 05/2019 -> 06/2019 | C/Bash | <a href="corewar/">Corewar</a> | machine virtuelle, asm, scripts
 * 11/2019 | Python | <a href="CPV1/">Computer V1</a> | calculateur de polynome
+
+Tous les projets écrits en C sont soumis à une <a href="ressources/norme.fr.pdf">norme</a>.
 
 Pour voir mon CV, clickez <a href="CV/Bertin_Loic_CV.pdf/">ici</a>.
