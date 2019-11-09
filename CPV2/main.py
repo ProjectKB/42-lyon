@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/09 21:37:43 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/09 21:44:00 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -27,6 +27,7 @@ def parse_matrices(args):
             lines = arg[0].replace('[', '').replace(']', '').split(';')
             for elem in lines:
                 line = elem.split(',')
+                # check validity of line
                 matrix.append(line)
             length = len(matrix[0])
             if all(len(line) == length for line in matrix):
@@ -35,7 +36,6 @@ def parse_matrices(args):
                 print("Error : One of your matrice is incorrectly formatted.")
         print(matrices)
         return matrices
-
 
 def find_calcul_type(args):
     if re.search(r'\[((\[(,?-?\d+(.\d+)?)+\];?)+)\]', args):
