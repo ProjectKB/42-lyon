@@ -6,39 +6,23 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/10 15:30:12 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/10 21:33:38 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 import sys
 import re
-
-REEL = 0
-IMAGINAIRE = 1
-MATRICE = 2
-POLY = 3
-
-def parse_matrices(args):
-        matrices = []
-        args = re.findall(r'(\[(\[(-?\d+(.\d+)?)(,-?\d+(.\d+)?)?\])(;\[(-?\d+(.\d+)?)(,-?\d+(.\d+)*)?\])*\])', args)
-        for arg in args:
-            matrix = []
-            lines = arg[0].replace('[', '').replace(']', '').split(';')
-            for elem in lines:
-                line = elem.split(',')
-                matrix.append(line)
-            length = len(matrix[0])
-            if all(len(line) == length for line in matrix):
-                matrices.append(matrix)
-            else:
-                print("Error : One of your matrice is incorrectly formatted.")
-        print(matrices)
-        return matrices
+import tools as t
+import matrices as m
 
 def find_calcul_type(args):
     if re.search(r'(\[(\[(-?\d+(.\d+)?)(,-?\d+(.\d+)?)?\])(;\[(-?\d+(.\d+)?)(,-?\d+(.\d+)*)?\])*\])', args):
-        matrices = parse_matrices(args)
+        matrices = m.parse_matrices(args)
+        if matrices != -1:
+            m.print_matrices(matrices)
+            new = m.do_op_matrices(matrices[0], "^", 1)
+            m.print_matrix(new)
 
 def processing_loop():
     while 42:
