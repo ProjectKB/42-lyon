@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/10 21:45:01 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/10 21:52:45 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -96,5 +96,5 @@ def do_op_matrices(m1, op, v):
         return multiply_matrices(m1, op, op_on_matrices(v, "*", -1))
     elif isinstance(v, list) and (op == "*" or op == "-" or op == "+"):
         return op_between_matrices(m1, op, v)
-    elif not isinstance(v, list) and (op != "+" or op == "-"):
+    elif not isinstance(v, list) and op != "+" and op != "-":
         return op_on_matrices(m1, op, v)
