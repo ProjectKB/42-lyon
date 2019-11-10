@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/09 21:44:00 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/10 15:30:12 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,13 +21,12 @@ POLY = 3
 
 def parse_matrices(args):
         matrices = []
-        args = re.findall(r'\[((\[(,?-?\d+(.\d+)?)+\];?)+)\]', args)
+        args = re.findall(r'(\[(\[(-?\d+(.\d+)?)(,-?\d+(.\d+)?)?\])(;\[(-?\d+(.\d+)?)(,-?\d+(.\d+)*)?\])*\])', args)
         for arg in args:
             matrix = []
             lines = arg[0].replace('[', '').replace(']', '').split(';')
             for elem in lines:
                 line = elem.split(',')
-                # check validity of line
                 matrix.append(line)
             length = len(matrix[0])
             if all(len(line) == length for line in matrix):
@@ -38,7 +37,7 @@ def parse_matrices(args):
         return matrices
 
 def find_calcul_type(args):
-    if re.search(r'\[((\[(,?-?\d+(.\d+)?)+\];?)+)\]', args):
+    if re.search(r'(\[(\[(-?\d+(.\d+)?)(,-?\d+(.\d+)?)?\])(;\[(-?\d+(.\d+)?)(,-?\d+(.\d+)*)?\])*\])', args):
         matrices = parse_matrices(args)
 
 def processing_loop():
