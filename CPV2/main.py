@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/10 21:33:38 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/10 21:45:12 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,8 +21,6 @@ def find_calcul_type(args):
         matrices = m.parse_matrices(args)
         if matrices != -1:
             m.print_matrices(matrices)
-            new = m.do_op_matrices(matrices[0], "^", 1)
-            m.print_matrix(new)
 
 def processing_loop():
     while 42:

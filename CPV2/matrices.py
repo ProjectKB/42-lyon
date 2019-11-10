@@ -6,13 +6,26 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/11/08 21:20:56 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/10 21:36:43 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/10 21:45:01 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 import tools as t
 import re
+
+def print_matrix(matrix):
+    print("")
+    for line in matrix[:-1]:
+        tmp_str = '[ '
+        for elem in line:
+            tmp_str += "{}, ".format(t.roundornot(elem))
+        tmp_str += ']'
+        print(tmp_str.replace(', ]', ' ]'))
+
+def print_matrices(matrices):
+    for matrix in matrices:
+        print_matrix(matrix)
 
 def parse_matrices(args):
         matrices = []
@@ -21,12 +34,10 @@ def parse_matrices(args):
             matrix = []
             lines = arg[0].replace('[', '').replace(']', '').split(';')
             for elem in lines:
-                line = elem.split(',')
-                matrix.append(line)
+                matrix.append(elem.split(','))
             length = len(matrix[0])
             if all(len(line) == length for line in matrix):
-                m_size = [length, len(matrix)]
-                matrix.append(m_size)
+                matrix.append([length, len(matrix)])
                 matrices.append(matrix)
             else:
                 print("Error : One of your matrice is incorrectly formatted.")
@@ -72,19 +83,6 @@ def op_between_matrices(m1, op, m2):
         new_matrix.append((tmp_line))
     new_matrix.append(m1[-1])
     return new_matrix
-
-def print_matrix(matrix):
-    print("")
-    for line in matrix[:-1]:
-        tmp_str = '[ '
-        for elem in line:
-            tmp_str += "{}, ".format(t.roundornot(elem))
-        tmp_str += ']'
-        print(tmp_str.replace(', ]', ' ]'))
-
-def print_matrices(matrices):
-    for matrix in matrices:
-        print_matrix(matrix)
 
 def do_op_matrices(m1, op, v):
     if op == '**':
