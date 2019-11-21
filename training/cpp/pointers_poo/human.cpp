@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/21 17:43:56 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 18:40:05 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 18:49:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,6 @@ Human& Human::operator=(Human const & other)
 }
 
 
-// display object
 void Human::display(ostream &flux) const
 {
 	flux << "Human name: " << m_name << "\n";

@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/21 17:39:39 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 18:00:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 18:49:36 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,11 +28,9 @@ class Weapon {
 		Weapon(const Weapon &other);
 		~Weapon();
 
-		// display object
 		void	display(ostream &flux) const;
 };
 
-// display operator
 ostream&operator<<(ostream &flux, Weapon const &to_display);
 
 #endif

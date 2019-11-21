@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/21 17:39:39 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 18:31:15 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 18:49:02 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,14 +30,12 @@ class Human {
 		Human(const Human &other);
 		~Human();
 
-		//assignation operator
+		//assignation operator -> required if your class contain pointer(s)
 		Human& operator=(Human const &other);
 
-		// display object
 		void	display(ostream &flux) const;
 };
 
-// display operator
 ostream&operator<<(ostream &flux, Human const &to_display);
 
 #endif
