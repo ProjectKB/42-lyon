@@ -6,17 +6,17 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 16:42:12 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/20 21:46:42 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 16:59:13 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fraction.hpp"
 
-Zfraction::Zfraction() : m_num(0), m_den(1) {}
-
 Zfraction::Zfraction(int num, int den) : m_num(num), m_den(den)
 {
+	if (!m_den)
+		division_by_zero();
 	get_reduced_form();
 }
 
@@ -44,18 +44,20 @@ bool Zfraction::lt(Zfraction const &b) const
 
 
 // operation between objects
-Zfraction Zfraction::do_op(Zfraction const &b, char op) const
+Zfraction Zfraction::do_op_obj(Zfraction const &b, char op) const
 {
-	Zfraction rez{m_num + b.m_num, m_den + b.m_den};
 
-	if (op == '-')
-		Zfraction rez{m_num - b.m_num, m_den - b.m_den};
-	else if (op == '*')
-		Zfraction rez{m_num * b.m_num, m_den * b.m_den};
-	else if (op == '/')
-		Zfraction rez{m_num / b.m_num, m_den / b.m_den};
-	else if (op == '%')
-		Zfraction rez{m_num % b.m_num, m_den % b.m_den};
+	Zfraction rez;
+
+	if (op == '+' || op == '-')
+	{
+		if (m_den != b.m_den)
+			rez = {do_op(m_num * b.m_den, op, b.m_num * m_den), m_den * b.m_den};
+		else
+			rez = {do_op(m_num, op, b.m_num), m_den};
+	}
+	else
+		rez = {do_op(m_num, op, b.m_num),  do_op(m_den, op, b.m_den)};
 	return rez;
 }
 
@@ -63,14 +65,24 @@ Zfraction Zfraction::do_op(Zfraction const &b, char op) const
 // operation on object
 void	Zfraction::operator+=(Zfraction const &b)
 {
-	m_num += b.m_num;
-	m_den += b.m_den;
+	if (m_den != b.m_den)
+	{
+		m_num = m_num * b.m_den + b.m_num * m_den;
+		m_den *= b.m_den;
+	}
+	else
+		m_num += b.m_num;
 }
 
 void	Zfraction::operator-=(Zfraction const &b)
 {
-	m_num -= b.m_num;
-	m_den -= b.m_den;
+	if (m_den != b.m_den)
+	{
+		m_num = m_num * b.m_den - b.m_num * m_den;
+		m_den *= b.m_den;
+	}
+	else
+		m_num += b.m_num;
 }
 
 void	Zfraction::operator*=(Zfraction const &b)
@@ -96,6 +108,11 @@ void	Zfraction::operator%=(Zfraction const &b)
 void	Zfraction::display(ostream &flux) const
 {
 	m_den != 1 ? flux << m_num << "/" << m_den : cout << m_num;
+}
+
+double	Zfraction::get_real() const
+{
+	return (double)m_num / (double)m_den;
 }
 
 
@@ -150,27 +167,27 @@ bool operator>=(Zfraction const& a, Zfraction const &b)
 // calcul operator
 Zfraction operator+(Zfraction const& a, Zfraction const &b)
 {
-	return a.do_op(b, '+');
+	return a.do_op_obj(b, '+');
 }
 
 Zfraction operator-(Zfraction const& a, Zfraction const &b)
 {
-	return a.do_op(b, '-');
+	return a.do_op_obj(b, '-');
 }
 
 Zfraction operator*(Zfraction const& a, Zfraction const &b)
 {
-	return a.do_op(b, '*');
+	return a.do_op_obj(b, '*');
 }
 
 Zfraction operator/(Zfraction const& a, Zfraction const &b)
 {
-	return a.do_op(b, '/');
+	return a.do_op_obj(b, '/');
 }
 
 Zfraction operator%(Zfraction const& a, Zfraction const &b)
 {
-	return a.do_op(b, '%');
+	return a.do_op_obj(b, '%');
 }
 
 
@@ -179,4 +196,26 @@ ostream &operator<<(ostream &flux, Zfraction const &to_display)
 {
 	to_display.display(flux);
 	return flux;
+}
+
+
+// other
+int do_op(int a, char op, int b)
+{
+	if (op == '+')
+		return a + b;
+	else if (op == '-')
+		return a - b;
+	else if (op == '*')
+		return a * b;
+	else if (op == '/')
+		return a / b;
+	else
+		return a % b;
+}
+
+void	division_by_zero()
+{
+	cout << "Error: Division by zero are impossible.\n";
+	exit(0);
 }
