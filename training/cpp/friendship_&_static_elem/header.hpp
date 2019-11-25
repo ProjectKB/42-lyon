@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   human.hpp                                        .::    .:/ .      .::   */
+/*   header.hpp                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/21 17:39:39 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 19:09:06 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/25 13:00:16 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/25 13:42:38 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef WEAPON_CPP
+#ifndef HEADER_HPP
 
-# define WEAPON_CPP
+# define HEADER_HPP
 
 # include <iostream>
+# include <string>
 
 using namespace std;
 using str = string;
 
-class Weapon {
+struct Instance_info
+{
+	static int	nb;
+	static void	display();
+};
+
+class Human
+{
 	str m_name;
 
 	public:
-		Weapon(str name = "Basic Sword");
-		Weapon(const Weapon &other);
-		~Weapon();
+		Human(str name = "Unknow");
 
-		void	display(ostream &flux) const;
+	private:
+		void display(ostream &out) const;
+		friend ostream &operator<<(ostream &flux, Human const &a);
 };
-
-ostream&operator<<(ostream &flux, Weapon const &to_display);
 
 #endif
