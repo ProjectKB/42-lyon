@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/25 16:44:31 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 17:45:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/25 17:52:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,10 +68,10 @@ class Fill_tab
 
 	public:
 		Fill_tab(int i) : m_value(i) {}
-		int operator()()
+		int operator()(int nb)
 		{
 			++m_value;
-			return m_value;
+			return m_value + nb;
 		}
 };
 
@@ -82,7 +82,7 @@ void	map_functor()
 
 	for (vector<int>::iterator it = tab.begin(); it != tab.end(); ++it)
 	{
-		*it = f();
+		*it = f(5);
 		cout << *it << " ";
 	}
 	cout << "\n";
