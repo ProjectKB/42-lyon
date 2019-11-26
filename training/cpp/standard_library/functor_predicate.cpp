@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/25 18:11:24 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 18:40:50 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/26 01:27:04 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,6 +75,7 @@ void	test_map_functor_modified()
 
 int main()
 {
-	test_predicate();
+	//test_predicate();
+	test_map_functor_modified();
 	return (0);
 }
