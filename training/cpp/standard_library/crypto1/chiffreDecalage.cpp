@@ -13,8 +13,11 @@ class	Encryption_Lag
 		Encryption_Lag(int lag) : m_lag(lag % 26) {}
 		char	operator()(const char &c) const
 		{
-			if (c >= 65 and c <= 90)
-				return c + m_lag > 90 ? (c + m_lag - 64) % 26 + 64 : c + m_lag;
+			int	tmp;
+
+			tmp = m_lag + c;
+			if (c >= 'A' and c <= 'Z')
+				return tmp > 90 ? (tmp - 64) % 26 + 64 : tmp;
 			return c;
 		}
 };
@@ -27,7 +30,7 @@ struct	Display
 	}
 };
 
-int		main()
+int	main()
 {
 	int	lag;
 	str	text("BIENVENUE SUR LE MOOC C++ D'OCR !!");
