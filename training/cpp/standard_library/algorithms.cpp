@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/26 01:30:53 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/26 02:42:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 13:30:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,17 +18,18 @@
 #include <list>
 
 using namespace std;
-using str = string;
+typedef string str;
 
-struct	Generate
+class	Generate
 {
-	int m_interval;
+	int	m_interval;
 
-	Generate(int interval) : m_interval(interval) {}
-	int operator()() const
-	{
-		return rand() % m_interval;
-	}
+	public:
+		Generate(int interval) : m_interval(interval) {}
+		int operator()() const
+		{
+			return rand() % m_interval;
+		}
 };
 
 struct	TestVowel
