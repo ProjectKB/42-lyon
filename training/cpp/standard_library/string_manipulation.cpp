@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 16:44:37 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/30 14:29:47 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/30 15:57:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,10 +72,15 @@ bool	is_palind(str palind)
 
 	for_each(palind.begin(), palind.end(), to_upper);
 	transform(palind.begin(), palind.end(), palind.begin(), to_upper2);
-	cout << palind;
 	if (*(mismatch(palind.begin(), palind.end(), palind.rbegin()).first))
 		return false;
 	return true;
+}
+
+void	replace_by(str &s, str o_word, str n_word)
+{
+	for (int pos(s.find(o_word)); pos != -1; pos = s.find(o_word))
+		s.replace(pos, o_word.size(), n_word);
 }
 
 int main()
@@ -120,9 +125,17 @@ int main()
 	n = search(haystack.begin(), haystack.end(), needle.begin(), needle.end());
 	n != haystack.end() ? cout << "Item found at index " << n-haystack.begin() << "\n":
 		cout << "Element not foun.\n";
+	cout << "Item found at index " << haystack.find("bonne journee") << "\n";
+
+	// sub string
+	cout << haystack.substr(haystack.find(needle)) << "\n";
 
 	// test if palind us palindrome
 	cout << is_palind("aCCA") << "\n";
 
-	return (0);
+	// replace string portion
+	str test("Hey bonjour, un texte random, bonjour bonjour, un texte random");
+	replace_by(test, "n", "");
+	cout << test << "\n";
+		return (0);
 }
