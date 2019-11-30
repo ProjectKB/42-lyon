@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/30 17:57:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/30 22:12:04 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/30 22:39:18 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,9 +35,16 @@ struct var
 		cbreak();
 		noecho();
 		nodelay(stdscr, TRUE);
-		getmaxyx(stdscr, h, w);
 		curs_set(0);
 		nodelay(stdscr, TRUE);
+	}
+
+	void	init_var()
+	{
+		getmaxyx(stdscr, h, w);
+		win = newwin(h, w, 0, 0);
+		ht = h / 2;
+		wt = w / 2;
 	}
 };
 
@@ -62,27 +69,29 @@ void	manage_direction(var &v)
 	}
 }
 
+void	manage_border(var &v)
+{
+	if (v.wt == v.w && v.tmp == KEY_RIGHT)
+		v.wt = 0;
+	else if (!v.wt && v.tmp == KEY_LEFT)
+		v.wt = v.w;
+	else if (!v.ht && v.tmp == KEY_UP)
+		v.ht = v.h;
+	else if (v.ht == v.h && v.tmp == KEY_DOWN)
+		v.ht = 0;
+}
+
 int main()
 {
-	var v;
-	v.init_screen();
-	v.win = newwin(v.h, v.w, 0, 0);
-	v.ht = v.h / 2;
-	v.wt = v.w / 2;
+	var	v;
 
+	v.init_screen();
+	v.init_var();
 	while (1)
 	{
 		mvwaddch(v.win, v.ht, v.wt, ' ');
 		manage_direction(v);
-
-		if (v.wt == v.w && v.tmp == KEY_RIGHT)
-			v.wt = 0;
-		else if (!v.wt && v.tmp == KEY_LEFT)
-			v.wt = v.w;
-		else if (!v.ht && v.tmp == KEY_UP)
-			v.ht = v.h;
-		else if (v.ht == v.h && v.tmp == KEY_DOWN)
-			v.ht = 0;
+		manage_border(v);
 		mvwaddch(v.win, v.ht, v.wt, ACS_CKBOARD);
 		(v.tmp == KEY_UP || v.tmp == KEY_DOWN) ? usleep(80000) : usleep(40000);
 		wrefresh(v.win);
