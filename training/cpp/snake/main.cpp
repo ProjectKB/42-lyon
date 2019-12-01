@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/30 17:57:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/01 21:54:46 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/01 22:41:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ typedef string str;
 
 struct var
 {
-	WINDOW *win;
+	WINDOW	*win;
 	int		key;
 
 	int		h_max;
@@ -141,15 +141,50 @@ void	erase_piece(var &v)
 	mvwaddch(v.win, v.pos[v.pieces - 1][0], v.pos[v.pieces - 1][1], ' ');
 }
 
+bool	check_goal_pos(vector<int> &goal, var &v)
+{
+	for (int i(0); i < v.pieces; ++i)
+		if (goal[0] == v.pos[i][0] || goal[1] == v.pos[i][1])
+			return (0);
+	return (1);
+}
+
+void	generate_goal(vector<int> &goal, var &v)
+{
+	while (42)
+	{
+		goal[0] = rand() % (v.h_max - 10) + 5;
+		goal[1] = rand() % (v.w_max - 10) + 5;
+		if (check_goal_pos(goal, v))
+			break;
+	}
+}
+
+void	new_goal(vector<int> &goal, var &v)
+{
+	if (v.pos[0][0] == goal[0] && v.pos[0][1] == goal[1])
+	{
+		generate_goal(goal, v);
+		add_piece(v);
+		mvwaddch(v.win, goal[0], goal[1], 'o');
+	}
+	else
+		mvwaddch(v.win, goal[0], goal[1], 'o');
+}
+
 int main()
 {
 	var	v;
+	vector<int>	goal{-1, -1};
 
 	v.init_screen();
 	v.init_var();
+	srand(time(0));
+	generate_goal(goal, v);
 	while (1)
 	{
 		erase_piece(v);
+		new_goal(goal, v);
 		manage_direction(v);
 		manage_border(v);
 		display_pieces(v);
