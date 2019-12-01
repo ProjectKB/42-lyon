@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/30 17:57:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/01 22:41:01 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/01 22:49:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -160,7 +160,7 @@ void	generate_goal(vector<int> &goal, var &v)
 	}
 }
 
-void	new_goal(vector<int> &goal, var &v)
+void	manage_goal(vector<int> &goal, var &v)
 {
 	if (v.pos[0][0] == goal[0] && v.pos[0][1] == goal[1])
 	{
@@ -184,7 +184,7 @@ int main()
 	while (1)
 	{
 		erase_piece(v);
-		new_goal(goal, v);
+		manage_goal(goal, v);
 		manage_direction(v);
 		manage_border(v);
 		display_pieces(v);
