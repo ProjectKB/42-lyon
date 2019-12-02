@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/30 17:57:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/01 22:49:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/02 14:53:29 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,8 +132,7 @@ void	display_pieces_data(var &v)
 
 void	display_pieces(var &v)
 {
-	for (int i(0); i < v.pieces - 1; ++i)
-		mvwaddch(v.win, v.pos[i][0], v.pos[i][1], ACS_CKBOARD);
+		mvwaddch(v.win, v.pos[0][0], v.pos[0][1], ACS_CKBOARD);
 }
 
 void	erase_piece(var &v)
