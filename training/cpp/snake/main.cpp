@@ -1,194 +1,86 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.cpp                                         .::    .:/ .      .::   */
+/*   test.cpp                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/30 17:57:08 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/02 14:53:29 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/02 14:30:38 by loiberti     #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/05 17:51:00 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <curses.h>
-#include <unistd.h>
-#include <vector>
-#include <deque>
+#include "Window.hpp"
+#include "Snake.hpp"
+#include <algorithm>
 
-using namespace std;
-typedef string str;
-
-struct var
+void	manage_key(vector<Snake> &snakes, vector<int> &tab_key)
 {
-	WINDOW	*win;
-	int		key;
-
-	int		h_max;
-	int		w_max;
-	int		pieces;
-	deque<vector<int>>	pos;
-
-	void	init_screen()
-	{
-		initscr();
-		keypad(stdscr, TRUE);
-		cbreak();
-		noecho();
-		nodelay(stdscr, TRUE);
-		curs_set(0);
-		nodelay(stdscr, TRUE);
-	}
-
-	void	init_var()
-	{
-		getmaxyx(stdscr, h_max, w_max);
-		win = newwin(h_max, w_max, 0, 0);
-		pieces = 3;
-		pos.push_back({h_max / 2, w_max / 2});
-		pos.push_back({h_max / 2 - 1, w_max / 2});
-		pos.push_back({h_max / 2 - 2, w_max / 2});
-	}
-};
-
-bool prohibit_turning_back(int &o_key, int &n_key)
-{
-	if (o_key == KEY_UP && n_key == KEY_DOWN)
-		return (0);
-	else if (n_key == KEY_UP && o_key == KEY_DOWN)
-		return (0);
-	else if (n_key == KEY_LEFT && o_key == KEY_RIGHT)
-		return (0);
-	else if (o_key == KEY_LEFT && n_key == KEY_RIGHT)
-		return (0);
-	else if (n_key != KEY_UP && n_key != KEY_DOWN && n_key != KEY_LEFT && n_key != KEY_RIGHT)
-		return (0);
-	return (1);
+	for (int i(0); i < Snake::nb_player; ++i)
+		tab_key[i] = getch();
+	for (size_t k(0); k < tab_key.size(); ++k)
+		for (int j(0); j < Snake::nb_player; ++j)
+		{
+			if (tab_key[k] != ERR)
+			{
+				if (tab_key[k] == snakes[j].get_u())
+					snakes[j].set_key(tab_key[k]);
+				else if (tab_key[k] == snakes[j].get_d())
+					snakes[j].set_key(tab_key[k]);
+				else if (tab_key[k] == snakes[j].get_l())
+					snakes[j].set_key(tab_key[k]);
+				else if (tab_key[k] == snakes[j].get_r())
+					snakes[j].set_key(tab_key[k]);
+			}
+		}
 }
 
-void	manage_direction(var &v)
+void	init_game(Window &win, vector<Snake> &snakes)
 {
-	int	tmp_key;
+	int	nb_p;
 
-	if ((tmp_key = getch()) != ERR && prohibit_turning_back(v.key, tmp_key))
-		v.key = tmp_key;
-	v.pos.push_front(v.pos[0]);
-	switch (v.key)
-	{
-		case KEY_UP:
-			--v.pos[0][0];
-			break;
-		case KEY_DOWN:
-			++v.pos[0][0];
-			break;
-		case KEY_LEFT:
-			--v.pos[0][1];
-			break;
-		case KEY_RIGHT:
-			++v.pos[0][1];
-			break;
-	}
-	v.pos.pop_back();
+	cout << "How many players are you ? ";
+	cin >> nb_p;
+	cout << nb_p;
+	win.set_screen();
+	if (nb_p >= 1)
+		snakes.push_back({win, "Player 1", KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, 1});
+	if (nb_p >= 2)
+		snakes.push_back({win, "Player 2", 119, 115, 97, 100, 2});
+	if (nb_p >= 3)
+		snakes.push_back({win, "Player 3", 105, 107, 106, 108, 3});
+	if (nb_p == 4)
+		snakes.push_back({win, "Player 4", 53, 50, 49, 51, 4});
 }
 
-void	manage_border(var &v)
+void	init_colors(void)
 {
-	if (v.pos[0][1] == v.w_max - 1)
-		v.pos[0][1] = 2;
-	else if (v.pos[0][1] == 1)
-		v.pos[0][1] = v.w_max - 2;
-	else if (v.pos[0][0] == 1)
-		v.pos[0][0] = v.h_max - 2;
-	else if (v.pos[0][0] == v.h_max - 1)
-		v.pos[0][0] = 2;
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_CYAN, COLOR_BLACK);
+	init_pair(5, COLOR_WHITE, COLOR_BLACK);
 }
 
-void	add_piece(var &v)
+int		main(void)
 {
-	switch (v.key)
-	{
-		case KEY_UP:
-			v.pos.push_back({v.pos[v.pieces - 1][0] - 1, v.pos[v.pieces - 1][1]});
-			break;
-		case KEY_DOWN:
-			v.pos.push_back({v.pos[v.pieces - 1][0] + 1, v.pos[v.pieces - 1][1]});
-			break;
-		case KEY_LEFT:
-			v.pos.push_back({v.pos[v.pieces - 1][0], v.pos[v.pieces - 1][1] - 1});
-			break;
-		case KEY_RIGHT:
-			v.pos.push_back({v.pos[v.pieces - 1][0], v.pos[v.pieces - 1][1] + 1});
-			break;
-	}
-	++v.pieces;
-}
+	Window	win;
+	vector<int>	tab_key(2, ERR);
+	vector<Snake>	snakes;
 
-void	display_pieces_data(var &v)
-{
-	for (int i(0); i < v.pieces; i++)
-		cout << "h: " << v.pos[i][0] << " | w: " << v.pos[i][1] << "\n";
-}
-
-void	display_pieces(var &v)
-{
-		mvwaddch(v.win, v.pos[0][0], v.pos[0][1], ACS_CKBOARD);
-}
-
-void	erase_piece(var &v)
-{
-	mvwaddch(v.win, v.pos[v.pieces - 1][0], v.pos[v.pieces - 1][1], ' ');
-}
-
-bool	check_goal_pos(vector<int> &goal, var &v)
-{
-	for (int i(0); i < v.pieces; ++i)
-		if (goal[0] == v.pos[i][0] || goal[1] == v.pos[i][1])
-			return (0);
-	return (1);
-}
-
-void	generate_goal(vector<int> &goal, var &v)
-{
+	srand(time(0));
+	init_game(win, snakes);
+	init_colors();
+	generate_goal(Snake::goal, win);
 	while (42)
 	{
-		goal[0] = rand() % (v.h_max - 10) + 5;
-		goal[1] = rand() % (v.w_max - 10) + 5;
-		if (check_goal_pos(goal, v))
-			break;
-	}
-}
-
-void	manage_goal(vector<int> &goal, var &v)
-{
-	if (v.pos[0][0] == goal[0] && v.pos[0][1] == goal[1])
-	{
-		generate_goal(goal, v);
-		add_piece(v);
-		mvwaddch(v.win, goal[0], goal[1], 'o');
-	}
-	else
-		mvwaddch(v.win, goal[0], goal[1], 'o');
-}
-
-int main()
-{
-	var	v;
-	vector<int>	goal{-1, -1};
-
-	v.init_screen();
-	v.init_var();
-	srand(time(0));
-	generate_goal(goal, v);
-	while (1)
-	{
-		erase_piece(v);
-		manage_goal(goal, v);
-		manage_direction(v);
-		manage_border(v);
-		display_pieces(v);
-		(v.key == KEY_UP || v.key == KEY_DOWN) ? usleep(80000) : usleep(40000);
-		wrefresh(v.win);
+		manage_key(snakes, tab_key);
+		destroy_opponent(snakes);
+		for (int i(0); i < Snake::nb_player; ++i)
+			snakes[i].process();
+		wrefresh(win.get_win());
 	}
 	endwin();
 	return (0);

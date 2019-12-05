@@ -6,14 +6,18 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:48:35 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 02:55:53 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/02 20:05:57 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "Window.hpp"
 
-Window::Window(void){}
+Window::Window(void)
+{
+	init_screen();
+	init_var();
+}
 
 Window::Window(const Window &to_copy)
 {
@@ -30,12 +34,6 @@ void	Window::init_screen(void)
 	noecho();
 	nodelay(stdscr, TRUE);
 	curs_set(0);
-}
-
-void	Window::set_screen(void)
-{
-	init_screen();
-	init_var();
 }
 
 void	Window::init_var(void)

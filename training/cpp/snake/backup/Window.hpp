@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:43:42 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 02:56:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/02 14:33:21 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@ class Window
 		Window(const Window &to_copy);
 		~Window(void);
 
-		void	set_screen();
 		int		get_hmax();
 		int		get_wmax();
 		WINDOW	*get_win();
