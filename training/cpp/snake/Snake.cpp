@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:25:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 04:03:25 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 05:28:01 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,8 @@ vector<int>	Snake::goal = {-1, -1};
 int	Snake::nb_player = 0;
 
 int	Snake::m_time = 40000;
+
+
 
 /*
 ********************************************************************************
@@ -137,14 +139,9 @@ bool	Snake::check_pos(Snake &target) const
 
 	t = target.get_pos();
 	for (int i(target.get_piece() - 1); i > 2; --i)
-	{
-		if (m_pos[0][0] == t[i][0] && m_pos[0][1] == t[i][1])
-			return (1);
-		else if (m_pos[1][0] == t[i][0] && m_pos[1][1] == t[i][1])
-			return (1);
-		else if (m_pos[2][0] == t[i][0] && m_pos[2][1] == t[i][1])
-			return (1);
-	}
+		for (int j(0); j < 3; ++j)
+			if (m_pos[j][0] == t[i][0] && m_pos[j][1] == t[i][1])
+				return (1);
 	return (0);
 }
 
@@ -155,10 +152,7 @@ void	destroy_opponent(vector<Snake> &snakes)
 	for (int j(0); j < Snake::nb_player; ++j)
 		for (int i(0); i < Snake::nb_player; ++i)
 			if (j != i && snakes[j].check_pos(snakes[i]))
-			{
-				pos = snakes[j].get_pos_head();
-				snakes[i].destroy_pieces(pos);
-			}
+				snakes[i].destroy_pieces(snakes[j].get_pos_head());
 }
 
 
@@ -205,10 +199,10 @@ void	Snake::add_piece(void)
 	else if (m_key == m_d.r)
 		m_pos.push_back({m_pos[m_piece - 1][0], m_pos[m_piece - 1][1] + 1});
 	++m_piece;
-	Snake::m_time /= 2;
+	Snake::m_time -= 2500;
 }
 
-void	Snake::manage_goal()
+void	Snake::manage_goal(void)
 {
 	if (m_pos[0][0] == Snake::goal[0] && m_pos[0][1] == Snake::goal[1])
 	{
