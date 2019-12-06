@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 14:30:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/05 17:51:00 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 03:59:06 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,29 +42,18 @@ void	init_game(Window &win, vector<Snake> &snakes)
 
 	cout << "How many players are you ? ";
 	cin >> nb_p;
-	cout << nb_p;
 	win.set_screen();
 	if (nb_p >= 1)
-		snakes.push_back({win, "Player 1", KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, 1});
+		snakes.push_back({win, {U1, D1, L1, R1, 1}});
 	if (nb_p >= 2)
-		snakes.push_back({win, "Player 2", 119, 115, 97, 100, 2});
+		snakes.push_back({win, {U2, D2, L2, R2, 2}});
 	if (nb_p >= 3)
-		snakes.push_back({win, "Player 3", 105, 107, 106, 108, 3});
+		snakes.push_back({win, {U3, D3, L3, R3, 3}});
 	if (nb_p == 4)
-		snakes.push_back({win, "Player 4", 53, 50, 49, 51, 4});
+		snakes.push_back({win, {U4, D4, L4, R4, 4}});
 }
 
-void	init_colors(void)
-{
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(4, COLOR_CYAN, COLOR_BLACK);
-	init_pair(5, COLOR_WHITE, COLOR_BLACK);
-}
-
-int		main(void)
+int	main(void)
 {
 	Window	win;
 	vector<int>	tab_key(2, ERR);
@@ -72,7 +61,6 @@ int		main(void)
 
 	srand(time(0));
 	init_game(win, snakes);
-	init_colors();
 	generate_goal(Snake::goal, win);
 	while (42)
 	{

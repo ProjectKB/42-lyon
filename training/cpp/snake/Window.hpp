@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:43:42 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 02:56:13 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 03:51:54 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,16 +25,18 @@ class Window
 		~Window(void);
 
 		void	set_screen();
-		int		get_hmax();
-		int		get_wmax();
-		WINDOW	*get_win();
+
+		int		get_hmax() const;
+		int		get_wmax() const;
+		WINDOW	*get_win() const;
 
 	private:
 		WINDOW	*m_win;
 		int		m_hmax;
 		int		m_wmax;
 
-		void	init_screen(void);
+		void	init_screen(void) const;
+		void	init_colors(void) const;
 		void	init_var(void);
 };
 
