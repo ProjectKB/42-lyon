@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:25:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 03:58:48 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 04:03:25 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -240,22 +240,22 @@ void	generate_goal(vector<int> &goal, Window &win)
 ** GETTERS *********************************************************************
 */
 
-int		Snake::get_u(void) const
+int	Snake::get_u(void) const
 {
 	return (m_d.u);
 }
 
-int		Snake::get_d(void) const
+int	Snake::get_d(void) const
 {
 	return (m_d.d);
 }
 
-int		Snake::get_l(void) const
+int	Snake::get_l(void) const
 {
 	return (m_d.l);
 }
 
-int		Snake::get_r(void) const
+int	Snake::get_r(void) const
 {
 	return (m_d.r);
 }
@@ -270,12 +270,12 @@ vector<int>	Snake::get_pos_head(void) const
 	return (m_pos[0]);
 }
 
-int		Snake::get_piece(void) const
+int	Snake::get_piece(void) const
 {
 	return (m_piece);
 }
 
-int		Snake::get_nb(void) const
+int	Snake::get_nb(void) const
 {
 	return (m_d.nb);
 }
