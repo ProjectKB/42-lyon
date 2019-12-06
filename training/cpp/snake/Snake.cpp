@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:25:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 05:46:43 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 06:00:32 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int	Snake::m_time = 40000;
 
 
 /*
-********************************************************************************
+** CONSTRUCTOR *****************************************************************
 */
 
 Snake::Snake(Window &win, Dir d) : m_win(&win), m_d(d)
@@ -221,7 +221,6 @@ bool	Snake::check_goal_pos(void) const
 			return (0);
 	return (1);
 }
-
 
 void	generate_goal(vector<int> &goal, Window &win)
 {
