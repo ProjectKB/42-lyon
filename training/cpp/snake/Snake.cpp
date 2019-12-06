@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:25:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 05:28:01 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 05:46:43 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -199,7 +199,7 @@ void	Snake::add_piece(void)
 	else if (m_key == m_d.r)
 		m_pos.push_back({m_pos[m_piece - 1][0], m_pos[m_piece - 1][1] + 1});
 	++m_piece;
-	Snake::m_time -= 2500;
+	Snake::m_time -= 1250;
 }
 
 void	Snake::manage_goal(void)
@@ -228,6 +228,7 @@ void	generate_goal(vector<int> &goal, Window &win)
 	goal[0] = rand() % (win.get_hmax() - 10) + 5;
 	goal[1] = rand() % (win.get_wmax() - 10) + 5;
 }
+
 
 
 /*

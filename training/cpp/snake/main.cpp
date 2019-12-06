@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 14:30:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 05:13:31 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 05:45:11 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,6 @@ void	manage_key(vector<Snake> &snakes, vector<int> &tab_key)
 		tab_key[i] = getch();
 	for (size_t k(0); k < tab_key.size(); ++k)
 		for (int j(0); j < Snake::nb_player; ++j)
-		{
 			if (tab_key[k] != ERR)
 			{
 				if (tab_key[k] == snakes[j].get_u())
@@ -33,7 +32,6 @@ void	manage_key(vector<Snake> &snakes, vector<int> &tab_key)
 				else if (tab_key[k] == snakes[j].get_r())
 					snakes[j].set_key(tab_key[k]);
 			}
-		}
 }
 
 void	init_game(Window &win, vector<Snake> &snakes)
@@ -53,6 +51,14 @@ void	init_game(Window &win, vector<Snake> &snakes)
 		snakes.push_back({win, {U4, D4, L4, R4, 4}});
 }
 
+void	process_game(vector<Snake> &snakes, vector<int> &tab_key)
+{
+	manage_key(snakes, tab_key);
+	destroy_opponent(snakes);
+	for (int i(0); i < Snake::nb_player; ++i)
+		snakes[i].process();
+}
+
 int	main(void)
 {
 	Window	win;
@@ -64,10 +70,7 @@ int	main(void)
 	generate_goal(Snake::goal, win);
 	while (42)
 	{
-		manage_key(snakes, tab_key);
-		destroy_opponent(snakes);
-		for (int i(0); i < Snake::nb_player; ++i)
-			snakes[i].process();
+		process_game(snakes, tab_key);
 		wrefresh(win.get_win());
 	}
 	endwin();
