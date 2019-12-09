@@ -16,6 +16,12 @@ Les fonctionnalitées implémentées sont les suivantes :
 * Réduction du temps d'affichage des frames en fonctions du nombre d'objectif obtenu
 * Quitter le jeu à l'aide de la touche `ESC`
 
+Les touches de jeu sont les suivantes :
+* P1 :  ↑ | ↓ | ← | → 
+* P2 :  W | S | A | D 
+* P3 :  I | K | J | L 
+* P4 :  5 | 2 | 1 | 3 
+
 Le projet se compile à l'aide de `Make`.
 
 Voici quelques extraits de partie pour illustration :
