@@ -1,5 +1,6 @@
 ### PROJETS
 
+* 12/2019 | C++ | <a href="training/cpp/snake/">Multi Snake</a> | POO, Ncurses
 * 11/2019 | Python | <a href="CPV1/">Computer V1</a> | calculateur de polynome
 * 05/2019 -> 06/2019 | C/Bash | <a href="corewar/">Corewar</a> | machine virtuelle, asm, scripts
 * 04/2019 -> 05/2019 | C | <a href="lem_in/">Lem_in</a> | parcours de graphe, pathfinding, matrice d'adjacence
