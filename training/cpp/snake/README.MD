@@ -20,6 +20,4 @@ Le projet se compile à l'aide de `Make`.
 
 Voici quelques extraits de partie pour illustration :
 
-<img width="100%" src="img/p1.gif"><br><br>
-<img width="100%" src="img/p2.gif"><br><br>
-<img width="100%" src="img/p4.gif"><br><br>
+
