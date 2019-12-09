@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 13:25:52 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 06:00:32 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 18:31:46 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -151,7 +151,7 @@ void	destroy_opponent(vector<Snake> &snakes)
 
 	for (int j(0); j < Snake::nb_player; ++j)
 		for (int i(0); i < Snake::nb_player; ++i)
-			if (j != i && snakes[j].check_pos(snakes[i]))
+			if (snakes[j].check_pos(snakes[i]))
 				snakes[i].destroy_pieces(snakes[j].get_pos_head());
 }
 

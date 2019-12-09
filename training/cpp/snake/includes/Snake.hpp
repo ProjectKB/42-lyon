@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 12:48:49 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 17:46:33 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 18:38:59 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,8 @@
 # define D4 50
 # define L4 49
 # define R4 51
+
+# define ESC 27
 
 using namespace std;
 

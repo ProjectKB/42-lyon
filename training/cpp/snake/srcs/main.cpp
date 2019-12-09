@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 14:30:38 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 17:48:37 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 18:39:05 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,20 @@
 #include "Snake.hpp"
 #include <algorithm>
 
+void	quit_program(void)
+{
+	endwin();
+	exit(0);
+}
+
 void	manage_key(vector<Snake> &snakes, vector<int> &tab_key)
 {
 	for (int i(0); i < Snake::nb_player; ++i)
+	{
 		tab_key[i] = getch();
+		if (tab_key[i] == ESC)
+			quit_program();
+	}
 	for (size_t k(0); k < tab_key.size(); ++k)
 		for (int j(0); j < Snake::nb_player; ++j)
 			if (tab_key[k] != ERR)
