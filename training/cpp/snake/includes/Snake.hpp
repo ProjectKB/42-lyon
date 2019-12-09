@@ -6,7 +6,7 @@
 /*   By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/02 12:48:49 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 04:00:02 by loiberti    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 17:46:33 by loiberti    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,7 @@ class Snake
 		int	get_r(void) const;
 		int	get_piece(void) const;
 		int	get_nb(void) const;
-		deque<vector<int>>	get_pos(void) const;
+		deque<vector<int> >	get_pos(void) const;
 		vector<int>	get_pos_head(void) const;
 
 		static vector<int>	goal;
@@ -85,7 +85,7 @@ class Snake
 		Window	*m_win;
 		int	m_piece;
 		int	m_key;
-		deque<vector<int>>	m_pos;
+		deque<vector<int> >	m_pos;
 		Dir	m_d;
 
 		// process subfunctions
