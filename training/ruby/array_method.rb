@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/14 18:49:53 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/12/14 19:57:03 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/14 20:07:45 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -49,6 +49,7 @@ def apply_action(nbs, days)
 	puts nbs.reduce{|result, current| result += current}
 	puts nbs.reduce(5){|result, current| result += current}
 	puts nbs.reduce(:+)
+	days.join(" ").split.each{|day| puts day}
 end
 
 days = %w{Monday Tuesday Wednesday Thursday Friday Saturday Sunday}
