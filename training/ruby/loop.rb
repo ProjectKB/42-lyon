@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/13 15:29:00 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/12/13 15:49:08 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/14 18:49:36 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -29,3 +29,13 @@ end
 	puts "Turn your tong"
 end
 puts "... and speak !"
+
+# for x in xs do == xs.each do |x|
+
+# for only one instruction
+days.each {|day| puts day}
+
+# to have access to index
+days.each_with_index do |day, index|
+	puts "The index for #{day} is #{i}"
+end

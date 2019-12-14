@@ -6,7 +6,7 @@
 #    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/12/13 20:58:17 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/12/13 21:47:59 by loiberti    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/14 18:12:19 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -54,6 +54,8 @@ def finding_char(str)
 	puts str.include?("W")
 	puts str.index("W")
 	puts str.index("Wor")
+	puts str.start_with?("Hello")
+	puts str.end_with?("World!")
 
 	text = "Sammy has a balloon"
 	indices = text.chars
@@ -63,8 +65,16 @@ def finding_char(str)
 	print indices, "\n"
 end
 
+def replace_text(str)
+	str.sub!("C", "H").gsub!(/o/, "*") # '!' modify str like a pointer | sub/gsub accept regex
+	puts str
+end
+
+
+
 #basic_feature("coucOu")
 #basic_info("coucOu")
 #basic_cut("coucOu")
 #padding_stripping("coucOu")
-finding_char("Hello World!")
+#finding_char("Hello World!")
+replace_text("Cello Wooooooooorld!")
