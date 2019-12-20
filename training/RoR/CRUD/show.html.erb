@@ -1,0 +1,16 @@
+<h1><%= @book.title %></h1>
+
+<%= form_tag "/#{@book.id}", method: "patch" do %>
+    <input type="texte" name="title" value="<%= @book.title %>"/>
+    <select name="category">
+        <option value="<%= @book.id %>"><%= @book.category.title %> </option>
+        <% @categories.each do |category| %>
+            <% if category.id != @book.category.id %>
+                <option value="<%= category.id %>"><%= category.title %> </option>
+            <% end %>
+        <% end %>
+    </select>
+    <input type="submit" value="Change Title">
+<% end %>
+
+<p><a href="/">Home</a></p>

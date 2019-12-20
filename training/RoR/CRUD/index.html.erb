@@ -1,0 +1,24 @@
+<h1>Books List</h1>
+
+<% @books.each do |book| %>
+    <div class="align_index">
+        <p><a href="/<%= book.id %>"><%= book.title %>
+            <% if book.category %>
+                (<%= book.category.title  %>)
+            <% end %>
+        </a></p>
+        <%= form_tag "/#{book.id}", method: "delete" do %>
+            <input type="submit" value="x" />
+        <% end %>
+    </div>
+<% end %>
+
+<%= form_tag "/", method: "post" do %>
+    <input type="text" name="title" placeholder="title" />
+    <select name="category">
+        <% @categories.each do |category| %>
+            <option value="<%= category.id %>"><%= category.title %></option>
+        <% end %>
+    </select>
+    <input type="submit" value="Add Book" />
+<% end %>

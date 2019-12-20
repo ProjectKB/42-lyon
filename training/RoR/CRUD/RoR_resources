@@ -1,0 +1,21 @@
+Table generation -> rails generate migration TableTitle
+The file created is used to create/update/modify/delete Table
+
+Make migration -> rake db:migrate
+
+create_table (plural) :Tables
+    add_column :Tables, :title, :type (string, text, integer, float, datetime)
+
+Generate controller -> rails g controller controller(s) page
+
+Models minimum (singular) :
+    class Table < ActiveRecord::Base
+    end
+
+Form :
+    <%= form_tag "/books", method: post/patch/delete do %>
+        <input type="text" name="title" placeholder="coucou" />
+        <input type="submit" value="Ajouter le livre" />
+    <% end %>
+
+* Controller need Model to use Db
