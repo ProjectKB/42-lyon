@@ -1,0 +1,15 @@
+Table generation -> rails generate migration TableTitle
+The file created is used to create/update/modify/delete Table
+
+Make migration -> rake db:migrate
+
+create_table :Tables
+add_column :Tables, :title, :type (string, text, integer, float, datetime)
+
+
+Generate controller -> rails generate controller(s) page
+
+
+Models minimum :
+class Table < ActiveRecord::Base
+end
