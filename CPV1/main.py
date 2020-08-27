@@ -12,15 +12,14 @@
 # **************************************************************************** #
 
 import sys
-import parsing as p
-import calcul as c
+import parsing
+import calcul
 
 def main():
-    if len(sys.argv[1:]) is not 1:
+    if len(sys.argv[1:]) != 1:
         print("Unvalid parameters number.")
     else:
-        r_data, m_degree = p.get_reduce_form(sys.argv[1].replace(' ', ''))
-        c.solve_equation(r_data, m_degree)
+        reduced_data, max_degree = parsing.get_reduce_form(sys.argv[1].replace(' ', '').replace('x', 'X'))
+        calcul.solve_equation(reduced_data, max_degree)
 
-if __name__ == "__main__":
-    main()
+main()

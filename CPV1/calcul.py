@@ -11,32 +11,34 @@
 #                                                         /                    #
 # **************************************************************************** #
 
-import tools as t
+import tools
 
-def calcul_delta(r_data):
-    o_d = {}
-    o_d['a'] = t.roundornot(r_data[2.0])
-    o_d['b'] = 0 if 1.0 not in r_data else t.roundornot(r_data[1.0])
-    o_d['c'] = 0 if 0.0 not in r_data else t.roundornot(r_data[0.0])
-    delta = t.roundornot(o_d['b'] ** 2 - 4 * o_d['a'] * o_d['c'])
-    t.print_delta(delta, o_d['a'], o_d['b'], o_d['c'])
-    return o_d, delta
+def calcul_delta(reduced_data):
+    unknown = {
+        'a': tools.roundornot(reduced_data[2]),
+        'b': 0 if 1 not in reduced_data else tools.roundornot(reduced_data[1]),
+        'c': 0 if 0 not in reduced_data else tools.roundornot(reduced_data[0])
+    }
+    delta = tools.roundornot(unknown['b'] ** 2 - 4 * unknown['a'] * unknown['c'])
+    
+    tools.print_delta(delta, unknown['a'], unknown['b'], unknown['c'])
+    return unknown, delta
 
-def second_degree(o_d, delta):
+def second_degree(unknown, delta):
     if delta < 0:
-        t.print_second_degree(delta, o_d['a'], o_d['b'], o_d['c'], 0, 0, 0)
+        tools.print_second_degree(delta, unknown['a'], unknown['b'], unknown['c'], 0, 0, 0)
     elif delta == 0:
-        resultat = t.roundornot((o_d['b'] / (2 * o_d['a'])) * -1)
-        t.print_second_degree(delta, o_d['a'], o_d['b'], o_d['c'], resultat, 0, 0)
+        resultat = tools.roundornot((unknown['b'] / (2 * unknown['a'])) * -1)
+        tools.print_second_degree(delta, unknown['a'], unknown['b'], unknown['c'], resultat, 0, 0)
     elif delta > 0:
-        x1 = t.roundornot((o_d['b'] * -1 - delta ** 0.5) / (2 * o_d['a']))
-        x2 = t.roundornot((o_d['b'] * -1 + delta ** 0.5) / (2 * o_d['a']))
-        t.print_second_degree(delta, o_d['a'], o_d['b'], o_d['c'], 0, x1, x2)
+        x1 = tools.roundornot((unknown['b'] * -1 - delta ** 0.5) / (2 * unknown['a']))
+        x2 = tools.roundornot((unknown['b'] * -1 + delta ** 0.5) / (2 * unknown['a']))
+        tools.print_second_degree(delta, unknown['a'], unknown['b'], unknown['c'], 0, x1, x2)
 
-def solve_equation(r_data, m_degree):
-    if m_degree == 1:
-        resultat = t.roundornot(r_data[0.0] * -1 / r_data[1.0])
+def solve_equation(reduced_data, max_degree):
+    if max_degree == 1:
+        resultat = tools.roundornot(reduced_data[0] * -1 / reduced_data[1])
         print("\n\tThe solution is:\n\t= " + str(resultat) + "\n")
     else:
-        o_d, delta = calcul_delta(r_data)
-        second_degree(o_d, delta)
+        unknown, delta = calcul_delta(reduced_data)
+        second_degree(unknown, delta)

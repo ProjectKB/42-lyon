@@ -12,64 +12,74 @@
 # **************************************************************************** #
 
 import re
-import tools as t
+import tools
 
-def multiply_list_by(nb):
-    return nb * -1
+def convert_to_int_or_float(nb):
+    try:
+        return int(nb)
+    except ValueError:
+        return float(nb)
+
 
 def extract_data(args):
-    degrees = re.findall(r'X\^-?\d*\.?\d+', args)
-    degrees = [float(degree.replace('X^', '')) for degree in degrees]
-    numbers = re.findall(r'-?\d*\.?\d*\*', args)
-    numbers = [float(number.replace('*', '')) for number in numbers]
-    return degrees, numbers
+    data = {
+        'left_side': {
+            'degrees': [],
+            'numbers': []
+        },
+        'right_side': {
+            'degrees': [],
+            'numbers': []
+        }
+    }
+
+    for i, j in enumerate(['left_side', 'right_side'], start=0):
+        degrees = re.findall(r'X\^-?\d*\.?\d+', args[i])
+        numbers = re.findall(r'-?\d*\.?\d*\*', args[i])
+
+        [data[j]['degrees'].append(convert_to_int_or_float(degree.replace('X^', ''))) for degree in degrees]
+        [data[j]['numbers'].append(convert_to_int_or_float(number.replace('*', ''))) for number in numbers]
+
+    data['degrees']    = data['left_side']['degrees'] + data['right_side']['degrees']
+    data['numbers']    = data['left_side']['numbers'] + [elem * -1 for elem in data['right_side']['numbers']]
+    data['max_degree'] = max(data['degrees'])
+    return data
+
 
 def get_reduce_data(degrees, numbers):
-    data = []
-    expression = {}
+    reduced_data = { 0: 0, 1: 0 }
+    
     for i in range(len(degrees)):
-        tmp_obj = {'deg': degrees[i], 'nb': numbers[i]}
-        data.append(tmp_obj)
-    for degree in degrees:
-        if degree not in expression:
-            expression[degree] = 0
-    for arg in data:
-        expression[arg['deg']] += float(arg['nb'])
-    return expression
+        try:
+            reduced_data[degrees[i]] += numbers[i]
+        except KeyError:
+            reduced_data[degrees[i]] = numbers[i]
+    return reduced_data
 
-def find_max_degree(degrees):
-    degrees_tmp = []
-    for deg in degrees:
-        degrees_tmp.append(deg)
-    return t.roundornot(max(degrees_tmp))
 
-def check_data_before_processing(degrees, m_degree, c_num, c_deg):
-    if c_num == True and c_deg == True:
+def check_data_before_processing(data):
+    if data['left_side']['numbers'] == data['right_side']['numbers'] and data['left_side']['degrees'] == data['right_side']['degrees']:
         print("\n\tThis is a special case, all real numbers are true for this equation.\n")
         exit(0)
-    elif m_degree == 0:
-        print("\n\tThere is no solution to this equation.\n")
+    elif data['max_degree'] == 0:
+        print("\n\tThere is no solution for this equation.\n")
         exit(0)
-    elif max(degrees) > 2:
+    elif data['max_degree'] > 2 and type(data['max_degree']) == int:
         print("\n\tThe polynomial degree is stricly greater than 2, I can't solve.\n")
         exit(0)
-    elif min(degrees) < 0:
+    elif min(data['degrees']) < 0 and type(min(data['degrees'])) == int:
         print("\n\tOne of the polynomial degree is negative, I can't solve.\n")
         exit(0)
-    for deg in degrees:
-        if not (deg == 0 or deg == 1 or deg == 2):
+    for degree in data['degrees']:
+        if type(degree) == float:
             print("\n\tOne of the polynomial degree isn't an integer, I can't solve.\n")
             exit(0)
 
+
 def get_reduce_form(args):
-    f_part = args[:args.find('=')]
-    s_part = args[args.find('=') + 1:]
-    f_deg, f_num = extract_data(f_part)
-    s_deg, s_num = extract_data(s_part)
-    degrees = f_deg + s_deg
-    numbers = f_num + list(map(multiply_list_by, s_num))
-    m_degree = find_max_degree(degrees)
-    r_data = get_reduce_data(degrees, numbers)
-    t.print_reduce_form_and_polynomial_degree(r_data, m_degree, f_num == s_num, args)
-    check_data_before_processing(degrees, m_degree, f_num == s_num, f_deg == s_deg)
-    return r_data, m_degree
+    data         = extract_data([args[:args.find('=')], args[args.find('=') + 1:]])
+    reduced_data = get_reduce_data(data['degrees'], data['numbers'])
+
+    tools.print_reduced_form_and_polynomial_degree(reduced_data, data)
+    check_data_before_processing(data)
+    return reduced_data, data['max_degree']
