@@ -1,25 +1,35 @@
-# **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    tools.py                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/11/06 12:59:58 by loiberti     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/06 21:45:20 by loiberti    ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
-# **************************************************************************** #
-
 def roundornot(nb):
     return int(nb) if int(nb) == float(nb) else round(nb, 3)
 
-def print_reduced_form_and_polynomial_degree(reduced_data, data):
-    reduced_str = ""
+def atoif(nb):
+    try:
+        return int(nb)
+    except ValueError:
+        return float(nb)
 
+def print_and_quit(str):
+    print(str)
+    exit(0)
+
+def check_data_before_processing(data):
+    if data['left_side']['numbers'] == data['right_side']['numbers'] and data['left_side']['degrees'] == data['right_side']['degrees']:
+        print_and_quit("\n\tThis is a special case, all real numbers are true for this equation.\n")
+    elif data['max_degree'] == 0:
+        print_and_quit("\n\tThere is no solution for this equation.\n")
+    elif data['max_degree'] > 2 and type(data['max_degree']) == int:
+        print_and_quit("\n\tThe polynomial degree is stricly greater than 2, I can't solve.\n")
+    elif min(data['degrees']) < 0 and type(min(data['degrees'])) == int:
+        print_and_quit("\n\tOne of the polynomial degree is negative, I can't solve.\n")
+    for degree in data['degrees']:
+        if type(degree) == float:
+            print_and_quit("\n\tOne of the polynomial degree isn't an integer, I can't solve.\n")
+
+def print_reduced_form_and_polynomial_degree(reduced_data, data):
     if data['left_side']['degrees'] == data['right_side']['degrees'] and data['left_side']['numbers'] == data['right_side']['numbers']:
-        print("\n\tThere is no reduce form for this equation.")
+        print("\n\tReduced form: 0 = 0")
     else:
+        reduced_str = ""
+
         for degree, number in reduced_data.items():
             number = roundornot(number)
             degree = roundornot(degree)
@@ -33,8 +43,8 @@ def print_reduced_form_and_polynomial_degree(reduced_data, data):
                     reduced_str += "{number} {sign} ".format(number=number, sign='+')
                 elif number != 0:
                     reduced_str += "{number}x {sign} ".format(number=number, sign='+')
-        print("\n\tReduced form: " + reduced_str[:-3].replace('+ -', '- ') + " = 0")
-    print("\tPolynomial degree:", data['max_degree'])
+        print("\n\tReduced form: " + reduced_str[:-3].replace('+ -', '- ') + " = 0" +
+              "\n\tPolynomial degree:", data['max_degree'])
 
 def print_delta(delta, a, b, c):
     print("\tPolynomial form: ax\u00B2 + bx + c \n\n" \

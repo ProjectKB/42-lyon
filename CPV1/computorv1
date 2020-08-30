@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import sys
+import parsing
+import calcul
+
+def computorv1():
+    if len(sys.argv[1:]) != 1:
+        print("Unvalid parameters number.")
+    else:
+        print("\n\tYou've entered: " + str(sys.argv[1]))
+        reduced_data, max_degree = parsing.get_reduce_form(sys.argv[1].replace(' ', '').replace('x', 'X'))
+        calcul.solve_equation(reduced_data, max_degree)
+
+computorv1()
