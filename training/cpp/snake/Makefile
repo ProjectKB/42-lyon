@@ -18,7 +18,7 @@ LIB = -lncurses
 
 INCLUDE = -I includes
 
-CC = ~/.brew/bin/g++-9
+CC = ~/.brew/bin/g++-10
 
 SRC =	main.cpp \
 		Window.cpp \
