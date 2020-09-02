@@ -20,50 +20,12 @@ def convert_to_number(str):
     except ValueError:
         print_error('Elems are supposed to be numbers.')
 
-def ecart_type(variance):
-    return variance ** 0.5
-
-def variance(data):
-    avg = average(data['km'])
-    den = 0
-    num = 0
+def sum(t0, t1, data, operation):
+    v = 0
 
     for km, price in zip(data['km'], data['price']):
-        den += price * (km - avg) ** 2
-        num += price
-    return den / num
-
-def normalize_data(data):
-    tmp_price = []
-    tmp_km    = []
-    km_avg    = average(data['km'])
-    price_avg = average(data['price'])
-    e_t       = ecart_type(variance(data))
-
-    for km, price in zip(data['km'], data['price']):
-        tmp_km.append((km - km_avg) / e_t)
-        tmp_price.append((price - price_avg) / e_t)
-    data['km']    = tmp_km
-    data['price'] = tmp_price
-    return data
-
-def mean_normalization(liste):
-	liste2 = []
-	for x in range(len(liste)):
-		liste2.append(liste[x] / max(liste))
-	return(liste2)
-
-def min_max_normalization(data):
-	ndata = []
-	for elem in data:
-		ndata.append((elem - min(data)) / (max(data) - min(data)))
-	return ndata
-
-def min_max_denormalization(data, inidata):
-	ndata = []
-	for elem in data:
-		ndata.append(elem * (max(inidata) - min(inidata)) + min(inidata))
-	return ndata
+        v += operation(km, price)
+    return v
 
 def parse_csv():
     try:
