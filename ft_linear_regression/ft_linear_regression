@@ -2,25 +2,64 @@
 
 import calcul
 import tools
+import statistics as s
+import matplotlib.pyplot as plt
+
+# standard deviation = ecart type
+# variance
+
+def predicted_data(t0, t1, kms):
+    prediction = []
+    
+    for km in kms:
+        prediction.append(calcul.estimatedPrice(t0, t1, km))
+    return prediction
+
+def norminorma(data):
+    nkm = []
+    nprice = []
+    km_avg = s.mean(data['km'])
+    price_avg = s.mean(data['price'])
+    sd_km = s.stdev(data['km'])
+    sd_price = s.stdev(data['price'])
+
+    for km, price in zip(data['km'], data['price']):
+        nkm.append((km - km_avg) / sd_km)
+        nprice.append((price - price_avg) / sd_price)
+    return nkm, nprice
+
 
 def ft_linear_regression():
     data            = tools.parse_csv()
     #normalized_data = tools.normalize_data(data)
     normalized_data = {}
-    normalized_data['km'] = tools.mean_normalization(data['km'])
-    normalized_data['price'] = tools.mean_normalization(data['price'])
+    normalized_data['km'] = tools.min_max_normalization(data['km'])
+    normalized_data['price'] = tools.min_max_normalization(data['price'])
+    #normalized_data['km'] = tools.mean_normalization(data['km'])
+    #normalized_data['price'] = tools.mean_normalization(data['price'])
     normalized_data['m'] = len(data['km'])
+    #normalized_data['km'], normalized_data['price'] = norminorma(data)
 
-    t0, t1          = calcul.gradient_descent(normalized_data, 0.1, 10000)
-    print("\n")
+    t0, t1          = calcul.gradient_descent(normalized_data, 0.1, 20000)
+
+    #t0 = t0 * max(data['price'])
+    #t1 = t1 * (max(data['price']) / max(data['km']))
+
+    print(t0, t1, '\n')
+
+    prediction = predicted_data(t0, t1, normalized_data['km'])
+    deno_pred = tools.min_max_denormalization(prediction, data['price'])
+
+    print(normalized_data['price'], '\n')
+    print(prediction, '\n')
+    #print(deno_pred, '\n')
+
+
+    #plt.scatter(data['km'], data['price'], c='r')
+    plt.scatter(data['km'], data['price'], c='b')
+    plt.plot(data['km'], deno_pred, c='r')
+    plt.show()
     print(t0, t1)
 
-    t0 = t0 * max(data['price'])
-    t1 = t1 * (max(data['price']) / max(data['km']))
-
-    print(t0, t1)
-    #print('Cost: ' + str(calcul.cost_function(t0, t1, normalized_data)))
-    #print(calcul.least_squares(t0, t1, normalized_data))
-    #print(round(t0, 3))
 
 ft_linear_regression()

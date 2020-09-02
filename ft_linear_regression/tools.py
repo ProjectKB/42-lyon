@@ -53,6 +53,18 @@ def mean_normalization(liste):
 		liste2.append(liste[x] / max(liste))
 	return(liste2)
 
+def min_max_normalization(data):
+	ndata = []
+	for elem in data:
+		ndata.append((elem - min(data)) / (max(data) - min(data)))
+	return ndata
+
+def min_max_denormalization(data, inidata):
+	ndata = []
+	for elem in data:
+		ndata.append(elem * (max(inidata) - min(inidata)) + min(inidata))
+	return ndata
+
 def parse_csv():
     try:
         with open('data.csv', newline='') as csvfile:
