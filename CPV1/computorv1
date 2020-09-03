@@ -9,7 +9,7 @@ def computorv1():
         print("Unvalid parameters number.")
     else:
         print("\n\tYou've entered: " + str(sys.argv[1]))
-        reduced_data, max_degree = parsing.get_reduce_form(sys.argv[1].replace(' ', '').replace('x', 'X'))
+        reduced_data, max_degree = parsing.get_reduce_form(sys.argv[1].replace(' ', '').replace('x', 'X').replace('\n', '').replace('\t', ''))
         calcul.solve_equation(reduced_data, max_degree)
 
 computorv1()

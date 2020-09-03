@@ -55,7 +55,11 @@ def print_delta(delta, a, b, c):
 
 def print_second_degree(delta, a, b, c, resultat, x1, x2):
     if delta < 0:
-        print("\tDelta is smaller than 0, there is no solution to the equation.\n")
+        print("\tDelta is smaller than 0, there are two solutions to the equation.\n" + \
+            "\tResolution formula: x\u2081, x\u2082 = (-b ± i\u221A|\u0394|) / 2a\n\n" + \
+            "\tSolutions are:\n" + \
+            "\tx\u2081 = (" + str(b * -1) + " - i\u221A" + str(-delta) + ") / " +  str(2 * a) + "\n" + \
+            "\tx\u2082 = (" + str(b * -1) + " + i\u221A" + str(-delta) + ") / " + str(2 * a) + "\n")
     elif delta == 0:
         print("\tDelta is equal to 0, there is one solution to the equation.\n\t" + \
             "Resolution formula: -(b / 2a)\n\n" + \
