@@ -63,7 +63,7 @@ def print_second_degree(delta, a, b, c, resultat, x1, x2):
     elif delta == 0:
         print("\tDelta is equal to 0, there is one solution to the equation.\n\t" + \
             "Resolution formula: -(b / 2a)\n\n" + \
-            "\tThe solution is:\n\t= -(" + str(b) + " / (2 *", str(a) + ")\n" + \
+            "\tThe solution is:\n\t= -(" + str(b) + " / (2 *", str(a) + "))\n" + \
             "\t= " + str(resultat) + "\n")
     elif delta > 0:
         print("\tDelta is greater than 0, there are two solutions to the equation.\n" + \
