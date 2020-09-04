@@ -2,21 +2,13 @@
 
 import calcul
 import tools
-import matplotlib.pyplot as plt
+import plot
 
 def ft_linear_regression():
-    data            = tools.parse_csv()
-    normalized_data = calcul.min_max_normalization(data)
-    t0, t1          = calcul.gradient_descent(normalized_data, 0.1, 1000)
+    data                                          = tools.parse_csv()
+    normalized_data                               = calcul.min_max_normalization(data)
+    t0, t1, cost_history, accuracy, curve_history = calcul.gradient_descent(data, normalized_data, 0.1, 1000)
 
-    prediction_denormalized = calcul.min_max_denormalization(t0, t1, data, normalized_data)
-
-    print('Cost:', calcul.cost_function(t0, t1, normalized_data))
-    print('Least Square:', calcul.least_squares(t0, t1, normalized_data), '\n')
-    print(t0, t1)
-
-    plt.scatter(data['km'], data['price'], c='b')
-    plt.plot(data['km'], prediction_denormalized, c='r')
-    plt.show()
+    plot.launch_animation(data, curve_history, accuracy, cost_history)
 
 ft_linear_regression()

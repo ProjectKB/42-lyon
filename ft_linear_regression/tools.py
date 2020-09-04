@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 
 def average(collection):
     v = 0
@@ -47,3 +48,5 @@ def parse_csv():
         return data
     except FileNotFoundError as e:
         print_error(str(e))
+
+
