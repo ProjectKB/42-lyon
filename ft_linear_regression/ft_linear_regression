@@ -3,12 +3,22 @@
 import calcul
 import tools
 import plot
+import argparse
+
+def set_argParse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-p', '--plot', help='display plot for regression, accuracy and cost function.', action='store_true')
+    return parser.parse_args()
 
 def ft_linear_regression():
+    args                                          = set_argParse()
     data                                          = tools.parse_csv()
     normalized_data                               = calcul.min_max_normalization(data)
     t0, t1, cost_history, accuracy, curve_history = calcul.gradient_descent(data, normalized_data, 0.1, 1000)
 
-    plot.launch_animation(data, curve_history, accuracy, cost_history)
+    tools.write_thetas(t0, t1)
+    if args.plot:
+        plot.launch_animation(data, curve_history, accuracy, cost_history)
 
 ft_linear_regression()

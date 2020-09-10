@@ -3,19 +3,21 @@ import tools
 def estimatedPrice(t0, t1, km):
     return t0 + t1 * km
 
+def normalize(elem, collection):
+    return (elem - min(collection)) / (max(collection) - min(collection))
+
 def min_max_normalization(data):
     normalized_data          = { 'm': data['m'] }
-    normalize                = lambda elem, collection: (elem - min(collection)) / (max(collection) - min(collection))
     normalized_data['km']    = [normalize(km, data['km']) for km in data['km']]
     normalized_data['price'] = [normalize(price, data['price']) for price in data['price']]
 
     return normalized_data
 
-def min_max_denormalization(t0, t1, data, normalized_data):
-    denormalize       = lambda elem, collection: elem * (max(collection) - min(collection)) + min(collection)
-    denormalized_data = [denormalize(estimatedPrice(t0, t1, km), data['price']) for km in normalized_data['km']]
+def denormalize(elem, collection):
+    return elem * (max(collection) - min(collection)) + min(collection)
 
-    return denormalized_data
+def min_max_denormalization(t0, t1, data, normalized_data):
+    return [denormalize(estimatedPrice(t0, t1, km), data['price']) for km in normalized_data['km']]
 
 def gradients(t0, t1, data, learning_rate):
     sum0 = tools.sum(t0, t1, data, lambda km, price: estimatedPrice(t0, t1, km) - price)
@@ -25,19 +27,18 @@ def gradients(t0, t1, data, learning_rate):
     
     return t0, t1
 
-def gradient_descent(ori, data, learning_rate, iterations):
+def gradient_descent(data, reduced_data, learning_rate, iterations):
     t0               = 0
     t1               = 0
     cost_history     = []
     accuracy_history = []
     curve_history    = []
 
-
     for i in range(iterations):
-        t0, t1 = gradients(t0, t1, data, learning_rate)
-        curve_history.append(min_max_denormalization(t0, t1, ori, data))
-        cost_history.append(cost_function(t0, t1, data))
-        accuracy_history.append(least_squares(t0, t1, data) * 100)
+        t0, t1 = gradients(t0, t1, reduced_data, learning_rate)
+        curve_history.append(min_max_denormalization(t0, t1, data, reduced_data))
+        cost_history.append(cost_function(t0, t1, reduced_data))
+        accuracy_history.append(least_squares(t0, t1, reduced_data) * 100)
     return t0, t1, cost_history, accuracy_history, curve_history
 
 def cost_function(t0, t1, data):

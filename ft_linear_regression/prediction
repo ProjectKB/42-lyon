@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+
+import tools
+import calcul
+import csv
+import re
+import argparse
+
+def check_km(value):
+    try:
+        if float(value) < 0:
+            tools.print_error('\tThank you to read the request again.', 0, '', '\t', '')
+            return False
+    except ValueError:
+        tools.print_error('\tKilometers number have to be... drum roll... a number...', 0, '', '\t', '')
+        return False
+    return True
+
+def get_km():
+    while 42:
+        try:
+            value = input('\n\tEnter the number of kilometers of your car: ')
+            if check_km(value):
+                break
+        except (EOFError, KeyboardInterrupt):
+            print('\n\n\tBye!\n')
+            exit()
+    return tools.convert_to_number(value)
+
+def get_thetas():
+    try:
+        file         = open('thetasValue.txt')
+        file_content = file.read()
+        check        = re.findall(r'-?\d*\.?\d*\|-?\d*\.?\d*', file_content)
+
+        if len(check) != 1 or len(check[0]) != len(file_content):
+            tools.print_error("thetasValue.txt can only contain the following expression: 'initialTheta0|initialTheta1'", 1, '\n', '\t', '\n')
+        thetas = list(map(tools.convert_to_number, check[0].split('|')))
+        file.close
+    except FileNotFoundError as e:
+        tools.print_error(str(e), 1, '\n', '\t', '\n')
+    return thetas[0], thetas[1]
+
+def get_price(t0, t1, data, km):
+    if t0 == 0 and t1 == 0:
+        return calcul.estimatedPrice(t0, t1, km)
+    else:
+        return int(calcul.denormalize(calcul.estimatedPrice(t0, t1, calcul.normalize(km, data['km'])), data['price']))
+
+def prediction():
+    argparse.ArgumentParser().parse_args()
+
+    data           = tools.parse_csv()
+    t0, t1         = get_thetas()
+    km             = get_km()
+    estimatedPrice = get_price(t0, t1, data, km)
+
+    print('\n\tThe estimate price of your car is: ' + str(estimatedPrice) + '€\n')
+
+prediction()
