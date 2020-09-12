@@ -7,13 +7,17 @@ def atoif(nb):
     try:
         return int(nb)
     except ValueError:
-        return float(nb)
+        try:
+            return float(nb)
+        except ValueError:
+            display.quit('Invalid Syntax, use the following form : a*x^p')
+
 
 def newton_sqrt(x):
     z = 1.0
 
     for i in range(0, 10):
-        z -= (z*z - x) / (2*z)
+        z -= (z * z - x) / (2 * z)
     return z
 
 def clean_data(reduced_data):
@@ -41,4 +45,3 @@ def check_data_before_processing(data, reduced_data):
 def check_special_case(reduced_data, data):
     if not reduced_data or data['left_side']['degrees'] == data['right_side']['degrees'] and data['left_side']['numbers'] == data['right_side']['numbers']:
         display.quit("\n\tReduced form: 0 = 0\n\n\tThis is a special case, all real numbers are true for this equation.\n")
-

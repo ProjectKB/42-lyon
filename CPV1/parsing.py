@@ -2,8 +2,8 @@ import re
 import tools
 import display
 
-def check_syntax(args, checker, elem_nb):
-    check = len(checker)
+def check_syntax(args, checker, elem_nb, check_sign):
+    check = len(checker) + check_sign
     base  = len(args)
     case1 = re.findall(r'-?\d*\.?\d*\*X\^-?\d*\.?\d+=-?\d*\.?\d*\*X\^-?\d*\.?\d+', args)
     case2 = re.findall(r'-?\d*\.?\d*\*X\^-?\d*\.?\d+=0', args)
@@ -21,26 +21,29 @@ def check_syntax(args, checker, elem_nb):
 
 
 def extract_data(splitted_str, reduced_str, original_str):
-    nb_elem   = 0
-    check_str = ''
-    data      = {
-                    'left_side': {
-                        'degrees': [],
-                        'numbers': []
-                    },
-                    'right_side': {
-                        'degrees': [],
-                        'numbers': []
-                    }
-                }
+    nb_elem    = 0
+    check_str  = ''
+    check_sign = len(re.findall(r'--|\+-|-\+', reduced_str))
+    data       = {
+                     'left_side': {
+                         'degrees': [],
+                         'numbers': []
+                     },
+                     'right_side': {
+                         'degrees': [],
+                         'numbers': []
+                     }
+                 }
 
     for i, j in enumerate(['left_side', 'right_side'], start=0):
-        degrees = re.findall(r'X\^-?\d*\.?\d+', splitted_str[i])
-        numbers = re.findall(r'-?\d*\.?\d*\*', splitted_str[i])
+        splitted_str[i] = splitted_str[i].replace('--', '+').replace('-+', '-').replace('+-', '-')
+        degrees         = re.findall(r'X\^-?\d*\.?\d+', splitted_str[i])
+        numbers         = re.findall(r'-?\d*\.?\d*\*', splitted_str[i])
 
         for degree, number in zip(degrees, numbers):
             check_str += number.replace('-', '') + degree
             nb_elem   += 1
+            
             if number != '0*' and number != '-0*':
                 data[j]['degrees'].append(tools.atoif(degree.replace('X^', '')))
                 data[j]['numbers'].append(tools.atoif(number.replace('*', '')))
@@ -48,17 +51,18 @@ def extract_data(splitted_str, reduced_str, original_str):
     data['degrees'] = data['left_side']['degrees'] + data['right_side']['degrees']
     data['numbers'] = data['left_side']['numbers'] + [elem * -1 for elem in data['right_side']['numbers']]
 
-    check_syntax(reduced_str, check_str, nb_elem)
+    check_syntax(reduced_str, check_str, nb_elem, check_sign)
     print("\n\tYou've entered:", original_str)
     return data
 
 
 def reduce_data(degrees, numbers):
     reduced_data = {}
-    
+
+    numbers = list(map(tools.roundornot, numbers))
     for i in range(len(degrees)):
         try:
-            reduced_data[degrees[i]] += numbers[i]
+            reduced_data[degrees[i]] = tools.roundornot(reduced_data[degrees[i]] + numbers[i])
         except KeyError:
             reduced_data[degrees[i]] = numbers[i]
     return tools.clean_data(reduced_data)
