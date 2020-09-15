@@ -1,18 +1,5 @@
 import display
 
-def bubble_sort(collection):
-    i = 0
-
-    while i != count(collection) - 1:
-        if collection[i] > collection[i + 1]:
-            collection[i]     ^= collection[i + 1]
-            collection[i + 1] ^= collection[i]
-            collection[i]     ^= collection[i + 1]
-            i                  = 0
-        else:
-            i += 1
-    return collection
-
 def percentage(percent, nb):
     return nb * percent / 100
 
@@ -72,13 +59,13 @@ def median(collection, count):
         return (collection[int(count / 2) - 1] + collection[int(count / 2)]) / 2
     return collection[int(count / 2)]
 
-def quartile(collection, count, q):
+def quartile(sorted_collection, count, q):
     if q == 1:
-        return collection[int(percentage(25, count))]
+        return sorted_collection[int(percentage(25, count))]
     elif q == 2:
-        return median(collection, count)
+        return median(sorted_collection, count)
     elif q == 3:
-        return collection[int(percentage(75, count))]
+        return sorted_collection[int(percentage(75, count))]
 
 def convert_to_number(str):
     try:
@@ -88,3 +75,7 @@ def convert_to_number(str):
             return float(str)
     except ValueError:
         return 0
+
+def check_dataset_name(dataset_name):
+    if dataset_name != 'datasets/dataset_test.csv' and dataset_name != 'datasets/dataset_train.csv':
+        display.print_error("Use one of the datasets present in the 'datasets' folder.")

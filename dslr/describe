@@ -3,35 +3,45 @@
 import sys
 import parsing
 import tools
+import calcul
+import display
+import argparse
 
 FEATURES_NAME = [
-               'Arithmancy',
-               'Astronomy',
-               'Herbology',
-               'Defense Against the Dark Arts',
-               'Divination',
-               'Muggle Studies',
-               'Ancient Runes',
-               'History of Magic',
-               'Transfiguration',
-               'Potions',
-               'Care of Magical Creatures',
-               'Charms',
-               'Flying'
-           ]
+                    'Arithmancy',
+                    'Astronomy',
+                    'Herbology',
+                    'Defense Against the Dark Arts',
+                    'Divination',
+                    'Muggle Studies',
+                    'Ancient Runes',
+                    'History of Magic',
+                    'Transfiguration',
+                    'Potions',
+                    'Care of Magical Creatures',
+                    'Charms',
+                    'Flying'
+                ]
 
-OPERATIONS_NAME = [
-                      'Count',
-                      'Mean',
-                      'Std',
-                      'Min',
-                      '25%',
-                      '50%',
-                      '75%',
-                      'Max'
-                  ]
+ROWS_FUNCTION = {
+                    'Count': lambda collection: tools.count(collection),
+                    'Mean':  lambda collection, count: tools.median(collection, count),
+                    'Std':   lambda collection, count: tools.standard_deviation(collection),
+                    'Min':   lambda collection, count: tools.min(collection, count),
+                    '25%':   lambda collection, count: tools.quartile(collection, count, 1),
+                    '50%':   lambda collection, count: tools.quartile(collection, count, 2),
+                    '75%':   lambda collection, count: tools.quartile(collection, count, 3),
+                    'Max':   lambda collection, count: tools.max(collection, count)
+                }
 
 def describe():
-    return 0
+    parser = argparse.ArgumentParser()
+    parser.add_argument('dataset.csv', help='describe dataset features', type=tools.check_dataset_name)
+
+    args              = parser.parse_args()
+    dataset           = parsing.get_dataset(sys.argv[1], FEATURES_NAME)
+    described_dataset = calcul.described_dataset(dataset, FEATURES_NAME, ROWS_FUNCTION)
+
+    display.print_described_dataset(described_dataset, FEATURES_NAME, ROWS_FUNCTION.keys())
 
 describe()
