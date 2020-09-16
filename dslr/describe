@@ -39,7 +39,7 @@ def describe():
     parser.add_argument('dataset.csv', help='describe dataset features', type=tools.check_dataset_name)
 
     args              = parser.parse_args()
-    dataset           = parsing.get_dataset(sys.argv[1], FEATURES_NAME)
+    dataset           = parsing.get_dataset(sys.argv[1], FEATURES_NAME, 1)
     described_dataset = calcul.described_dataset(dataset, FEATURES_NAME, ROWS_FUNCTION)
 
     display.print_described_dataset(described_dataset, FEATURES_NAME, ROWS_FUNCTION.keys())
