@@ -39,17 +39,22 @@ def set_argParse():
     return parser.parse_args()
 
 def display_histogram(data_sorted_by_house):
-    for house_name in HOUSES_NAME:
-        plt.hist(data_sorted_by_house[house_name]['Charms'], bins=tools.count(data_sorted_by_house[house_name]['Charms']))
-    plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
-    plt.xlabel('Charms')
-    plt.show()
+    for feature_name in FEATURES_NAME[1:]:
+        plt.hist(data_sorted_by_house['Slytherin'][feature_name], alpha=0.5, color='yellow')
+        plt.hist(data_sorted_by_house['Gryffindor'][feature_name], alpha=0.5, color='green')
+        plt.hist(data_sorted_by_house['Ravenclaw'][feature_name], alpha=0.5, color='red')
+        plt.hist(data_sorted_by_house['Hufflepuff'][feature_name], alpha=0.5, color='blue')
+        plt.legend(HOUSES_NAME)
+        plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
+        plt.xlabel(feature_name)
+        plt.show()
 
-def plot():
+def histogram():
     set_argParse()
 
     data_sorted_by_house = parsing.get_dataset_sorted_by_house('datasets/dataset_train.csv', FEATURES_NAME, HOUSES_NAME)
+    test = tools.histo_standardization(data_sorted_by_house, FEATURES_NAME[1:], HOUSES_NAME)
 
-    display_histogram(data_sorted_by_house)
+    display_histogram(test)
 
-plot()
+histogram()

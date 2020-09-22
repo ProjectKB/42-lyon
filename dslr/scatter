@@ -6,6 +6,7 @@ import tools
 import calcul
 import display
 import argparse
+import matplotlib.pyplot as plt
 
 FEATURES_NAME = [
                     'Arithmancy',
@@ -34,14 +35,35 @@ ROWS_FUNCTION = {
                     'Max':   lambda collection, count: tools.max(collection, count)
                 }
 
-def describe():
+def set_argParse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('dataset.csv', help='describe dataset features', type=tools.check_dataset_name)
 
-    args              = parser.parse_args()
-    dataset           = parsing.get_dataset(sys.argv[1], FEATURES_NAME)
-    described_dataset = calcul.described_dataset(dataset, FEATURES_NAME, ROWS_FUNCTION)
+    parser.add_argument('dataset.csv', help='dataset', type=tools.check_dataset_name)
+    parser.add_argument('-c', '--compare', help='show every relations between features.', action='store_true')
+    return parser.parse_args()
 
-    display.print_described_dataset(described_dataset, FEATURES_NAME, ROWS_FUNCTION.keys())
+def show_same_feature(dataset):
+    plt.scatter(dataset['Defense Against the Dark Arts'], dataset['Astronomy'])
+    plt.tick_params(axis='both', labelbottom=False, labelleft=False, length=0)
+    plt.xlabel('Defense Against the Dark Arts')
+    plt.ylabel('Astronomy')
+    plt.show()
 
-describe()
+def demonstrate_scatter(dataset):
+    for feature_name1 in FEATURES_NAME:
+        for feature_name2 in FEATURES_NAME:
+            if feature_name1 == feature_name2:
+                break
+            plt.scatter(dataset[feature_name1], dataset[feature_name2])
+            plt.tick_params(axis='both', labelbottom=False, labelleft=False, length=0)
+            plt.xlabel(feature_name1)
+            plt.ylabel(feature_name2)
+            plt.show()
+
+def scatter():
+    args    = set_argParse()
+    dataset = parsing.get_dataset(sys.argv[1], FEATURES_NAME)
+
+    demonstrate_scatter(dataset) if args.compare else show_same_feature(dataset)
+
+scatter()
