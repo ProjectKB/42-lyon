@@ -1,8 +1,9 @@
-import display
+#import display
 import csv
 import tools
+import display 
 
-def get_dataset(file_name, FEATURES_NAME):
+def get_dataset(file_name, FEATURES_NAME, mod):
     try:
         with open(file_name, newline='') as csvfile:
             file    = csv.DictReader(csvfile)
@@ -10,11 +11,16 @@ def get_dataset(file_name, FEATURES_NAME):
 
             if not file.fieldnames:
                 display.print_error("Please do not delete data from the dataset.")
-            elif file.fieldnames[6:] != FEATURES_NAME:
+            elif mod == 1 and file.fieldnames[6:] != FEATURES_NAME:
+                display.print_error("Rows names of '" + file_name + "' are not valid.")
+            elif mod == 2 and [file.fieldnames[1]] + file.fieldnames[6:] != FEATURES_NAME:
                 display.print_error("Rows names of '" + file_name + "' are not valid.")
             for elem in file:
                 for feature_name in FEATURES_NAME:
-                    dataset[feature_name].append(tools.convert_to_number(elem[feature_name]))
+                    if feature_name == 'Hogwarts House' and (elem[feature_name] == 'Ravenclaw' or elem[feature_name] == 'Slytherin' or elem[feature_name] == 'Gryffindor' or elem[feature_name] == 'Hufflepuff'):
+                        dataset[feature_name].append(elem[feature_name])
+                    else:
+                        dataset[feature_name].append(tools.convert_to_number(elem[feature_name]))
         return dataset
     except FileNotFoundError as e:
         display.print_error(str(e))

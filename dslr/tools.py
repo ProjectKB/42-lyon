@@ -1,4 +1,4 @@
-import display
+import display 
 
 def percentage(percent, nb):
     return nb * percent / 100
@@ -90,19 +90,11 @@ def dataset_standardization(dataset, FEATURES_NAME):
             dataset_standardized[feature_name].append(standardize(elem, avg, std))
     return dataset_standardized
 
-
-def histo_standardization(dataset, FEATURES_NAME, HOUSES_NAME):
-    dataset_standardized = { house_name: { feature_name: [] for feature_name in FEATURES_NAME } for house_name in HOUSES_NAME }
-
-    for house_name in HOUSES_NAME:
-        for feature_name in FEATURES_NAME:
-            avg = mean(dataset[house_name][feature_name])
-            std = standard_deviation(dataset[house_name][feature_name])
-
-            for elem in dataset[house_name][feature_name]:
-                dataset_standardized[house_name][feature_name].append(standardize(elem, avg, std))
-    return dataset_standardized
-
-def check_dataset_name(dataset_name):
+def is_valid_dataset(dataset_name):
     if dataset_name != 'datasets/dataset_test.csv' and dataset_name != 'datasets/dataset_train.csv':
         display.print_error("Use one of the datasets present in the 'datasets' folder.")
+
+def is_train_dataset(dataset_name):
+    if dataset_name != 'datasets/dataset_train.csv':
+        display.print_error("You have to use datasets/dataset_train.csv.") 
+

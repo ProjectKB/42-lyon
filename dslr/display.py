@@ -2,6 +2,10 @@ def print_error(str):
     print('\033[91merror:\033[0m ' + str)
     exit()
 
+def debug(e):
+    print(e)
+    exit()
+
 def print_bold(str, field):
     print('\033[1m%*s\033[0m'% (field, str), end='')
 
@@ -25,10 +29,3 @@ def print_described_dataset(described_dataset, FEATURES_NAME, ROWS_NAME):
                     break
             print('')
         print('')
-
-
-            
-                
-        
-
-

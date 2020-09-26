@@ -1,60 +1,24 @@
 #!/usr/bin/env python3
 
-import sys
-import parsing
+import plot
 import tools
-import calcul
-import display
+import parsing
 import argparse
-import matplotlib.pyplot as plt
-
-FEATURES_NAME = [
-                    'Hogwarts House',
-                    'Arithmancy',
-                    'Astronomy',
-                    'Herbology',
-                    'Defense Against the Dark Arts',
-                    'Divination',
-                    'Muggle Studies',
-                    'Ancient Runes',
-                    'History of Magic',
-                    'Transfiguration',
-                    'Potions',
-                    'Care of Magical Creatures',
-                    'Charms',
-                    'Flying'
-                ]
-
-HOUSES_NAME = {
-                  'Slytherin',
-                  'Gryffindor',                
-                  'Ravenclaw',                
-                  'Hufflepuff'                
-              }
+import Constant
 
 def set_argParse():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('dataset.csv', help='describe dataset features', type=tools.check_dataset_name)
+    parser.add_argument('dataset.csv', help='dataset', type=tools.is_train_dataset)
     return parser.parse_args()
-
-def display_histogram(data_sorted_by_house):
-    for feature_name in FEATURES_NAME[1:]:
-        plt.hist(data_sorted_by_house['Slytherin'][feature_name], alpha=0.5, color='yellow')
-        plt.hist(data_sorted_by_house['Gryffindor'][feature_name], alpha=0.5, color='green')
-        plt.hist(data_sorted_by_house['Ravenclaw'][feature_name], alpha=0.5, color='red')
-        plt.hist(data_sorted_by_house['Hufflepuff'][feature_name], alpha=0.5, color='blue')
-        plt.legend(HOUSES_NAME)
-        plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
-        plt.xlabel(feature_name)
-        plt.show()
 
 def histogram():
     set_argParse()
 
-    data_sorted_by_house = parsing.get_dataset_sorted_by_house('datasets/dataset_train.csv', FEATURES_NAME, HOUSES_NAME)
-    test = tools.histo_standardization(data_sorted_by_house, FEATURES_NAME[1:], HOUSES_NAME)
+    CONST                = Constant.Const()
+    data_sorted_by_house = parsing.get_dataset_sorted_by_house('datasets/dataset_train.csv', CONST.FEATURES_NAME, CONST.HOUSES_NAME)
 
-    display_histogram(test)
+    plot.histogram(data_sorted_by_house, CONST)
 
-histogram()
+if __name__ == '__main__':
+    histogram()
