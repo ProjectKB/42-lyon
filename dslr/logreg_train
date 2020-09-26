@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 import sys
-import parsing
-import tools
-import calcul
-import display
 import argparse
-import matplotlib.pyplot as plt
 import numpy as np
+import srcs.tools as tools
+import srcs.calcul as calcul
+import srcs.display as display
+import srcs.parsing as parsing
+import matplotlib.pyplot as plt
 
 def test():
     X = np.array([[1,2], [3,4], [5,6], [7,8]])

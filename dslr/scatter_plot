@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import sys
-import plot
-import tools
-import parsing
 import argparse
-import Constant
+import srcs.plot as plot
+import srcs.tools as tools
+import srcs.parsing as parsing
+import srcs.Constant as Constant
 
 def set_argParse():
     parser = argparse.ArgumentParser()

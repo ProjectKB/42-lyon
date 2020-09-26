@@ -1,4 +1,4 @@
-from tools import count, median, standard_deviation, min, max, quartile
+from srcs.tools import count, median, standard_deviation, min, max, quartile
 
 class Const:
     ROWS_FUNCTION = {

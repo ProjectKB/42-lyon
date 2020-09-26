@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 def histogram(data_sorted_by_house, CONST):
     plt.figure(figsize=(10, 7))

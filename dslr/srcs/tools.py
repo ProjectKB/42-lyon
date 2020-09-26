@@ -1,4 +1,4 @@
-import display 
+from srcs.display import print_error
 
 def percentage(percent, nb):
     return nb * percent / 100
@@ -92,9 +92,9 @@ def dataset_standardization(dataset, FEATURES_NAME):
 
 def is_valid_dataset(dataset_name):
     if dataset_name != 'datasets/dataset_test.csv' and dataset_name != 'datasets/dataset_train.csv':
-        display.print_error("Use one of the datasets present in the 'datasets' folder.")
+        print_error("Use one of the datasets present in the 'datasets' folder.")
 
 def is_train_dataset(dataset_name):
     if dataset_name != 'datasets/dataset_train.csv':
-        display.print_error("You have to use datasets/dataset_train.csv.") 
+        print_error("You have to use datasets/dataset_train.csv.") 
 
