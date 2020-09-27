@@ -7,18 +7,42 @@ import srcs.tools as tools
 import srcs.calcul as calcul
 import srcs.display as display
 import srcs.parsing as parsing
-import matplotlib.pyplot as plt
+import srcs.Constant as Constant
 
-def test():
-    X = np.array([[1,2], [3,4], [5,6], [7,8]])
-    T = np.zeros(X.shape[1])
-    Y = np.array([1,1,0,0])
+def prepare_X(dataset_standardized):
+    return np.concatenate((np.array(dataset_standardized['Gryffindor']), np.array(dataset_standardized['Slytherin']), np.array(dataset_standardized['Hufflepuff']), np.array(dataset_standardized['Ravenclaw'])))
     
+def prepare_Y(student_count, CONST):
+    Y               = {}
+    Y['Gryffindor'] = np.concatenate((np.ones(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
+    Y['Slytherin']  = np.concatenate((np.zeros(student_count['Gryffindor']), np.ones(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
+    Y['Hufflepuff'] = np.concatenate((np.zeros(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.ones(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
+    Y['Ravenclaw']  = np.concatenate((np.zeros(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.ones(student_count['Ravenclaw'])))
 
-    T = calcul.gradient_descent(X, Y, 0.1, 2)
-    #cost = cost_function(X, Y, activated) / X.shape[0]
+    return Y
 
-    print(T)
+def one_vs_all_logistic_regression(X, Y, learning_rate, iterations, CONST):
+    T = []
+
+    for house_name in CONST.HOUSES_NAME:
+        T.append(calcul.gradient_descent(X, Y[house_name], learning_rate, iterations))
+    return T
+
+def logreg_train():
+    CONST               = Constant.Const()
+    dataset_by_features = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    rm                  = tools.real_mean(dataset_by_features, CONST)
+    fixed_data          = tools.fix_data(dataset_by_features, rm, CONST)
+
+    values_for_standardization = tools.get_values_for_standardization(fixed_data, CONST)
+    dataset_standardized       = parsing.get_dataset_by_house_student_and_valid_features('datasets/dataset_train.csv', values_for_standardization, CONST, 1, rm)
+    student_count              = { house_name: tools.count(dataset_standardized[house_name]) for house_name in CONST.HOUSES_NAME }
+
+    X = prepare_X(dataset_standardized)
+    Y = prepare_Y(student_count, CONST)
+    T = one_vs_all_logistic_regression(X, Y, 0.1, 1, CONST)
+    
+    tools.write_thetas(T, CONST)
 
 if __name__ == '__main__':
-    test()
+    logreg_train()

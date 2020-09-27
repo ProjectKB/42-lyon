@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+
+import re
+import sys
+import argparse
+import numpy as np
+import srcs.tools as tools
+import srcs.calcul as calcul
+import srcs.display as display
+import srcs.parsing as parsing
+import srcs.Constant as Constant
+
+def get_T(CONST):
+    try:
+        file         = open('thetasValue')
+        file_content = file.read()
+        thetas       = [tools.convert_to_number(elem.replace('|', '')) for elem in re.findall(r'\|-?\d+\.?\d*\|', file_content)]
+        count        = tools.count(CONST.VALID_FEATURES)
+        T            = {}
+
+        if tools.count(thetas) != count * 4:
+            tools.print_error("Please don't modify 'thetasValue'.")
+        for i, house_name in enumerate(CONST.HOUSES_NAME):
+            T[house_name] = np.array(thetas[i*count:i*count+count])
+        file.close
+    except FileNotFoundError:
+        tools.print_error("You have to launch 'logreg_train' first. If you already did, please don't delete 'thetasValue'.")
+    return T
+
+def get_Y(T, X, CONST):
+    Y = []
+
+    for student in X:
+        new_student = []
+        for house_name in CONST.HOUSES_NAME:
+            new_student.append(calcul.activate(calcul.pre_activate(T[house_name], student)))
+        Y.append(new_student)
+    return Y
+
+def make_prediction(Y, CONST):
+    file = open('houses.csv','w')
+    str  = "Index,Hogwarts House\n"
+
+    for i, prediction in enumerate(Y):
+        max = tools.max(prediction, 4)
+        str += '{student_nb},{house_name}\n'.format(student_nb=i, house_name=CONST.HOUSES_NAME[prediction.index(max)])
+    file.write(str)
+    file.close()
+
+def logreg_predict():
+    CONST               = Constant.Const()
+    dataset_by_features = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    rm                  = tools.real_mean(dataset_by_features, CONST)
+    fixed_data          = tools.fix_data(dataset_by_features, rm, CONST)
+
+    values_for_standardization = tools.get_values_for_standardization(fixed_data, CONST)
+    dataset_standardized       = parsing.get_dataset_by_house_student_and_valid_features('datasets/dataset_test.csv', values_for_standardization, CONST, 2, rm)
+
+    X = np.array(dataset_standardized)
+    T = get_T(CONST)
+    Y = get_Y(T, X, CONST)
+    make_prediction(Y, CONST)
+    
+if __name__ == '__main__':
+    logreg_predict()

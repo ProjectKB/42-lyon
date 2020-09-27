@@ -1,9 +1,9 @@
-from srcs.tools import count, median, standard_deviation, min, max, quartile
+from srcs.tools import count, median, standard_deviation, min, max, quartile, special_mean
 
 class Const:
     ROWS_FUNCTION = {
         'Count': lambda collection: count(collection),
-        'Mean':  lambda collection, count: median(collection, count),
+        'Mean':  lambda collection, count: special_mean(collection, count),
         'Std':   lambda collection, count: standard_deviation(collection),
         'Min':   lambda collection, count: min(collection, count),
         '25%':   lambda collection, count: quartile(collection, count, 1),
@@ -63,3 +63,10 @@ class Const:
         'Charms',
         'Flying'
     ]
+
+    VALID_FEATURES = [
+        'Astronomy',
+        'Herbology',
+        'Ancient Runes'
+    ]
+    

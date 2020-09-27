@@ -1,0 +1,5 @@
+dataset_truth.csv
+houses.csv
+thetasValue
+evaluate.py
+.gitignore
