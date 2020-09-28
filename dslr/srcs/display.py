@@ -2,6 +2,10 @@ def print_error(str):
     print('\033[91merror:\033[0m ' + str)
     exit()
 
+def print_success(str):
+    print('\033[92msuccess:\033[0m ' + str)
+    exit()
+
 def print_bold(str, field):
     print('\033[1m%*s\033[0m'% (field, str), end='')
 

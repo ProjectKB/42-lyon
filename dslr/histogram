@@ -10,15 +10,16 @@ def set_argParse():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('dataset.csv', help='dataset', type=tools.is_train_dataset)
+    parser.add_argument('-d', '--demo', help='show histogram for every features.', action='store_true')
     return parser.parse_args()
 
 def histogram():
-    set_argParse()
+    args = set_argParse()
 
     CONST                = Constant.Const()
-    data_sorted_by_house = parsing.get_dataset_sorted_by_house('datasets/dataset_train.csv', CONST.FEATURES_NAME, CONST.HOUSES_NAME)
+    dataset_by_houses = parsing.get_dataset_by_houses('datasets/dataset_train.csv', CONST.FEATURES_NAME, CONST.HOUSES_NAME)
 
-    plot.histogram(data_sorted_by_house, CONST)
+    plot.histogram(dataset_by_houses, CONST) if not args.demo else plot.histogram_demo(dataset_by_houses, CONST)
 
 if __name__ == '__main__':
     histogram()

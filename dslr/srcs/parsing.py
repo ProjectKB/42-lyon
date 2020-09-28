@@ -1,8 +1,8 @@
 import csv
 from srcs.display import print_error 
-from srcs.tools import convert_to_number, special_convert_to_number, standardize, debug
+from srcs.tools import convert_to_number, standardize, debug
 
-def get_dataset(file_name, FEATURES_NAME, mod):
+def get_dataset_by_features(file_name, FEATURES_NAME, mod):
     try:
         with open(file_name, newline='') as csvfile:
             file    = csv.DictReader(csvfile)
@@ -21,10 +21,10 @@ def get_dataset(file_name, FEATURES_NAME, mod):
                     else:
                         dataset[feature_name].append(convert_to_number(elem[feature_name]))
         return dataset
-    except FileNotFoundError as e:
-        print_error(str(e))
+    except FileNotFoundError:
+        print_error("Please don't modify/delete any datasets.")
 
-def get_dataset_sorted_by_house(file_name, FEATURES_NAME, HOUSES_NAME):
+def get_dataset_by_houses(file_name, FEATURES_NAME, HOUSES_NAME):
     try:
         with open(file_name, newline='') as csvfile:
             file    = csv.DictReader(csvfile)
@@ -38,10 +38,10 @@ def get_dataset_sorted_by_house(file_name, FEATURES_NAME, HOUSES_NAME):
                 for feature_name in FEATURES_NAME[1:]:
                     dataset[elem[FEATURES_NAME[0]]][feature_name].append(convert_to_number(elem[feature_name]))
         return dataset
-    except FileNotFoundError as e:
-        print_error(str(e))
+    except FileNotFoundError:
+        print_error("Please don't modify/delete any datasets.")
 
-def get_dataset_by_house_student_and_valid_features(file_name, values_for_standardization, CONST, mod, rm):
+def get_dataset_standardized(file_name, CONST, mod, for_standardization):
     try:
         with open(file_name, newline='') as csvfile:
             file    = csv.DictReader(csvfile)
@@ -54,8 +54,8 @@ def get_dataset_by_house_student_and_valid_features(file_name, values_for_standa
             for elem in file:
                 new_elem = []
                 for valid_feature in CONST.VALID_FEATURES:
-                    new_elem.append(standardize(special_convert_to_number(elem[valid_feature], rm, valid_feature), values_for_standardization['Mean'][valid_feature], values_for_standardization['Std'][valid_feature])) 
+                    new_elem.append(standardize(convert_to_number(elem[valid_feature], for_standardization, valid_feature), for_standardization[valid_feature]['mean'], for_standardization[valid_feature]['std'])) 
                 dataset[elem['Hogwarts House']].append(new_elem) if mod == 1 else dataset.append(new_elem)
         return dataset
-    except FileNotFoundError as e:
-        print_error(str(e))
+    except FileNotFoundError:
+        print_error("Please don't modify/delete any datasets.")

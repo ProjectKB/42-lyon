@@ -11,14 +11,7 @@ def percentage(percent, nb):
 def roundornot(nb):
     return int(nb) if int(nb) == float(nb) else round(nb, 3)
 
-def mean(collection):
-    v = 0
-
-    for elem in collection:
-        v += elem
-    return v / count(collection)
-
-def special_mean(collection, count):
+def mean(collection, count):
     v = 0
 
     for elem in collection:
@@ -41,7 +34,7 @@ def newton_sqrt(x):
 
 def standard_deviation(collection):
     v = 0
-    m = mean(collection)
+    m = mean(collection, count(collection))
 
     for elem in collection:
         v += (elem - m) ** 2
@@ -63,9 +56,6 @@ def max(collection, count):
             v = collection[i]
     return v
 
-def isEven(nb):  
-    return True if nb ^ 1 == nb + 1 else False 
-
 def median(collection, count):
     if isEven(count):
         return (collection[int(count / 2) - 1] + collection[int(count / 2)]) / 2
@@ -79,26 +69,14 @@ def quartile(sorted_collection, count, q):
     elif q == 3:
         return sorted_collection[int(percentage(75, count))]
 
-def convert_to_number(str):
+def convert_to_number(str, fix_data=0, feature_name=None):
     try:
         try:
             return int(str)
         except ValueError:
             return float(str)
     except ValueError:
-        return 0
-
-def special_convert_to_number(str, rm, feature_name):
-    try:
-        try:
-            return int(str)
-        except ValueError:
-            return float(str)
-    except ValueError:
-        return rm[feature_name]['mean']
-
-def get_values_for_standardization(dataset_by_features, CONST):
-    return { values: { valid_feature: CONST.ROWS_FUNCTION[values](dataset_by_features[valid_feature], count(dataset_by_features[valid_feature])) for valid_feature in CONST.VALID_FEATURES } for values in ['Mean', 'Std'] }
+        return 0 if not fix_data else fix_data[feature_name]['mean']
 
 def standardize(elem, avg, std):
     return (elem - avg) / std
@@ -111,30 +89,18 @@ def is_train_dataset(dataset_name):
     if dataset_name != 'datasets/dataset_train.csv':
         print_error("You have to use datasets/dataset_train.csv.")
 
-def write_thetas(T, CONST):
-    file = open('thetasValue','w')
-    str  = ""
+def is_test_dataset(dataset_name):
+    if dataset_name != 'datasets/dataset_test.csv':
+        print_error("You have to use datasets/dataset_test.csv.")
 
-    for house_name, thetas in zip(CONST.HOUSES_NAME, T):
-        str += house_name + ': '
-        for theta in thetas:
-            str += '|' + np.array2string(theta) + '|'
-        str += '\n'
-
-    file.write(str)
-    file.close()
-
-def real_mean(data, CONST):
-    rm = { valid_feature: {} for valid_feature in CONST.VALID_FEATURES }
+def get_mean_count_std(data, CONST):
+    mean_count_std = { valid_feature: {} for valid_feature in CONST.VALID_FEATURES }
     
     for valid_feature in CONST.VALID_FEATURES:
-        rm[valid_feature]['count'] = data[valid_feature].count(0)
-        rm[valid_feature]['mean'] = special_mean(data[valid_feature], count(data[valid_feature]) - rm[valid_feature]['count'])
-    return rm
+        mean_count_std[valid_feature]['count'] = data[valid_feature].count(0)
+        mean_count_std[valid_feature]['mean'] = mean(data[valid_feature], count(data[valid_feature]) - mean_count_std[valid_feature]['count'])
+        mean_count_std[valid_feature]['std'] = standard_deviation(data[valid_feature])
+    return mean_count_std
 
-def fix_data(data, rm, CONST):
-    for valid_feature in CONST.VALID_FEATURES:
-        for _ in range(0, rm[valid_feature]['count']):
-            i = data[valid_feature].index(0)
-            data[valid_feature][i] = rm[valid_feature]['mean']
-    return data
+def isEven(nb):  
+    return True if nb ^ 1 == nb + 1 else False 

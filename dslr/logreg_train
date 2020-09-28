@@ -9,15 +9,34 @@ import srcs.display as display
 import srcs.parsing as parsing
 import srcs.Constant as Constant
 
+def set_argParse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('dataset.csv', help='dataset', type=tools.is_train_dataset)
+    return parser.parse_args()
+
+def write_thetas(T, CONST):
+    file = open('thetasValue','w')
+    str  = ""
+
+    for house_name, thetas in zip(CONST.HOUSES_NAME, T):
+        str += house_name + ': '
+        for theta in thetas:
+            str += '|' + np.array2string(theta) + '|'
+        str += '\n'
+
+    file.write(str)
+    file.close()
+
 def prepare_X(dataset_standardized):
     return np.concatenate((np.array(dataset_standardized['Gryffindor']), np.array(dataset_standardized['Slytherin']), np.array(dataset_standardized['Hufflepuff']), np.array(dataset_standardized['Ravenclaw'])))
     
-def prepare_Y(student_count, CONST):
+def prepare_Y(students_count, CONST):
     Y               = {}
-    Y['Gryffindor'] = np.concatenate((np.ones(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
-    Y['Slytherin']  = np.concatenate((np.zeros(student_count['Gryffindor']), np.ones(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
-    Y['Hufflepuff'] = np.concatenate((np.zeros(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.ones(student_count['Hufflepuff']), np.zeros(student_count['Ravenclaw'])))
-    Y['Ravenclaw']  = np.concatenate((np.zeros(student_count['Gryffindor']), np.zeros(student_count['Slytherin']), np.zeros(student_count['Hufflepuff']), np.ones(student_count['Ravenclaw'])))
+    Y['Gryffindor'] = np.concatenate((np.ones(students_count['Gryffindor']), np.zeros(students_count['Slytherin']), np.zeros(students_count['Hufflepuff']), np.zeros(students_count['Ravenclaw'])))
+    Y['Slytherin']  = np.concatenate((np.zeros(students_count['Gryffindor']), np.ones(students_count['Slytherin']), np.zeros(students_count['Hufflepuff']), np.zeros(students_count['Ravenclaw'])))
+    Y['Hufflepuff'] = np.concatenate((np.zeros(students_count['Gryffindor']), np.zeros(students_count['Slytherin']), np.ones(students_count['Hufflepuff']), np.zeros(students_count['Ravenclaw'])))
+    Y['Ravenclaw']  = np.concatenate((np.zeros(students_count['Gryffindor']), np.zeros(students_count['Slytherin']), np.zeros(students_count['Hufflepuff']), np.ones(students_count['Ravenclaw'])))
 
     return Y
 
@@ -29,20 +48,20 @@ def one_vs_all_logistic_regression(X, Y, learning_rate, iterations, CONST):
     return T
 
 def logreg_train():
-    CONST               = Constant.Const()
-    dataset_by_features = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
-    rm                  = tools.real_mean(dataset_by_features, CONST)
-    fixed_data          = tools.fix_data(dataset_by_features, rm, CONST)
-
-    values_for_standardization = tools.get_values_for_standardization(fixed_data, CONST)
-    dataset_standardized       = parsing.get_dataset_by_house_student_and_valid_features('datasets/dataset_train.csv', values_for_standardization, CONST, 1, rm)
-    student_count              = { house_name: tools.count(dataset_standardized[house_name]) for house_name in CONST.HOUSES_NAME }
+    set_argParse()
+    
+    CONST                = Constant.Const()
+    dataset_by_features  = parsing.get_dataset_by_features(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    for_standardization  = tools.get_mean_count_std(dataset_by_features, CONST)
+    dataset_standardized = parsing.get_dataset_standardized('datasets/dataset_train.csv', CONST, 1, for_standardization)
+    students_count       = { house_name: tools.count(dataset_standardized[house_name]) for house_name in CONST.HOUSES_NAME }
 
     X = prepare_X(dataset_standardized)
-    Y = prepare_Y(student_count, CONST)
+    Y = prepare_Y(students_count, CONST)
     T = one_vs_all_logistic_regression(X, Y, 0.1, 1, CONST)
     
-    tools.write_thetas(T, CONST)
+    write_thetas(T, CONST)
+    display.print_success("Logistic Regression has been proceed! You can find thetas in 'thetasValue'.")
 
 if __name__ == '__main__':
     logreg_train()

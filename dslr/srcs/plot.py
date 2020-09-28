@@ -2,13 +2,26 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def histogram(data_sorted_by_house, CONST):
+def histogram(dataset_by_houses, CONST):
+    plt.figure(figsize=(12, 7))
+    plt.suptitle('Scores Distribution Between the Different Houses')
+    for i, feature_name in enumerate(CONST.HISTOGRAM, start=1):
+        plt.subplot(2, 2, i) 
+        for house_name, color in zip(CONST.HOUSES_NAME, CONST.COLORS):
+            plt.hist(dataset_by_houses[house_name][feature_name], alpha=0.5, color=color)
+        plt.tick_params(axis='both', which='both', left=False, labelleft=False, bottom=False, labelbottom=False)
+        plt.xlabel(feature_name)
+        if feature_name == 'Arithmancy':
+            plt.legend(CONST.HOUSES_NAME, bbox_to_anchor=(0, 0.8))
+    plt.show()
+
+def histogram_demo(dataset_by_houses, CONST):
     plt.figure(figsize=(10, 7))
     plt.suptitle('Scores Distribution Between the Different Houses')
     for j in range (1, 14):
         plt.subplot(3, 5, j + 1) 
         for house_name, color in zip(CONST.HOUSES_NAME, CONST.COLORS):
-            plt.hist(data_sorted_by_house[house_name][CONST.FEATURES_NAME[j]], alpha=0.5, color=color)
+            plt.hist(dataset_by_houses[house_name][CONST.FEATURES_NAME[j]], alpha=0.5, color=color)
         plt.tick_params(axis='both', which='both', left=False, labelleft=False, bottom=False, labelbottom=False)
         plt.xlabel(CONST.FEATURES_NAME[j])
         if j == 1:
@@ -37,7 +50,7 @@ def scatter_demo(dataset, FEATURES_NAME):
                 plt.show()
 
 def pair_plot(dataset, CONST):
-    for elem in CONST.TO_REMOVE:
+    for elem in CONST.PAIR_PLOT:
         dataset.pop(elem)
     sns.set_style("white")
     g = sns.pairplot(pd.DataFrame(dataset), y_vars=['Astronomy', 'Herbology', 'Ancient Runes'], hue='Hogwarts House', height=2)
@@ -46,7 +59,7 @@ def pair_plot(dataset, CONST):
     plt.show()
 
 def pair_plot_demo(dataset, CONST):
-    for elem in CONST.TO_REMOVE_DEMO:
+    for elem in CONST.PAIR_PLOT_DEMO:
         dataset.pop(elem)
     sns.set_style("white")
     g1 = sns.pairplot(pd.DataFrame(dataset), y_vars=['Astronomy', 'Herbology', 'Divination', 'Muggle Studies'], hue='Hogwarts House', height=1.5)

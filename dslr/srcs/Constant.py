@@ -1,9 +1,9 @@
-from srcs.tools import count, median, standard_deviation, min, max, quartile, special_mean
+from srcs.tools import count, standard_deviation, min, max, quartile, mean
 
 class Const:
     ROWS_FUNCTION = {
         'Count': lambda collection: count(collection),
-        'Mean':  lambda collection, count: special_mean(collection, count),
+        'Mean':  lambda collection, count: mean(collection, count),
         'Std':   lambda collection, count: standard_deviation(collection),
         'Min':   lambda collection, count: min(collection, count),
         '25%':   lambda collection, count: quartile(collection, count, 1),
@@ -43,7 +43,14 @@ class Const:
         'blue'
     ]
 
-    TO_REMOVE_DEMO = [
+    HISTOGRAM = [
+        'Arithmancy',
+        'Care of Magical Creatures',
+        'Potions',
+        'Transfiguration'
+    ]
+
+    PAIR_PLOT_DEMO = [
         'Arithmancy',
         'Care of Magical Creatures',
         'Potions',
@@ -51,7 +58,7 @@ class Const:
         'Transfiguration'
     ]
 
-    TO_REMOVE = [
+    PAIR_PLOT = [
         'Arithmancy',
         'Defense Against the Dark Arts',
         'Divination',

@@ -18,7 +18,7 @@ def describe():
     set_argparse()
 
     CONST             = Constant.Const()
-    dataset           = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    dataset           = parsing.get_dataset_by_features(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
     described_dataset = calcul.describe_dataset(dataset, CONST.FEATURES_NAME[1:], CONST.ROWS_FUNCTION)
 
     display.print_described_dataset(described_dataset, CONST.FEATURES_NAME[1:], CONST.ROWS_FUNCTION.keys())

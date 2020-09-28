@@ -28,7 +28,7 @@ def gradient(X, Y, T, activated, learning_rate):
 def gradient_descent(X, Y, learning_rate, iterations):
     T = np.zeros(X.shape[1])
 
-    for i in range(iterations):
+    for _ in range(iterations):
         activated = activate(pre_activate(T, X))
         T         = gradient(X, Y, T, activated, learning_rate)
     return T

@@ -10,6 +10,12 @@ import srcs.display as display
 import srcs.parsing as parsing
 import srcs.Constant as Constant
 
+def set_argParse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('dataset.csv', help='dataset', type=tools.is_test_dataset)
+    return parser.parse_args()
+
 def get_T(CONST):
     try:
         file         = open('thetasValue')
@@ -48,18 +54,19 @@ def make_prediction(Y, CONST):
     file.close()
 
 def logreg_predict():
-    CONST               = Constant.Const()
-    dataset_by_features = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
-    rm                  = tools.real_mean(dataset_by_features, CONST)
-    fixed_data          = tools.fix_data(dataset_by_features, rm, CONST)
+    set_argParse()
 
-    values_for_standardization = tools.get_values_for_standardization(fixed_data, CONST)
-    dataset_standardized       = parsing.get_dataset_by_house_student_and_valid_features('datasets/dataset_test.csv', values_for_standardization, CONST, 2, rm)
+    CONST                = Constant.Const()
+    dataset_by_features  = parsing.get_dataset_by_features(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    for_standardization  = tools.get_mean_count_std(dataset_by_features, CONST)
+    dataset_standardized = parsing.get_dataset_standardized('datasets/dataset_test.csv', CONST, 2, for_standardization)
 
     X = np.array(dataset_standardized)
     T = get_T(CONST)
     Y = get_Y(T, X, CONST)
+
     make_prediction(Y, CONST)
+    display.print_success("Predictions have been made! You can find them in 'houses.csv'.")
     
 if __name__ == '__main__':
     logreg_predict()

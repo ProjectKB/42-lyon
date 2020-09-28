@@ -17,7 +17,7 @@ def set_argParse():
 def scatter_plot():
     args    = set_argParse()
     CONST   = Constant.Const()
-    dataset = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
+    dataset = parsing.get_dataset_by_features(sys.argv[1], CONST.FEATURES_NAME[1:], 1)
 
     plot.scatter(dataset) if not args.demo else plot.scatter_demo(dataset, CONST.FEATURES_NAME[1:])
 

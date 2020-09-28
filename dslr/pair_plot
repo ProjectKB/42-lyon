@@ -17,7 +17,7 @@ def set_argParse():
 def pair_plot():
     args    = set_argParse()
     CONST   = Constant.Const()
-    dataset = parsing.get_dataset(sys.argv[1], CONST.FEATURES_NAME, 2)
+    dataset = parsing.get_dataset_by_features(sys.argv[1], CONST.FEATURES_NAME, 2)
 
     plot.pair_plot(dataset, CONST) if not args.demo else plot.pair_plot_demo(dataset, CONST)
 
