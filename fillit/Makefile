@@ -20,11 +20,11 @@ CC= clang
 ifeq ($(GRAPHIC), yes)
 	CFLAGS= -Wall -Wextra -Werror -DGRAPHIC=1
 else ifeq ($(GRAPHIC), step)
-	CFLAGS= -Wall -Wextra -Werror -DGRAPHIC=2
+	-DGRAPHIC=2
 else ifeq ($(GRAPHIC), crazy)
-	CFLAGS= -Wall -Wextra -Werror -DGRAPHIC=3
+	-DGRAPHIC=3
 else
-	CFLAGS= -Wall -Wextra -Werror
+	
 endif
 
 SRC = check_errors.c\
