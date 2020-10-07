@@ -42,16 +42,15 @@ static void proceed_block(t_sha *sha, unsigned char *line, int len)
     int k;
 
     j = -4;
-    k = -1;
+    k = 0;
     i = -1;
     sha->nb_bits += (uint64_t)len;
     while (++i < len)
         sha->input[i] = line[i];
     if (i == 64)
     {
-        while (++k < 16 && (j += 4) < 64)
-            sha->words[k] = sha->input[j] << 24 | sha->input[j + 1] << 16 | sha->input[j + 2] << 8 | sha->input[j + 3];
-        k--;
+        while (k < 16 && (j += 4) < 64)
+            sha->words[k++] = sha->input[j] << 24 | sha->input[j + 1] << 16 | sha->input[j + 2] << 8 | sha->input[j + 3];
         while (++k < 64)
             sha->words[k] = σ1(sha->words[k - 2]) + sha->words[k - 7] + σ0(sha->words[k - 15]) + sha->words[k - 16];
         transform_block(sha);
