@@ -1,17 +1,17 @@
 #include "md5.h"
 
-void transform_buffer(t_block *block, uint32_t *buf, uint32_t e, int i)
+static void transform_buffer(t_block *block, uint32_t *buf, uint32_t e, int i)
 {
     uint32_t tmp;
 
     tmp = buf[3];
     buf[3] = buf[2];
     buf[2] = buf[1];
-    buf[1] = buf[1] + rotate_left(buf[0] + e + block->words[block->WI[i]] + block->SIN[i], block->SHIFT[i]);
+    buf[1] = buf[1] + rotl(buf[0] + e + block->words[g_WI[i]] + g_SIN[i], g_SHIFT[i]);
     buf[0] = tmp;
 }
 
-void transform_block(t_block *block)
+static void transform_block(t_block *block)
 {
     int i;
     int j;
@@ -24,12 +24,12 @@ void transform_block(t_block *block)
     while (++i < 4)
         buf[i] = block->buf[i];
     while (++j < 64)
-        transform_buffer(block, buf, block->ROUND_FUNCTIONS[j / 16](buf[1], buf[2], buf[3]), j);
+        transform_buffer(block, buf, g_ROUND_FUNCTIONS[j / 16](buf[1], buf[2], buf[3]), j);
     while (++k < 4)
         block->buf[k] += buf[k];
 }
 
-void proceed_block(t_block *block, unsigned char *line, int len)
+static void proceed_block(t_block *block, unsigned char *line, int len)
 {
     int i;
     int j;
@@ -49,7 +49,7 @@ void proceed_block(t_block *block, unsigned char *line, int len)
     }
 }
 
-void proceed_last_block(t_block *block)
+static void proceed_last_block(t_block *block)
 {
     int i;
     int j;
@@ -62,15 +62,15 @@ void proceed_last_block(t_block *block)
     k = -1;
     start = block->nb_bits % 64;
     while ((l = ++i + start) < 64)
-        block->input[l] = block->PADDING[i];
+        block->input[l] = g_PADDING[i];
     while (++k < 14 && (j += 4) < 56)
         block->words[k] = block->input[j + 3] << 24 | block->input[j + 2] << 16 | block->input[j + 1] << 8 | block->input[j];
-    block->words[14] = (uint32_t)(block->nb_bits * 8);
-	block->words[15] = (uint32_t)((block->nb_bits * 8) >> 32);
+    block->words[14] = (uint32_t)(block->nb_bits << 3);
+	block->words[15] = (uint32_t)((block->nb_bits << 3) >> 32);
     transform_block(block);
 }
 
-void digest_message(t_block *block)
+static void digest_message(t_block *block)
 {
     int i;
     int j;
@@ -86,7 +86,7 @@ void digest_message(t_block *block)
     }
 }
 
-void print_hash(t_block *block)
+static void print_hash(t_block *block)
 {
     int i;
 
@@ -113,13 +113,3 @@ int md5(const char *fname, t_block *block)
     print_hash(block);
     return 0;
 }
-
-int main(int argc, char **argv) 
-{ 
-    t_block       block;
-    int           fd;
-
-    init_struct(&block);
-    md5(argv[1], &block);
-    return 0; 
-}  

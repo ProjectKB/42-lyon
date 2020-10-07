@@ -1,10 +1,17 @@
 #ifndef MD5_H
 
 # define MD5_H
-# include "libft.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdint.h>
+# include "shared.h"
+
+# define M0 0x67452301
+# define M1 0xEFCDAB89
+# define M2 0x98BADCFE
+# define M3 0x10325476
+
+extern const uint32_t      g_SIN[64];
+extern const unsigned char g_WI[64];
+extern const uint32_t      g_SHIFT[64];
+extern uint32_t            (*g_ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint32_t z);
 
 typedef struct	s_block
 {
@@ -13,16 +20,10 @@ typedef struct	s_block
     uint32_t      buf[4];
     unsigned char input[64];
     unsigned char digest[16];
-    uint32_t      SIN[64];
-    unsigned char WI[64];
-    unsigned char PADDING[64];
-    uint32_t      SHIFT[64];
-    uint32_t(*ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint32_t z);
 }				t_block;
 
-void init_struct(t_block *block);
-void print_words(t_block *block);
-uint32_t rotate_left(uint32_t x, uint32_t n);
-uint32_t F(uint32_t x, uint32_t y, uint32_t z);
+void     init_md5(t_block *block);
+uint32_t rotl(uint32_t x, uint32_t n);
+int      md5(const char *fname, t_block *block);
 
 #endif
