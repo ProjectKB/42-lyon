@@ -1,20 +1,5 @@
 #include "md5.h"
 
-static void print_words(t_block *block)
-{
-    int i;
-
-    i = -1;
-    while (++i < 16)
-    {
-        printf("|%3d|", (unsigned char)(block->words[i] & 0xFF));
-        printf("|%3d|", (unsigned char)((block->words[i] >> 8) & 0xFF));
-        printf("|%3d|", (unsigned char)((block->words[i] >> 16) & 0xFF));
-        printf("|%3d|\n", (unsigned char)((block->words[i] >> 24) & 0xFF));
-    }
-    printf("\n");
-}
-
 static void transform_buffer(t_block *block, uint32_t *buf, uint32_t e, int i)
 {
     uint32_t tmp;
@@ -77,7 +62,6 @@ static void special_process(t_block *block)
     k = -1;
     while (++k < 16 && (j += 4) < 64)
         block->words[k] = block->input[j + 3] << 24 | block->input[j + 2] << 16 | block->input[j + 1] << 8 | block->input[j];    
-    print_words(block);
     transform_block(block);
     while (++i < 56)
         block->input[i] = 0;
@@ -116,7 +100,7 @@ static void digest_message(t_block *block)
     j = -4;
     while (++i < 4 && (j += 4) < 16)
     {
-        block->digest[j] = (unsigned char)(block->buf[i] & 0xFF);
+        block->digest[j] = (unsigned char)((block->buf[i]) & 0xFF);
         block->digest[j + 1] = (unsigned char)((block->buf[i] >> 8) & 0xFF);
         block->digest[j + 2] = (unsigned char)((block->buf[i] >> 16) & 0xFF);
         block->digest[j + 3] = (unsigned char)((block->buf[i] >> 24) & 0xFF);
