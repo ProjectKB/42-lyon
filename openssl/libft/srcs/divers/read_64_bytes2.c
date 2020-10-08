@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   get_next_line.c                                  .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/12 12:51:10 by rgermain     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 15:21:28 by rgermain    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
-/* ************************************************************************** */
-
-#include "get_next_line.h"
+#include "libft.h"
 
 static t_list	*ft_find_fd(t_list **list, int fd)
 {
@@ -65,7 +52,7 @@ static int		free_lst(t_list *list)
 	return (0);
 }
 
-int				read_64_bytes(const int fd, unsigned char **line)
+int				read_64_bytes2(const int fd, unsigned char **line)
 {
 	static t_list	*p_list = NULL;
 	t_list			*list;

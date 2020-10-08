@@ -23,6 +23,6 @@ size_t			len_wuchart(unsigned char *str);
 int				nlen_wchar(wchar_t *str, size_t len);
 void			convert_wchar(unsigned char **new, wchar_t wc, size_t *i);
 char			**ft_createtab(int nb, char c);
-int				read_64_bytes(const int fd, unsigned char **line);
+int				read_64_bytes2(const int fd, unsigned char **line);
 
 #endif

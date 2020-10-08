@@ -44,7 +44,7 @@ CHEADER = $(addprefix $(DHEADER),$(HEADER))
 CSRC_divers = $(addprefix $(D_DIVERS),$(SRC_divers))
 D_DIVERS = divers/
 SRC_divers = 		ft_countwchar.c ft_match.c ft_sort_integer_table.c ft_swap.c get_next_line.c \
-					ft_createtab.c read_64_bytes.c
+					ft_createtab.c read_64_bytes2.c
 
 
 CSRC_ISMETHODE = $(addprefix $(D_IS_METHODE),$(SRC_ISMETHODE))  

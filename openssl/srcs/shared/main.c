@@ -5,7 +5,6 @@ int main(int argc, char **argv)
 { 
     t_block       block;
     t_sha         sha;
-    int           fd;
 
     //init_md5(&block);
     //md5(argv[1], &block);
