@@ -68,11 +68,11 @@ uint32_t(*g_ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint32_t z) = {
     F, G, H, I
 };
 
-void init_md5(t_block *block)
+void init_md5(t_md5 *md5)
 {
-    block->nb_bits = 0;
-    block->buf[0] = M0;
-    block->buf[1] = M1;
-    block->buf[2] = M2;
-    block->buf[3] = M3;
+    md5->nb_bits = 0;
+    md5->buf[0] = M0;
+    md5->buf[1] = M1;
+    md5->buf[2] = M2;
+    md5->buf[3] = M3;
 }

@@ -13,17 +13,17 @@ extern const unsigned char g_WI[64];
 extern const uint32_t      g_SHIFT[64];
 extern uint32_t            (*g_ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint32_t z);
 
-typedef struct	s_block
+typedef struct	s_md5
 {
     uint64_t      nb_bits;
     uint32_t      words[16];
     uint32_t      buf[4];
     unsigned char input[64];
     unsigned char digest[16];
-}				t_block;
+}				t_md5;
 
-void     init_md5(t_block *block);
+void     init_md5(t_md5 *md5);
 uint32_t rotl(uint32_t x, uint32_t n);
-int      md5(const char *fname, t_block *block);
+int      process_md5(t_md5 *md5, char *arg, int mod);
 
 #endif

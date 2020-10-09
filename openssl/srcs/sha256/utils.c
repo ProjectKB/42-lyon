@@ -54,7 +54,7 @@ uint32_t σ1(uint32_t x)
     return rotr(x, 17) ^ rotr(x, 19) ^ (x >> 10);
 }
 
-void init_sha256(t_sha *sha)
+void init_sha256(t_sha256*sha)
 {
     sha->nb_bits = 0;
     sha->buf[0] = S0;

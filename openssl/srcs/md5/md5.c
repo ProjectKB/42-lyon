@@ -1,17 +1,17 @@
 #include "md5.h"
 
-static void transform_buffer(t_block *block, uint32_t *buf, uint32_t e, int i)
+static void transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
 {
     uint32_t tmp;
 
     tmp = buf[3];
     buf[3] = buf[2];
     buf[2] = buf[1];
-    buf[1] = buf[1] + rotl(buf[0] + e + block->words[g_WI[i]] + g_SIN[i], g_SHIFT[i]);
+    buf[1] = buf[1] + rotl(buf[0] + e + md5->words[g_WI[i]] + g_SIN[i], g_SHIFT[i]);
     buf[0] = tmp;
 }
 
-static void transform_block(t_block *block)
+static void transform_block(t_md5 *md5)
 {
     int i;
     int j;
@@ -22,14 +22,14 @@ static void transform_block(t_block *block)
     j = -1;
     k = -1;
     while (++i < 4)
-        buf[i] = block->buf[i];
+        buf[i] = md5->buf[i];
     while (++j < 64)
-        transform_buffer(block, buf, g_ROUND_FUNCTIONS[j / 16](buf[1], buf[2], buf[3]), j);
+        transform_buffer(md5, buf, g_ROUND_FUNCTIONS[j / 16](buf[1], buf[2], buf[3]), j);
     while (++k < 4)
-        block->buf[k] += buf[k];
+        md5->buf[k] += buf[k];
 }
 
-static void proceed_block(t_block *block, unsigned char *line, int len)
+static void proceed_block(t_md5 *md5, unsigned char *line, int len)
 {
     int i;
     int j;
@@ -37,21 +37,21 @@ static void proceed_block(t_block *block, unsigned char *line, int len)
     int l;
 
     i = -1;
-    j = block->nb_bits % 64 - 1;
+    j = md5->nb_bits % 64 - 1;
     k = -1;
     l = -4;
-    block->nb_bits += (uint64_t)len;
+    md5->nb_bits += (uint64_t)len;
     while (++i < len)
-        block->input[++j] = line[i];
+        md5->input[++j] = line[i];
     if (i == 64)
     {
         while (++k < 16 && (l += 4) < 64)
-            block->words[k] = block->input[l + 3] << 24 | block->input[l + 2] << 16 | block->input[l + 1] << 8 | block->input[l];
-        transform_block(block);
+            md5->words[k] = md5->input[l + 3] << 24 | md5->input[l + 2] << 16 | md5->input[l + 1] << 8 | md5->input[l];
+        transform_block(md5);
     }
 }
 
-static void special_process(t_block *block)
+static void special_process(t_md5 *md5)
 {
     int i;
     int j;
@@ -61,13 +61,13 @@ static void special_process(t_block *block)
     j = -4;
     k = -1;
     while (++k < 16 && (j += 4) < 64)
-        block->words[k] = block->input[j + 3] << 24 | block->input[j + 2] << 16 | block->input[j + 1] << 8 | block->input[j];    
-    transform_block(block);
+        md5->words[k] = md5->input[j + 3] << 24 | md5->input[j + 2] << 16 | md5->input[j + 1] << 8 | md5->input[j];    
+    transform_block(md5);
     while (++i < 56)
-        block->input[i] = 0;
+        md5->input[i] = 0;
 }
 
-static void proceed_last_block(t_block *block)
+static void proceed_last_md5(t_md5 *md5)
 {
     int i;
     int j;
@@ -78,20 +78,20 @@ static void proceed_last_block(t_block *block)
     i = -1;
     j = -4;
     k = -1;
-    start = block->nb_bits % 64;
+    start = md5->nb_bits % 64;
     block_len = start < 56 ? 56 : 64;
     while (start < block_len)
-        block->input[start++] = g_PADDING[++i];
+        md5->input[start++] = g_PADDING[++i];
     if (start > 56)
-        special_process(block);
+        special_process(md5);
     while (++k < 14 && (j += 4) < 56)
-        block->words[k] = block->input[j + 3] << 24 | block->input[j + 2] << 16 | block->input[j + 1] << 8 | block->input[j];    
-    block->words[14] = (uint32_t)(block->nb_bits << 3);
-    block->words[15] = (uint32_t)((block->nb_bits << 3) >> 32);
-    transform_block(block);
+        md5->words[k] = md5->input[j + 3] << 24 | md5->input[j + 2] << 16 | md5->input[j + 1] << 8 | md5->input[j];    
+    md5->words[14] = (uint32_t)(md5->nb_bits << 3);
+    md5->words[15] = (uint32_t)((md5->nb_bits << 3) >> 32);
+    transform_block(md5);
 }
 
-static void digest_message(t_block *block)
+static void digest_message(t_md5 *md5)
 {
     int i;
     int j;
@@ -100,37 +100,36 @@ static void digest_message(t_block *block)
     j = -4;
     while (++i < 4 && (j += 4) < 16)
     {
-        block->digest[j] = (unsigned char)((block->buf[i]) & 0xFF);
-        block->digest[j + 1] = (unsigned char)((block->buf[i] >> 8) & 0xFF);
-        block->digest[j + 2] = (unsigned char)((block->buf[i] >> 16) & 0xFF);
-        block->digest[j + 3] = (unsigned char)((block->buf[i] >> 24) & 0xFF);
+        md5->digest[j] = (unsigned char)((md5->buf[i]) & 0xFF);
+        md5->digest[j + 1] = (unsigned char)((md5->buf[i] >> 8) & 0xFF);
+        md5->digest[j + 2] = (unsigned char)((md5->buf[i] >> 16) & 0xFF);
+        md5->digest[j + 3] = (unsigned char)((md5->buf[i] >> 24) & 0xFF);
     }
 }
 
-static void print_hash(t_block *block)
+static void print_hash(t_md5 *md5)
 {
     int i;
 
     i = -1;
     while (++i < 16)
-        printf("%02x", block->digest[i]);
+        printf("%02x", md5->digest[i]);
     printf("\n");
 }
 
-int md5(const char *fname, t_block *block)
+
+
+int process_md5(t_md5 *md5, char *arg, int mod)
 {
     int  fd;
-    unsigned char line[64];
     int  len;
+    unsigned char line[64];
 
-    if ((fd = open(fname, O_RDONLY)) != -1)
-        while ((len = read_64_bytes(fd, line)))
-            proceed_block(block, line, len);
-    else
-       while ((len = read_64_bytes(0, line)))
-            proceed_block(block, line, len);
-    proceed_last_block(block);
-    digest_message(block);
-    print_hash(block);
+    fd = get_fd(arg, mod);
+    while ((len = read_64_bytes(fd, line, arg, mod)))
+        proceed_block(md5, line, len);
+    proceed_last_md5(md5);
+    digest_message(md5);
+    print_hash(md5);
     return 0;
 }

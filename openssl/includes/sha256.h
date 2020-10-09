@@ -14,7 +14,7 @@
 
 extern const uint32_t g_K[64];
 
-typedef struct s_sha
+typedef struct s_sha256
 {
     uint64_t      nb_bits;
     uint32_t      words[64];
@@ -22,7 +22,7 @@ typedef struct s_sha
     unsigned char input[64];
     unsigned char digest[32];
 
-}              t_sha;
+}              t_sha256;
 
 uint32_t rotr(uint32_t x, uint32_t n);
 uint32_t ch(uint32_t x, uint32_t y, uint32_t z);
@@ -31,7 +31,7 @@ uint32_t Σ0(uint32_t x);
 uint32_t Σ1(uint32_t x);
 uint32_t σ0(uint32_t x);
 uint32_t σ1(uint32_t x);
-void init_sha256(t_sha *sha);
-int sha256(const char *fname, t_sha *sha);
+void init_sha256(t_sha256 *sha);
+int process_sha256(t_sha256 *sha, char *arg, int mod);
 
 #endif
