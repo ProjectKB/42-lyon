@@ -9,7 +9,11 @@
 
 # define FILE 0
 # define STDOUT 1
-# define STRING 2
+# define STDIN 2
+# define STRING 3
+# define QUIET 4
+# define REVERSE 5
+
 # define false 0
 # define true 1
 

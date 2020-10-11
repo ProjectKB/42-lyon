@@ -15,6 +15,11 @@ extern uint32_t            (*g_ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint3
 
 typedef struct	s_md5
 {
+    int q; // quiet
+    int r; // reverse
+    int p; // print name of arg
+    int a; // active
+    int f; // only file
     uint64_t      nb_bits;
     uint32_t      words[16];
     uint32_t      buf[4];

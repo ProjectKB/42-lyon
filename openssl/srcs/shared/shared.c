@@ -19,7 +19,10 @@ int read_64_bytes(int fd, unsigned char *line, char *arg, int mod)
     if (mod != STRING)
         return (read(fd, line, 64));
     if (!arg || stop)
+    {
+        stop = false;
         return (0);
+    }
     while (++i < 64)
     {
         if (!arg[++j] && (stop = true))

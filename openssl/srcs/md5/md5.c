@@ -67,7 +67,7 @@ static void special_process(t_md5 *md5)
         md5->input[i] = 0;
 }
 
-static void proceed_last_md5(t_md5 *md5)
+static void proceed_last_block(t_md5 *md5)
 {
     int i;
     int j;
@@ -125,10 +125,17 @@ int process_md5(t_md5 *md5, char *arg, int mod)
     int  len;
     unsigned char line[64];
 
-    fd = get_fd(arg, mod);
+    if ((fd = get_fd(arg, mod)) == -1 && mod == FILE)
+    {
+        printf("FILE DOESNT EXIST\n");
+        return 0;
+    }
     while ((len = read_64_bytes(fd, line, arg, mod)))
+    {
         proceed_block(md5, line, len);
-    proceed_last_md5(md5);
+        // join line in case of -p
+    }
+    proceed_last_block(md5);
     digest_message(md5);
     print_hash(md5);
     return 0;
