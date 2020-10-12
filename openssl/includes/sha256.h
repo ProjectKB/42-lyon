@@ -31,7 +31,7 @@ uint32_t Σ0(uint32_t x);
 uint32_t Σ1(uint32_t x);
 uint32_t σ0(uint32_t x);
 uint32_t σ1(uint32_t x);
-void init_sha256(t_sha256 *sha);
-int process_sha256(t_sha256 *sha, char *arg, int mod);
+void init_sha256(t_sha256 *sha256);
+int process_sha256(t_sha256 *sha256, char *arg, int mod);
 
 #endif

@@ -1,23 +1,12 @@
 #include "md5.h"
 #include "sha256.h"
 
-void flag(int argc, char **argv)
-{
-    return ;
-}
-
-void hash(int argc, char**argv)
+void start(int argc, char**argv)
 {
     if (argc == 1)
-    {
-        printf("usage: ft_ssl command [command opts] [command args]\n");
-        exit(0);
-    }
+        print_and_quit("usage: ft_ssl command [command opts] [command args]");
     else if (argc > 1 && ft_strcmp(argv[1], "md5") && ft_strcmp(argv[1], "sha256"))
-    {
-        printf("ft_ssl: Error: '%s' is an invalid command.\n\nStandard commands:\n\nMessage Digest commands:\nmd5\nsha256\n", argv[1]);
-        exit(0);
-    }
+        bad_arg(argv[1]);
 }
 
 int is_illegal_flag(char *arg)
@@ -28,58 +17,47 @@ int is_illegal_flag(char *arg)
 void proceed(t_md5 *md5, int argc, char **argv, int *i)
 {
     init_md5(md5);
-    if (md5->f)
+    if (test_bit(&md5->flag, FLAG_F))
         process_md5(md5, argv[*i], FILE);
     else if (!ft_strcmp(argv[*i], "-s"))
     {
         if (++(*i) == argc)
-        {
-            printf("STRING EMPTY\n");
-            exit(0);
-        }
-        md5->a = 1;
+            empty_string();
+        set_bit(&md5->flag, FLAG_A, FLAG_P);
         process_md5(md5, argv[*i], STRING);
     }
     else if (!ft_strcmp(argv[*i], "-p"))
     {
-        md5->a = 1;
+        set_bit(&md5->flag, FLAG_AP, 0);
         process_md5(md5, argv[*i], STDIN);
     }
     else
     {
-        md5->f = 1;
-        md5->a = 1;
+        set_bit(&md5->flag, FLAG_AF, FLAG_P);
         process_md5(md5, argv[*i], FILE);
     }
 }
 
-void main_loop(int argc, char **argv, t_md5 *md5, t_sha256 *sha256)
+void main_loop(int argc, char **argv, t_md5 *md5, t_sha256 *sha_256)
 {
     int i;
-    int mod;
 
     i = 1;
-    md5->a = 0;
-    md5->r = 0;
-    md5->q = 0;
-    md5->f = 0;
+    md5->flag = 0;
     if (!ft_strcmp(argv[1], "md5"))
     {
         while (++i < argc)
         {
             if (!ft_strcmp(argv[i], "-q"))
-                md5->q = 1;
+                set_bit(&md5->flag, FLAG_Q, 0);
             else if (!ft_strcmp(argv[i], "-r"))
-                md5->r = 1;
+                set_bit(&md5->flag, FLAG_R, 0);
             else if (is_illegal_flag(argv[i]))
-            {
-                printf("ILLEGAL ARG\n");
-                exit(0);
-            }
+                illegal_flag(argv[i]);
             else
                 proceed(md5, argc, argv, &i);
         }
-        if (!md5->a)
+        if (!test_bit(&md5->flag, FLAG_A))
         {
             init_md5(md5);
             process_md5(md5, 0, STDOUT);
@@ -92,7 +70,7 @@ int main(int argc, char **argv)
     t_md5       md5;
     t_sha256    sha256;
 
-    hash(argc, argv);
+    start(argc, argv);
     main_loop(argc, argv, &md5, &sha256);
     return 0; 
 }  

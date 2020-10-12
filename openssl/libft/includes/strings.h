@@ -63,5 +63,6 @@ char			*ft_strupcase(char *str);
 char			*ft_itoa_base(int n, int base);
 char			*ft_strncpychr(const char *str, int c);
 char			*ft_strcpychr(const char *str, int c);
+char	        *ft_strjoin2(void *s1, void *s2);
 
 #endif

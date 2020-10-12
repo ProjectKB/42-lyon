@@ -99,7 +99,7 @@ SRC_STRINGS =		ft_atoi.c ft_str_is_uppercase.c ft_strcpychr.c ft_strlcat.c ft_st
 					ft_str_is_alpha.c ft_strchr.c ft_strequ.c ft_strlowcase.c ft_strnequ.c ft_strsub.c \
 					ft_str_is_lowercase.c ft_strclr.c ft_striter.c ft_strmap.c ft_strnew.c ft_strtrim.c \
 					ft_str_is_numeric.c ft_strcmp.c ft_striteri.c ft_strmapi.c ft_strnstr.c ft_strupcase.c \
-					ft_str_is_printable.c ft_strcpy.c ft_strjoin.c ft_strncat.c ft_strrchr.c
+					ft_str_is_printable.c ft_strcpy.c ft_strjoin.c ft_strncat.c ft_strrchr.c ft_strjoin2.c
 
 COUNT = "1"
 SPACE = "                  "

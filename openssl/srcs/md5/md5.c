@@ -107,36 +107,48 @@ static void digest_message(t_md5 *md5)
     }
 }
 
-static void print_hash(t_md5 *md5)
+void custom_print(t_md5 *md5, char *arg, int mod, int turn)
+{   
+    if (!test_bit(&md5->flag, FLAG_A) || test_bit(&md5->flag, FLAG_QP))
+        return ;
+    else if (!test_bit(&md5->flag, FLAG_R) && !turn)
+        mod == STRING ? printf("MD5 (\"%s\") = ", arg) : printf("MD5 (%s) = ", arg);
+    else if (test_bit(&md5->flag, FLAG_R) && turn)
+        mod == STRING ? printf(" \"%s\"", arg) : printf(" %s", arg);
+}
+
+static void print_hash(t_md5 *md5, char *arg, int mod, char *spe)
 {
     int i;
 
     i = -1;
+    if (mod == STDIN && ft_strcmp(spe, ""))
+        printf("%s", spe);
+    custom_print(md5, arg, mod, 0);
     while (++i < 16)
         printf("%02x", md5->digest[i]);
+    custom_print(md5, arg, mod, 1);
     printf("\n");
 }
-
-
 
 int process_md5(t_md5 *md5, char *arg, int mod)
 {
     int  fd;
     int  len;
-    unsigned char line[64];
+    unsigned char line[65];
+    char *spe;
 
+    spe = ft_strdup("");
     if ((fd = get_fd(arg, mod)) == -1 && mod == FILE)
-    {
-        printf("FILE DOESNT EXIST\n");
-        return 0;
-    }
+        return no_such_file(arg);
     while ((len = read_64_bytes(fd, line, arg, mod)))
     {
         proceed_block(md5, line, len);
-        // join line in case of -p
+        if (mod == STDIN)
+            spe = ft_strjoin2(spe, line);
     }
     proceed_last_block(md5);
     digest_message(md5);
-    print_hash(md5);
+    print_hash(md5, arg, mod, spe);
     return 0;
 }
