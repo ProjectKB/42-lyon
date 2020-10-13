@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "***************** EMPTY *****************"
+echo -n "FILE:    "
+./ft_ssl md5 -q ./test/file/empty
+echo -n "STRING:  "
+cat ./test/file/empty | ./ft_ssl md5 -q
+echo -n "STDOUT:  "
+./ft_ssl md5 -q -s ""
+echo -n "OPENSSL: "
+./test/file/empty | md5
+echo "*****************************************"
+
+echo ""
+
+echo "********** LESS THAN 56 BYTES ***********"
+echo -n "FILE:    "
+./ft_ssl md5 -q ./test/file/less_than_56
+echo -n "STRING:  "
+cat ./test/file/less_than_56 | ./ft_ssl md5
+echo -n "STDOUT:  "
+./ft_ssl md5 -q -s "abcdefghijabcdefghijabcdefghij"
+echo -n "OPENSSL: "
+cat ./test/file/less_than_56 | md5
+echo "*****************************************"
+
+echo ""
+
+echo "********* BETWEEN 56 & 64 BYTES *********"
+echo -n "FILE:    "
+./ft_ssl md5 -q ./test/file/between_56_\&_64
+echo -n "STRING:  "
+cat ./test/file/between_56_\&_64 | ./ft_ssl md5 -q
+echo -n "STDOUT:  "
+./ft_ssl md5 -q -s "123456789
+123456789
+123456789
+123456789
+123456789
+123456789
+1234"
+echo -n "OPENSSL: "
+cat ./test/file/between_56_\&_64 | md5
+echo "*****************************************"
+
+echo ""
+
+echo "********** MORE THAN 64 BYTES ***********"
+echo -n "FILE:    "
+./ft_ssl md5 -q ./test/file/more_than_64
+echo -n "STRING:  "
+cat ./test/file/more_than_64 | ./ft_ssl md5 -q
+echo -n "STDOUT:  "
+./ft_ssl md5 -q -s "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
+abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
+abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
+abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij
+abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij"
+echo -n "OPENSSL: "
+cat ./test/file/more_than_64 | md5
+echo "*****************************************"
+
+echo ""
+
+echo "****************** BIG ******************"
+echo -n "FILE:    "
+./ft_ssl md5 -q ./test/file/big
+echo -n "STDOUT:  "
+cat ./test/file/big | ./ft_ssl md5
+echo -n "OPENSSL: "
+cat ./test/file/big | md5
+echo "*****************************************"

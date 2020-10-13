@@ -26,7 +26,7 @@ void		print_hash(t_hash *h, char *arg, int mod, char *stdin)
 		if (h->i == MD5)
 			ft_printf("%02x", h->md5.digest[i]);
 		else
-			ft_printf("%02x", h->sha256.buf[i]);
+			ft_printf("%.8x", h->sha256.buf[i]);
 	}
 	custom_print(h, arg, mod, 1);
 	ft_printf("\n");
