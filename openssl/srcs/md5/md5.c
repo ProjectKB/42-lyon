@@ -2,7 +2,7 @@
 
 static void transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
 {
-    uint32_t tmp;
+    uint32_t    tmp;
 
     tmp = buf[3];
     buf[3] = buf[2];
@@ -13,10 +13,10 @@ static void transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
 
 static void transform_block(t_md5 *md5)
 {
-    int i;
-    int j;
-    int k;
-    uint32_t buf[4];
+    int         i;
+    int         j;
+    int         k;
+    uint32_t    buf[4];
 
     i = -1;
     j = -1;
@@ -29,7 +29,23 @@ static void transform_block(t_md5 *md5)
         md5->buf[k] += buf[k];
 }
 
-void proceed_block_md5(t_hash *h, unsigned char *line, int len)
+static void special_process(t_md5 *md5)
+{
+    int i;
+    int j;
+    int k;
+
+    i = -1;
+    j = -4;
+    k = -1;
+    while (++k < 16 && (j += 4) < 64)
+        md5->words[k] = md5->input[j + 3] << 24 | md5->input[j + 2] << 16 | md5->input[j + 1] << 8 | md5->input[j];    
+    transform_block(md5);
+    while (++i < 56)
+        md5->input[i] = 0;
+}
+
+void    proceed_block_md5(t_hash *h, unsigned char *line, int len)
 {
     int i;
     int j;
@@ -51,23 +67,7 @@ void proceed_block_md5(t_hash *h, unsigned char *line, int len)
     }
 }
 
-static void special_process(t_md5 *md5)
-{
-    int i;
-    int j;
-    int k;
-
-    i = -1;
-    j = -4;
-    k = -1;
-    while (++k < 16 && (j += 4) < 64)
-        md5->words[k] = md5->input[j + 3] << 24 | md5->input[j + 2] << 16 | md5->input[j + 1] << 8 | md5->input[j];    
-    transform_block(md5);
-    while (++i < 56)
-        md5->input[i] = 0;
-}
-
-void proceed_last_block_md5(t_hash *h)
+void    proceed_last_block_md5(t_hash *h)
 {
     int i;
     int j;
@@ -89,20 +89,4 @@ void proceed_last_block_md5(t_hash *h)
     h->md5.words[14] = (uint32_t)(h->md5.nb_bits << 3);
     h->md5.words[15] = (uint32_t)((h->md5.nb_bits << 3) >> 32);
     transform_block(&h->md5);
-}
-
-void digest_message(t_md5 *md5)
-{
-    int i;
-    int j;
-
-    i = -1;
-    j = -4;
-    while (++i < 4 && (j += 4) < 16)
-    {
-        md5->digest[j] = (unsigned char)((md5->buf[i]) & 0xFF);
-        md5->digest[j + 1] = (unsigned char)((md5->buf[i] >> 8) & 0xFF);
-        md5->digest[j + 2] = (unsigned char)((md5->buf[i] >> 16) & 0xFF);
-        md5->digest[j + 3] = (unsigned char)((md5->buf[i] >> 24) & 0xFF);
-    }
 }

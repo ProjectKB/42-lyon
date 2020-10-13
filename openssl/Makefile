@@ -6,16 +6,22 @@ INCLUDE = -I includes -I libft/includes
 
 CC = gcc
 
-SRC =	shared/main.c \
-		md5/utils.c \
-		md5/md5.c \
-		sha256/sha256.c \
-		sha256/utils.c \
-		shared/shared.c \
+SRC = shared/main.c \
+	  shared/shared.c \
+	  shared/globals.c \
+	  shared/errors.c \
+	  shared/tools.c \
+	  md5/tools.c \
+	  md5/md5.c \
+	  md5/globals.c \
+	  sha256/sha256.c \
+	  sha256/tools1.c \
+	  sha256/tools2.c \
+	  sha256/globals.c \
 
 OBJ = $(SRC:.c=.o)
 
-HEADER = ft_ssl.h
+HEADER = ft_ssl.h md5.h sha256.h
 
 DSRC = srcs/
 DOBJ = obj/

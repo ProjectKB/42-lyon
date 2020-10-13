@@ -1,6 +1,6 @@
 #include "ft_ssl.h"
 
-void check_minimum(int argc, char**argv, t_hash *h)
+static void check_minimum(int argc, char**argv, t_hash *h)
 {
     if (argc == 1)
         print_and_quit("usage: ft_ssl command [command opts] [command args]");
@@ -8,12 +8,7 @@ void check_minimum(int argc, char**argv, t_hash *h)
         bad_arg(argv[1]);
 }
 
-int is_illegal_flag(char *arg)
-{
-    return arg[0] == '-' && (arg[1] == '\0' || (arg[1] != 'p' && arg[1] != 's')) ? true : false;
-}
-
-void pre_process(t_hash *h, int argc, char **argv, int *i)
+static void pre_process(t_hash *h, int argc, char **argv, int *i)
 {
     g_init_functions[h->i](h);
     if (test_bit(&h->flag, FLAG_F))
@@ -37,7 +32,7 @@ void pre_process(t_hash *h, int argc, char **argv, int *i)
     }
 }
 
-void main_loop(int argc, char **argv, t_hash *h)
+static void main_loop(int argc, char **argv, t_hash *h)
 {
     int i;
 

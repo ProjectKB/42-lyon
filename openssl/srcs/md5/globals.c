@@ -1,13 +1,6 @@
 #include "ft_ssl.h"
 
-const uint32_t g_BUF[4] = {
-    0x67452301,
-    0xEFCDAB89,
-    0x98BADCFE,
-    0x10325476
-};
-
-const uint32_t G_SHIFT[64] = {
+const uint32_t  G_SHIFT[64] = {
     7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
     5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
     4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -21,7 +14,7 @@ const unsigned char G_WI[64] = {
     0, 7, 14, 5, 12, 3, 10, 1, 8, 15, 6, 13, 4, 11, 2, 9  // (i * 7) % 16 
 };
 
-const uint32_t G_SIN[64] = {
+const uint32_t  G_SIN[64] = {
     0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
     0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
     0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
@@ -40,39 +33,26 @@ const uint32_t G_SIN[64] = {
     0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-uint32_t rotl(uint32_t x, uint32_t n)
+static uint32_t    F(uint32_t x, uint32_t y, uint32_t z)
 {
-	return (x << n) | (x >> (32 - n));
-}
-
-uint32_t F(uint32_t x, uint32_t y, uint32_t z){
 	return (x & y) | (~x & z);
 }
 
-uint32_t G(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t    G(uint32_t x, uint32_t y, uint32_t z)
 {
     return (x & z) | (y & ~z);
 }
 
-uint32_t H(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t    H(uint32_t x, uint32_t y, uint32_t z)
 {
     return x ^ y ^ z;
 }
 
-uint32_t I(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t    I(uint32_t x, uint32_t y, uint32_t z)
 {
     return y ^ (x | ~z);
 }
 
-uint32_t(*g_round_functions[4])(uint32_t x, uint32_t y, uint32_t z) = {
+uint32_t    (*g_round_functions[4])(uint32_t x, uint32_t y, uint32_t z) = {
     F, G, H, I
 };
-
-void init_md5(t_hash *h)
-{
-    h->md5.nb_bits = 0;
-    h->md5.buf[0] = M0;
-    h->md5.buf[1] = M1;
-    h->md5.buf[2] = M2;
-    h->md5.buf[3] = M3;
-}
