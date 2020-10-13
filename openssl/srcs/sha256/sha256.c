@@ -6,7 +6,7 @@ static void	transform_buffer(t_sha256 *sha256, uint32_t *buf, int i)
 	uint32_t	t2;
 
 	t1 = buf[7] + Σ1(buf[4]) + ch(buf[4], buf[5], buf[6]) + \
-													G_K[i] + sha256->words[i];
+													g_k[i] + sha256->words[i];
 	t2 = Σ0(buf[0]) + maj(buf[0], buf[1], buf[2]);
 	buf[7] = buf[6];
 	buf[6] = buf[5];
@@ -99,7 +99,7 @@ void		proceed_last_block_sha256(t_hash *h)
 	start = h->sha256.nb_bits % 64;
 	block_len = start < 56 ? 56 : 64;
 	while (start < block_len)
-		h->sha256.input[start++] = G_PADDING[++i];
+		h->sha256.input[start++] = g_padding[++i];
 	if (start > 56)
 		special_process(&h->sha256);
 	while (++k < 14 && (j += 4) < 56)

@@ -33,27 +33,27 @@ const uint32_t		g_sin[64] = {
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-static uint32_t		f(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t		f_round(uint32_t x, uint32_t y, uint32_t z)
 {
 	return (x & y) | (~x & z);
 }
 
-static uint32_t		g(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t		g_round(uint32_t x, uint32_t y, uint32_t z)
 {
 	return (x & z) | (y & ~z);
 }
 
-static uint32_t		h(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t		h_round(uint32_t x, uint32_t y, uint32_t z)
 {
 	return (x ^ y ^ z);
 }
 
-static uint32_t		i(uint32_t x, uint32_t y, uint32_t z)
+static uint32_t		i_round(uint32_t x, uint32_t y, uint32_t z)
 {
 	return (y ^ (x | ~z));
 }
 
 uint32_t			(*g_round_functions[4]) \
 									(uint32_t x, uint32_t y, uint32_t z) = {
-	f, g, h, i
+	f_round, g_round, h_round, i_round
 };

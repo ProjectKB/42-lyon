@@ -7,7 +7,7 @@ static void	transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
 	tmp = buf[3];
 	buf[3] = buf[2];
 	buf[2] = buf[1];
-	buf[1] = buf[1] + rotl(buf[0] + e + md5->words[G_WI[i]] + G_SIN[i], G_SHIFT[i]);
+	buf[1] = buf[1] + rotl(buf[0] + e + md5->words[g_wi[i]] + g_sin[i], g_shift[i]);
 	buf[0] = tmp;
 }
 
@@ -85,7 +85,7 @@ void		proceed_last_block_md5(t_hash *h)
 	start = h->md5.nb_bits % 64;
 	block_len = start < 56 ? 56 : 64;
 	while (start < block_len)
-		h->md5.input[start++] = G_PADDING[++i];
+		h->md5.input[start++] = g_padding[++i];
 	if (start > 56)
 		special_process(&h->md5);
 	while (++k < 14 && (j += 4) < 56)

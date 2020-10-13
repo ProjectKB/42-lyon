@@ -2,14 +2,14 @@
 
 void	usage(t_hash *h)
 {
-	ft_printf("usage: %s [-pqr] [-s string] [files ...]", G_HASH_NAME[h->i]);
+	ft_printf("usage: %s [-pqr] [-s string] [files ...]", g_hash_name[h->i]);
 	exit(0);
 }
 
 int		no_such_file(char *fname, t_hash *h)
 {
 	ft_printf("ft_ssl: %s: %s: No such file or directory\n", \
-													G_HASH_NAME[h->i], fname);
+													g_hash_name[h->i], fname);
 	return (0);
 }
 
@@ -22,13 +22,13 @@ void	bad_arg(char *bad_arg)
 
 void	illegal_flag(char *flag, t_hash *h)
 {
-	ft_printf("ft_ssl: %s: illegal option [%s]\n", G_HASH_NAME[h->i], flag);
+	ft_printf("ft_ssl: %s: illegal option [%s]\n", g_hash_name[h->i], flag);
 	usage(h);
 }
 
 void	empty_string(t_hash *h)
 {
 	ft_printf("ft_ssl: %s: option requires an argument -- s\n", \
-															G_HASH_NAME[h->i]);
+															g_hash_name[h->i]);
 	usage(h);
 }

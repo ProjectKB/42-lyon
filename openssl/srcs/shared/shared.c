@@ -5,8 +5,8 @@ void		custom_print(t_hash *h, char *arg, int mod, int turn)
 	if (!test_bit(&h->flag, FLAG_A) || test_bit(&h->flag, FLAG_QP))
 		return ;
 	else if (!test_bit(&h->flag, FLAG_R) && !turn)
-		mod == STRING ? ft_printf("%s (\"%s\") = ", G_HASH_NAME[h->i], arg) : \
-								ft_printf("%s (%s) = ", G_HASH_NAME[h->i], arg);
+		mod == STRING ? ft_printf("%s (\"%s\") = ", g_hash_name[h->i], arg) : \
+								ft_printf("%s (%s) = ", g_hash_name[h->i], arg);
 	else if (test_bit(&h->flag, FLAG_R) && turn)
 		mod == STRING ? ft_printf(" \"%s\"", arg) : ft_printf(" %s", arg);
 }
@@ -37,7 +37,7 @@ static int	read_64_bytes(int fd, unsigned char *line, char *arg, int mod)
 	int			i;
 	int			j;
 	static int	count = 0;
-	static int	stop = false;
+	static int	stop = FALSE;
 
 	i = -1;
 	j = count * 64 - 1;
@@ -46,16 +46,16 @@ static int	read_64_bytes(int fd, unsigned char *line, char *arg, int mod)
 		return (read(fd, line, 64));
 	if (!arg || stop)
 	{
-		stop = false;
+		stop = FALSE;
 		return (0);
 	}
 	while (++i < 64)
 	{
-		if (!arg[++j] && (stop = true))
+		if (!arg[++j] && (stop = TRUE))
 			return (i);
 		line[i] = arg[j];
 	}
-	if (!arg[j] && (stop = true))
+	if (!arg[j] && (stop = TRUE))
 		return (i);
 	count++;
 	return (64);

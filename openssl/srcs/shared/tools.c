@@ -8,7 +8,7 @@ void	print_and_quit(char *str)
 
 int		test_bit(unsigned char *flag, int flag_value)
 {
-	return (!(*flag & flag_value) ? false : true);
+	return (!(*flag & flag_value) ? FALSE : TRUE);
 }
 
 void	set_bit(unsigned char *flag, int set, int unset)
@@ -26,5 +26,5 @@ int		get_fd(char *arg, int mod)
 int		is_illegal_flag(char *arg)
 {
 	return (arg[0] == '-' && (arg[1] == '\0' || \
-							(arg[1] != 'p' && arg[1] != 's')) ? true : false);
+							(arg[1] != 'p' && arg[1] != 's')) ? TRUE : FALSE);
 }
