@@ -2,7 +2,7 @@
 
 void print_and_quit(char *str)
 {
-    printf("%s\n", str);
+    ft_printf("%s\n", str);
     exit(0);
 }
 

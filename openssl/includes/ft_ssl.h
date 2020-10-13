@@ -5,9 +5,7 @@
 # include "libft.h"
 # include "md5.h" 
 # include "sha256.h" 
-# include <stdio.h>
 # include <fcntl.h>
-# include <stdint.h>
 
 # define FILE 0
 # define STDOUT 1

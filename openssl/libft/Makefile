@@ -3,152 +3,175 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: rgermain <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#    By: loiberti <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2018/10/01 15:39:03 by rgermain     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/19 12:27:22 by rgermain    ###    #+. /#+    ###.fr      #
+#    Created: 2019/02/14 18:49:50 by loiberti     #+#   ##    ##    #+#        #
+#    Updated: 2019/03/09 18:17:41 by loiberti    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = libft.a
-TYPE = " de la library"
 
-CFLAGS = -Wall -Werror -Wextra -o3 -g
+CC= clang
 
-INCLUDE = -Iincludes
+CFLAGS= -Wall -Wextra -Werror -g
 
-HEADER = libft.h limit.h color.h ft_printf.h is_methode.h memory.h strings.h \
-		divers.h get_next_line.h lib_lst.h math.h print.h
+SRC = 	ft_atoi.c\
+		ft_utoi.c\
+		ft_bzero.c\
+		ft_isalnum.c\
+		ft_isalpha.c\
+		ft_isascii.c\
+		ft_isdigit.c\
+		ft_isprint.c\
+		ft_itoa.c\
+		ft_utoa.c\
+		ft_itoa_base.c\
+		ft_atoi_base.c\
+		ft_lstadd.c\
+		ft_lstdel.c\
+		ft_lstdelone.c\
+		ft_lstiter.c\
+		ft_lstmap.c\
+		ft_lstnew.c\
+		ft_memalloc.c\
+		ft_memccpy.c\
+		ft_memchr.c\
+		ft_memcmp.c\
+		ft_memcpy.c\
+		ft_memdel.c\
+		ft_memmove.c\
+		ft_memset.c\
+		ft_putchar.c\
+		ft_putchar_fd.c\
+		ft_putendl.c\
+		ft_putendl_fd.c\
+		ft_putnbr.c\
+		ft_putnbr_fd.c\
+		ft_floatlen.c \
+		ft_putstr.c\
+		ft_putstr_fd.c\
+		ft_strcat.c\
+		ft_strchr.c\
+		ft_strclr.c\
+		ft_strcmp.c\
+		ft_strcpy.c\
+		ft_strdel.c\
+		ft_strdup.c\
+		ft_strfdup.c\
+		ft_strequ.c\
+		ft_striter.c\
+		ft_striteri.c\
+		ft_strjoin.c\
+		ft_strffulljoin.c\
+		ft_strffjoin.c\
+		ft_strfsjoin.c\
+		ft_strlcat.c\
+		ft_strlen.c\
+		ft_strmap.c\
+		ft_strmapi.c\
+		ft_strncat.c\
+		ft_strncmp.c\
+		ft_strncpy.c\
+		ft_strnequ.c\
+		ft_strnew.c\
+		ft_strnstr.c\
+		ft_strrchr.c\
+		ft_strsplit.c\
+		ft_strstr.c\
+		ft_strsub.c\
+		ft_strtrim.c\
+		ft_tolower.c\
+		ft_toupper.c\
+		ft_strcapitalize.c \
+		ft_sort_integer_table.c \
+		ft_recursive_power.c \
+		ft_recursive_npower.c \
+		ft_putcolor.c \
+		ft_charcolor.c \
+		ft_check_char.c \
+		ft_freedbtab.c \
+		ft_freedbint.c \
+		ft_putdbtab.c \
+		ft_strjoin2.c \
+		ft_dbstrnew.c \
+		ft_strfsub.c \
+		ft_getchar.c \
+		ft_strupcase.c \
+		ft_lowercase.c \
+		ft_swap.c \
+		ft_strcapitalize.c \
+		ft_strrev.c \
+		ft_double_to_binary_converter.c \
+		ft_convert_binary_to_hexa.c \
+		ft_charrjoin.c \
+		ft_charjoin.c \
+		ft_remove_char_from_str.c \
+		ft_remove_one_char_form_str.c \
+		ft_nb_char_occur.c \
+		ft_nb_char_occurs.c \
+		ft_is_hexa.c \
+		ft_get_rounder.c \
+		ft_ftoa.c \
+		get_next_line.c \
+		ft_putdbint.c \
+		ft_debug.c \
+		ft_nb_nbr.c \
+		ft_fabs.c \
+		ft_fswap.c \
+		ft_ipart_of_numb.c \
+		ft_round.c \
+		ft_fpart_of_numb.c \
+		ft_rfpart_of_numb.c \
+		ft_find_char.c \
+		list_tools.c \
+		parse_string.c \
+		stock_for_parsing.c \
+		parse_args.c \
+		fix_impossible_flag.c \
+		flag_plus_zero_aq.c \
+		field.c \
+		precision.c \
+		length_modifier.c \
+		transform_chain.c \
+		final_display.c \
+		length_modifier.c \
+		transform_chain.c \
+		final_display.c \
+		ft_printf.c \
+		flag_hash.c \
+		ft_nb_char_occurs_c.c \
+		ft_find_char_c.c \
 
-OBJ = $(SRC:.c=.o)
+HEADER = ./libft.h
 
-DSRC = srcs/
-DOBJ = obj/
-ALL_D = $(D_DIVERS) $(D_IS_METHODE) $(D_LST) $(D_MATH) $(D_MEMORY) \
-		$(D_PUT) $(D_STDIO) $(D_STRING) $(addprefix $(D_STDIO),$(D_FT_PRINTF))
+all: $(NAME)
 
-DHEADER = includes/
+OBJECT = $(SRC:.c=.o)
 
-SRC =  $(CSRC_divers) $(CSRC_ISMETHODE) $(CSRC_lst) $(CSRC_MATH) \
-	  $(CSRC_MEMORY) $(CSRC_PUT) $(CSRC_string) $(CSRC_STDIO)
+#TEXT
 
-CSRC = $(addprefix $(DSRC),$(SRC))
-COBJ = $(addprefix $(DOBJ),$(OBJ))
-CHEADER = $(addprefix $(DHEADER),$(HEADER))
+		RM_OBJ = "\t\033[1;32mrm objects\t\t\033[1;32m[OK]\033[1m"
+		RM_LIB = "\t\033[1;32mrm libft.a\t\t\033[1;32m[OK]\033[1m"
+		COMPILING = "\t\033[1;34mlibft.a compilation\t\033[1;32m[OK]\033[1m"
 
-# *****************************************************************************#
-# 								ALL  SCRS									   #
-# *****************************************************************************#
-
-CSRC_divers = $(addprefix $(D_DIVERS),$(SRC_divers))
-D_DIVERS = divers/
-SRC_divers = 		ft_countwchar.c ft_match.c ft_sort_integer_table.c ft_swap.c get_next_line.c \
-					ft_createtab.c read_64_bytes2.c
-
-
-CSRC_ISMETHODE = $(addprefix $(D_IS_METHODE),$(SRC_ISMETHODE))  
-D_IS_METHODE = is_methode/
-SRC_ISMETHODE =		ft_isalpha.c  ft_isblank.c  ft_isdigit.c  ft_isprint.c  ft_isxdigit.c ft_toupper.c \
-					ft_isalnum.c  ft_isascii.c  ft_iscntrl.c  ft_isgraph.c  ft_isspace.c  ft_tolower.c
-
-
-
-CSRC_lst = $(addprefix $(D_LST),$(SRC_lst))
-D_LST = libft_list/
-SRC_lst	=			ft_lstadd.c    ft_lstdel.c    ft_lstdelone.c ft_lstiter.c   ft_lstmap.c    ft_lstnew.c
-
-
-
-CSRC_MATH = $(addprefix $(D_MATH),$(SRC_MATH))
-D_MATH = math/
-SRC_MATH = 			ft_find_next_prime.c ft_iterative_factorial.c ft_recursive_factorial.c ft_sqrt.c \
-					ft_intlen.c ft_iterative_power.c ft_recursive_power.c ft_is_prime.c
-
-
-
-CSRC_MEMORY = $(addprefix $(D_MEMORY),$(SRC_MEMORY))
-D_MEMORY = memory/
-SRC_MEMORY = 		ft_bzero.c ft_memalloc.c ft_memccpy.c  ft_memchr.c ft_memcmp.c \
-					ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c
-
-
-CSRC_PUT = $(addprefix $(D_PUT),$(SRC_PUT))
-D_PUT = print/
-SRC_PUT = 			ft_putchar.c ft_putendl.c ft_putnbr.c ft_putnbr_fd.c ft_putstr.c \
-					ft_printtab.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_base.c ft_putpstr_fd.c ft_putstr_fd.c 
-
-
-
-CSRC_STDIO = $(addprefix $(D_STDIO),$(SRC_STDIO))
-D_STDIO = stdio/
-SRC_STDIO = $(CSRC_PRINTF)
-
-CSRC_PRINTF = $(addprefix $(D_FT_PRINTF),$(SRC_PRINTF))
-D_FT_PRINTF = ft_printf/
-SRC_PRINTF =		conv_char.c conv_int.c conv_string.c ft_printf.c lst_putdouble.c lst_putoption.c \
-					put_string.c conv_double.c conv_other.c conv_tabstring.c put_color.c utils.c
-
-
-
-CSRC_string = $(addprefix $(D_STRING),$(SRC_STRINGS))
-D_STRING = string/
-SRC_STRINGS =		ft_atoi.c ft_str_is_uppercase.c ft_strcpychr.c ft_strlcat.c ft_strncmp.c ft_strrev.c \
-					ft_itoa.c ft_strcapitalize.c ft_strdel.c ft_strlcpy.c ft_strncpy.c ft_strsplit.c \
-					ft_itoa_base.c ft_strcat.c ft_strdup.c ft_strlen.c ft_strncpychr.c ft_strstr.c \
-					ft_str_is_alpha.c ft_strchr.c ft_strequ.c ft_strlowcase.c ft_strnequ.c ft_strsub.c \
-					ft_str_is_lowercase.c ft_strclr.c ft_striter.c ft_strmap.c ft_strnew.c ft_strtrim.c \
-					ft_str_is_numeric.c ft_strcmp.c ft_striteri.c ft_strmapi.c ft_strnstr.c ft_strupcase.c \
-					ft_str_is_printable.c ft_strcpy.c ft_strjoin.c ft_strncat.c ft_strrchr.c ft_strjoin2.c
-
-COUNT = "1"
-SPACE = "                  "
-.DEFAULT_GOAL := all
-ESC = $(shell printf '\033')
-
-print_name : 
-	@printf "\n----------------------------------------------------------------------\n\n\033[37m"
-	@printf " \033[47m  \033[0m\033[37m                      [    LIBFT     ]               "
-	@printf "         \033[0m  \033[47m  \033[0m\n"
-	@printf "\n----------------------------------------------------------------------\n\n"
-
-print_norme : 
-	@printf "\n----------------------------------------------------------------------\n\n\033[37m"
-	@printf " \033[47m  \033[0m\033[37m                   [    NORME LIBFT     ]            "
-	@printf "         \033[0m  \033[47m  \033[0m\n"
-	@printf "\n----------------------------------------------------------------------\n\n"
-
-
-all: print_name $(NAME)
-	@if [ $(COUNT) = "1" ]; then \
-		echo $(SPACE)"\033[1;34m    Nothing are changed !\033[0m"; \
-	fi
-
-$(NAME): $(COBJ)
-	@echo $(SPACE)"\033[JCompilation des Objects \033[38;5;326mterminer\033[0m"
-	@echo $(SPACE)"Compilation "$(TYPE)" \033[34m" $(NAME) "\033[0m"
-	@ar ru $(NAME) $?
-	@echo $(SPACE)"Optimisation des index avec ranlib"
+$(NAME): $(OBJECT)
+	@ar ruc $(NAME) $(OBJECT)
 	@ranlib $(NAME)
+	@echo $(COMPILING)
 
-$(DOBJ)%.o : $(DSRC)%.c $(CHEADER)
-	@$(eval COUNT = "0")
-	@mkdir -p $(DOBJ)
-	@mkdir -p $(addprefix $(DOBJ), $(ALL_D))
-	@gcc $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo $(SPACE)"compilation de la fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
+%.o: %.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $(SRC) -I $<
 
-clean: print_name
-	@rm -rf $(DOBJ)
-	@echo $(SPACE)"Suppresion des \033[38;5;265mobjects\033[0m"
+clean:
+	@rm -rf $(OBJECT)
+	@echo $(RM_OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo $(SPACE)"Suppresion "$(TYPE)" \033[38;5;265m"$(NAME) "\033[0m"
+	@rm -rf $(NAME)
+	@echo $(RM_LIB)
 
 re: fclean all
 
-norme : print_norme
-	@norminette $(CSRC) $(CHEADER) | sed "s,Norme,${ESC}[38;5;326m&${ESC}[0m," | sed "s/Error/  Error/g" | sed "s,Error,${ESC}[31m&${ESC}[0m,"
-
-.PHONY: default all clean fclean re norme print_libft print_norme
+.PHONY: clean fclean

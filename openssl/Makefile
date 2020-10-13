@@ -2,7 +2,7 @@ NAME = ft_ssl
 
 LIB = libft/libft.a
 
-INCLUDE = -I includes -I libft/includes
+INCLUDE = -I includes -I libft/
 
 CC = gcc
 

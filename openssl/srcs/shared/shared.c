@@ -5,9 +5,9 @@ void custom_print(t_hash *h, char *arg, int mod, int turn)
     if (!test_bit(&h->flag, FLAG_A) || test_bit(&h->flag, FLAG_QP))
         return ;
     else if (!test_bit(&h->flag, FLAG_R) && !turn)
-        mod == STRING ? printf("%s (\"%s\") = ", G_HASH_NAME[h->i], arg) : printf("%s (%s) = ", G_HASH_NAME[h->i], arg);
+        mod == STRING ? ft_printf("%s (\"%s\") = ", G_HASH_NAME[h->i], arg) : ft_printf("%s (%s) = ", G_HASH_NAME[h->i], arg);
     else if (test_bit(&h->flag, FLAG_R) && turn)
-        mod == STRING ? printf(" \"%s\"", arg) : printf(" %s", arg);
+        mod == STRING ? ft_printf(" \"%s\"", arg) : ft_printf(" %s", arg);
 }
 
 void print_hash(t_hash *h, char *arg, int mod, char *stdin)
@@ -18,17 +18,17 @@ void print_hash(t_hash *h, char *arg, int mod, char *stdin)
     i = -1;
     j = h->i == MD5 ? 16 : 8;
     if (mod == STDIN && ft_strcmp(stdin, ""))
-        printf("%s", stdin);
+        ft_printf("%s", stdin);
     custom_print(h, arg, mod, 0);
     while (++i < j)
     {
         if (h->i == MD5)
-            printf("%02x", h->md5.digest[i]);
+            ft_printf("%02x", h->md5.digest[i]);
         else
-            printf("%02x", h->sha256.buf[i]);
+            ft_printf("%02x", h->sha256.buf[i]);
     }
     custom_print(h, arg, mod, 1);
-    printf("\n");
+    ft_printf("\n");
 }
 
 static int read_64_bytes(int fd, unsigned char *line, char *arg, int mod)
