@@ -96,7 +96,7 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_double_to_binary_converter(double nb);
 char				*ft_convert_binary_to_hexa(char *to_convert);
-char	            *ft_strjoin2(void *s1, void *s2);
+char				*ft_strjoin2(void *s1, void *s2);
 
 typedef struct		s_list
 {
