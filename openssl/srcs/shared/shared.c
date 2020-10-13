@@ -82,5 +82,6 @@ int			process(t_hash *h, char *arg, int mod)
 	if (h->i == MD5)
 		digest_message(&h->md5);
 	print_hash(h, arg, mod, stdin);
+	free(stdin);
 	return (0);
 }
