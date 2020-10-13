@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strjoin2(void *s1, void *s2)
 {
@@ -23,8 +24,13 @@ char	*ft_strjoin2(void *s1, void *s2)
 	len2 = ft_strlen(s2);
 	if (!(str = (char *)ft_memalloc(len1 + len2 + 1)))
 		return (NULL);
-	len1 ? ft_memcpy(str + len1, s2, len2) : ft_memcpy(str, s2, len2);
+	if (len1)
+	{
+		ft_memcpy(str, s1, len1);
+		ft_memcpy(str + len1, s2, len2);
+	}
+	else
+		ft_memcpy(str, s2, len2);
 	free(s1);
-	free(s2);
 	return (str);
 }

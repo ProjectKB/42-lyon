@@ -42,23 +42,23 @@ static int	read_64_bytes(int fd, unsigned char *line, char *arg, int mod)
 	i = -1;
 	j = count * 64 - 1;
 	ft_bzero(line, 65);
-	if (mod != STRING)
+	//if (mod != STRING)
 		return (read(fd, line, 64));
-	if (!arg || stop)
-	{
-		stop = FALSE;
-		return (0);
-	}
-	while (++i < 64)
-	{
-		if (!arg[++j] && (stop = TRUE))
-			return (i);
-		line[i] = arg[j];
-	}
-	if (!arg[j] && (stop = TRUE))
-		return (i);
-	count++;
-	return (64);
+	//if (!arg || stop)
+	//{
+	//	stop = FALSE;
+	//	return (0);
+	//}
+	//while (++i < 64)
+	//{
+	//	if (!arg[++j] && (stop = TRUE))
+	//		return (i);
+	//	line[i] = arg[j];
+	//}
+	//if (!arg[j] && (stop = TRUE))
+	//	return (i);
+	//count++;
+	//return (64);
 }
 
 int			process(t_hash *h, char *arg, int mod)
@@ -82,6 +82,7 @@ int			process(t_hash *h, char *arg, int mod)
 	if (h->i == MD5)
 		digest_message(&h->md5);
 	print_hash(h, arg, mod, stdin);
-	free(stdin);
+	if (mod == STDIN)
+		free(stdin);
 	return (0);
 }
