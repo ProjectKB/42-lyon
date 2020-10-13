@@ -1,6 +1,6 @@
-#include "sha256.h"
+#include "ft_ssl.h"
 
-const uint32_t g_K[64] = {
+const uint32_t G_K[64] = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
     0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
     0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -54,15 +54,15 @@ uint32_t σ1(uint32_t x)
     return rotr(x, 17) ^ rotr(x, 19) ^ (x >> 10);
 }
 
-void init_sha256(t_sha256*sha)
+void init_sha256(t_hash *h)
 {
-    sha->nb_bits = 0;
-    sha->buf[0] = S0;
-    sha->buf[1] = S1;
-    sha->buf[2] = S2;
-    sha->buf[3] = S3;
-    sha->buf[4] = S4;
-    sha->buf[5] = S5;
-    sha->buf[6] = S6;
-    sha->buf[7] = S7;
+    h->sha256.nb_bits = 0;
+    h->sha256.buf[0] = S0;
+    h->sha256.buf[1] = S1;
+    h->sha256.buf[2] = S2;
+    h->sha256.buf[3] = S3;
+    h->sha256.buf[4] = S4;
+    h->sha256.buf[5] = S5;
+    h->sha256.buf[6] = S6;
+    h->sha256.buf[7] = S7;
 }

@@ -1,11 +1,11 @@
-#include "sha256.h"
+#include "ft_ssl.h"
 
 static void transform_buffer(t_sha256*sha256, uint32_t *buf, int i)
 {
     uint32_t t1;
     uint32_t t2;
 
-    t1 = buf[7] + Σ1(buf[4]) + ch(buf[4], buf[5], buf[6]) + g_K[i] + sha256->words[i];
+    t1 = buf[7] + Σ1(buf[4]) + ch(buf[4], buf[5], buf[6]) + G_K[i] + sha256->words[i];
     t2 = Σ0(buf[0]) + maj(buf[0], buf[1], buf[2]);
     buf[7] = buf[6];
     buf[6] = buf[5];
@@ -50,7 +50,7 @@ void print_words(t_sha256*sha256)
     printf("\n");
 }
 
-static void proceed_block(t_sha256*sha256, unsigned char *line, int len)
+void proceed_block_sha256(t_hash *h, unsigned char *line, int len)
 {
     int i;
     int j;
@@ -59,21 +59,21 @@ static void proceed_block(t_sha256*sha256, unsigned char *line, int len)
     j = -4;
     k = 0;
     i = -1;
-    sha256->nb_bits += (uint64_t)len;
+    h->sha256.nb_bits += (uint64_t)len;
     while (++i < len)
-        sha256->input[i] = line[i];
+        h->sha256.input[i] = line[i];
     if (i == 64)
     {
         while (k < 16 && (j += 4) < 64)
-            sha256->words[k++] = sha256->input[j] << 24 | sha256->input[j + 1] << 16 | sha256->input[j + 2] << 8 | sha256->input[j + 3];
+            h->sha256.words[k++] = h->sha256.input[j] << 24 | h->sha256.input[j + 1] << 16 | h->sha256.input[j + 2] << 8 | h->sha256.input[j + 3];
         k = 15;
         while (++k < 64)
-            sha256->words[k] = σ1(sha256->words[k - 2]) + sha256->words[k - 7] + σ0(sha256->words[k - 15]) + sha256->words[k - 16];
-        transform_block(sha256);
+            h->sha256.words[k] = σ1(h->sha256.words[k - 2]) + h->sha256.words[k - 7] + σ0(h->sha256.words[k - 15]) + h->sha256.words[k - 16];
+        transform_block(&h->sha256);
     }
 }
 
-static void special_process(t_sha256*sha256)
+static void special_process(t_sha256 *sha256)
 {
     int i;
     int j;
@@ -93,7 +93,7 @@ static void special_process(t_sha256*sha256)
     
 }
 
-static void proceed_last_block(t_sha256*sha256)
+void proceed_last_block_sha256(t_hash *h)
 {
     int i;
     int j;
@@ -104,42 +104,18 @@ static void proceed_last_block(t_sha256*sha256)
     i = -1;
     j = -4;
     k = -1;
-    start = sha256->nb_bits % 64;
+    start = h->sha256.nb_bits % 64;
     block_len = start < 56 ? 56 : 64;
     while (start < block_len)
-        sha256->input[start++] = g_PADDING[++i];
+        h->sha256.input[start++] = G_PADDING[++i];
     if (start > 56)
-        special_process(sha256);
+        special_process(&h->sha256);
     while (++k < 14 && (j += 4) < 56)
-        sha256->words[k] = sha256->input[j] << 24 | sha256->input[j + 1] << 16 | sha256->input[j + 2] << 8 | sha256->input[j + 3];
-	sha256->words[14] = (uint32_t)((sha256->nb_bits << 3) >> 32);
-    sha256->words[15] = (uint32_t)(sha256->nb_bits << 3);
+        h->sha256.words[k] = h->sha256.input[j] << 24 | h->sha256.input[j + 1] << 16 | h->sha256.input[j + 2] << 8 | h->sha256.input[j + 3];
+	h->sha256.words[14] = (uint32_t)((h->sha256.nb_bits << 3) >> 32);
+    h->sha256.words[15] = (uint32_t)(h->sha256.nb_bits << 3);
     k = 15;
     while (++k < 64)
-            sha256->words[k] = σ1(sha256->words[k - 2]) + sha256->words[k - 7] + σ0(sha256->words[k - 15]) + sha256->words[k - 16];
-    transform_block(sha256);
-}
-
-static void print_hash(t_sha256*sha256)
-{
-    int i;
-
-    i = -1;
-    while (++i < 8)
-        printf("%02x", sha256->buf[i]);
-    printf("\n");
-}
-
-int process_sha256(t_sha256 *sha256, char *arg, int mod)
-{
-    int  fd;
-    unsigned char line[64];
-    int len;
-
-    fd = get_fd(arg, mod);
-    while ((len = read_64_bytes(fd, line, arg, mod)))
-        proceed_block(sha256, line, len);
-    proceed_last_block(sha256);
-    print_hash(sha256);
-    return 0;
+            h->sha256.words[k] = σ1(h->sha256.words[k - 2]) + h->sha256.words[k - 7] + σ0(h->sha256.words[k - 15]) + h->sha256.words[k - 16];
+    transform_block(&h->sha256);
 }

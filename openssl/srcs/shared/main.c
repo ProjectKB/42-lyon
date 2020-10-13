@@ -1,7 +1,6 @@
-#include "md5.h"
-#include "sha256.h"
+#include "ft_ssl.h"
 
-void start(int argc, char**argv)
+void check_minimum(int argc, char**argv, t_hash *h)
 {
     if (argc == 1)
         print_and_quit("usage: ft_ssl command [command opts] [command args]");
@@ -14,63 +13,60 @@ int is_illegal_flag(char *arg)
     return arg[0] == '-' && (arg[1] == '\0' || (arg[1] != 'p' && arg[1] != 's')) ? true : false;
 }
 
-void proceed(t_md5 *md5, int argc, char **argv, int *i)
+void pre_process(t_hash *h, int argc, char **argv, int *i)
 {
-    init_md5(md5);
-    if (test_bit(&md5->flag, FLAG_F))
-        process_md5(md5, argv[*i], FILE);
+    g_init_functions[h->i](h);
+    if (test_bit(&h->flag, FLAG_F))
+        process(h, argv[*i], FILE);
     else if (!ft_strcmp(argv[*i], "-s"))
     {
         if (++(*i) == argc)
-            empty_string();
-        set_bit(&md5->flag, FLAG_A, FLAG_P);
-        process_md5(md5, argv[*i], STRING);
+            empty_string(h);
+        set_bit(&h->flag, FLAG_A, FLAG_P);
+        process(h, argv[*i], STRING);
     }
     else if (!ft_strcmp(argv[*i], "-p"))
     {
-        set_bit(&md5->flag, FLAG_AP, 0);
-        process_md5(md5, argv[*i], STDIN);
+        set_bit(&h->flag, FLAG_AP, 0);
+        process(h, argv[*i], STDIN);
     }
     else
     {
-        set_bit(&md5->flag, FLAG_AF, FLAG_P);
-        process_md5(md5, argv[*i], FILE);
+        set_bit(&h->flag, FLAG_AF, FLAG_P);
+        process(h, argv[*i], FILE);
     }
 }
 
-void main_loop(int argc, char **argv, t_md5 *md5, t_sha256 *sha_256)
+void main_loop(int argc, char **argv, t_hash *h)
 {
     int i;
 
     i = 1;
-    md5->flag = 0;
-    if (!ft_strcmp(argv[1], "md5"))
+    h->flag = 0;
+    h->i = !ft_strcmp(argv[1], "md5") ? MD5 : SHA256;
+    while (++i < argc)
     {
-        while (++i < argc)
-        {
-            if (!ft_strcmp(argv[i], "-q"))
-                set_bit(&md5->flag, FLAG_Q, 0);
-            else if (!ft_strcmp(argv[i], "-r"))
-                set_bit(&md5->flag, FLAG_R, 0);
-            else if (is_illegal_flag(argv[i]))
-                illegal_flag(argv[i]);
-            else
-                proceed(md5, argc, argv, &i);
-        }
-        if (!test_bit(&md5->flag, FLAG_A))
-        {
-            init_md5(md5);
-            process_md5(md5, 0, STDOUT);
-        }
+        if (!ft_strcmp(argv[i], "-q"))
+            set_bit(&h->flag, FLAG_Q, 0);
+        else if (!ft_strcmp(argv[i], "-r"))
+            set_bit(&h->flag, FLAG_R, 0);
+        else if (is_illegal_flag(argv[i]))
+            illegal_flag(argv[i], h);
+        else
+            pre_process(h, argc, argv, &i);
+    }
+    if (!test_bit(&h->flag, FLAG_A))
+    {
+        g_init_functions[h->i](h);
+        process(h, 0, STDOUT);
     }
 }
 
 int main(int argc, char **argv) 
 { 
-    t_md5       md5;
-    t_sha256    sha256;
+    t_hash      h;
 
-    start(argc, argv);
-    main_loop(argc, argv, &md5, &sha256);
+    check_minimum(argc, argv, &h);
+    main_loop(argc, argv, &h);
     return 0; 
 }  

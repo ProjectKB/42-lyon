@@ -1,4 +1,4 @@
-#include "md5.h"
+#include "ft_ssl.h"
 
 const uint32_t g_BUF[4] = {
     0x67452301,
@@ -7,21 +7,21 @@ const uint32_t g_BUF[4] = {
     0x10325476
 };
 
-const uint32_t g_SHIFT[64] = {
+const uint32_t G_SHIFT[64] = {
     7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
     5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
     4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
     6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21,
 };
 
-const unsigned char g_WI[64] = {
+const unsigned char G_WI[64] = {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, // i
     1, 6, 11, 0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, // (i * 5 + 1) % 16
     5, 8, 11, 14, 1, 4, 7, 10, 13, 0, 3, 6, 9, 12, 15, 2, // (i * 3 + 5) % 16
     0, 7, 14, 5, 12, 3, 10, 1, 8, 15, 6, 13, 4, 11, 2, 9  // (i * 7) % 16 
 };
 
-const uint32_t g_SIN[64] = {
+const uint32_t G_SIN[64] = {
     0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
     0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
     0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
@@ -64,15 +64,15 @@ uint32_t I(uint32_t x, uint32_t y, uint32_t z)
     return y ^ (x | ~z);
 }
 
-uint32_t(*g_ROUND_FUNCTIONS[4])(uint32_t x, uint32_t y, uint32_t z) = {
+uint32_t(*g_round_functions[4])(uint32_t x, uint32_t y, uint32_t z) = {
     F, G, H, I
 };
 
-void init_md5(t_md5 *md5)
+void init_md5(t_hash *h)
 {
-    md5->nb_bits = 0;
-    md5->buf[0] = M0;
-    md5->buf[1] = M1;
-    md5->buf[2] = M2;
-    md5->buf[3] = M3;
+    h->md5.nb_bits = 0;
+    h->md5.buf[0] = M0;
+    h->md5.buf[1] = M1;
+    h->md5.buf[2] = M2;
+    h->md5.buf[3] = M3;
 }

@@ -15,7 +15,7 @@ SRC =	shared/main.c \
 
 OBJ = $(SRC:.c=.o)
 
-HEADER = md5.h sha256.h shared.h
+HEADER = ft_ssl.h
 
 DSRC = srcs/
 DOBJ = obj/

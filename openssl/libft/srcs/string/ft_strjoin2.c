@@ -12,18 +12,18 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strjoin2(void *s1, void *s2)
 {
-	size_t	len;
+	size_t	len1;
 	size_t	len2;
 	char	*str;
 
-	len = ft_strlen(s1);
+	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(str = (char *)ft_memalloc(len + len2 + 1)))
+	if (!(str = (char *)ft_memalloc(len1 + len2 + 1)))
 		return (NULL);
-	ft_memcpy(str, s1, len);
-	ft_memcpy(str + len, s2, len2);
+	len1 ? ft_memcpy(str + len1, s2, len2) : ft_memcpy(str, s2, len2);
 	return (str);
 }
