@@ -89,29 +89,27 @@ void		proceed_last_block_sha256(t_hash *h)
 {
 	int	i;
 	int	j;
-	int	k;
 	int	start;
 	int	block_len;
 
 	i = -1;
 	j = -4;
-	k = -1;
 	start = h->sha256.nb_bits % 64;
 	block_len = start < 56 ? 56 : 64;
 	while (start < block_len)
 		h->sha256.input[start++] = g_padding[++i];
-	if (start > 56)
+	if ((i = -1) && start > 56)
 		special_process(&h->sha256);
-	while (++k < 14 && (j += 4) < 56)
-		h->sha256.words[k] = h->sha256.input[j] << 24 | \
+	while (++i < 14 && (j += 4) < 56)
+		h->sha256.words[i] = h->sha256.input[j] << 24 | \
 		h->sha256.input[j + 1] << 16 | h->sha256.input[j + 2] << 8 | \
 		h->sha256.input[j + 3];
 	h->sha256.words[14] = (uint32_t)((h->sha256.nb_bits << 3) >> 32);
 	h->sha256.words[15] = (uint32_t)(h->sha256.nb_bits << 3);
-	k = 15;
-	while (++k < 64)
-		h->sha256.words[k] = σ1(h->sha256.words[k - 2]) + \
-		h->sha256.words[k - 7] + σ0(h->sha256.words[k - 15]) + \
-		h->sha256.words[k - 16];
+	i = 15;
+	while (++i < 64)
+		h->sha256.words[i] = σ1(h->sha256.words[i - 2]) + \
+		h->sha256.words[i - 7] + σ0(h->sha256.words[i - 15]) + \
+		h->sha256.words[i - 16];
 	transform_block(&h->sha256);
 }

@@ -7,7 +7,8 @@ static void	transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
 	tmp = buf[3];
 	buf[3] = buf[2];
 	buf[2] = buf[1];
-	buf[1] = buf[1] + rotl(buf[0] + e + md5->words[g_wi[i]] + g_sin[i], g_shift[i]);
+	buf[1] = buf[1] + rotl(buf[0] + e + \
+	md5->words[g_wi[i]] + g_sin[i], g_shift[i]);
 	buf[0] = tmp;
 }
 
@@ -25,7 +26,8 @@ static void	transform_block(t_md5 *md5)
 	while (++i < 4)
 		buf[i] = md5->buf[i];
 	while (++j < 64)
-		transform_buffer(md5, buf, g_round_functions[j / 16](buf[1], buf[2], buf[3]), j);
+		transform_buffer(md5, buf, \
+		g_round_functions[j / 16](buf[1], buf[2], buf[3]), j);
 	while (++k < 4)
 		md5->buf[k] += buf[k];
 }
