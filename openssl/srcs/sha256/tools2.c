@@ -19,4 +19,3 @@ uint32_t	σ1(uint32_t x)
 {
 	return (rotr(x, 17) ^ rotr(x, 19) ^ (x >> 10));
 }
-
