@@ -1,29 +1,30 @@
 #include "ft_ssl.h"
 
-void print_and_quit(char *str)
+void	print_and_quit(char *str)
 {
-    ft_printf("%s\n", str);
-    exit(0);
+	ft_printf("%s\n", str);
+	exit(0);
 }
 
-int test_bit(unsigned char *flag, int FLAG_VALUE)
+int		test_bit(unsigned char *flag, int flag_value)
 {
-    return (!(*flag & FLAG_VALUE) ? false : true);
+	return (!(*flag & flag_value) ? false : true);
 }
 
-void set_bit(unsigned char *flag, int SET, int UNSET)
+void	set_bit(unsigned char *flag, int set, int unset)
 {
-    *flag |= SET;
-    if (UNSET && test_bit(flag, UNSET))
-        *flag ^= UNSET;
+	*flag |= set;
+	if (unset && test_bit(flag, unset))
+		*flag ^= unset;
 }
 
-int get_fd(char *arg, int mod)
+int		get_fd(char *arg, int mod)
 {
-    return mod == FILE ? open(arg, O_RDONLY) : 0;
+	return (mod == FILE ? open(arg, O_RDONLY) : 0);
 }
 
-int is_illegal_flag(char *arg)
+int		is_illegal_flag(char *arg)
 {
-    return arg[0] == '-' && (arg[1] == '\0' || (arg[1] != 'p' && arg[1] != 's')) ? true : false;
+	return (arg[0] == '-' && (arg[1] == '\0' || \
+							(arg[1] != 'p' && arg[1] != 's')) ? true : false);
 }
