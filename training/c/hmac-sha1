@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+from hashlib import md5
+
+def EVP_BytesToKey(password, salt, key_len, iv_len):
+    dtot =  md5(password + salt).digest()
+    d = [ dtot ]
+
+    while len(dtot) < iv_len + key_len:
+        d.append(md5(d[-1] + password + salt).digest())
+        dtot += d[-1]
+    print('salt: ' + salt.hex(), '\nkey: ' + dtot[:key_len].hex(), '\niv: ' + dtot[key_len:key_len+iv_len].hex())
+
+EVP_BytesToKey(b'password', bytearray.fromhex('0B60DAA6EB2B7BE2'), 8, 8)
