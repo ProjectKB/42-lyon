@@ -15,7 +15,7 @@ NAME = libft.a
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror -g
+CFLAGS= 
 
 SRC = 	ft_atoi.c\
 		ft_utoi.c\

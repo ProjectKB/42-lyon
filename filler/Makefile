@@ -15,7 +15,7 @@ NAME = loiberti.filler
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror -O0
+CFLAGS= 
 
 SRC_DIR = .
 

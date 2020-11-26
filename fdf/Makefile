@@ -15,7 +15,7 @@ NAME = fdf
 
 CC= clang
 
-CFLAGS= -Wall -Wextra -Werror -g
+CFLAGS=  -g
 
 SRC_DIR = .
 
