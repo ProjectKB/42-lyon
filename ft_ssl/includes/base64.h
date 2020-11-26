@@ -9,8 +9,9 @@ typedef struct  s_base64 {
     int turn;
     int nb_bytes;
     int rest_len;
-    unsigned char rest[4];
+    unsigned char rest[5];
     unsigned char *output;
+    unsigned char *output_file_name;
     uint32_t buf;
 }               t_base64;
 

@@ -40,12 +40,8 @@
 ** CIPHER BLOCK FLAG
 */
 # define FLAG_D 0x1
-# define FLAG_I 0x2
+# define FLAG_AI 0xA
 # define FLAG_O 0x4
-# define FLAG_DI 0x8
-# define FLAG_DO 0x10
-# define FLAG_IO 0x18
-# define FLAG_DIO 0xC
 
 /*
 ** STRUCT
@@ -62,7 +58,7 @@ typedef struct		s_hash
 	t_sha256		sha256;
 	t_base64		base64;
 	t_p				args;
-	char			*arg;
+	unsigned char	*arg;
 	unsigned char	flag;
 	unsigned char	i;
 	unsigned char	name[7];
@@ -77,12 +73,13 @@ extern const char	*g_hash_name[5];
 /*
 ** ARRAY OF FUNCTION POINTERS
 */
-extern void 		(*g_family_pre_process[6])(t_hash *h, int *i);
+extern void 		(*g_pre_process_functions[6])(t_hash *h, int *i);
 extern void			(*g_init_functions[3])(t_hash *h);
 extern void			(*g_proceed_block_functions[3])(t_hash *h, \
 												unsigned char *line, int len);
 extern void			(*g_proceed_last_block_functions[3])(t_hash *h);
-extern void			(*g_print_output[3])(t_hash *h, int mod, char *stdin);
+extern void			(*g_print_functions[3])(t_hash *h, int mod, char *stdin);
+extern void			(*g_usage_functions[3])(t_hash *h);
 
 /*
 ** MATERIALS FOR ARRAY OF FUNCTION POINTERS
@@ -108,6 +105,9 @@ void				proceed_last_block_base64(t_hash *h);
 void				print_md5(t_hash *h, int mod, char *stdin);
 void				print_sha256(t_hash *h, int mod, char *stdin);
 void				print_base64(t_hash *h, int mod, char *stdin);
+void				usage_message_digest(t_hash *h);
+void				usage_cipher_block(t_hash *h);
+
 
 
 /*
@@ -116,14 +116,14 @@ void				print_base64(t_hash *h, int mod, char *stdin);
 int					no_such_file(t_hash *h);
 void				print_and_quit(char *str);
 void				bad_arg(char *bad_arg);
-void				illegal_flag(char *flag, t_hash *h);
-void				empty_string(t_hash *h);
+void				illegal_flag(void *flag, t_hash *h);
+void				missing_arg(t_hash *h, char flag);
 
 /*
 ** TOOLS
 */
-int					get_fd(char *arg, int mod);
-int					is_illegal_flag(char *arg);
+int					get_fd(void *arg, int mod);
+int					is_illegal_flag(unsigned char *arg);
 void				set_bit(unsigned char *flag, int set, int unset);
 int					test_bit(unsigned char *flag, int flag_value);
 

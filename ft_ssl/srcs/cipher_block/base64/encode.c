@@ -8,6 +8,7 @@ void    init_encode_base64(t_hash *h)
     h->base64.rest_len = 0;
     if (!(h->base64.output = (unsigned char*)malloc(sizeof(char) * h->base64.nb_bytes + 1)))
         return ;
+    
 }
 
 void encode_block_base64(t_hash *h, unsigned char *line, int len)
@@ -17,8 +18,9 @@ void encode_block_base64(t_hash *h, unsigned char *line, int len)
     h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->base64.nb_bytes + 1);
     if (len != h->nb_bytes)
     {
+        ++h->base64.turn;
         h->base64.rest_len = len;
-        h->arg = ft_strcpy(h->base64.rest, line);
+        ft_ustrcpy(h->base64.rest, line, len);
         return ;
     }
     i = h->base64.turn * 4;
@@ -36,8 +38,8 @@ void encode_last_block_base64(t_hash *h)
 
     if (h->base64.rest_len)
     {
-        i = h->base64.turn * 4;
-        h->base64.buf = (h->base64.rest_len == 1) ? h->arg[0] << 4 : h->arg[0] << 10 | h->arg[1] << 2;
+        i = (h->base64.turn - 1) * 4;
+        h->base64.buf = (h->base64.rest_len == 1) ? h->base64.rest[0] << 4 : h->base64.rest[0] << 10 | h->base64.rest[1] << 2;
         h->base64.output[i] = (h->base64.rest_len == 1) ? g_base64_table[(h->base64.buf >> 6) & 0b00111111] : g_base64_table[(h->base64.buf >> 12) & 0b00111111];
         h->base64.output[i + 1] = (h->base64.rest_len == 1) ? g_base64_table[h->base64.buf & 0b00111111] : g_base64_table[(h->base64.buf >> 6) & 0b00111111];
         h->base64.output[i + 2] = (h->base64.rest_len == 1) ? '=' : g_base64_table[h->base64.buf & 0b00111111];

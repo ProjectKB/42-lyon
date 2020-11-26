@@ -13,20 +13,23 @@ SRC = shared/main.c \
 	  shared/globals.c \
 	  shared/errors.c \
 	  shared/tools.c \
-	  shared/family_pre_process.c \
-	  shared/message_digest_print.c \
-	  shared/cipher_block_print.c \
-	  md5/tools.c \
-	  md5/md5.c \
-	  md5/globals.c \
-	  sha256/sha256.c \
-	  sha256/tools1.c \
-	  sha256/tools2.c \
-	  sha256/globals.c \
-	  base64/encode.c \
-	  base64/decode.c \
-	  base64/base64.c \
-	  base64/globals.c \
+	  message_digest/md5/tools.c \
+	  message_digest/md5/md5.c \
+	  message_digest/md5/globals.c \
+	  message_digest/sha256/sha256.c \
+	  message_digest/sha256/tools1.c \
+	  message_digest/sha256/tools2.c \
+	  message_digest/sha256/globals.c \
+	  message_digest/shared/print.c \
+	  message_digest/shared/pre_process.c \
+	  message_digest/shared/errors.c \
+	  cipher_block/base64/encode.c \
+	  cipher_block/base64/decode.c \
+	  cipher_block/base64/base64.c \
+	  cipher_block/base64/globals.c \
+	  cipher_block/shared/print.c \
+	  cipher_block/shared/pre_process.c \
+	  cipher_block/shared/errors.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -36,7 +39,12 @@ DSRC = srcs/
 DOBJ = obj/
 DHEADER = includes/
 
-SUB_DOBJ = $(addprefix $(DOBJ),shared) $(addprefix $(DOBJ),md5) $(addprefix $(DOBJ),sha256) $(addprefix $(DOBJ),base64)
+SUB_DOBJ = $(addprefix $(DOBJ),shared) \
+		   $(addprefix $(DOBJ),message_digest/md5) \
+		   $(addprefix $(DOBJ),message_digest/sha256) \
+		   $(addprefix $(DOBJ),message_digest/shared) \
+		   $(addprefix $(DOBJ),cipher_block/base64) \
+		   $(addprefix $(DOBJ),cipher_block/shared) \
 
 CSRC = $(addprefix $(DSRC),$(SRC))
 COBJ = $(addprefix $(DOBJ),$(OBJ))

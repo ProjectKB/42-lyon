@@ -63,7 +63,7 @@ int			process(t_hash *h, int mod)
 			stdin = ft_strjoin2(stdin, line);
 	}
 	g_proceed_last_block_functions[h->i](h);
-	g_print_output[h->i](h, mod, stdin);
+	g_print_functions[h->i](h, mod, stdin);
 	if (mod == STDIN)
 		free(stdin);
 	return (0);

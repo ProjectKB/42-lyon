@@ -56,7 +56,9 @@ SRC = 	ft_atoi.c\
 		ft_strchr.c\
 		ft_strclr.c\
 		ft_strcmp.c\
+		ft_ustrcmp.c\
 		ft_strcpy.c\
+		ft_ustrcpy.c\
 		ft_strdel.c\
 		ft_strdup.c\
 		ft_strfdup.c\

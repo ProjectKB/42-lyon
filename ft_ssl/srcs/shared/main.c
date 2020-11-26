@@ -17,8 +17,8 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 	h->nb_bytes = 64;
 	h->args.c = argc;
 	h->args.v = argv;
-	while (++i < h->args.c && (h->arg = h->args.v[i]))
-		g_family_pre_process[h->i](h, &i);
+	while (++i < h->args.c)
+		g_pre_process_functions[h->i](h, &i);
 	if (!test_bit(&h->flag, FLAG_A))
 	{
 		h->arg = 0;
@@ -30,7 +30,7 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 int			main(int argc, char **argv)
 {
 	t_hash	h;
-
+	
 	check_minimum(argc, argv, &h);
 	main_loop(argc, argv, &h);
 	return (0);

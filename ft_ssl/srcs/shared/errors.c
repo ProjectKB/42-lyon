@@ -1,11 +1,5 @@
 #include "ft_ssl.h"
 
-void	usage(t_hash *h)
-{
-	ft_printf("usage: %s [-pqr] [-s string] [files ...]", g_hash_name[h->i]);
-	exit(0);
-}
-
 int		no_such_file(t_hash *h)
 {
 	ft_printf("ft_ssl: %s: %s: No such file or directory\n", \
@@ -21,15 +15,15 @@ void	bad_arg(char *bad_arg)
 	exit(0);
 }
 
-void	illegal_flag(char *flag, t_hash *h)
+void	illegal_flag(void *flag, t_hash *h)
 {
 	ft_printf("ft_ssl: %s: illegal option [%s]\n", g_hash_name[h->i], flag);
-	usage(h);
+	g_usage_functions[h->i](h);
 }
 
-void	empty_string(t_hash *h)
+void	missing_arg(t_hash *h, char flag)
 {
-	ft_printf("ft_ssl: %s: option requires an argument -- s\n", \
-															g_hash_name[h->i]);
-	usage(h);
+	ft_printf("ft_ssl: %s: option requires an argument -- %c\n", \
+														g_hash_name[h->i], flag);
+	g_usage_functions[h->i](h);
 }

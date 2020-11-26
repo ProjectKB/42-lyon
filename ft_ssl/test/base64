@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo "******************************ENCODE******************************"
+echo "Bonjour" | ./ft_ssl base64
+echo "Bonjour" | base64
+echo "Salut" | ./ft_ssl base64 -e
+echo "Salut" | base64
+echo "Saluta" | ./ft_ssl base64
+echo "Saluta" | base64
+echo "" | ./ft_ssl base64 -e
+echo "" | base64
+echo -n "" | ./ft_ssl base64
+echo -n "" | base64
+echo "******************************************************************"
+
+echo ""
+
+echo "******************************DECODE******************************"
+echo "Qm9uam91cgo=" | ./ft_ssl base64 -d
+echo "Qm9uam91cgo=" | base64 -D
+echo "U2FsdXQK" | ./ft_ssl base64 -d
+echo "U2FsdXQK" | base64 -D
+echo "U2FsdXRhCg==" | ./ft_ssl base64 -d
+echo "U2FsdXRhCg==" | base64 -D
+echo "" | ./ft_ssl base64 -d
+echo "" | base64 -D
+echo -n "" | ./ft_ssl base64 -d
+echo -n "" | base64 -D
+echo "******************************************************************"
