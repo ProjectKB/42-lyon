@@ -56,12 +56,15 @@ int			process(t_hash *h, int mod)
 		stdin = ft_strdup("");
 	if ((fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
-	while ((len = read_bytes(h, fd, line, mod)))
+	g_init_functions[h->i](h);
+	while ((len = read_bytes(h, fd, line, mod)) > 0)
 	{
 		g_proceed_block_functions[h->i](h, line, len);
 		if (mod == STDIN)
 			stdin = ft_strjoin2(stdin, line);
 	}
+	if (len == -1)
+		read_error(h);
 	g_proceed_last_block_functions[h->i](h);
 	g_print_functions[h->i](h, mod, stdin);
 	if (mod == STDIN)

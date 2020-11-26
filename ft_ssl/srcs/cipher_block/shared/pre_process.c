@@ -21,8 +21,5 @@ void	cipher_block(t_hash *h, int *i)
 		h->base64.output_file_name = (unsigned char *)h->args.v[(*i)];
 	}
 	if (*i + 1 == h->args.c && test_bit(&h->flag, FLAG_AI))
-	{
-		g_init_functions[h->i](h);
 		process(h, FILE);
-	}
 }

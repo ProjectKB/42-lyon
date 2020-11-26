@@ -7,15 +7,15 @@ void    init_encode_base64(t_hash *h)
     h->base64.nb_bytes = 4;
     h->base64.rest_len = 0;
     if (!(h->base64.output = (unsigned char*)malloc(sizeof(char) * h->base64.nb_bytes + 1)))
-        return ;
-    
+        print_and_quit("Congrats, you broke malloc.\n", 2);
 }
 
 void encode_block_base64(t_hash *h, unsigned char *line, int len)
 {
     int i;
 
-    h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->base64.nb_bytes + 1);
+    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->base64.nb_bytes + 1)))
+        free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
     if (len != h->nb_bytes)
     {
         ++h->base64.turn;

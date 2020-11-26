@@ -63,6 +63,7 @@ typedef struct		s_hash
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
+	int				error_code;
 }					t_hash;
 
 /*
@@ -108,16 +109,15 @@ void				print_base64(t_hash *h, int mod, char *stdin);
 void				usage_message_digest(t_hash *h);
 void				usage_cipher_block(t_hash *h);
 
-
-
 /*
 ** ERRORS
 */
-int					no_such_file(t_hash *h);
-void				print_and_quit(char *str);
 void				bad_arg(char *bad_arg);
 void				illegal_flag(void *flag, t_hash *h);
 void				missing_arg(t_hash *h, char flag);
+int					no_such_file(t_hash *h);
+int					read_error(t_hash *h);
+
 
 /*
 ** TOOLS
@@ -126,6 +126,9 @@ int					get_fd(void *arg, int mod);
 int					is_illegal_flag(unsigned char *arg);
 void				set_bit(unsigned char *flag, int set, int unset);
 int					test_bit(unsigned char *flag, int flag_value);
+void				write_output(t_hash *h);
+void				print_and_quit(char *str, int fd);
+void				free_and_quit(char *str, void *to_free, int fd);
 
 /*
 ** SHARED

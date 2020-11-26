@@ -2,7 +2,6 @@
 
 void print_base64(t_hash *h, int mod, char *stdin)
 {
-	
 	if (test_bit(&h->flag, FLAG_O))
 		write_output(h);
 	else if (test_bit(&h->flag, FLAG_D))

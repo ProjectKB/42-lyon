@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 unsigned char *ft_realloc(void *s1, size_t len1, size_t len2)
 {

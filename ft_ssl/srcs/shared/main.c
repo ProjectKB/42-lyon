@@ -3,7 +3,7 @@
 static void	check_minimum(int argc, char **argv, t_hash *h)
 {
 	if (argc == 1)
-		print_and_quit("usage: ft_ssl command [command opts] [command args]");
+		print_and_quit("usage: ft_ssl command [command opts] [command args]", 1);
 	else if (argc > 1 && (h->i = define_algo(argv[1])) == (unsigned char)-1)
 		bad_arg(argv[1]);
 }
@@ -22,7 +22,6 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 	if (!test_bit(&h->flag, FLAG_A))
 	{
 		h->arg = 0;
-		g_init_functions[h->i](h);
 		process(h, STDOUT);
 	}
 }

@@ -1,8 +1,8 @@
 #include "ft_ssl.h"
 
-void	print_and_quit(char *str)
+void	print_and_quit(char *str, int fd)
 {
-	ft_printf("%s\n", str);
+	ft_putstr_fd(str, fd);
 	exit(0);
 }
 
@@ -38,9 +38,16 @@ void	write_output(t_hash *h)
 		len = h->base64.rest_len ? (h->base64.turn - 1) * 3 + h->base64.rest_len : h->base64.turn * 3; 
 	else
 		len = h->base64.turn * 4;
-	fd = open((const char *)h->base64.output_file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if ((fd = open((const char *)h->base64.output_file_name, O_RDWR | O_CREAT | O_TRUNC, 0666)) == -1)
+		free_and_quit("Choose another name for the output file.\n", h->base64.output, 2);
     write(fd, h->base64.output, len);
 	if (!test_bit(&h->flag, FLAG_D))
     	write(fd, "\n", 1);
 	close(fd);
+}
+
+void	free_and_quit(char *str, void *to_free, int fd)
+{
+	free(to_free);
+	print_and_quit(str, fd);
 }

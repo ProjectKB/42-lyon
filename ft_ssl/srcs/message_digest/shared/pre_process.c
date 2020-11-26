@@ -2,7 +2,6 @@
 
 static void	pre_process(t_hash *h, int *i)
 {
-	g_init_functions[h->i](h);
 	if (test_bit(&h->flag, FLAG_F))
 		process(h, FILE);
 	else if (!ft_ustrcmp(h->arg, "-s"))
