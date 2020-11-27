@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <fcntl.h> 
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putcolor(char *s, int type, int color);
@@ -100,6 +101,8 @@ char				*ft_double_to_binary_converter(double nb);
 char				*ft_convert_binary_to_hexa(char *to_convert);
 char				*ft_strjoin2(void *s1, void *s2);
 unsigned char		*ft_realloc(void *s1, size_t len1, size_t len2);
+int					ft_random(int bytes_len, unsigned char *buf);
+
 
 typedef struct		s_list
 {

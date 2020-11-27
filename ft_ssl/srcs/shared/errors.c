@@ -33,4 +33,5 @@ int	read_error(t_hash *h)
 	if (test_bit(&h->flag, FLAG_AI))
 		free(h->base64.output);
 	print_and_quit("There was a problem while reading.\n", 2);
+	return (0);
 }

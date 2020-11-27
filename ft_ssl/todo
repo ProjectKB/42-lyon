@@ -1,3 +1,28 @@
 TODO
 
-Illegal Flag
+-k: Key in hex
+-v: IV in hex
+-s: salt in hex
+-p: Ascii password
+
+Salt defined by random
+Key/IV defined by EVP_BytesToKey (need pass + salt)
+
+If key given directly need an IV for des-cbc
+
+
+1. Generate Salt OK
+2. Generate Key
+3. des
+4. ecb
+5. cbc
+
+Generate Key -> md5(password + salt)
+- h->i = md5
+- h->arg = password + salt
+- process(h, STRING)
+
+Password + Salt
+SALT:
+- donné en Hexa en param -> 2char par 2char atoi_base(str, 16)
+- ou généré avec ft_random
