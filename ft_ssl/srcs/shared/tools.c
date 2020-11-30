@@ -51,3 +51,31 @@ void	free_and_quit(char *str, void *to_free, int fd)
 	free(to_free);
 	print_and_quit(str, fd);
 }
+
+void init_hash(t_hash *h, int argc, char **argv)
+{
+	h->arg = 0;
+	h->flag = 0;
+	h->nb_bytes = 64;
+	h->args.c = argc;
+	h->args.v = argv;
+}
+
+void md5(t_hash *h)
+{
+	init_md5(h);
+	h->md5.print = FALSE;
+	process(h, STRING);
+}
+
+void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password)
+{
+	unsigned char str[17];
+	unsigned char buf[8];
+
+	ft_ustrcpy(str, password, 8);
+	ft_random(8, buf);
+	ft_ustrncat(str, buf, 8, 8);
+	h->arg = str;
+	md5(h);
+}

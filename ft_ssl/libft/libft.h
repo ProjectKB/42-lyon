@@ -102,6 +102,9 @@ char				*ft_convert_binary_to_hexa(char *to_convert);
 char				*ft_strjoin2(void *s1, void *s2);
 unsigned char		*ft_realloc(void *s1, size_t len1, size_t len2);
 int					ft_random(int bytes_len, unsigned char *buf);
+void				ft_ustrncat(unsigned char *dst, const unsigned char *src, int len, int start);
+void				ft_hexstr(unsigned char *str, int len);
+
 
 
 typedef struct		s_list

@@ -23,17 +23,19 @@ SRC = shared/main.c \
 	  message_digest/shared/print.c \
 	  message_digest/shared/pre_process.c \
 	  message_digest/shared/errors.c \
-	  cipher_block/base64/encode.c \
-	  cipher_block/base64/decode.c \
-	  cipher_block/base64/base64.c \
-	  cipher_block/base64/globals.c \
-	  cipher_block/shared/print.c \
-	  cipher_block/shared/pre_process.c \
-	  cipher_block/shared/errors.c \
+	  base64/encode.c \
+	  base64/decode.c \
+	  base64/base64.c \
+	  base64/globals.c \
+	  base64/print.c \
+	  base64/pre_process.c \
+	  base64/errors.c \
+	  cipher_block/shared/globals.c \
+	  cipher_block/shared/tools.c \
 
 OBJ = $(SRC:.c=.o)
 
-HEADER = ft_ssl.h md5.h sha256.h base64.h
+HEADER = ft_ssl.h
 
 DSRC = srcs/
 DOBJ = obj/
@@ -43,7 +45,7 @@ SUB_DOBJ = $(addprefix $(DOBJ),shared) \
 		   $(addprefix $(DOBJ),message_digest/md5) \
 		   $(addprefix $(DOBJ),message_digest/sha256) \
 		   $(addprefix $(DOBJ),message_digest/shared) \
-		   $(addprefix $(DOBJ),cipher_block/base64) \
+		   $(addprefix $(DOBJ),base64) \
 		   $(addprefix $(DOBJ),cipher_block/shared) \
 
 CSRC = $(addprefix $(DSRC),$(SRC))

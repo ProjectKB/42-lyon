@@ -17,6 +17,7 @@ typedef struct				s_md5
 	uint32_t		buf[4];
 	unsigned char	input[64];
 	unsigned char	digest[16];
+	int				print;
 }							t_md5;
 
 /*

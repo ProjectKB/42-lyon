@@ -7,6 +7,7 @@ void		init_md5(t_hash *h)
 	h->md5.buf[1] = M1;
 	h->md5.buf[2] = M2;
 	h->md5.buf[3] = M3;
+	h->md5.print = TRUE;
 }
 
 void		digest_message(t_md5 *md5)

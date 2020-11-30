@@ -6,6 +6,7 @@
 # include "md5.h"
 # include "sha256.h"
 # include "base64.h"
+# include "des.h" 
 # include <fcntl.h>
 
 # define FILE 0
@@ -63,7 +64,6 @@ typedef struct		s_hash
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
-	int				error_code;
 }					t_hash;
 
 /*
@@ -87,25 +87,30 @@ extern void			(*g_usage_functions[3])(t_hash *h);
 */
 void				message_digest(t_hash *h, int *i);
 void				cipher_block(t_hash *h, int *i);
+
 void				init_md5(t_hash *h);
 void				init_decode_base64(t_hash *h);
 void				init_encode_base64(t_hash *h);
 void				init_base64(t_hash *h);
 void				init_sha256(t_hash *h);
+
 void				proceed_block_md5(t_hash *h, unsigned char *line, int len);
 void				proceed_block_sha256(t_hash *h, \
 												unsigned char *line, int len);
 void				decode_block_base64(t_hash *h, unsigned char *line, int len);
 void				encode_block_base64(t_hash *h, unsigned char *line, int len);
 void				proceed_block_base64(t_hash *h, unsigned char *line, int len);
+
 void				proceed_last_block_md5(t_hash *h);
 void				proceed_last_block_sha256(t_hash *h);
 void				decode_last_block_base64(t_hash *h);
 void				encode_last_block_base64(t_hash *h);
 void				proceed_last_block_base64(t_hash *h);
+
 void				print_md5(t_hash *h, int mod, char *stdin);
 void				print_sha256(t_hash *h, int mod, char *stdin);
 void				print_base64(t_hash *h, int mod, char *stdin);
+
 void				usage_message_digest(t_hash *h);
 void				usage_cipher_block(t_hash *h);
 
@@ -122,6 +127,7 @@ int					read_error(t_hash *h);
 /*
 ** TOOLS
 */
+void				init_hash(t_hash *h, int argc, char **argv);
 int					get_fd(void *arg, int mod);
 int					is_illegal_flag(unsigned char *arg);
 void				set_bit(unsigned char *flag, int set, int unset);
@@ -129,6 +135,9 @@ int					test_bit(unsigned char *flag, int flag_value);
 void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
+void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password);
+void				md5(t_hash *h);
+
 
 /*
 ** SHARED

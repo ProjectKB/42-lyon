@@ -17,13 +17,16 @@ void		print_md5(t_hash *h, int mod, char *stdin)
 
 	i = -1;
 	digest_message(&h->md5);
-	if (mod == STDIN && ft_strcmp(stdin, ""))
-		ft_printf("%s", stdin);
-	custom_print(h, mod, 0);
-	while (++i < 16)
-		ft_printf("%02x", h->md5.digest[i]);
-	custom_print(h, mod, 1);
-	ft_printf("\n");
+	if (h->md5.print)
+	{
+		if (mod == STDIN && ft_strcmp(stdin, ""))
+			ft_printf("%s", stdin);
+		custom_print(h, mod, 0);
+		while (++i < 16)
+			ft_printf("%02x", h->md5.digest[i]);
+		custom_print(h, mod, 1);
+		ft_printf("\n");
+	}
 }
 
 void		print_sha256(t_hash *h, int mod, char *stdin)

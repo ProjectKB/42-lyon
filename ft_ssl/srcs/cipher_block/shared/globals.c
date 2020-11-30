@@ -30,12 +30,12 @@ const unsigned char g_pc1_right[28] = {
 };
 
 // number of bit to left circular shift depending on the turn
-const unsigned char g_shift[28] = {
+const unsigned char g_shift_des[28] = {
     1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1
 };
 
 // permuted choice 2 -> 56 to 48 bits
-const unsigned char g_pc1_left[48] = {
+const unsigned char g_pc2[48] = {
     14, 17, 11, 24, 1, 5,
     3, 28, 15, 6, 21, 10,
     23, 19, 12, 4, 26, 8,
