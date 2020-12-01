@@ -23,3 +23,6 @@ A. Init
 B. Proceed Block -> realloc de 64 bits each time -> 16 op
 C. Proceed last Block -> if padding needed 
 D. Print
+
+
+Recheck les permutations une à une

@@ -95,6 +95,7 @@ void				init_decode_base64(t_hash *h);
 void				init_encode_base64(t_hash *h);
 void				init_base64(t_hash *h);
 void				init_sha256(t_hash *h);
+void				init_des(t_hash *h);
 
 void				proceed_block_md5(t_hash *h, unsigned char *line, int len);
 void				proceed_block_sha256(t_hash *h, \
@@ -102,6 +103,7 @@ void				proceed_block_sha256(t_hash *h, \
 void				decode_block_base64(t_hash *h, unsigned char *line, int len);
 void				encode_block_base64(t_hash *h, unsigned char *line, int len);
 void				proceed_block_base64(t_hash *h, unsigned char *line, int len);
+void    			proceed_block_des(t_hash *h, unsigned char *line, int len);
 
 void				proceed_last_block_md5(t_hash *h);
 void				proceed_last_block_sha256(t_hash *h);
@@ -139,6 +141,8 @@ void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
 void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod);
 void				md5(t_hash *h);
+void 				generate_key(t_hash *h, int *i);
+
 
 
 /*

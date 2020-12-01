@@ -10,10 +10,10 @@ A: Permutation function
 2: Separation of block in two blocks of 32 bits : LPT(32) RPT(32)
 3:
 	a: Key transformation
-	-> cf PC1 (on passe de 64 à 56 bits)
-	-> coupe en 2 blocks de 28 bits
-	-> on décale chaque moitié de X bits (vers la gauche  en circular shift <<) en fonction du round (cf shift)
-	-> cf PC2 (on obtient une key de 48bits)
+	-> cf PC1 (on passe de 64 à 56 bits) OK
+	-> coupe en 2 blocks de 28 bits OK
+	-> on décale chaque moitié de X bits (vers la gauche  en circular shift <<) en fonction du round (cf shift) OK
+	-> cf PC2 (on obtient une key de 48bits) OK
 
 	b: Expension Permutation
 	-> on coupe les blocks en 8 blocks de 4 bits (cf expension permutation || E)
