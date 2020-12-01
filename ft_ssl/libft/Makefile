@@ -148,7 +148,9 @@ SRC = 	ft_atoi.c\
 		ft_realloc.c \
 		ft_random.c \
 		ft_ustrncat.c \
-		ft_hexstr.c
+		ft_hexstr.c \
+		ft_print_bits.c \
+		ft_print_bits_to_hexa.c \
 
 HEADER = ./libft.h
 

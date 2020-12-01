@@ -6,7 +6,13 @@
 ** STRUCT
 */
 typedef struct  s_des {
-    ;
+    uint64_t buf;
+    uint32_t lpt; 
+    uint32_t rpt; 
+    uint64_t key;
+    uint64_t key_gen;
+    uint64_t iv;
+    unsigned char *output;
 }               t_des;
 
 

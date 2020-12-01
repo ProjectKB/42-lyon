@@ -58,12 +58,14 @@ typedef struct		s_hash
 	t_md5			md5;
 	t_sha256		sha256;
 	t_base64		base64;
+	t_des			des;
 	t_p				args;
 	unsigned char	*arg;
 	unsigned char	flag;
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
+	int				print;
 }					t_hash;
 
 /*
@@ -135,7 +137,7 @@ int					test_bit(unsigned char *flag, int flag_value);
 void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
-void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password);
+void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod);
 void				md5(t_hash *h);
 
 

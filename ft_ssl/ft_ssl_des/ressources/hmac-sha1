@@ -11,4 +11,4 @@ def EVP_BytesToKey(password, salt, key_len, iv_len):
         dtot += d[-1]
     print('salt: ' + salt.hex(), '\nkey: ' + dtot[:key_len].hex(), '\niv: ' + dtot[key_len:key_len+iv_len].hex())
 
-EVP_BytesToKey(b'password', bytearray.fromhex('1BF5FE28B95D0C1D'), 8, 8)
+EVP_BytesToKey(b'password', bytearray.fromhex('4325E5CCAA69E633'), 8, 8)

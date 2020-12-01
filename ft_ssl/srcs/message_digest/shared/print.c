@@ -17,7 +17,7 @@ void		print_md5(t_hash *h, int mod, char *stdin)
 
 	i = -1;
 	digest_message(&h->md5);
-	if (h->md5.print)
+	if (h->print)
 	{
 		if (mod == STDIN && ft_strcmp(stdin, ""))
 			ft_printf("%s", stdin);

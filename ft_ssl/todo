@@ -17,4 +17,9 @@ If key given directly need an IV for des-cbc
 4. ecb
 5. cbc
 
+Transform Key
 
+A. Init
+B. Proceed Block -> realloc de 64 bits each time -> 16 op
+C. Proceed last Block -> if padding needed 
+D. Print
