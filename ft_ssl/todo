@@ -25,4 +25,5 @@ C. Proceed last Block -> if padding needed
 D. Print
 
 
-Recheck les permutations une à une
+S-box -> bits externes = y | bits internes = x
+-> double array

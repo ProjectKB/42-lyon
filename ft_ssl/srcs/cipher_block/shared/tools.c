@@ -29,13 +29,13 @@ uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int x)
 	pos = x;
 	dst = 0;
 	reverse_src = reverseBits(*src);
-    ft_printf("reverse: "); ft_print_bits(&reverse_src, 64);
+    //ft_printf("reverse: "); ft_print_bits(&reverse_src, 64);
 	while (++i < x)
 		dst |= (((reverse_src >> (permut_table[i] - 1)) & 0x1) << --pos);
 	return (dst);
 }
 
-uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
+uint64_t	rotl_x(uint64_t x, uint64_t n, int size)
 {
-	return ((x << n) | (x >> (size - n))) & mask;
+	return ((x << n) | (x >> (size - n)));
 }
