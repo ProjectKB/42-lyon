@@ -15,7 +15,7 @@ void (*g_init_functions[3])(t_hash *hash) = {
 	init_md5, init_sha256, init_base64
 };
 
-void (*g_proceed_block_functions[3])(t_hash *h, unsigned char *line, int l) = {
+void (*g_proceed_block_functions[3])(t_hash *h) = {
 	proceed_block_md5, proceed_block_sha256, proceed_block_base64
 };
 

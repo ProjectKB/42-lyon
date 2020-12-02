@@ -5,26 +5,25 @@ void    init_encode_base64(t_hash *h)
     h->nb_bytes = 3;
     h->base64.turn = 0;
     h->base64.nb_bytes = 4;
-    h->base64.rest_len = 0;
     if (!(h->base64.output = (unsigned char*)malloc(sizeof(char) * h->base64.nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
 }
 
-void encode_block_base64(t_hash *h, unsigned char *line, int len)
+void encode_block_base64(t_hash *h)
 {
     int i;
 
-    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->base64.nb_bytes + 1)))
+    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->rest + 1)))
         free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
-    if (len != h->nb_bytes)
+    if (h->rest != h->nb_bytes)
     {
         ++h->base64.turn;
-        h->base64.rest_len = len;
-        ft_ustrcpy(h->base64.rest, line, len);
+        h->base64.rest_len = h->rest;
+        ft_ustrcpy(h->base64.rest, h->line, h->rest);
         return ;
     }
     i = h->base64.turn * 4;
-    h->base64.buf = line[0] << 16 | line[1] << 8 | line[2];
+    h->base64.buf = h->line[0] << 16 | h->line[1] << 8 | h->line[2];
     h->base64.output[i] = g_base64_table[h->base64.buf >> 18];
     h->base64.output[i + 1] = g_base64_table[(h->base64.buf >> 12) & 0b111111];
     h->base64.output[i + 2] = g_base64_table[(h->base64.buf >> 6) & 0b111111];

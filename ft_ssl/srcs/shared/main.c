@@ -23,9 +23,10 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 int			main(int argc, char **argv)
 {
 	t_hash	h;
+	uint64_t test;
 
 	init_des(&h);
-	proceed_block_des(&h, (unsigned char *)"01234567", 8);
+	proceed_block_des(&h);
 	exit(0);
 	check_minimum(argc, argv, &h);
 	main_loop(argc, argv, &h);

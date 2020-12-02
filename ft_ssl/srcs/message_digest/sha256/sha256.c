@@ -58,7 +58,7 @@ static void	special_process(t_sha256 *sha256)
 		sha256->input[i] = 0;
 }
 
-void		proceed_block_sha256(t_hash *h, unsigned char *line, int len)
+void		proceed_block_sha256(t_hash *h)
 {
 	int	i;
 	int	j;
@@ -67,9 +67,9 @@ void		proceed_block_sha256(t_hash *h, unsigned char *line, int len)
 	j = -4;
 	k = 0;
 	i = -1;
-	h->sha256.nb_bits += (uint64_t)len;
-	while (++i < len)
-		h->sha256.input[i] = line[i];
+	h->sha256.nb_bits += (uint64_t)h->rest;
+	while (++i < h->rest)
+		h->sha256.input[i] = h->line[i];
 	if (i == 64)
 	{
 		while (k < 16 && (j += 4) < 64)

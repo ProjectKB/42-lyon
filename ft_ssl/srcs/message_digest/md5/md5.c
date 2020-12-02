@@ -49,7 +49,7 @@ static void	special_process(t_md5 *md5)
 		md5->input[i] = 0;
 }
 
-void		proceed_block_md5(t_hash *h, unsigned char *line, int len)
+void		proceed_block_md5(t_hash *h)
 {
 	int	i;
 	int	j;
@@ -60,9 +60,9 @@ void		proceed_block_md5(t_hash *h, unsigned char *line, int len)
 	j = h->md5.nb_bits % 64 - 1;
 	k = -1;
 	l = -4;
-	h->md5.nb_bits += (uint64_t)len;
-	while (++i < len)
-		h->md5.input[++j] = line[i];
+	h->md5.nb_bits += (uint64_t)h->rest;
+	while (++i < h->rest)
+		h->md5.input[++j] = h->line[i];
 	if (i == 64)
 	{
 		while (++k < 16 && (l += 4) < 64)

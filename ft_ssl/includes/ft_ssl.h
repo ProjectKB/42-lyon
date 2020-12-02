@@ -60,12 +60,14 @@ typedef struct		s_hash
 	t_base64		base64;
 	t_des			des;
 	t_p				args;
+	unsigned char   *line;
 	unsigned char	*arg;
 	unsigned char	flag;
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
 	int				print;
+	int				rest;
 }					t_hash;
 
 /*
@@ -78,8 +80,7 @@ extern const char	*g_hash_name[5];
 */
 extern void 		(*g_pre_process_functions[6])(t_hash *h, int *i);
 extern void			(*g_init_functions[3])(t_hash *h);
-extern void			(*g_proceed_block_functions[3])(t_hash *h, \
-												unsigned char *line, int len);
+extern void			(*g_proceed_block_functions[3])(t_hash *h);
 extern void			(*g_proceed_last_block_functions[3])(t_hash *h);
 extern void			(*g_print_functions[3])(t_hash *h, int mod, char *stdin);
 extern void			(*g_usage_functions[3])(t_hash *h);
@@ -97,13 +98,12 @@ void				init_base64(t_hash *h);
 void				init_sha256(t_hash *h);
 void				init_des(t_hash *h);
 
-void				proceed_block_md5(t_hash *h, unsigned char *line, int len);
-void				proceed_block_sha256(t_hash *h, \
-												unsigned char *line, int len);
-void				decode_block_base64(t_hash *h, unsigned char *line, int len);
-void				encode_block_base64(t_hash *h, unsigned char *line, int len);
-void				proceed_block_base64(t_hash *h, unsigned char *line, int len);
-void    			proceed_block_des(t_hash *h, unsigned char *line, int len);
+void				proceed_block_md5(t_hash *h);
+void				proceed_block_sha256(t_hash *h);
+void				decode_block_base64(t_hash *h);
+void				encode_block_base64(t_hash *h);
+void				proceed_block_base64(t_hash *h);
+void    			proceed_block_des(t_hash *h);
 
 void				proceed_last_block_md5(t_hash *h);
 void				proceed_last_block_sha256(t_hash *h);

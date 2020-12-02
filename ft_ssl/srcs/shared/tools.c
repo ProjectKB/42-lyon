@@ -61,32 +61,3 @@ void init_hash(t_hash *h, int argc, char **argv)
 	h->args.c = argc;
 	h->args.v = argv;
 }
-
-void md5(t_hash *h)
-{
-	init_md5(h);
-	h->print = FALSE;
-	process(h, STRING);
-}
-
-void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
-{
-	int i;
-	int j;
-	unsigned char str[17];
-	unsigned char buf[8];
-
-	i = -1;
-	j = 8;
-	ft_ustrcpy(str, password, 8);
-	ft_random(8, buf);
-	ft_ustrncat(str, buf, 8, 8);
-	h->arg = str;
-	md5(h);
-	h->des.key = ((uint64_t)h->md5.digest[0] << 56) | ((uint64_t)h->md5.digest[1] << 48) | ((uint64_t)h->md5.digest[2] << 40) | ((uint64_t)h->md5.digest[3] << 32) | \
-				 ((uint64_t)h->md5.digest[4] << 24) | ((uint64_t)h->md5.digest[5] << 16) | ((uint64_t)h->md5.digest[6] << 8) | h->md5.digest[7];
-	h->des.iv = ((uint64_t)h->md5.digest[8] << 56) | ((uint64_t)h->md5.digest[9] << 48) | ((uint64_t)h->md5.digest[10] << 40) | ((uint64_t)h->md5.digest[11] << 32) | \
-				 ((uint64_t)h->md5.digest[12] << 24) | ((uint64_t)h->md5.digest[13] << 16) | ((uint64_t)h->md5.digest[14] << 8) | h->md5.digest[15];
-	if (mod)
-		ft_hexstr(buf, 8);
-}

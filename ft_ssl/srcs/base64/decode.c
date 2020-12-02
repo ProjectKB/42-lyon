@@ -10,18 +10,18 @@ void    init_decode_base64(t_hash *h)
         print_and_quit("Congrats, you broke malloc.\n", 2);
 }
 
-void decode_block_base64(t_hash *h, unsigned char *line, int len)
+void decode_block_base64(t_hash *h)
 {
     int i;
 
-    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 3, len + 1)))
+    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 3, h->rest + 1)))
         free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
     int j = -1;
-    ft_ustrcpy(h->base64.rest, line, len);
-    if (len != h->nb_bytes || line[3] == '\n')
+    ft_ustrcpy(h->base64.rest, h->line, h->rest);
+    if (h->rest != h->nb_bytes || h->line[3] == '\n')
         return ;
     i = h->base64.turn * 3;
-    h->base64.buf = g_base64_dec[line[0]] << 18 | g_base64_dec[line[1]] << 12 | g_base64_dec[line[2]] << 6 | g_base64_dec[line[3]];
+    h->base64.buf = g_base64_dec[h->line[0]] << 18 | g_base64_dec[h->line[1]] << 12 | g_base64_dec[h->line[2]] << 6 | g_base64_dec[h->line[3]];
     h->base64.output[i] = h->base64.buf >> 16 & 0b11111111;
     h->base64.output[i + 1] = (h->base64.buf >> 8) & 0b11111111;
     h->base64.output[i + 2] = h->base64.buf & 0b11111111;

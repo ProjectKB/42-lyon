@@ -7,56 +7,49 @@ void    init_des(t_hash *h)
 	h->des.iv = 0;
 	h->des.turn = 0;
 	h->nb_bytes = 8;
+	h->des.rest = 0;
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	EVP_bytes_to_Key(h, (const unsigned char *)"password", FALSE);
 }
 
-void generate_key(t_hash *h, int *i)
-{
-	// split the 64 bits key to two 28 bits key then purmated them according to g_pc1
-	h->des.key_gen = permut_x_bits(&h->des.key, g_pc1, 64, 56);
-
-	//circular shift each of them acording to g_shift_des
-	h->des.key_gen = ((rotl_x(h->des.key_gen >> 28, g_shift_des[*i], 28) << 28) | \
-		 			  rotl_x(h->des.key_gen & 0xFFFFFFF, g_shift_des[*i], 28));
-
-	// split the 56 bits key to 48 bits key according to g_pc2 
-	h->des.key_gen = permut_x_bits(&h->des.key_gen, g_pc2, 56, 48);
-}
-
-uint64_t s_box_substitution(uint64_t *to_substitute)
+void init_buf(t_hash *h)
 {
 	int i;
-	int x;
-	int y;
-	int block;
-	uint64_t substituted;
-	unsigned char shift1[8] = {42, 36, 30, 24, 18, 12, 6, 0};
-	unsigned char shift2[8] = {28, 24, 20, 16, 12, 8, 4, 0};
+	unsigned char pad;
+	int shift;
 
 	i = -1;
-	substituted = 0;
-	while (++i < 8)
+	h->des.buf = 0;
+	shift = 64;
+	while (++i < h->rest && (shift -= 8) != -1)
+		h->des.buf |= ((uint64_t)h->line[i] << shift);
+	if (h->rest != h->nb_bytes)
 	{
-		block = ((*to_substitute) >> shift1[i]) & 0x3F;
-		y = ((block & 0x20) >> 4) | (block & 0x1); 
-		x = (block >> 1) & 0xF;
-		substituted |= (g_sbox[i][y][x] << shift2[i]);
+		--i;
+		pad = h->nb_bytes - h->rest;
+		while (++i < h->nb_bytes && (shift -= 8) != -1)
+			h->des.buf |= ((uint64_t)pad << shift);
 	}
-	return (substituted);
+	ft_print_bits(h->des.buf, 64);
+	ft_print_bits_to_hexa(h->des.buf, 64);
+	exit(0);
 }
 
-void    proceed_block_des(t_hash *h, unsigned char *line, int len)
+void    proceed_block_des(t_hash *h)
 {
     int i;
 
 	i = -1;
-	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 4, h->nb_bytes + 1)))
+	h->rest = 0;
+	h->line = (unsigned char*)ft_strdup("01234567");
+	init_buf(h);
+	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 4, h->rest + 1)))
         free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
-    h->des.buf = ((uint64_t)line[0] << 56) | ((uint64_t)line[1] << 48) | ((uint64_t)line[2] << 40) | \
-			((uint64_t)line[3] << 32) | ((uint64_t)line[4] << 24) | ((uint64_t)line[5] << 16) | \
-			((uint64_t)line[6] << 8) | (uint64_t)line[7];
+	if (h->rest != h->nb_bytes)
+		h->des.rest = h->rest;
+	//init_buf(h);
+    h->des.buf = permut_x_bits(&h->des.buf, g_ip, 32, 48);
     h->des.lpt = (h->des.buf >> 32);
     h->des.rpt = (h->des.buf & 0xFFFFFFFF);
     while (++i < 16)
@@ -76,5 +69,6 @@ void    proceed_block_des(t_hash *h, unsigned char *line, int len)
 
 void	proceed_last_block_des(t_hash *h)
 {
-	
+	if (h->des.rest)
+		proceed_block_des(h);
 }

@@ -16,7 +16,7 @@ int	define_algo(char *algo_name)
 		return (-1);
 }
 
-static int	read_bytes(t_hash *h, int fd, unsigned char *line, int mod)
+static int	read_bytes(t_hash *h, int fd, int mod)
 {
 	int			i;
 	int			j;
@@ -25,9 +25,8 @@ static int	read_bytes(t_hash *h, int fd, unsigned char *line, int mod)
 
 	i = -1;
 	j = count * h->nb_bytes - 1;
-	ft_bzero(line, h->nb_bytes + 1);
 	if (mod != STRING)
-		return (read(fd, line, h->nb_bytes));
+		return (read(fd, h->line, h->nb_bytes));
 	if (!h->arg || stop)
 	{
 		stop = FALSE;
@@ -37,7 +36,7 @@ static int	read_bytes(t_hash *h, int fd, unsigned char *line, int mod)
 	{
 		if (!h->arg[++j] && (stop = TRUE))
 			return (i);
-		line[i] = h->arg[j];
+		h->line[i] = h->arg[j];
 	}
 	if (!h->arg[j] && (stop = TRUE))
 		return (i);
@@ -49,21 +48,22 @@ int			process(t_hash *h, int mod)
 {
 	int				fd;
 	int				len;
-	unsigned char	line[h->nb_bytes + 1];
 	char			*stdin;
 
+	if (!(h->line = ft_memalloc(h->nb_bytes + 1)))
+		free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
 	if (mod == STDIN)
 		stdin = ft_strdup("");
 	if ((fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
-	while ((len = read_bytes(h, fd, line, mod)))
+	while ((h->rest = read_bytes(h, fd, mod)))
 	{
-		if (len == -1)
+		if (h->rest == -1)
 			read_error(h);
-		g_proceed_block_functions[h->i](h, line, len);
+		g_proceed_block_functions[h->i](h);
 		if (mod == STDIN)
-			stdin = ft_strjoin2(stdin, line);
+			stdin = ft_strjoin2(stdin, h->line);
 	}
 	g_proceed_last_block_functions[h->i](h);
 	g_print_functions[h->i](h, mod, stdin);
