@@ -6,14 +6,14 @@ Diffuson -> SWAP bits  -> permutation -> quand le RPT devient le LPT
 A: Permutation function
 
 
-1: Initial Permutation on block. (Cf ip) OKK
-2: Separation of block in two blocks of 32 bits : LPT(32) RPT(32) OKK
+1: Initial Permutation on block. (Cf ip) OKKK
+2: Separation of block in two blocks of 32 bits : LPT(32) RPT(32) OKKK
 3:
 	a: Key transformation
 	-> cf PC1 (on passe de 64 à 56 bits) OKK
-	-> coupe en 2 blocks de 28 bits OKK
-	-> on décale chaque moitié de X bits (vers la gauche  en circular shift <<) en fonction du round (cf shift) OKK
-	-> cf PC2 (on obtient une key de 48bits) OKK
+	-> coupe en 2 blocks de 28 bits OKKK
+	-> on décale chaque moitié de X bits (vers la gauche  en circular shift <<) en fonction du round (cf shift) OKKK
+	-> cf PC2 (on obtient une key de 48bits) OKKK
 
 	b: Expension Permutation
 	-> on coupe les blocks en 8 blocks de 4 bits (cf expension permutation || E) OKK
@@ -25,5 +25,5 @@ A: Permutation function
 
 	d: P-box permutation cf P OKK
 
-	e: XOR and swap
-4: Final permutation (cf ep)
+	e: XOR and swap OKK
+4: Final permutation (cf ep) OKK

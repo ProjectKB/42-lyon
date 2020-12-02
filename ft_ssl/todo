@@ -23,7 +23,3 @@ A. Init
 B. Proceed Block -> realloc de 64 bits each time -> 16 op
 C. Proceed last Block -> if padding needed 
 D. Print
-
-
-S-box -> bits externes = y | bits internes = x
--> double array

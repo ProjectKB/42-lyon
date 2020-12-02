@@ -110,6 +110,7 @@ void				proceed_last_block_sha256(t_hash *h);
 void				decode_last_block_base64(t_hash *h);
 void				encode_last_block_base64(t_hash *h);
 void				proceed_last_block_base64(t_hash *h);
+void				proceed_last_block_des(t_hash *h);
 
 void				print_md5(t_hash *h, int mod, char *stdin);
 void				print_sha256(t_hash *h, int mod, char *stdin);
