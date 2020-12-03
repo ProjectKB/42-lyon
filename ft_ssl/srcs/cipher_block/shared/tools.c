@@ -22,9 +22,14 @@ uint64_t	rotl_x(uint64_t x, uint64_t n, int size)
 
 void md5(t_hash *h)
 {
+	int tmp;
+
+	tmp = h->i;
+	h->i = MD5;
 	init_md5(h);
 	h->print = FALSE;
 	process(h, STRING);
+	h->i = tmp;
 }
 
 void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
@@ -32,13 +37,12 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 	int i;
 	int j;
 	unsigned char str[17];
-	unsigned char buf[8];
 
 	i = -1;
 	j = 8;
 	ft_ustrcpy(str, password, 8);
-	ft_random(8, buf);
-	ft_ustrncat(str, buf, 8, 8);
+	ft_random(8, h->des.salt);
+	ft_ustrncat(str, h->des.salt, 8, 8);
 	h->arg = str;
 	md5(h);
 	h->des.key = ((uint64_t)h->md5.digest[0] << 56) | ((uint64_t)h->md5.digest[1] << 48) | ((uint64_t)h->md5.digest[2] << 40) | ((uint64_t)h->md5.digest[3] << 32) | \
@@ -46,7 +50,7 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 	h->des.iv = ((uint64_t)h->md5.digest[8] << 56) | ((uint64_t)h->md5.digest[9] << 48) | ((uint64_t)h->md5.digest[10] << 40) | ((uint64_t)h->md5.digest[11] << 32) | \
 				 ((uint64_t)h->md5.digest[12] << 24) | ((uint64_t)h->md5.digest[13] << 16) | ((uint64_t)h->md5.digest[14] << 8) | h->md5.digest[15];
 	if (mod)
-		ft_hexstr(buf, 8);
+		ft_hexstr(h->des.salt, 8);
 }
 
 void generate_key(t_hash *h, int *i)
@@ -83,3 +87,4 @@ uint64_t s_box_substitution(uint64_t *to_substitute)
 	}
 	return (substituted);
 }
+

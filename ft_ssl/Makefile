@@ -33,6 +33,7 @@ SRC = shared/main.c \
 	  cipher_block/shared/globals.c \
 	  cipher_block/shared/tools.c \
 	  cipher_block/shared/des.c \
+	  cipher_block/shared/print.c \
 
 OBJ = $(SRC:.c=.o)
 

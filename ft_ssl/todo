@@ -1,10 +1,5 @@
 TODO
 
--k: Key in hex
--v: IV in hex
--s: salt in hex
--p: Ascii password
-
 Salt defined by random
 Key/IV defined by EVP_BytesToKey (need pass + salt)
 
@@ -13,7 +8,7 @@ If key given directly need an IV for des-cbc
 
 1. Generate Salt OK
 2. Generate Key OK
-3. des
+3. des OK
 4. ecb
 5. cbc
 
@@ -23,5 +18,83 @@ A. Init
 B. Proceed Block -> realloc de 64 bits each time -> 16 op
 C. Proceed last Block -> if padding needed 
 D. Print
+
+echo "one deep secret" | openssl des-cbc -a -K 6162636461626364 -iv 0011223344556677
+echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -d -a -K 6162636461626364 -iv 0011223344556677
+
+
+
+
+
+
+
+
+
+Salted__ : 53 61 6c 74 65 64 5f 5f
+
+A:
+echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -K D5CFBFA2F132CBBE -S 2A7F65592CAF6FC4 -iv B970432C97F3AD45
+ASCII : X������|�
+��PӅ:��&w�� U�� -s�����/��%
+
+HEX: WPylBujK/IF81wqfilDThTqGjyZ3kPEgVaXzCS0Fc/+Lg+viL/PoFA==
+
+salt=D03F41F78E7F0000
+key=D5CFBFA2F132CBBE
+iv =B970432C97F3AD45
+
+
+
+
+B: 
+echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -pass "pass:MySuperSecurePassword" -S 2A7F65592CAF6FC4 -iv B970432C97F3AD45
+
+ASCII : Salted__*eY,�o�X������|�
+��PӅ:��&w�� U�� -s�����/��%
+
+HEX: U2FsdGVkX18qf2VZLK9vxFj8pQboyvyBfNcKn4pQ04U6ho8md5DxIFWl8wktBXP/
+i4Pr4i/z6BQ=
+
+salt=2A7F65592CAF6FC4
+key=D5CFBFA2F132CBBE
+iv =B970432C97F3AD45
+
+
+
+
+A: si une key existe -> comment est généré le salt ? -> pas important
+pas de key -> EVP_bytes_to_key
+
+
+
+
+
+
+
+
+
+
+
+
+
+-a decode/encode depending on encrypt/decrypt mode
+-d decrypt mode
+-e encrypt mode
+-i input file
+-o output file
+-p password
+-s salt in hex
+-v IV in hex
+-k key in hex
+-P print key/salt/IV
+
+
+
+1. Créer un print salt/key/iv
+2. Simuler sans flag
+-> preprocess
+
+
+
 
 Free line if needed -> end + error

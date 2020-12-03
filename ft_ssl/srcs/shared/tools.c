@@ -61,3 +61,19 @@ void init_hash(t_hash *h, int argc, char **argv)
 	h->args.c = argc;
 	h->args.v = argv;
 }
+
+int	define_algo(char *algo_name)
+{
+	if (!ft_strcmp(algo_name, "md5"))
+		return (MD5);
+	else if (!ft_strcmp(algo_name, "sha256"))
+		return (SHA256);
+	else if (!ft_strcmp(algo_name, "base64"))
+		return (BASE64);
+	else if (!ft_strcmp(algo_name, "des-ecb"))
+		return (DES_ECB);
+	else if (!ft_strcmp(algo_name, "des") || !ft_strcmp(algo_name, "des-cbc"))
+		return (DES_CBC);
+	else
+		return (-1);
+}

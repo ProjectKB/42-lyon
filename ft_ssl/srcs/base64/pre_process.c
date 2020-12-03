@@ -1,6 +1,6 @@
 #include "ft_ssl.h"
 
-void	cipher_block(t_hash *h, int *i)
+void	base64(t_hash *h, int *i)
 {
 	if (!ft_strcmp(h->args.v[*i], "-d"))
 		set_bit(&h->flag, FLAG_D, 0);

@@ -11,29 +11,23 @@ void    init_des(t_hash *h)
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	EVP_bytes_to_Key(h, (const unsigned char *)"password", FALSE);
+	ft_printf("\n"); print_salt_key_iv(h); ft_printf("\n");
 }
 
-void init_buf(t_hash *h)
+void	init_buf(t_hash *h)
 {
 	int i;
-	unsigned char pad;
 	int shift;
+	int pad;
 
-	i = -1;
-	h->des.buf = 0;
+	i = 0;
 	shift = 64;
-	while (++i < h->rest && (shift -= 8) != -1)
-		h->des.buf |= ((uint64_t)h->line[i] << shift);
-	if (h->rest != h->nb_bytes)
-	{
-		--i;
-		pad = h->nb_bytes - h->rest;
-		while (++i < h->nb_bytes && (shift -= 8) != -1)
+	h->des.buf = 0;
+	while (i < h->des.rest && (shift -= 8) != -1)
+		h->des.buf |= ((uint64_t)h->line[i++] << shift);
+	if (h->des.rest != h->nb_bytes && (pad = h->nb_bytes - h->des.rest) != -1)
+		while (i++ < h->nb_bytes && (shift -= 8) != -1)
 			h->des.buf |= ((uint64_t)pad << shift);
-	}
-	ft_print_bits(h->des.buf, 64);
-	ft_print_bits_to_hexa(h->des.buf, 64);
-	exit(0);
 }
 
 void    proceed_block_des(t_hash *h)
@@ -41,14 +35,11 @@ void    proceed_block_des(t_hash *h)
     int i;
 
 	i = -1;
-	h->rest = 0;
-	h->line = (unsigned char*)ft_strdup("01234567");
+	if (h->rest != h->nb_bytes && (h->des.rest = h->rest))
+		return;
+	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 4, h->nb_bytes + 1)))
+        free_and_quit("Congrats, you broke malloc.\n", h->des.output, 2);
 	init_buf(h);
-	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 4, h->rest + 1)))
-        free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
-	if (h->rest != h->nb_bytes)
-		h->des.rest = h->rest;
-	//init_buf(h);
     h->des.buf = permut_x_bits(&h->des.buf, g_ip, 32, 48);
     h->des.lpt = (h->des.buf >> 32);
     h->des.rpt = (h->des.buf & 0xFFFFFFFF);
@@ -69,6 +60,7 @@ void    proceed_block_des(t_hash *h)
 
 void	proceed_last_block_des(t_hash *h)
 {
-	if (h->des.rest)
-		proceed_block_des(h);
+	h->des.rest = h->nb_bytes;
+	proceed_block_des(h);
+	ft_printf("coucou\n"); exit(0);
 }

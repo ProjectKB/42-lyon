@@ -13,6 +13,7 @@ typedef struct  s_des {
     uint64_t swap;
     uint64_t key;
     uint64_t iv;
+    unsigned char salt[8];
     uint64_t key_gen;
     int      turn;
     int      rest;

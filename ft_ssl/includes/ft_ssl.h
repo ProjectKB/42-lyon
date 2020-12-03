@@ -78,18 +78,18 @@ extern const char	*g_hash_name[5];
 /*
 ** ARRAY OF FUNCTION POINTERS
 */
-extern void 		(*g_pre_process_functions[6])(t_hash *h, int *i);
-extern void			(*g_init_functions[3])(t_hash *h);
-extern void			(*g_proceed_block_functions[3])(t_hash *h);
-extern void			(*g_proceed_last_block_functions[3])(t_hash *h);
-extern void			(*g_print_functions[3])(t_hash *h, int mod, char *stdin);
-extern void			(*g_usage_functions[3])(t_hash *h);
+extern void 		(*g_pre_process_functions[3])(t_hash *h, int *i);
+extern void			(*g_init_functions[5])(t_hash *h);
+extern void			(*g_proceed_block_functions[5])(t_hash *h);
+extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
+extern void			(*g_print_functions[5])(t_hash *h, int mod, char *stdin);
+extern void			(*g_usage_functions[5])(t_hash *h);
 
 /*
 ** MATERIALS FOR ARRAY OF FUNCTION POINTERS
 */
 void				message_digest(t_hash *h, int *i);
-void				cipher_block(t_hash *h, int *i);
+void				base64(t_hash *h, int *i);
 
 void				init_md5(t_hash *h);
 void				init_decode_base64(t_hash *h);
@@ -115,9 +115,10 @@ void				proceed_last_block_des(t_hash *h);
 void				print_md5(t_hash *h, int mod, char *stdin);
 void				print_sha256(t_hash *h, int mod, char *stdin);
 void				print_base64(t_hash *h, int mod, char *stdin);
+void				print_des(t_hash *h, int mod, char *stdin);
 
 void				usage_message_digest(t_hash *h);
-void				usage_cipher_block(t_hash *h);
+void				usage_base64(t_hash *h);
 
 /*
 ** ERRORS
@@ -143,6 +144,8 @@ void				free_and_quit(char *str, void *to_free, int fd);
 void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod);
 void				md5(t_hash *h);
 void 				generate_key(t_hash *h, int *i);
+void				print_salt_key_iv(t_hash *h);
+
 
 
 

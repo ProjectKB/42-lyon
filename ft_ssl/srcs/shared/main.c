@@ -14,8 +14,8 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 
 	i = 1;
 	init_hash(h, argc, argv);
-	while (++i < h->args.c)
-		g_pre_process_functions[h->i](h, &i);
+	//while (++i < h->args.c)
+	//	g_pre_process_functions[h->i](h, &i);
 	if (!test_bit(&h->flag, FLAG_A))
 		process(h, STDOUT);
 }
@@ -25,9 +25,6 @@ int			main(int argc, char **argv)
 	t_hash	h;
 	uint64_t test;
 
-	init_des(&h);
-	proceed_block_des(&h);
-	exit(0);
 	check_minimum(argc, argv, &h);
 	main_loop(argc, argv, &h);
 	return (0);
