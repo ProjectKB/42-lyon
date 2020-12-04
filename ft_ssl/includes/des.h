@@ -8,9 +8,9 @@
 typedef struct  s_des {
     uint64_t buf;
     uint64_t lpt; 
+    uint64_t lpt_next;
     uint64_t rpt; 
     uint64_t rpt_gen; 
-    uint64_t swap;
     uint64_t key;
     uint64_t iv;
     unsigned char salt[8];
@@ -37,7 +37,7 @@ extern const unsigned char g_ep[64];
 ** TOOLS
 */
 uint64_t    permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len);
-uint64_t    rotl_x(uint64_t x, uint64_t n, int size);
+uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask);
 uint64_t    s_box_substitution(uint64_t *to_substitute);
 
 

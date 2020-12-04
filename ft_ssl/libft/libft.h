@@ -104,7 +104,7 @@ unsigned char		*ft_realloc(void *s1, size_t len1, size_t len2);
 int					ft_random(int bytes_len, unsigned char *buf);
 void				ft_ustrncat(unsigned char *dst, const unsigned char *src, int len, int start);
 void				ft_hexstr(unsigned char *str, int len);
-void				ft_print_bits(uint64_t to_print, int len);
+void				ft_print_bits(uint64_t to_print, int len, int x);
 void				ft_print_bits_to_hexa(uint64_t buf, int len);
 
 typedef struct		s_list

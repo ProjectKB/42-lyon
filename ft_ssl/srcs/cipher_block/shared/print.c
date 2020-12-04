@@ -10,7 +10,8 @@ void	print_salt_key_iv(t_hash *h)
 	ft_print_bits_to_hexa(h->des.iv, 64);
 }
 
-void				print_des(t_hash *h, int mod, char *stdin)
+void	print_des(t_hash *h, int mod, char *stdin)
 {
-	
+	ft_printf("%s", h->des.output);
+	exit(0);
 }

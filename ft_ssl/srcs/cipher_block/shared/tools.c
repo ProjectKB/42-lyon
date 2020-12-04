@@ -15,9 +15,9 @@ uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int inp
 	return (dst);
 }
 
-uint64_t	rotl_x(uint64_t x, uint64_t n, int size)
+uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
 {
-	return ((x << n) | (x >> (size - n)));
+	return (((x << n) | (x >> (size - n))) & mask);
 }
 
 void md5(t_hash *h)
@@ -53,17 +53,20 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 		ft_hexstr(h->des.salt, 8);
 }
 
+void init_key(t_hash *h)
+{
+	// split the 64 bits key to 56 bits then purmated them according to g_pc1
+	h->des.key = permut_x_bits(&h->des.key, g_pc1, 64, 56);
+}
+
 void generate_key(t_hash *h, int *i)
 {
-	// split the 64 bits key to two 28 bits key then purmated them according to g_pc1
-	h->des.key_gen = permut_x_bits(&h->des.key, g_pc1, 64, 56);
-
 	//circular shift each of them acording to g_shift_des
-	h->des.key_gen = ((rotl_x(h->des.key_gen >> 28, g_shift_des[*i], 28) << 28) | \
-		 			  rotl_x(h->des.key_gen & 0xFFFFFFF, g_shift_des[*i], 28));
+	h->des.key = ((rotl_x(h->des.key >> 28, g_shift_des[*i], 28, 0xFFFFFFF) << 28) | \
+		 			  rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[*i], 28, 0xFFFFFFF));
 
 	// split the 56 bits key to 48 bits key according to g_pc2 
-	h->des.key_gen = permut_x_bits(&h->des.key_gen, g_pc2, 56, 48);
+	h->des.key_gen = permut_x_bits(&h->des.key, g_pc2, 56, 48);
 }
 
 uint64_t s_box_substitution(uint64_t *to_substitute)
@@ -83,6 +86,7 @@ uint64_t s_box_substitution(uint64_t *to_substitute)
 		block = ((*to_substitute) >> shift1[i]) & 0x3F;
 		y = ((block & 0x20) >> 4) | (block & 0x1); 
 		x = (block >> 1) & 0xF;
+		//ft_printf("%d %d\n", y, x); exit(0);
 		substituted |= (g_sbox[i][y][x] << shift2[i]);
 	}
 	return (substituted);

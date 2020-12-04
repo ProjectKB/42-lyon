@@ -62,12 +62,25 @@ iv =B970432C97F3AD45
 
 
 
-A: si une key existe -> comment est généré le salt ? -> pas important
-pas de key -> EVP_bytes_to_key
 
 
+debug : SETKEY -> 86893E5E720F0999
 
+echo -n "" | openssl des-ecb -K 86893E5E720F0999 -a
+-> zvK0R8/0984=
+-> ��G����
+-> décoder et passer en hex puis en binaire
+hex: ce f2 b4 47 cf f4 f7 ce
+bin: 11001110 11110010 10110100 01000111 11001111 11110100 11110111 11001110
+-> comparer avec mon output
 
+echo -n "01234567" | openssl des-ecb -K 86893E5E720F0999 -nopad -a
+-> GmtF8JJbgVI=
+-> kE�[�R
+-> décoder et passer en hex puis en binaire
+hex: 1a 6b 45 f0 92 5b 81 52
+bin: 00011010 01101011 01000101 11110000 10010010 01011011 10000001 01010010
+-> comparer avec mon output 
 
 
 
@@ -97,4 +110,6 @@ pas de key -> EVP_bytes_to_key
 
 
 
-Free line if needed -> end + error
+
+
+
