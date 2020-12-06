@@ -71,7 +71,6 @@ void    proceed_block_des(t_hash *h)
 	h->des.buf = (h->des.rpt << 32) | h->des.lpt;
 	h->des.buf = permut_x_bits(&h->des.buf, g_ep, 64, 64);
 	ft_print_bits_to_hexa(h->des.buf, 64);
-	exit(0);	
 	prepare_output(h);
 }
 

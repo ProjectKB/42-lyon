@@ -151,6 +151,7 @@ SRC = 	ft_atoi.c\
 		ft_hexstr.c \
 		ft_print_bits.c \
 		ft_print_bits_to_hexa.c \
+		ft_hexatoi.c \
 
 HEADER = ./libft.h
 

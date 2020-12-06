@@ -13,7 +13,7 @@
 
 #include "libft.h"
 
-size_t	ft_recursive_power(int nb, int power)
+size_t	ft_recursive_power(size_t nb, int power)
 {
 	if (!power)
 		return (1);

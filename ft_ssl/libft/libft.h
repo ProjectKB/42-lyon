@@ -50,7 +50,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle,
 		size_t len);
-size_t				ft_recursive_power(int nb, int power);
+size_t				ft_recursive_power(size_t nb, int power);
 long double			ft_recursive_npower(int power);
 char				*ft_strupcase(char *str);
 char				*ft_lowercase(char *str);
@@ -106,6 +106,7 @@ void				ft_ustrncat(unsigned char *dst, const unsigned char *src, int len, int s
 void				ft_hexstr(unsigned char *str, int len);
 void				ft_print_bits(uint64_t to_print, int len, int x);
 void				ft_print_bits_to_hexa(uint64_t buf, int len);
+void				ft_hexatoi(unsigned char *str, uint64_t *dst);
 
 typedef struct		s_list
 {

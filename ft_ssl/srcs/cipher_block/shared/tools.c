@@ -32,6 +32,18 @@ void md5(t_hash *h)
 	h->i = tmp;
 }
 
+void base644(t_hash *h)
+{
+	int tmp;
+
+	tmp = h->i;
+	h->i = BASE64;
+	init_base64(h);
+	//h->print = FALSE;
+	process(h, STRING);
+	h->i = tmp;
+}
+
 void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 {
 	int i;
