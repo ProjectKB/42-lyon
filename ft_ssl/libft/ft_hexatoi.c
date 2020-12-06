@@ -13,3 +13,6 @@ void ft_hexatoi(unsigned char *str, uint64_t *dst)
 			*dst = (*dst << 4) | (str[i] - 55);
 	}
 }
+
+
+& | ^ 

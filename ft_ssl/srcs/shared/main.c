@@ -14,9 +14,6 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 
 	i = 1;
 	init_hash(h, argc, argv);
-	h->arg = (unsigned char*)"coucou";
-	base644(h);
-	exit(0);
 	while (++i < h->args.c)
 		g_pre_process_functions[h->i](h, &i);
 	if (!test_bit(&h->flag, FLAG_A))
@@ -26,6 +23,7 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 int			main(int argc, char **argv)
 {
 	t_hash	h;
+	uint64_t test;
 
 	check_minimum(argc, argv, &h);
 	main_loop(argc, argv, &h);

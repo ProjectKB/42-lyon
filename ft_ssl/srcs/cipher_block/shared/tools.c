@@ -20,7 +20,7 @@ uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
 	return (((x << n) | (x >> (size - n))) & mask);
 }
 
-void md5(t_hash *h)
+void md5_custom(t_hash *h)
 {
 	int tmp;
 
@@ -32,16 +32,11 @@ void md5(t_hash *h)
 	h->i = tmp;
 }
 
-void base644(t_hash *h)
+void base64_custom(t_hash *h)
 {
-	int tmp;
-
-	tmp = h->i;
 	h->i = BASE64;
 	init_base64(h);
-	//h->print = FALSE;
 	process(h, STRING);
-	h->i = tmp;
 }
 
 void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
@@ -56,7 +51,7 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 	ft_random(8, h->des.salt);
 	ft_ustrncat(str, h->des.salt, 8, 8);
 	h->arg = str;
-	md5(h);
+	md5_custom(h);
 	h->des.key = ((uint64_t)h->md5.digest[0] << 56) | ((uint64_t)h->md5.digest[1] << 48) | ((uint64_t)h->md5.digest[2] << 40) | ((uint64_t)h->md5.digest[3] << 32) | \
 				 ((uint64_t)h->md5.digest[4] << 24) | ((uint64_t)h->md5.digest[5] << 16) | ((uint64_t)h->md5.digest[6] << 8) | h->md5.digest[7];
 	h->des.iv = ((uint64_t)h->md5.digest[8] << 56) | ((uint64_t)h->md5.digest[9] << 48) | ((uint64_t)h->md5.digest[10] << 40) | ((uint64_t)h->md5.digest[11] << 32) | \
@@ -98,7 +93,6 @@ uint64_t s_box_substitution(uint64_t *to_substitute)
 		block = ((*to_substitute) >> shift1[i]) & 0x3F;
 		y = ((block & 0x20) >> 4) | (block & 0x1); 
 		x = (block >> 1) & 0xF;
-		//ft_printf("%d %d\n", y, x); exit(0);
 		substituted |= (g_sbox[i][y][x] << shift2[i]);
 	}
 	return (substituted);

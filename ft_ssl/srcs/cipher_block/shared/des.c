@@ -12,6 +12,7 @@ void    init_des(t_hash *h)
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	//EVP_bytes_to_Key(h, (const unsigned char *)"password", FALSE);
 	h->des.key = 0x86893E5E720F0999;
+	init_key(h);
 }
 
 static void	prepare_output(t_hash *h)
@@ -49,11 +50,9 @@ void    proceed_block_des(t_hash *h)
 	i = -1;
 	if (h->rest != h->nb_bytes)
 		h->des.rest = h->rest;
-	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 4, h->nb_bytes + 1)))
+	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 8, h->nb_bytes + 1)))
         free_and_quit("Congrats, you broke malloc.\n", h->des.output, 2);
 	init_buf(h);
-	//h->des.buf = 0x0123456789ABCDEF;
-	init_key(h);
     h->des.buf = permut_x_bits(&h->des.buf, g_ip, 64, 64);
     h->des.lpt = (h->des.buf >> 32);
     h->des.rpt = (h->des.buf & 0xFFFFFFFF);
@@ -70,7 +69,6 @@ void    proceed_block_des(t_hash *h)
     }
 	h->des.buf = (h->des.rpt << 32) | h->des.lpt;
 	h->des.buf = permut_x_bits(&h->des.buf, g_ep, 64, 64);
-	ft_print_bits_to_hexa(h->des.buf, 64);
 	prepare_output(h);
 }
 
