@@ -1,10 +1,12 @@
 TODO
 
+Check alloc
+Check flag when decrypt ('cause we modify flag for b64)
+
 Salt defined by random
 Key/IV defined by EVP_BytesToKey (need pass + salt)
 
 If key given directly need an IV for des-cbc
-
 
 1. Generate Salt OK
 2. Generate Key OK

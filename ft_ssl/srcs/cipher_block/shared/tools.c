@@ -32,11 +32,22 @@ void md5_custom(t_hash *h)
 	h->i = tmp;
 }
 
-void base64_custom(t_hash *h)
+void base64_custom(t_hash *h, int flag)
 {
+	int tmp;
+
+	tmp = h->i;
 	h->i = BASE64;
 	init_base64(h);
-	process(h, STRING);
+	if (flag)
+	{
+		h->print = FALSE;
+		set_bit(&h->flag, FLAG_D, 0);
+		process(h, STDOUT);
+	}
+	else
+		process(h, STRING);
+	h->i = tmp;
 }
 
 void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
@@ -60,27 +71,22 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod)
 		ft_hexstr(h->des.salt, 8);
 }
 
-void init_key(t_hash *h)
-{
-	// split the 64 bits key to 56 bits then purmated them according to g_pc1
-	h->des.key = permut_x_bits(&h->des.key, g_pc1, 64, 56);
-}
-
-void generate_key(t_hash *h, int *i)
-{
-	//circular shift each of them acording to g_shift_des
-	h->des.key = ((rotl_x(h->des.key >> 28, g_shift_des[*i], 28, 0xFFFFFFF) << 28) | \
-		 			  rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[*i], 28, 0xFFFFFFF));
-	
-	// split the 56 bits key to 48 bits key according to g_pc2 
-	h->des.key_gen = permut_x_bits(&h->des.key, g_pc2, 56, 48);
-}
-
-void generate_key2(t_hash *h)
+void print_keys(t_hash *h)
 {
 	int i;
 
 	i = -1;
+	while (++i < 16)
+		ft_print_bits_to_hexa(h->des.keys[i], 64);
+}
+
+void generate_key(t_hash *h)
+{
+	int i;
+	int j;
+
+	i = -1;
+	j = 15;
 	h->des.key = permut_x_bits(&h->des.key, g_pc1, 64, 56);
 	while (++i < 16)
 	{
@@ -89,7 +95,7 @@ void generate_key2(t_hash *h)
 						rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[i], 28, 0xFFFFFFF));
 
 		// split the 56 bits key to 48 bits key according to g_pc2 
-		h->des.keys[i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
+		h->des.keys[j - i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
 	}
 }
 

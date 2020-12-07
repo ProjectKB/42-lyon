@@ -143,10 +143,8 @@ void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
 void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod);
 void				md5_custom(t_hash *h);
-void				base64_custom(t_hash *h);
-void				init_key(t_hash *h);
-void 				generate_key(t_hash *h, int *i);
-void 				generate_key2(t_hash *h);
+void				base64_custom(t_hash *h, int flag);
+void 				generate_key(t_hash *h);
 void				print_salt_key_iv(t_hash *h);
 
 

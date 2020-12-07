@@ -41,6 +41,7 @@ int			process(t_hash *h, int mod)
 	if ((fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
+	//mod = STRING;
 	while ((h->rest = read_bytes(h, fd, mod)))
 	{
 		if (h->rest == -1)
