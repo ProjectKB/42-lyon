@@ -71,9 +71,26 @@ void generate_key(t_hash *h, int *i)
 	//circular shift each of them acording to g_shift_des
 	h->des.key = ((rotl_x(h->des.key >> 28, g_shift_des[*i], 28, 0xFFFFFFF) << 28) | \
 		 			  rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[*i], 28, 0xFFFFFFF));
-
+	
 	// split the 56 bits key to 48 bits key according to g_pc2 
 	h->des.key_gen = permut_x_bits(&h->des.key, g_pc2, 56, 48);
+}
+
+void generate_key2(t_hash *h)
+{
+	int i;
+
+	i = -1;
+	h->des.key = permut_x_bits(&h->des.key, g_pc1, 64, 56);
+	while (++i < 16)
+	{
+		//circular shift each of them acording to g_shift_des
+		h->des.key = ((rotl_x(h->des.key >> 28, g_shift_des[i], 28, 0xFFFFFFF) << 28) | \
+						rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[i], 28, 0xFFFFFFF));
+
+		// split the 56 bits key to 48 bits key according to g_pc2 
+		h->des.keys[i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
+	}
 }
 
 uint64_t s_box_substitution(uint64_t *to_substitute)

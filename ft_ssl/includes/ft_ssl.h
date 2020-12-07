@@ -146,6 +146,7 @@ void				md5_custom(t_hash *h);
 void				base64_custom(t_hash *h);
 void				init_key(t_hash *h);
 void 				generate_key(t_hash *h, int *i);
+void 				generate_key2(t_hash *h);
 void				print_salt_key_iv(t_hash *h);
 
 

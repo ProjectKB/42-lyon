@@ -13,6 +13,7 @@ void	print_salt_key_iv(t_hash *h)
 void	print_des(t_hash *h, int mod, char *stdin)
 {
 	h->arg = h->des.output;
+	//ft_printf("%s\n", h->des.output);
 	base64_custom(h);
 	exit(0);
 }
