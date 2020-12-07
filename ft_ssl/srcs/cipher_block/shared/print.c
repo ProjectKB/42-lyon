@@ -12,10 +12,10 @@ void	print_salt_key_iv(t_hash *h)
 
 void	print_des(t_hash *h, int mod, char *stdin)
 {
-	h->arg = h->des.output;
-	//if (h->i == DES_ECB)
-	//	base64_custom(h, FALSE);
-	//else
+	//h->arg = h->des.output;
+	//base64_custom(h, FALSE);
+
+	ft_hexstr(h->des.output, 24); exit(0);
 	ft_printf("%s", h->des.output);
 
 	exit(0);

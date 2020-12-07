@@ -19,8 +19,7 @@ void    init_des(t_hash *h)
 {
 	base64_custom(h, TRUE);
 	h->arg = h->base64.output;
-	ft_hexstr(h->arg, 8);
-	exit(0);
+	//ft_hexstr(h->base64.output, 8);
 	h->des.key_gen = 0;
 	h->des.iv = 0;
 	h->des.turn = 0;
@@ -91,7 +90,6 @@ void    proceed_block_des(t_hash *h)
     }
 	h->des.buf = (h->des.rpt << 32) | h->des.lpt;
 	h->des.buf = permut_x_bits(&h->des.buf, g_ep, 64, 64);
-	ft_print_bits_to_hexa(h->des.buf, 64); exit(0);
 	prepare_output(h);
 }
 
