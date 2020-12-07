@@ -11,7 +11,8 @@ void    init_des(t_hash *h)
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	//EVP_bytes_to_Key(h, (const unsigned char *)"password", FALSE);
-	h->des.key = 0x86893E5E720F0999;
+	h->des.key = 0xB96F5BE8BEBFF50C;
+	h->des.iv = 0x6591CADBEC326648;
 	init_key(h);
 }
 
@@ -35,12 +36,16 @@ void	init_buf(t_hash *h)
 
 	i = 0;
 	shift = 64;
+	if (h->des.turn)
+		h->des.iv = h->des.buf;
 	h->des.buf = 0;
 	while (i < h->rest && (shift -= 8) != -1)
 		h->des.buf |= ((uint64_t)h->line[i++] << shift);
 	if (h->rest != h->nb_bytes && (pad = h->nb_bytes - h->rest) != -1)
 		while (i++ < h->nb_bytes && (shift -= 8) != -1)
 			h->des.buf |= ((uint64_t)pad << shift);
+	if (h->i == DES_CBC)
+		h->des.buf ^= h->des.iv;
 }
 
 void    proceed_block_des(t_hash *h)
