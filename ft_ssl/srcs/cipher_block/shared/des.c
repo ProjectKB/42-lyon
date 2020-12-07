@@ -17,9 +17,8 @@
 
 void    init_des(t_hash *h)
 {
-	base64_custom(h, TRUE);
-	h->arg = h->base64.output;
-	//ft_hexstr(h->base64.output, 8);
+	//base64_custom(h, TRUE);
+	//h->arg = h->base64.output;
 	h->des.key_gen = 0;
 	h->des.iv = 0;
 	h->des.turn = 0;
@@ -36,6 +35,7 @@ void    init_des(t_hash *h)
 static void	prepare_output(t_hash *h)
 {
 	int i;
+	int pad;
 	int shift;
 
 	i = -1;
