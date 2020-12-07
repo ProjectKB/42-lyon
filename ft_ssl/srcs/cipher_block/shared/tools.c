@@ -86,7 +86,7 @@ void generate_key(t_hash *h)
 	int j;
 
 	i = -1;
-	//j = 15;
+	j = 15;
 	h->des.key = permut_x_bits(&h->des.key, g_pc1, 64, 56);
 	while (++i < 16)
 	{
@@ -95,7 +95,10 @@ void generate_key(t_hash *h)
 						rotl_x(h->des.key & 0xFFFFFFF, g_shift_des[i], 28, 0xFFFFFFF));
 
 		// split the 56 bits key to 48 bits key according to g_pc2 
-		h->des.keys[i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
+		if (test_bit(&h->flag, FLAG_D))
+			h->des.keys[j - i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
+		else
+			h->des.keys[i] = permut_x_bits(&h->des.key, g_pc2, 56, 48);
 	}
 }
 

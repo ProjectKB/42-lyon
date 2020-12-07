@@ -22,11 +22,14 @@ void	remove_padding(t_hash *h)
 
 void	print_des(t_hash *h, int mod, char *stdin)
 {
-	//h->arg = h->des.output;
-	//base64_custom(h, FALSE);
-
-	remove_padding(h);
-	ft_printf("%s", h->des.output);
-
-	exit(0);
+	if (!test_bit(&h->flag, FLAG_D))
+	{
+		h->arg = h->des.output;
+		base64_custom(h, FALSE);
+	}
+	else
+	{
+		remove_padding(h);
+		ft_printf("%s", h->des.output);
+	}
 }

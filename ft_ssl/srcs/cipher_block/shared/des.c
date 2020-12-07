@@ -1,24 +1,13 @@
 #include "ft_ssl.h"
 
-/* void    init_des(t_hash *h)
-{
-	h->des.key_gen = 0;
-	h->des.iv = 0;
-	h->des.turn = 0;
-	h->nb_bytes = 8;
-	h->des.rest = 0;
-	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
-        print_and_quit("Congrats, you broke malloc.\n", 2);
-	//EVP_bytes_to_Key(h, (const unsigned char *)"password", FALSE);
-	h->des.key = 0xB96F5BE8BEBFF50C;
-	h->des.iv = 0x6591CADBEC326648;
-	generate_key(h);
-} */
-
 void    init_des(t_hash *h)
 {
-	//base64_custom(h, TRUE);
-	//h->arg = h->base64.output;
+	set_bit(&h->flag, FLAG_D, 0);
+	if (test_bit(&h->flag, FLAG_D))
+	{
+		base64_custom(h, TRUE);
+		h->arg = h->base64.output;
+	}
 	h->des.key_gen = 0;
 	h->des.iv = 0;
 	h->des.turn = 0;
