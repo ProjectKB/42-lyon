@@ -7,6 +7,7 @@
 */
 typedef struct  s_des {
     uint64_t buf;
+    uint64_t buf_prev;
     uint64_t lpt; 
     uint64_t lpt_next;
     uint64_t rpt; 
@@ -15,7 +16,6 @@ typedef struct  s_des {
     uint64_t keys[16];
     uint64_t iv;
     unsigned char salt[8];
-    uint64_t key_gen;
     int      turn;
     int      rest;
     unsigned char *output;

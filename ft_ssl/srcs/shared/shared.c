@@ -41,7 +41,7 @@ int			process(t_hash *h, int mod)
 	if ((fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
-	if (test_bit(&h->flag, FLAG_D) && h->i == DES_ECB)
+	if (test_bit(&h->flag, FLAG_D) && (h->i == DES_ECB || h->i == DES_CBC))
 		mod = STRING;
 	while ((h->rest = read_bytes(h, fd, mod)))
 	{
