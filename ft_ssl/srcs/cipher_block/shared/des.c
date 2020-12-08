@@ -7,6 +7,7 @@ void    init_des(t_hash *h)
 	{
 		base64_custom(h, TRUE);
 		h->arg = h->base64.output;
+		h->change_mod = TRUE;
 	}
 	h->des.iv = 0;
 	h->des.turn = 0;
@@ -43,7 +44,7 @@ void	init_buf(t_hash *h)
 
 	i = 0;
 	shift = 64;
-	if (h->des.turn && h->i == DES_ECB) // ECB DECRYPT
+	if (h->des.turn) // ECB DECRYPT
 		h->des.iv = h->des.buf;
 	h->des.buf = 0;
 	while (i < h->rest && (shift -= 8) != -1)
@@ -53,7 +54,7 @@ void	init_buf(t_hash *h)
 			h->des.buf |= ((uint64_t)pad << shift);
 	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_D)) // CBC ENCRYPT
 		h->des.buf ^= h->des.iv;
-	if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D)) // CBC DECRYPT
+	else if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D)) // CBC DECRYPT
 	{
 		if (h->des.turn)
 			h->des.iv = h->des.buf_prev;

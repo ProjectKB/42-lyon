@@ -68,6 +68,7 @@ typedef struct		s_hash
 	unsigned char	nb_bytes;
 	int				print;
 	int				rest;
+	int				change_mod;
 }					t_hash;
 
 /*
