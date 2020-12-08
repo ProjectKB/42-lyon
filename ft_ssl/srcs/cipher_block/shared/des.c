@@ -28,7 +28,7 @@ static void	prepare_output(t_hash *h)
 
 	i = -1;
 	shift = 64;
-	if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D))
+	if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D)) // CBC DECRYPT
 		h->des.buf ^= h->des.iv;
 	while (++i < 8 && (shift -= 8) != -1)
 		h->des.output[h->des.turn * 8 + i] = (unsigned char)(h->des.buf >> shift);
@@ -43,7 +43,7 @@ void	init_buf(t_hash *h)
 
 	i = 0;
 	shift = 64;
-	if (h->des.turn && h->i == DES_ECB)
+	if (h->des.turn && h->i == DES_ECB) // ECB DECRYPT
 		h->des.iv = h->des.buf;
 	h->des.buf = 0;
 	while (i < h->rest && (shift -= 8) != -1)
@@ -51,8 +51,14 @@ void	init_buf(t_hash *h)
 	if (h->rest != h->nb_bytes && (pad = h->nb_bytes - h->rest) != -1)
 		while (i++ < h->nb_bytes && (shift -= 8) != -1)
 			h->des.buf |= ((uint64_t)pad << shift);
-	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_D))
+	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_D)) // CBC ENCRYPT
 		h->des.buf ^= h->des.iv;
+	if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D)) // CBC DECRYPT
+	{
+		if (h->des.turn)
+			h->des.iv = h->des.buf_prev;
+		h->des.buf_prev = h->des.buf;
+	}
 }
 
 void    proceed_block_des(t_hash *h)
