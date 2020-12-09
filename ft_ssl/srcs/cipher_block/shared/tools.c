@@ -74,14 +74,10 @@ void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password)
 
 	i = -1;
 	j = 8;
-	h->des.salt = 0;
 	ft_ustrcpy(str, password, 8);
 	ft_random(8, salt);
-	ft_hexatoi2((unsigned char *)"0123456789ABCDEF", &h->des.salt, 16);
-	ft_print_bits_to_hexa(h->des.salt, 64);
-	ft_printf("\n");
-	ft_hexstr(salt, 8);
-	exit(0);
+	h->des.salt = ((uint64_t)salt[0] << 56) | ((uint64_t)salt[1] << 48) | ((uint64_t)salt[2] << 40) | ((uint64_t)salt[3] << 32) | \
+				 ((uint64_t)salt[4] << 24) | ((uint64_t)salt[5] << 16) | ((uint64_t)salt[6] << 8) | salt[7];
 	ft_ustrncat(str, salt, 8, 8);
 	h->arg = str;
 	md5_custom(h);

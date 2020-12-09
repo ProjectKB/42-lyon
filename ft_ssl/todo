@@ -20,6 +20,8 @@ TODO
 Check alloc
 Check flag when decrypt ('cause we modify flag for b64)
 Secure ft_random
+What is happening when pass + key
+Pas d'IV when CBC -> ERROR
 
 Salted__                    -> When EVP_BytesToKey add 'Salted__' + 'salt'
 53 61 6c 74 65 64 5f 5f     ->

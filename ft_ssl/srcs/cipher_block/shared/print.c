@@ -6,7 +6,7 @@ void	print_salt_key_iv(t_hash *h)
 	ft_print_bits_to_hexa(h->des.salt, 64);
 	ft_printf("key:  ");
 	ft_print_bits_to_hexa(h->des.key, 64);
-	if (h->i == DES_ECB)
+	if (h->i == DES_CBC)
 	{
 		ft_printf("iv:   ");
 		ft_print_bits_to_hexa(h->des.iv, 64);
