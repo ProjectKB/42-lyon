@@ -154,10 +154,15 @@ void	EVP_bytes_to_Key(t_hash *h)
 	int			  buf_size;
 
 	if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
-	{
-		// ustrncmp -> h->arg[0-7] == SALTED__
-		// ustrncpy -> salt = h->arg[8-15]
-		// umemcpy -> h->arg = h->arg[15-end]
+	{	
+		// IF AA
+			// ustrncmp -> h->arg[0-7] == SALTED__
+			// ustrncpy -> salt = h->arg[8-15]
+			// umemcpy -> h->arg = h->arg[15-end]
+
+		// UNLESS AA
+			// read 8 bytes -> Salted__ ?
+			// read 8 bytes -> set salt
 	}	
 	else
 	{
