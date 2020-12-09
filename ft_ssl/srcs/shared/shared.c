@@ -1,6 +1,6 @@
 #include "ft_ssl.h"
 
-static int	read_bytes(t_hash *h, int fd, int mod)
+static int	read_bytes(t_hash *h, int mod)
 {
 	int			i;
 	int			j;
@@ -10,10 +10,11 @@ static int	read_bytes(t_hash *h, int fd, int mod)
 	i = -1;
 	j = count * h->nb_bytes - 1;
 	if (mod != STRING && !h->change_mod)
-		return (read(fd, h->line, h->nb_bytes));
+		return (read(h->fd, h->line, h->nb_bytes));
 	if (!h->arg || stop)
 	{
 		stop = FALSE;
+		count = 0;
 		return (0);
 	}
 	while (++i < h->nb_bytes)
@@ -30,18 +31,16 @@ static int	read_bytes(t_hash *h, int fd, int mod)
 
 int			process(t_hash *h, int mod)
 {
-	int				fd;
-	int				len;
 	char			*stdin;
 
 	if (!(h->line = ft_memalloc(h->nb_bytes + 1)))
 		free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
 	if (mod == STDIN)
 		stdin = ft_strdup("");
-	if ((fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
+	if ((h->fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
-	while ((h->rest = read_bytes(h, fd, mod)))
+	while ((h->rest = read_bytes(h, mod)))
 	{
 		if (h->rest == -1)
 			read_error(h);

@@ -1,0 +1,37 @@
+echo "************************************************* WITHOUT PASS *************************************************\n"
+
+echo "0123456789" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9
+echo ""
+echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9
+echo ""
+
+echo ""
+
+echo "0123456789" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9 -a
+echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a
+
+echo ""
+
+echo "dD5xVzCZYzzCu917bYfy6A==" | openssl des-ecb -K 7F7432CA7CCE3D61 -a -d
+echo "dD5xVzCZYzzCu917bYfy6A==" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d
+
+echo ""
+
+echo "****************************************************************************************************************\n"
+
+echo "************************************************** WITH PASS ***************************************************\n"
+
+echo "0123456789" | openssl des-ecb -pass "pass:coucou" -S 488843243FBFF7D9
+echo ""
+echo "0123456789" | ./ft_ssl des-ecb -p "coucou" -s 488843243FBFF7D9
+echo ""
+
+echo ""
+
+echo "0123456789" | openssl des-ecb -pass "pass:coucou" -S 488843243FBFF7D9 -a
+echo "0123456789" | ./ft_ssl des-ecb -p "coucou" -s 488843243FBFF7D9 -a
+
+
+echo ""
+
+echo "****************************************************************************************************************\n"

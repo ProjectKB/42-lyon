@@ -61,6 +61,43 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 	return (NULL);
 }
 
+/* unsigned char	*ustrjoin3(t_hash *h)
+{
+	unsigned char	*s3;
+	unsigned char	*magic_number_and_salt;
+	unsigned char	*tmp;
+	unsigned char   salt[8];
+	size_t	len;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = -1;
+	ft_uint64_to_str(&h->des.salt, salt);
+	magic_number_and_salt = (unsigned char *)ft_strjoin("Salted__", (const char *)salt);
+	tmp = h->arg;
+	h->arg = magic_number_and_salt;
+	base64_custom(h, FALSE);
+	h->arg = tmp;
+	if (h->des.output)
+	{
+		len = ft_strlen((char *)h->des.output) + 16;
+		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * len + 1)))
+			return (NULL);
+		while (i < len)
+		{
+			while (h->base64.output[++j])
+				s3[i++] = h->base64.output[j];
+			j = -1;
+			while (h->des.output[++j])
+				s3[i++] = h->des.output[j];
+		}
+		s3[i] = '\0';
+		return (s3);
+	}
+	return (NULL);
+} */
+
 uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
 {
 	int i;
@@ -87,7 +124,6 @@ void md5_custom(t_hash *h)
 
 	tmp = h->i;
 	h->i = MD5;
-	init_md5(h);
 	h->print = FALSE;
 	process(h, STRING);
 	h->i = tmp;
@@ -100,7 +136,6 @@ void base64_custom(t_hash *h, int flag)
 
 	tmp = h->i;
 	h->i = BASE64;
-	init_base64(h);
 	if (!flag)
 	{
 		h->print = FALSE;
@@ -115,14 +150,30 @@ void base64_custom(t_hash *h, int flag)
 void	EVP_bytes_to_Key(t_hash *h)
 {
 	unsigned char salt[8];
+	unsigned char *buf;
+	int			  buf_size;
 
-	if (test_bit(&h->flag, FLAG_S))
-		ft_uint64_to_str(&h->des.salt, salt);
-	else
-	{
-		ft_random(8, salt); // secure here
-		ft_str_to_uint64(&h->des.salt, salt, 0);
-	}
+	//if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
+	//{
+	//	ft_printf("bonjour");
+	//	// check if SALTED__
+	//	buf_size = test_bit(&h->flag, FLAG_AA) ? 22 : 16;
+	//	if (!(buf = ft_memalloc(buf_size + 1)))
+	//		print_and_quit("Congrats, you broke malloc.\n", 2);
+	//	int rt = read(h->fd, h->line, buf_size); // secure here
+	//	ft_printf("%d %d %s\n", rt, buf_size, buf);
+	//	exit(0);
+	//}	
+	//else
+	//{
+		if (test_bit(&h->flag, FLAG_S))
+			ft_uint64_to_str(&h->des.salt, salt);
+		else
+		{
+			ft_random(8, salt); // secure here
+			ft_str_to_uint64(&h->des.salt, salt, 0);
+		}
+	//}
 	h->arg = ustrjoin(h->des.password, salt); // secure here
 	md5_custom(h);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);

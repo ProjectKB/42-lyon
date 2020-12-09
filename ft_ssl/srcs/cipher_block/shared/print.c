@@ -28,7 +28,7 @@ void	print_des(t_hash *h, int mod, char *stdin)
 {
 	if (test_bit(&h->flag, FLAG_D))
 	{
-			// check Salted__
+		// check Salted__
 		remove_padding(h);
 		ft_printf("%s", h->des.output);
 	}

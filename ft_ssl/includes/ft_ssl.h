@@ -45,6 +45,7 @@
 # define FLAG_AP 0xC
 # define FLAG_QP 0x5
 # define FLAG_AI 0x108
+# define FLAG_PD 0x24
 
 /*
 ** STRUCT
@@ -70,6 +71,7 @@ typedef struct		s_hash
 	unsigned char	nb_bytes;
 	int				print;
 	int				rest;
+	int				fd;
 	int				change_mod;
 }					t_hash;
 
@@ -154,6 +156,8 @@ void 				generate_key(t_hash *h);
 void				print_salt_key_iv(t_hash *h);
 unsigned char		*ustrjoin(unsigned char const *s1, unsigned char const *s2);
 unsigned char		*ustrjoin2(t_hash *h, unsigned char const *s1);
+unsigned char		*ustrjoin3(t_hash *h);
+
 
 
 
