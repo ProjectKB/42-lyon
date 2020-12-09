@@ -1,5 +1,12 @@
 TODO
 
+- pass + !d -> add Salted__X
+- pass + d
+    (a  -> decode
+    !a -> check Salted__ -> get salt -> remove 16 first bits
+
+ 
+
 
 Check alloc
 Check flag when decrypt ('cause we modify flag for b64)

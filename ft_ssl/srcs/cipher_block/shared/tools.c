@@ -1,5 +1,66 @@
 #include "ft_ssl.h"
 
+unsigned char	*ustrjoin(unsigned char const *s1, unsigned char const *s2)
+{
+	unsigned char	*s3;
+	size_t	len;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = -1;
+	if (s1 && s2)
+	{
+		len = ft_strlen((char *)s1) + 8;
+		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * len + 1)))
+			return (NULL);
+		while (i < len)
+		{
+			while (s1[++j])
+				s3[i++] = s1[j];
+			j = -1;
+			while (++j < 8)
+				s3[i++] = s2[j];
+		}
+		s3[i] = '\0';
+		return (s3);
+	}
+	return (NULL);
+}
+
+unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
+{
+	unsigned char	*s3;
+	unsigned char	salt[8];
+	size_t	len;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = -1;
+	ft_uint64_to_str(&h->des.salt, salt);
+	if (s1 && h->des.output)
+	{
+		len = ft_strlen((char *)h->des.output) + 16;
+		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * len + 1)))
+			return (NULL);
+		while (i < len)
+		{
+			while (++j < 8)
+				s3[i++] = s1[j];
+			j = -1;
+			while (++j < 8)
+				s3[i++] = salt[j];
+			j = -1;
+			while (h->des.output[++j])
+				s3[i++] = h->des.output[j];
+		}
+		s3[i] = '\0';
+		return (s3);
+	}
+	return (NULL);
+}
+
 uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
 {
 	int i;
@@ -30,6 +91,7 @@ void md5_custom(t_hash *h)
 	h->print = FALSE;
 	process(h, STRING);
 	h->i = tmp;
+	h->print = TRUE;
 }
 
 void base64_custom(t_hash *h, int flag)
@@ -61,7 +123,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 		ft_random(8, salt); // secure here
 		ft_str_to_uint64(&h->des.salt, salt, 0);
 	}
-	h->arg = ft_ustrjoin(h->des.password, salt); // secure here
+	h->arg = ustrjoin(h->des.password, salt); // secure here
 	md5_custom(h);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
 	ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);

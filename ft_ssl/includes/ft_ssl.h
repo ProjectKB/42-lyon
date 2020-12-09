@@ -152,6 +152,9 @@ void				md5_custom(t_hash *h);
 void				base64_custom(t_hash *h, int flag);
 void 				generate_key(t_hash *h);
 void				print_salt_key_iv(t_hash *h);
+unsigned char		*ustrjoin(unsigned char const *s1, unsigned char const *s2);
+unsigned char		*ustrjoin2(t_hash *h, unsigned char const *s1);
+
 
 
 

@@ -28,11 +28,14 @@ void	print_des(t_hash *h, int mod, char *stdin)
 {
 	if (test_bit(&h->flag, FLAG_D))
 	{
+			// check Salted__
 		remove_padding(h);
 		ft_printf("%s", h->des.output);
 	}
 	else
 	{
+		if (test_bit(&h->flag, FLAG_P))
+			h->des.output = ustrjoin2(h, (unsigned char *)"Salted__"); // free ?
 		if (test_bit(&h->flag, FLAG_AA))
 		{
 			h->arg = h->des.output;
