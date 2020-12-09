@@ -26,23 +26,25 @@
 # define DES_CBC 4
 
 /*
-** MESSAGE DIGEST FLAG
+** FLAGS
 */
 # define FLAG_Q 0x1
 # define FLAG_R 0x2
 # define FLAG_P 0x4
 # define FLAG_A 0x8
 # define FLAG_F 0x10
+# define FLAG_D 0x20
+# define FLAG_O 0x40
+# define FLAG_PP 0x80
+# define FLAG_I 0x100
+# define FLAG_AA 0x200
+# define FLAG_K 0x400
+# define FLAG_S 0x800
+# define FLAG_V 0x1000
 # define FLAG_AF 0x18
 # define FLAG_AP 0xC
 # define FLAG_QP 0x5
-
-/*
-** CIPHER BLOCK FLAG
-*/
-# define FLAG_D 0x1
-# define FLAG_AI 0xA
-# define FLAG_O 0x4
+# define FLAG_AI 0x108
 
 /*
 ** STRUCT
@@ -62,7 +64,7 @@ typedef struct		s_hash
 	t_p				args;
 	unsigned char   *line;
 	unsigned char	*arg;
-	unsigned char	flag;
+	unsigned int	flag;
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
@@ -137,12 +139,12 @@ int					read_error(t_hash *h);
 void				init_hash(t_hash *h, int argc, char **argv);
 int					get_fd(void *arg, int mod);
 int					is_illegal_flag(unsigned char *arg);
-void				set_bit(unsigned char *flag, int set, int unset);
-int					test_bit(unsigned char *flag, int flag_value);
+void				set_bit(unsigned int *flag, int set, int unset);
+int					test_bit(unsigned int *flag, int flag_value);
 void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
-void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password, int mod);
+void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password);
 void				md5_custom(t_hash *h);
 void				base64_custom(t_hash *h, int flag);
 void 				generate_key(t_hash *h);

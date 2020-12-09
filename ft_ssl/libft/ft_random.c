@@ -7,7 +7,9 @@ int ft_random(int bytes_len, unsigned char *buf)
 
     if ((fd = open("/dev/urandom", O_RDONLY)) == -1)
 		  return (-1);
-    rt = read(fd, buf, bytes_len);
-    close(fd);
+    if ((rt = read(fd, buf, bytes_len) == -1))
+        return (-1);
+    if (close(fd) == -1)
+        return (-1);
     return (rt);
 }

@@ -1,150 +1,63 @@
 TODO
 
+
+-a b64 decode/encode according to encrypt/decrypt mode S OK
+-e encrypt (default) S OK
+-d decrypt S OK
+-P print S OK
+
+
+-o output A OK
+-i input A OK
+
+
+-k Key Hex A OK
+-v IV hex A OK
+-s Salt hex A OK
+-p password A
+
+
 Check alloc
 Check flag when decrypt ('cause we modify flag for b64)
+Secure ft_random
 
-Salt defined by random
-Key/IV defined by EVP_BytesToKey (need pass + salt)
+Salted__                    -> When EVP_BytesToKey add 'Salted__' + 'salt'
+53 61 6c 74 65 64 5f 5f     ->
 
-If key given directly need an IV for des-cbc
+salt=D03FC1E8D97F0000
+key=98F437EE43AC0712
+iv =EFC65FA6949D38D4
 
-1. Generate Salt OK
-2. Generate Key OK
-3. des OK
-4. ecb
-5. cbc
+echo "0123" | openssl des-ecb -pass "pass:MySuperSecurePassword" -S D03FC1E8D97F0000
+echo "0123" | openssl des-ecb -K 98F437EE43AC0712
 
-Transform Key
+Ascii 1:
+Salted__�?����
+              f�E�% 
 
-A. Init
-B. Proceed Block -> realloc de 64 bits each time -> 16 op
-C. Proceed last Block -> if padding needed 
-D. Print
+Ascii 2: 
+�
+ f�E�%
 
-echo "one deep secret" | openssl des-cbc -a -K 6162636461626364 -iv 0011223344556677
-echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -d -a -K 6162636461626364 -iv 0011223344556677
+Hex 1: U2FsdGVkX1/QP8Ho2X8AAKoLZAhmskXc
+Hex 2: qgtkCGayRdw=
 
+U2FsdGVkX1/QP8Ho2X8AAKoLZAhmskXc
 
+U2FsdGVkX1/QP8Ho2X8AAK
 
+S  a  l  t  e  d  _  _
+U2Fs dGVk X1/
+53 61 6c 74 65 64 5f 5f 
 
+D0 3F 41 AE F0 7F 00 00
+QP8H o2X8 AAK
+d0 3f c1 e8 d9 7f 00 00
 
+-K -> decrypt -> pas de condition
 
-
-
-
-Salted__ : 53 61 6c 74 65 64 5f 5f
-
-A:
-echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -K D5CFBFA2F132CBBE -S 2A7F65592CAF6FC4 -iv B970432C97F3AD45
-ASCII : X������|�
-��PӅ:��&w�� U�� -s�����/��%
-
-HEX: WPylBujK/IF81wqfilDThTqGjyZ3kPEgVaXzCS0Fc/+Lg+viL/PoFA==
-
-salt=D03F41F78E7F0000
-key=D5CFBFA2F132CBBE
-iv =B970432C97F3AD45
-
-
-
-
-B: 
-echo "zqYWONX68rWNxl7msIdGC67Uh2HfVEBo" | openssl des-cbc -pass "pass:MySuperSecurePassword" -S 2A7F65592CAF6FC4 -iv B970432C97F3AD45
-
-ASCII : Salted__*eY,�o�X������|�
-��PӅ:��&w�� U�� -s�����/��%
-
-HEX: U2FsdGVkX18qf2VZLK9vxFj8pQboyvyBfNcKn4pQ04U6ho8md5DxIFWl8wktBXP/
-i4Pr4i/z6BQ=
-
-salt=2A7F65592CAF6FC4
-key=D5CFBFA2F132CBBE
-iv =B970432C97F3AD45
-
-
-
-
-
-
-debug : SETKEY -> 86893E5E720F0999
-
-echo -n "" | openssl des-ecb -K 86893E5E720F0999 -a
--> zvK0R8/0984=
--> ��G����
--> décoder et passer en hex puis en binaire
-hex: ce f2 b4 47 cf f4 f7 ce
-bin: 11001110 11110010 10110100 01000111 11001111 11110100 11110111 11001110
--> comparer avec mon output
-
-echo -n "01234567" | openssl des-ecb -K 86893E5E720F0999 -nopad -a
--> GmtF8JJbgVI=
--> kE�[�R
--> décoder et passer en hex puis en binaire
-hex: 1a 6b 45 f0 92 5b 81 52
-bin: 00011010 01101011 01000101 11110000 10010010 01011011 10000001 01010010
--> comparer avec mon output 
-
-
-
-
-
-
-
-
-
--a decode/encode depending on encrypt/decrypt mode
--d decrypt mode
--e encrypt mode
--i input file
--o output file
--p password
--s salt in hex
--v IV in hex
--k key in hex
--P print key/salt/IV
-
-
-
-1. Créer un print salt/key/iv
-2. Simuler sans flag
--> preprocess
-
-
-
-
-
-1111001 0100111 0011110 1101110 0110110 1111001 0101111 1101010 
-1110010 1001110 0111101 1011101 1101101 1110010 1011111 1010100 
-1001010 0111001 1110110 1110111 0110111 1001010 1111110 1010011 
-0101001 1100111 1011011 1011110 1011110 0101011 1111010 1001101 
-0100111 0011110 1101110 1111001 1111001 0101111 1101010 0110110 
-0011100 1111011 0111011 1100101 1100101 0111111 0101001 1011011 
-1110011 1101101 1101111 0010100 0010101 1111101 0100110 1101111 
-1001111 0110111 0111100 1010011 1010111 1110101 0011011 0111100 
-0011110 1101110 1111001 0100111 0101111 1101010 0110110 1111001 
-1111011 0111011 1100101 0011100 0111111 0101001 1011011 1100101 
-1101101 1101111 0010100 1110011 1111101 0100110 1101111 0010101 
-0110111 0111100 1010011 1001111 1110101 0011011 0111100 1010111 
-1011101 1110010 1001110 0111101 1010100 1101101 1110010 1011111 
-1110111 1001010 0111001 1110110 1010011 0110111 1001010 1111110 
-1011110 0101001 1100111 1011011 1001101 1011110 0101011 1111010 
-0111100 1010011 1001111 0110111 0011011 0111100 1010111 1110101 
-
-110010 100000 111110 011111 001111 101011 111011 111100 
-011110 110110 011011 100011 110110 100111 010000 101111 
-111110 011101 110110 101100 111011 100111 101110 101100 
-110100 001010 001111 011111 101100 000111 101111 111011 
-001101 011101 111000 110111 111101 111001 101000 110011 
-111001 110011 100111 100110 110101 110010 111101 111010 
-101110 101110 011011 110101 001111 011011 101101 011100 
-110111 010101 011100 111010 011100 011111 010011 110110 
-011001 111110 101111 101010 110110 101111 101111 001101 
-101110 101111 010110 110011 001100 101111 011110 111001 
-111111 010000 111101 011011 111110 110011 110100 100011 
-011001 111111 001010 011101 111011 100110 101100 111010 
-000111 111001 110111 010110 011101 010111 101101 011110 
-011111 100110 100011 111011 111101 011001 000011 111010 
-101111 111110 010100 101100 110001 011011 111001 101111 
-100101 111011 110111 001111 011110 011101 011110 001001
-
-
+-pass -> input contient Salted__X -> on récupère le Salt à partir de l'input et on déduit le clef par ce biais
+0. (-a: decode)
+1. calcul key with 8->16 bytes of input 
+2. remove 16 first bytes
+3. process

@@ -3,11 +3,14 @@
 void	print_salt_key_iv(t_hash *h)
 {
 	ft_printf("salt: ");
-	ft_hexstr(h->des.salt, 8);
+	ft_print_bits_to_hexa(h->des.salt, 64);
 	ft_printf("key:  ");
 	ft_print_bits_to_hexa(h->des.key, 64);
-	ft_printf("iv:   ");
-	ft_print_bits_to_hexa(h->des.iv, 64);
+	if (h->i == DES_ECB)
+	{
+		ft_printf("iv:   ");
+		ft_print_bits_to_hexa(h->des.iv, 64);
+	}
 }
 
 void	remove_padding(t_hash *h)
@@ -25,7 +28,7 @@ void	print_des(t_hash *h, int mod, char *stdin)
 	if (!test_bit(&h->flag, FLAG_D))
 	{
 		h->arg = h->des.output;
-		base64_custom(h, FALSE);
+		base64_custom(h, TRUE);
 	}
 	else
 	{

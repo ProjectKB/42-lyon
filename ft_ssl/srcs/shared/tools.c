@@ -6,12 +6,12 @@ void	print_and_quit(char *str, int fd)
 	exit(0);
 }
 
-int		test_bit(unsigned char *flag, int flag_value)
+int		test_bit(unsigned int *flag, int flag_value)
 {
 	return (!(*flag & flag_value) ? FALSE : TRUE);
 }
 
-void	set_bit(unsigned char *flag, int set, int unset)
+void	set_bit(unsigned int *flag, int set, int unset)
 {
 	*flag |= set;
 	if (unset && test_bit(flag, unset))
