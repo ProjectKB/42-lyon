@@ -23,8 +23,8 @@ void (*g_proceed_last_block_functions[5])(t_hash *h) = {
 	proceed_last_block_md5, proceed_last_block_sha256, proceed_last_block_base64, proceed_last_block_des, proceed_last_block_des
 };
 
-void (*g_pre_process_functions[3])(t_hash *h, int *i) = {
-	message_digest, message_digest, base64
+void (*g_pre_process_functions[5])(t_hash *h, int *i) = {
+	message_digest, message_digest, base64, cipher_block, cipher_block
 };
 
 void (*g_print_functions[5])(t_hash *h, int mod, char *stdin) = {
@@ -32,5 +32,5 @@ void (*g_print_functions[5])(t_hash *h, int mod, char *stdin) = {
 };
 
 void (*g_usage_functions[5])(t_hash *h) = {
-	usage_message_digest, usage_message_digest, usage_base64
+	usage_message_digest, usage_message_digest, usage_base64, usage_des, usage_des
 };

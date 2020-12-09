@@ -81,7 +81,7 @@ extern const char	*g_hash_name[5];
 /*
 ** ARRAY OF FUNCTION POINTERS
 */
-extern void 		(*g_pre_process_functions[3])(t_hash *h, int *i);
+extern void 		(*g_pre_process_functions[5])(t_hash *h, int *i);
 extern void			(*g_init_functions[5])(t_hash *h);
 extern void			(*g_proceed_block_functions[5])(t_hash *h);
 extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
@@ -93,6 +93,7 @@ extern void			(*g_usage_functions[5])(t_hash *h);
 */
 void				message_digest(t_hash *h, int *i);
 void				base64(t_hash *h, int *i);
+void				cipher_block(t_hash *h, int *i);
 
 void				init_md5(t_hash *h);
 void				init_decode_base64(t_hash *h);
@@ -122,6 +123,8 @@ void				print_des(t_hash *h, int mod, char *stdin);
 
 void				usage_message_digest(t_hash *h);
 void				usage_base64(t_hash *h);
+void				usage_des(t_hash *h);
+
 
 /*
 ** ERRORS

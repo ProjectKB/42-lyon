@@ -8,7 +8,6 @@ void    init_des(t_hash *h)
 		h->arg = h->base64.output;
 		h->change_mod = TRUE;
 	}
-	h->des.iv = 0;
 	h->des.turn = 0;
 	h->nb_bytes = 8;
 	h->des.rest = 0;
@@ -16,6 +15,10 @@ void    init_des(t_hash *h)
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	if (test_bit(&h->flag, FLAG_P))	
 		EVP_bytes_to_Key(h, h->des.password);
+	ft_print_bits_to_hexa(h->des.key, 64);
+	ft_print_bits_to_hexa(h->des.salt, 64);
+	ft_print_bits_to_hexa(h->des.iv, 64);
+	exit(0);
 	generate_key(h);
 }
 

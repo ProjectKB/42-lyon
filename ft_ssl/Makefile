@@ -34,6 +34,8 @@ SRC = shared/main.c \
 	  cipher_block/shared/tools.c \
 	  cipher_block/shared/des.c \
 	  cipher_block/shared/print.c \
+	  cipher_block/shared/pre_process.c \
+	  cipher_block/shared/errors.c \
 
 OBJ = $(SRC:.c=.o)
 
