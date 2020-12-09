@@ -11,6 +11,7 @@ void	print_salt_key_iv(t_hash *h)
 		ft_printf("iv:   ");
 		ft_print_bits_to_hexa(h->des.iv, 64);
 	}
+	exit(0);
 }
 
 void	remove_padding(t_hash *h)
@@ -25,14 +26,19 @@ void	remove_padding(t_hash *h)
 
 void	print_des(t_hash *h, int mod, char *stdin)
 {
-	if (!test_bit(&h->flag, FLAG_D))
-	{
-		h->arg = h->des.output;
-		base64_custom(h, TRUE);
-	}
-	else
+	if (test_bit(&h->flag, FLAG_D))
 	{
 		remove_padding(h);
 		ft_printf("%s", h->des.output);
+	}
+	else
+	{
+		if (test_bit(&h->flag, FLAG_AA))
+		{
+			h->arg = h->des.output;
+			base64_custom(h, TRUE);
+		}
+		else
+			ft_printf("%s", h->des.output);
 	}
 }

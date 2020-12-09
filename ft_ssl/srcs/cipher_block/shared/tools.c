@@ -50,41 +50,21 @@ void base64_custom(t_hash *h, int flag)
 	h->i = tmp;
 }
 
-void ft_hexatoi2(unsigned char *str, uint64_t *dst, int len)
+void	EVP_bytes_to_Key(t_hash *h)
 {
-	int i;
-	
-	i = -1;
-	while (++i < len)
-	{
-		
-		if (str[i] >= '0' && str[i] <= '9')
-			*dst = (*dst << 4) | (str[i] - 48);
-		else
-			*dst = (*dst << 4) | (str[i] - 55);
-	}
-}
-
-void	EVP_bytes_to_Key(t_hash *h, const unsigned char *password)
-{
-	int i;
-	int j;
-	unsigned char str[17];
 	unsigned char salt[8];
 
-	i = -1;
-	j = 8;
-	ft_ustrcpy(str, password, 8);
-	ft_random(8, salt);
-	h->des.salt = ((uint64_t)salt[0] << 56) | ((uint64_t)salt[1] << 48) | ((uint64_t)salt[2] << 40) | ((uint64_t)salt[3] << 32) | \
-				 ((uint64_t)salt[4] << 24) | ((uint64_t)salt[5] << 16) | ((uint64_t)salt[6] << 8) | salt[7];
-	ft_ustrncat(str, salt, 8, 8);
-	h->arg = str;
+	if (test_bit(&h->flag, FLAG_S))
+		ft_uint64_to_str(&h->des.salt, salt);
+	else
+	{
+		ft_random(8, salt); // secure here
+		ft_str_to_uint64(&h->des.salt, salt, 0);
+	}
+	h->arg = ft_ustrjoin(h->des.password, salt); // secure here
 	md5_custom(h);
-	h->des.key = ((uint64_t)h->md5.digest[0] << 56) | ((uint64_t)h->md5.digest[1] << 48) | ((uint64_t)h->md5.digest[2] << 40) | ((uint64_t)h->md5.digest[3] << 32) | \
-				 ((uint64_t)h->md5.digest[4] << 24) | ((uint64_t)h->md5.digest[5] << 16) | ((uint64_t)h->md5.digest[6] << 8) | h->md5.digest[7];
-	h->des.iv = ((uint64_t)h->md5.digest[8] << 56) | ((uint64_t)h->md5.digest[9] << 48) | ((uint64_t)h->md5.digest[10] << 40) | ((uint64_t)h->md5.digest[11] << 32) | \
-				 ((uint64_t)h->md5.digest[12] << 24) | ((uint64_t)h->md5.digest[13] << 16) | ((uint64_t)h->md5.digest[14] << 8) | h->md5.digest[15];
+	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
+	ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);
 }
 
 void print_keys(t_hash *h)

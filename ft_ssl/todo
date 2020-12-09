@@ -1,6 +1,14 @@
 TODO
 
 
+Check alloc
+Check flag when decrypt ('cause we modify flag for b64)
+Check EVP_BYTES_TO_KEY
+Secure ft_random
+What is happening when pass + key
+Pas d'IV when CBC -> ERROR
+
+
 -a b64 decode/encode according to encrypt/decrypt mode S OK
 -e encrypt (default) S OK
 -d decrypt S OK
@@ -16,30 +24,6 @@ TODO
 -s Salt hex A OK
 -p password A
 
-
-Check alloc
-Check flag when decrypt ('cause we modify flag for b64)
-Secure ft_random
-What is happening when pass + key
-Pas d'IV when CBC -> ERROR
-
-Salted__                    -> When EVP_BytesToKey add 'Salted__' + 'salt'
-53 61 6c 74 65 64 5f 5f     ->
-
-salt=D03FC1E8D97F0000
-key=98F437EE43AC0712
-iv =EFC65FA6949D38D4
-
-echo "0123" | openssl des-ecb -pass "pass:MySuperSecurePassword" -S D03FC1E8D97F0000
-echo "0123" | openssl des-ecb -K 98F437EE43AC0712
-
-Ascii 1:
-Salted__�?����
-              f�E�% 
-
-Ascii 2: 
-�
- f�E�%
 
 Hex 1: U2FsdGVkX1/QP8Ho2X8AAKoLZAhmskXc
 Hex 2: qgtkCGayRdw=

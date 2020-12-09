@@ -2,7 +2,7 @@
 
 void    init_des(t_hash *h)
 {
-	if (test_bit(&h->flag, FLAG_D))
+	if (test_bit(&h->flag, FLAG_D) && test_bit(&h->flag, FLAG_AA))
 	{
 		base64_custom(h, FALSE);
 		h->arg = h->base64.output;
@@ -14,11 +14,9 @@ void    init_des(t_hash *h)
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
 	if (test_bit(&h->flag, FLAG_P))	
-		EVP_bytes_to_Key(h, h->des.password);
-	ft_print_bits_to_hexa(h->des.key, 64);
-	ft_print_bits_to_hexa(h->des.salt, 64);
-	ft_print_bits_to_hexa(h->des.iv, 64);
-	exit(0);
+		EVP_bytes_to_Key(h);
+	if (test_bit(&h->flag, FLAG_PP))
+		print_salt_key_iv(h);
 	generate_key(h);
 }
 

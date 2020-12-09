@@ -107,6 +107,11 @@ void				ft_hexstr(unsigned char *str, int len);
 void				ft_print_bits(uint64_t to_print, int len, int x);
 void				ft_print_bits_to_hexa(uint64_t buf, int len);
 void				ft_hexatoi(unsigned char *str, uint64_t *dst, int len);
+unsigned char		*ft_ustrjoin(unsigned char const *s1, unsigned char const *s2);
+void				ft_str_to_uint64(uint64_t *dst, unsigned char *src, int start);
+void				ft_uint64_to_str(uint64_t *src, unsigned char *dst);
+
+
 
 typedef struct		s_list
 {

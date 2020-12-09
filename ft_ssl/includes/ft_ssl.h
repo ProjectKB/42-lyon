@@ -147,7 +147,7 @@ int					test_bit(unsigned int *flag, int flag_value);
 void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
-void				EVP_bytes_to_Key(t_hash *h, const unsigned char *password);
+void				EVP_bytes_to_Key(t_hash *h);
 void				md5_custom(t_hash *h);
 void				base64_custom(t_hash *h, int flag);
 void 				generate_key(t_hash *h);
