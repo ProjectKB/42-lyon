@@ -153,19 +153,14 @@ void	EVP_bytes_to_Key(t_hash *h)
 	unsigned char *buf;
 	int			  buf_size;
 
-	//if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
-	//{
-	//	ft_printf("bonjour");
-	//	// check if SALTED__
-	//	buf_size = test_bit(&h->flag, FLAG_AA) ? 22 : 16;
-	//	if (!(buf = ft_memalloc(buf_size + 1)))
-	//		print_and_quit("Congrats, you broke malloc.\n", 2);
-	//	int rt = read(h->fd, h->line, buf_size); // secure here
-	//	ft_printf("%d %d %s\n", rt, buf_size, buf);
-	//	exit(0);
-	//}	
-	//else
-	//{
+	if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
+	{
+		// ustrncmp -> h->arg[0-7] == SALTED__
+		// ustrncpy -> salt = h->arg[8-15]
+		// umemcpy -> h->arg = h->arg[15-end]
+	}	
+	else
+	{
 		if (test_bit(&h->flag, FLAG_S))
 			ft_uint64_to_str(&h->des.salt, salt);
 		else
@@ -173,7 +168,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 			ft_random(8, salt); // secure here
 			ft_str_to_uint64(&h->des.salt, salt, 0);
 		}
-	//}
+	}
 	h->arg = ustrjoin(h->des.password, salt); // secure here
 	md5_custom(h);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);

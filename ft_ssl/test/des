@@ -31,6 +31,10 @@ echo ""
 echo "0123456789" | openssl des-ecb -pass "pass:coucou" -S 488843243FBFF7D9 -a
 echo "0123456789" | ./ft_ssl des-ecb -p "coucou" -s 488843243FBFF7D9 -a
 
+echo ""
+
+echo "U2FsdGVkX19IiEMkP7/32XQ+cVcwmWM8wrvde22H8ug=" | openssl des-ecb -pass "pass:coucou" -S 488843243FBFF7D9 -a -d
+echo "U2FsdGVkX19IiEMkP7/32XQ+cVcwmWM8wrvde22H8ug=" | ./ft_ssl des-ecb -p "coucou" -s 488843243FBFF7D9 -a -d
 
 echo ""
 
