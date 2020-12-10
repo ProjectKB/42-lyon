@@ -11,7 +11,7 @@ void		custom_print(t_hash *h, int mod, int turn)
 		mod == STRING ? ft_printf(" \"%s\"", h->arg) : ft_printf(" %s", h->arg);
 }
 
-void		print_md5(t_hash *h, int mod, char *stdin)
+void		print_md5(t_hash *h, int mod)
 {
 	int	i;
 
@@ -19,8 +19,8 @@ void		print_md5(t_hash *h, int mod, char *stdin)
 	digest_message(&h->md5);
 	if (h->print)
 	{
-		if (mod == STDIN && ft_strcmp(stdin, ""))
-			ft_printf("%s", stdin);
+		if (mod == STDIN && ft_strcmp(h->md5.stdin, ""))
+			ft_printf("%s", h->md5.stdin);
 		custom_print(h, mod, 0);
 		while (++i < 16)
 			ft_printf("%02x", h->md5.digest[i]);
@@ -29,13 +29,13 @@ void		print_md5(t_hash *h, int mod, char *stdin)
 	}
 }
 
-void		print_sha256(t_hash *h, int mod, char *stdin)
+void		print_sha256(t_hash *h, int mod)
 {
 	int	i;
 
 	i = -1;
-	if (mod == STDIN && ft_strcmp(stdin, ""))
-		ft_printf("%s", stdin);
+	if (mod == STDIN && ft_strcmp(h->sha256.stdin, ""))
+		ft_printf("%s", h->sha256.stdin);
 	custom_print(h, mod, 0);
 	while (++i < 8)
 		ft_printf("%.8x", h->sha256.buf[i]);

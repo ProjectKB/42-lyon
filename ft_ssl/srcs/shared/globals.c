@@ -27,7 +27,7 @@ void (*g_pre_process_functions[5])(t_hash *h, int *i) = {
 	message_digest, message_digest, base64, cipher_block, cipher_block
 };
 
-void (*g_print_functions[5])(t_hash *h, int mod, char *stdin) = {
+void (*g_print_functions[5])(t_hash *h, int mod) = {
 	print_md5, print_sha256, print_base64, print_des, print_des
 };
 

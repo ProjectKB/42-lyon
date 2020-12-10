@@ -7,18 +7,18 @@ static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
 	if (test_bit(&h->flag, FLAG_AA))
 	{
 		if (ft_strlen((char *)h->arg) < 17)
-			print_and_quit("Error reading input file.\n", 2); // free ?
+			print_and_quit("Error reading input file.\n", 2); // b64
 		if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
-			print_and_quit("Bad magic number.\n", 2); // free ?
+			print_and_quit("Bad magic number.\n", 2); // b64
 		ft_ustrcpy(&(salt[0]), &(h->arg[8]), 8);
 		return (&(h->arg[16]));
 	}
 	else
 	{
 		if (read(h->fd, &buf2, 16) < 16)
-			print_and_quit("Error reading input file.\n", 2); // free ?
+			print_and_quit("Error reading input file.\n", 2);
 		if (ft_ustrncmp(&(buf2[0]), (unsigned char *)"Salted__", 8))
-			print_and_quit("Bad magic number.\n", 2); // free ?
+			print_and_quit("Bad magic number.\n", 2);
 		ft_ustrcpy(&(salt[0]), &(buf2[8]), 8);
 		return (NULL);
 	}

@@ -11,12 +11,12 @@ void    init_des(t_hash *h)
 	h->des.turn = 0;
 	h->nb_bytes = 8;
 	h->des.rest = 0;
-	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
-        print_and_quit("Congrats, you broke malloc.\n", 2);
 	if (test_bit(&h->flag, FLAG_PPP))	
 		EVP_bytes_to_Key(h);
 	if (test_bit(&h->flag, FLAG_PP))
 		print_salt_key_iv(h);
+	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1))) // free b64 if needed
+        print_and_quit("Congrats, you broke malloc.\n", 2);
 	generate_key(h);
 }
 
@@ -68,7 +68,7 @@ void    proceed_block_des(t_hash *h)
 	i = -1;
 	if (h->rest != h->nb_bytes)
 		h->des.rest = h->rest;
-	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 8, h->nb_bytes + 1)))
+	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 8, h->nb_bytes + 1))) // free 64 if needed
         free_and_quit("Congrats, you broke malloc.\n", h->des.output, 2);
 	init_buf(h);
     h->des.buf = permut_x_bits(&h->des.buf, g_ip, 64, 64);

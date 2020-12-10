@@ -9,6 +9,7 @@ static int	read_bytes(t_hash *h, int mod)
 
 	i = -1;
 	j = count * h->nb_bytes - 1;
+	ft_bzero(h->line, h->nb_bytes + 1);
 	if (mod != STRING && !h->change_mod)
 		return (read(h->fd, h->line, h->nb_bytes));
 	if (!h->arg || stop)
@@ -39,7 +40,7 @@ int			process(t_hash *h, int mod)
 	if (h->rest == -1)
 		read_error(h);
 	g_proceed_last_block_functions[h->i](h);
-	g_print_functions[h->i](h, mod, h->md5.stdin);
+	g_print_functions[h->i](h, mod);
 	g_free_functions[h->i](h);
 	return (0);
 }

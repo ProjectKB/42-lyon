@@ -64,7 +64,7 @@ typedef struct		s_hash
 	t_base64		base64;
 	t_des			des;
 	t_p				args;
-	unsigned char   line[64];
+	unsigned char   line[65];
 	unsigned char	*arg;
 	unsigned int	flag;
 	unsigned char	i;
@@ -88,7 +88,7 @@ extern void 		(*g_pre_process_functions[5])(t_hash *h, int *i);
 extern void			(*g_init_functions[5])(t_hash *h);
 extern void			(*g_proceed_block_functions[5])(t_hash *h);
 extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
-extern void			(*g_print_functions[5])(t_hash *h, int mod, char *stdin);
+extern void			(*g_print_functions[5])(t_hash *h, int mod);
 extern void			(*g_usage_functions[5])(t_hash *h);
 extern void			(*g_flags_action[6])(t_hash *h, int *i);
 extern void			(*g_free_functions[5])(t_hash *h);
@@ -121,10 +121,10 @@ void				encode_last_block_base64(t_hash *h);
 void				proceed_last_block_base64(t_hash *h);
 void				proceed_last_block_des(t_hash *h);
 
-void				print_md5(t_hash *h, int mod, char *stdin);
-void				print_sha256(t_hash *h, int mod, char *stdin);
-void				print_base64(t_hash *h, int mod, char *stdin);
-void				print_des(t_hash *h, int mod, char *stdin);
+void				print_md5(t_hash *h, int mod);
+void				print_sha256(t_hash *h, int mod);
+void				print_base64(t_hash *h, int mod);
+void				print_des(t_hash *h, int mod);
 
 void				usage_message_digest(t_hash *h);
 void				usage_base64(t_hash *h);
