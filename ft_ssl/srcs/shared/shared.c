@@ -35,11 +35,9 @@ int			process(t_hash *h, int mod)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
 	while ((h->rest = read_bytes(h, mod)))
-	{
-		if (h->rest == -1)
-			read_error(h);
 		g_proceed_block_functions[h->i](h);
-	}
+	if (h->rest == -1)
+		read_error(h);
 	g_proceed_last_block_functions[h->i](h);
 	g_print_functions[h->i](h, mod, h->md5.stdin);
 	g_free_functions[h->i](h);
