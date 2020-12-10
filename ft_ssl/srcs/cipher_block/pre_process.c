@@ -38,7 +38,7 @@ void	cipher_block(t_hash *h, int *i)
     else if (!ft_strcmp(h->args.v[*i], "-d"))
 		set_bit(&h->flag, FLAG_D, 0);
     else if (!ft_strcmp(h->args.v[*i], "-P"))
-		set_bit(&h->flag, FLAG_PP, 0);
+		set_bit(&h->flag, FLAG_PPP, 0);
     else
 		action_flag(h, i);
 	if (*i + 1 == h->args.c && test_bit(&h->flag, FLAG_AI))

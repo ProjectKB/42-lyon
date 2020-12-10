@@ -13,7 +13,7 @@ void    init_des(t_hash *h)
 	h->des.rest = 0;
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))
         print_and_quit("Congrats, you broke malloc.\n", 2);
-	if (test_bit(&h->flag, FLAG_P))	
+	if (test_bit(&h->flag, FLAG_PPP))	
 		EVP_bytes_to_Key(h);
 	if (test_bit(&h->flag, FLAG_PP))
 		print_salt_key_iv(h);

@@ -2,7 +2,7 @@
 
 void    k_des_flag(t_hash *h, int *i)
 {
-    set_bit(&h->flag, FLAG_K, FLAG_P);
+    set_bit(&h->flag, FLAG_K, FLAG_PPP);
     // manage case where key is to short
     ft_hexatoi((unsigned char *)h->args.v[*i], &h->des.key, 16);
 }

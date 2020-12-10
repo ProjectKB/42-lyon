@@ -11,6 +11,8 @@ void		init_sha256(t_hash *h)
 	h->sha256.buf[5] = S5;
 	h->sha256.buf[6] = S6;
 	h->sha256.buf[7] = S7;
+	if (test_bit(&h->flag, FLAG_P))
+		h->sha256.stdin = ft_strdup("");
 }
 
 uint32_t	rotr(uint32_t x, uint32_t n)

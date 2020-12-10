@@ -41,11 +41,12 @@
 # define FLAG_K 0x400
 # define FLAG_S 0x800
 # define FLAG_V 0x1000
+# define FLAG_PPP 0x2000
 # define FLAG_AF 0x18
 # define FLAG_AP 0xC
 # define FLAG_QP 0x5
 # define FLAG_AI 0x108
-# define FLAG_PD 0x24
+# define FLAG_PPPD 0x2020
 
 /*
 ** STRUCT
@@ -90,6 +91,7 @@ extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
 extern void			(*g_print_functions[5])(t_hash *h, int mod, char *stdin);
 extern void			(*g_usage_functions[5])(t_hash *h);
 extern void			(*g_flags_action[6])(t_hash *h, int *i);
+extern void			(*g_free_functions[5])(t_hash *h);
 
 /*
 ** MATERIALS FOR ARRAY OF FUNCTION POINTERS
@@ -134,6 +136,11 @@ void    			v_des_flag(t_hash *h, int *i);
 void    			p_des_flag(t_hash *h, int *i);
 void    			i_des_flag(t_hash *h, int *i);
 void    			o_des_flag(t_hash *h, int *i);
+
+void				free_md5(t_hash *h);
+void				free_sha256(t_hash *h);
+void				free_base64(t_hash *h);
+void				free_des(t_hash *h);
 
 
 /*

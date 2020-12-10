@@ -34,3 +34,7 @@ void (*g_print_functions[5])(t_hash *h, int mod, char *stdin) = {
 void (*g_usage_functions[5])(t_hash *h) = {
 	usage_message_digest, usage_message_digest, usage_base64, usage_des, usage_des
 };
+
+void (*g_free_functions[5])(t_hash *h) = {
+	free_md5, free_sha256, free_base64, free_des, free_des
+};

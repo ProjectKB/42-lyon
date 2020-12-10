@@ -31,10 +31,6 @@ static int	read_bytes(t_hash *h, int mod)
 
 int			process(t_hash *h, int mod)
 {
-	char			*stdin;
-
-	if (mod == STDIN)
-		stdin = ft_strdup("");
 	if ((h->fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
@@ -43,12 +39,9 @@ int			process(t_hash *h, int mod)
 		if (h->rest == -1)
 			read_error(h);
 		g_proceed_block_functions[h->i](h);
-		if (mod == STDIN)
-			stdin = ft_strjoin2(stdin, h->line);
 	}
 	g_proceed_last_block_functions[h->i](h);
-	g_print_functions[h->i](h, mod, stdin);
-	if (mod == STDIN)
-		free(stdin);
+	g_print_functions[h->i](h, mod, h->md5.stdin);
+	g_free_functions[h->i](h);
 	return (0);
 }

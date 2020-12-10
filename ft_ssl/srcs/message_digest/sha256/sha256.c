@@ -83,6 +83,8 @@ void		proceed_block_sha256(t_hash *h)
 			h->sha256.words[k - 16];
 		transform_block(&h->sha256);
 	}
+	if (test_bit(&h->flag, FLAG_P))
+		h->sha256.stdin = ft_strjoin2(h->sha256.stdin, h->line);
 }
 
 void		proceed_last_block_sha256(t_hash *h)

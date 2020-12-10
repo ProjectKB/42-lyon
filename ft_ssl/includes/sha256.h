@@ -20,6 +20,7 @@ typedef struct	s_sha256
 	uint32_t		words[64];
 	uint32_t		buf[8];
 	unsigned char	input[64];
+	char			*stdin;
 }				t_sha256;
 
 /*

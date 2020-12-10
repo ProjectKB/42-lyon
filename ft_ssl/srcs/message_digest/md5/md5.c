@@ -71,6 +71,8 @@ void		proceed_block_md5(t_hash *h)
 			h->md5.input[l + 1] << 8 | h->md5.input[l];
 		transform_block(&h->md5);
 	}
+	if (test_bit(&h->flag, FLAG_P))
+		h->md5.stdin = ft_strjoin2(h->md5.stdin, h->line);
 }
 
 void		proceed_last_block_md5(t_hash *h)

@@ -29,7 +29,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 	unsigned char *buf;
 	unsigned char salt[9];
 
-	if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
+	if (test_bit(&h->flag, FLAG_PPP) && test_bit(&h->flag, FLAG_D))
 		buf = EVP_decrypt_password(h, salt);
 	else
 	{

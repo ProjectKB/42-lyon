@@ -7,6 +7,8 @@ void		init_md5(t_hash *h)
 	h->md5.buf[1] = M1;
 	h->md5.buf[2] = M2;
 	h->md5.buf[3] = M3;
+	if (test_bit(&h->flag, FLAG_P))
+		h->md5.stdin = ft_strdup("");
 }
 
 void		digest_message(t_md5 *md5)

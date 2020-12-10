@@ -13,6 +13,7 @@ SRC = shared/main.c \
 	  shared/globals.c \
 	  shared/errors.c \
 	  shared/tools.c \
+	  shared/free.c \
 	  message_digest/md5/tools.c \
 	  message_digest/md5/md5.c \
 	  message_digest/md5/globals.c \

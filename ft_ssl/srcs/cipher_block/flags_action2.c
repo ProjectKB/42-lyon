@@ -4,7 +4,7 @@ void    p_des_flag(t_hash *h, int *i)
 {
     if (!test_bit(&h->flag, FLAG_K))
     {
-        set_bit(&h->flag, FLAG_P, 0);
+        set_bit(&h->flag, FLAG_PPP, 0);
 	    h->des.password = (unsigned char *)h->args.v[(*i)];
     }
 }
