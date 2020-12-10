@@ -61,43 +61,6 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 	return (NULL);
 }
 
-/* unsigned char	*ustrjoin3(t_hash *h)
-{
-	unsigned char	*s3;
-	unsigned char	*magic_number_and_salt;
-	unsigned char	*tmp;
-	unsigned char   salt[8];
-	size_t	len;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = -1;
-	ft_uint64_to_str(&h->des.salt, salt);
-	magic_number_and_salt = (unsigned char *)ft_strjoin("Salted__", (const char *)salt);
-	tmp = h->arg;
-	h->arg = magic_number_and_salt;
-	base64_custom(h, FALSE);
-	h->arg = tmp;
-	if (h->des.output)
-	{
-		len = ft_strlen((char *)h->des.output) + 16;
-		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * len + 1)))
-			return (NULL);
-		while (i < len)
-		{
-			while (h->base64.output[++j])
-				s3[i++] = h->base64.output[j];
-			j = -1;
-			while (h->des.output[++j])
-				s3[i++] = h->des.output[j];
-		}
-		s3[i] = '\0';
-		return (s3);
-	}
-	return (NULL);
-} */
-
 uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
 {
 	int i;
@@ -149,20 +112,31 @@ void base64_custom(t_hash *h, int flag)
 
 void	EVP_bytes_to_Key(t_hash *h)
 {
-	unsigned char salt[8];
+	unsigned char salt[9];
+	unsigned char buf2[16];
 	unsigned char *buf;
-	int			  buf_size;
 
 	if (test_bit(&h->flag, FLAG_P) && test_bit(&h->flag, FLAG_D))
 	{	
-		// IF AA
-			// ustrncmp -> h->arg[0-7] == SALTED__
-			// ustrncpy -> salt = h->arg[8-15]
-			// umemcpy -> h->arg = h->arg[15-end]
-
-		// UNLESS AA
-			// read 8 bytes -> Salted__ ?
-			// read 8 bytes -> set salt
+		if (test_bit(&h->flag, FLAG_AA))
+		{
+			if (ft_strlen((char *)h->arg) < 17)
+				; // error reading input file
+			if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
+				; // bad magic number
+			ft_ustrcpy(&(salt[0]), &(h->arg[8]), 8);
+			buf = &(h->arg[16]);
+		}
+		else
+		{
+			if (read(h->fd, &buf2, 16) < 16)
+				; // error reading input file + protect
+			if (ft_ustrncmp(&(buf2[0]), (unsigned char *)"Salted__", 8))
+				; // bad magic number
+			ft_ustrcpy(&(salt[0]), &(buf2[8]), 8);
+			ft_printf("%s\n", salt);
+			exit(0);
+		}
 	}	
 	else
 	{
@@ -178,6 +152,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 	md5_custom(h);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
 	ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);
+	h->arg = buf;
 }
 
 void print_keys(t_hash *h)
