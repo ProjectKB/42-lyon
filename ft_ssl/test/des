@@ -1,8 +1,19 @@
-echo "************************************************* WITHOUT PASS *************************************************\n"
+#!/bin/bash
+
+echo "************************************************* WITHOUT PASS *************************************************"
+
+echo ""
 
 echo "0123456789" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9
 echo ""
 echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9
+echo ""
+
+echo ""
+
+echo -n "" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9
+echo ""
+echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9
 echo ""
 
 echo ""
@@ -12,14 +23,25 @@ echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a
 
 echo ""
 
+echo -n "" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9 -a
+echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a
+echo ""
+
 echo "dD5xVzCZYzzCu917bYfy6A==" | openssl des-ecb -K 7F7432CA7CCE3D61 -a -d
 echo "dD5xVzCZYzzCu917bYfy6A==" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d
 
 echo ""
 
-echo "****************************************************************************************************************\n"
+echo "z9lsEJe7tJ0=" | openssl des-ecb -K 7F7432CA7CCE3D61 -a -d
+echo "z9lsEJe7tJ0=" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d
 
-echo "************************************************** WITH PASS ***************************************************\n"
+echo "****************************************************************************************************************"
+
+echo ""
+
+echo "************************************************** WITH PASS ***************************************************"
+
+echo ""
 
 echo "0123456789" | openssl des-ecb -pass "pass:coucou" -S 488843243FBFF7D9
 echo ""
@@ -38,4 +60,4 @@ echo "U2FsdGVkX19IiEMkP7/32XQ+cVcwmWM8wrvde22H8ug=" | ./ft_ssl des-ecb -p "couco
 
 echo ""
 
-echo "****************************************************************************************************************\n"
+echo "****************************************************************************************************************"

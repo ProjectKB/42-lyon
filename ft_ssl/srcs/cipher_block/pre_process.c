@@ -15,7 +15,7 @@ void	action_flag(t_hash *h, int *i)
 		set_bit(&h->flag, FLAG_D, 0);
     else if (!ft_strcmp(h->args.v[*i], "-P"))
 		set_bit(&h->flag, FLAG_PP, 0);
-    else if (!ft_strcmp(h->args.v[*i], "-k"))
+    else if (!ft_strcmp(h->args.v[*i], "-k")) // deactivate -p
     {
 		if (++(*i) == h->args.c)
 			missing_arg(h, h->args.v[*i - 1][1]);
@@ -39,7 +39,7 @@ void	action_flag(t_hash *h, int *i)
         // idem
 		ft_hexatoi((unsigned char *)h->args.v[*i], &h->des.iv, 16);
 	}
-    else if (!ft_strcmp(h->args.v[*i], "-p"))
+    else if (!ft_strcmp(h->args.v[*i], "-p")) // if not k
     {
 		if (++(*i) == h->args.c)
 			missing_arg(h, h->args.v[*i - 1][1]);

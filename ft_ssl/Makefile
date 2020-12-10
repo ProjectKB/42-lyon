@@ -30,12 +30,13 @@ SRC = shared/main.c \
 	  base64/print.c \
 	  base64/pre_process.c \
 	  base64/errors.c \
-	  cipher_block/shared/globals.c \
-	  cipher_block/shared/tools.c \
-	  cipher_block/shared/des.c \
-	  cipher_block/shared/print.c \
-	  cipher_block/shared/pre_process.c \
-	  cipher_block/shared/errors.c \
+	  cipher_block/globals.c \
+	  cipher_block/tools.c \
+	  cipher_block/des.c \
+	  cipher_block/print.c \
+	  cipher_block/pre_process.c \
+	  cipher_block/errors.c \
+	  cipher_block/keys.c \
 
 OBJ = $(SRC:.c=.o)
 

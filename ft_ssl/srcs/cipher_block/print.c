@@ -14,7 +14,16 @@ void	print_salt_key_iv(t_hash *h)
 	exit(0);
 }
 
-void	remove_padding(t_hash *h)
+void print_keys(t_hash *h)
+{
+	int i;
+
+	i = -1;
+	while (++i < 16)
+		ft_print_bits_to_hexa(h->des.keys[i], 64);
+}
+
+static void	remove_padding(t_hash *h)
 {
 	int pad;
 	int end;
@@ -28,14 +37,13 @@ void	print_des(t_hash *h, int mod, char *stdin)
 {
 	if (test_bit(&h->flag, FLAG_D))
 	{
-		// check Salted__
 		remove_padding(h);
 		ft_printf("%s", h->des.output);
 	}
 	else
 	{
 		if (test_bit(&h->flag, FLAG_P))
-			h->des.output = ustrjoin2(h, (unsigned char *)"Salted__"); // free ?
+			h->des.output = ustrjoin2(h, (unsigned char *)"Salted__"); // secure here
 		if (test_bit(&h->flag, FLAG_AA))
 		{
 			h->arg = h->des.output;
