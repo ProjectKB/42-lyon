@@ -33,8 +33,6 @@ int			process(t_hash *h, int mod)
 {
 	char			*stdin;
 
-	if (!(h->line = ft_memalloc(h->nb_bytes + 1)))
-		free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
 	if (mod == STDIN)
 		stdin = ft_strdup("");
 	if ((h->fd = get_fd(h->arg, mod)) == -1 && mod == FILE)

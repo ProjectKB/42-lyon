@@ -63,7 +63,7 @@ typedef struct		s_hash
 	t_base64		base64;
 	t_des			des;
 	t_p				args;
-	unsigned char   *line;
+	unsigned char   line[64];
 	unsigned char	*arg;
 	unsigned int	flag;
 	unsigned char	i;
@@ -89,6 +89,7 @@ extern void			(*g_proceed_block_functions[5])(t_hash *h);
 extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
 extern void			(*g_print_functions[5])(t_hash *h, int mod, char *stdin);
 extern void			(*g_usage_functions[5])(t_hash *h);
+extern void			(*g_flags_action[6])(t_hash *h, int *i);
 
 /*
 ** MATERIALS FOR ARRAY OF FUNCTION POINTERS
@@ -126,6 +127,13 @@ void				print_des(t_hash *h, int mod, char *stdin);
 void				usage_message_digest(t_hash *h);
 void				usage_base64(t_hash *h);
 void				usage_des(t_hash *h);
+
+void    			k_des_flag(t_hash *h, int *i);
+void    			s_des_flag(t_hash *h, int *i);
+void    			v_des_flag(t_hash *h, int *i);
+void    			p_des_flag(t_hash *h, int *i);
+void    			i_des_flag(t_hash *h, int *i);
+void    			o_des_flag(t_hash *h, int *i);
 
 
 /*

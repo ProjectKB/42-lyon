@@ -1,11 +1,35 @@
 #include "ft_ssl.h"
 
-/* void	setter_flag(t_hash *h, int *i)
+static int	get_action_index(t_hash *h, int *i)
 {
-    
-} */
+	if (!ft_strcmp(h->args.v[*i], "-k"))
+		return (0);
+	else if (!ft_strcmp(h->args.v[*i], "-s"))
+		return (1);
+	else if (!ft_strcmp(h->args.v[*i], "-v"))
+		return (2);
+	else if (!ft_strcmp(h->args.v[*i], "-p"))
+		return (3);
+	else if (!ft_strcmp(h->args.v[*i], "-i"))
+		return (4);
+	else if (!ft_strcmp(h->args.v[*i], "-o"))
+		return (5);
+	else
+		return (-1);
+}
 
-void	action_flag(t_hash *h, int *i)
+static void	action_flag(t_hash *h, int *i)
+{
+	int action_index;
+
+	if ((action_index = get_action_index(h, i)) == -1)
+		illegal_flag(h->args.v[*i], h);
+	if (++(*i) == h->args.c)
+		missing_arg(h, h->args.v[*i - 1][1]);
+	g_flags_action[action_index](h, i);
+}
+
+void	cipher_block(t_hash *h, int *i)
 {
 	if (!ft_strcmp(h->args.v[*i], "-a"))
 		set_bit(&h->flag, FLAG_AA, 0);
@@ -15,59 +39,8 @@ void	action_flag(t_hash *h, int *i)
 		set_bit(&h->flag, FLAG_D, 0);
     else if (!ft_strcmp(h->args.v[*i], "-P"))
 		set_bit(&h->flag, FLAG_PP, 0);
-    else if (!ft_strcmp(h->args.v[*i], "-k")) // deactivate -p
-    {
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_K, 0);
-        // manage case where key is to short
-		ft_hexatoi((unsigned char *)h->args.v[*i], &h->des.key, 16);
-	}
-    else if (!ft_strcmp(h->args.v[*i], "-s"))
-    {
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_S, 0);
-        // idem
-		ft_hexatoi((unsigned char *)h->args.v[*i], &h->des.salt, 16);
-	}
-    else if (!ft_strcmp(h->args.v[*i], "-v"))
-    {
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_V, 0);
-        // idem
-		ft_hexatoi((unsigned char *)h->args.v[*i], &h->des.iv, 16);
-	}
-    else if (!ft_strcmp(h->args.v[*i], "-p")) // if not k
-    {
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_P, 0);
-		h->des.password = (unsigned char *)h->args.v[(*i)];
-	}
-	else if (!ft_strcmp(h->args.v[*i], "-i"))
-    {
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_AI, 0);
-		h->arg = (unsigned char *)h->args.v[(*i)];
-	}
-    else if (!ft_strcmp(h->args.v[*i], "-o"))
-	{
-		if (++(*i) == h->args.c)
-			missing_arg(h, h->args.v[*i - 1][1]);
-		set_bit(&h->flag, FLAG_O, 0);
-		h->des.output_file_name = (unsigned char *)h->args.v[(*i)];
-	}
-	else
-		illegal_flag(h->args.v[*i], h);
-}
-
-void	cipher_block(t_hash *h, int *i)
-{
-	//setter_flag(h, i);
-	action_flag(h, i);
+    else
+		action_flag(h, i);
 	if (*i + 1 == h->args.c && test_bit(&h->flag, FLAG_AI))
 		process(h, FILE);
 }

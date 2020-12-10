@@ -133,3 +133,7 @@ const unsigned char g_ep[64] = {
     34, 2, 42, 10, 50, 18, 58, 26,
     33, 1, 41, 9, 49, 17, 57, 25
 };
+
+void    (*g_flags_action[6])(t_hash *h, int *i) = {
+    k_des_flag, s_des_flag, v_des_flag, p_des_flag, i_des_flag, o_des_flag 
+};

@@ -1,10 +1,5 @@
 TODO
 
-- pass + !d -> add Salted__X OK
-- pass + d
-    (a  -> decode
-    !a -> check Salted__ -> get salt -> remove 16 first bits
-
 ERROR -> Moins de 17 -> error reading input file
 ERROR ->  false Salted__  -> bad magic number
 Else -> bad decrypt

@@ -34,7 +34,7 @@ void encode_block_base64(t_hash *h)
 
 void encode_last_block_base64(t_hash *h)
 {
-    int         i;
+    int i;
 
     if (h->base64.rest_len)
     {
