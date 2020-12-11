@@ -22,24 +22,22 @@ void generate_key(t_hash *h)
 	}
 }
 
-uint64_t s_box_substitution(uint64_t *to_substitute)
+uint64_t s_box_substitution(uint64_t *to_substitute, unsigned char shift1, unsigned char shift2)
 {
 	int i;
 	int x;
 	int y;
 	int block;
 	uint64_t substituted;
-	unsigned char shift1[8] = {42, 36, 30, 24, 18, 12, 6, 0};
-	unsigned char shift2[8] = {28, 24, 20, 16, 12, 8, 4, 0};
 
 	i = -1;
 	substituted = 0;
 	while (++i < 8)
 	{
-		block = ((*to_substitute) >> shift1[i]) & 0x3F;
+		block = ((*to_substitute) >> (shift1 - (i * 6))) & 0x3F;
 		y = ((block & 0x20) >> 4) | (block & 0x1); 
 		x = (block >> 1) & 0xF;
-		substituted |= (g_sbox[i][y][x] << shift2[i]);
+		substituted |= (g_sbox[i][y][x] << (shift2 - (i * 4)));
 	}
 	return (substituted);
 }

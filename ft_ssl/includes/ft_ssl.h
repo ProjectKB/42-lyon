@@ -53,10 +53,8 @@
 */
 # define DES 0x1
 # define B64 0x2
-# define FREE 0x4
-# define PRINT 0x8
-# define CHANGE_MOD 0x10
-
+# define PRINT 0x4
+# define CHANGE_MOD 0x8
 
 /*
 ** STRUCT
@@ -183,6 +181,7 @@ void				print_salt_key_iv(t_hash *h);
 unsigned char		*ustrjoin(unsigned char const *s1, unsigned char const *s2);
 unsigned char		*ustrjoin2(t_hash *h, unsigned char const *s1);
 unsigned char		*ustrjoin3(t_hash *h);
+void				freexit_des_base64(t_hash *h, char *error, int fd);
 
 
 

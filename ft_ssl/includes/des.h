@@ -41,7 +41,7 @@ extern const unsigned char g_ep[64];
 */
 uint64_t    permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len);
 uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask);
-uint64_t    s_box_substitution(uint64_t *to_substitute);
+uint64_t    s_box_substitution(uint64_t *to_substitute, unsigned char shift1, unsigned char shift2);
 
 
 

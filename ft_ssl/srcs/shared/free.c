@@ -20,5 +20,14 @@ void free_base64(t_hash *h)
 
 void free_des(t_hash *h)
 {
-    //
+    free(h->des.output);
+}
+
+void freexit_des_base64(t_hash *h, char *error, int fd)
+{
+    if (test_bit2(&h->action, DES))
+        free(h->des.output);
+    if (test_bit2(&h->action, B64))
+        free(h->base64.output);
+   	print_and_quit(error, fd);
 }

@@ -3,10 +3,9 @@
 void    init_des(t_hash *h)
 {
 	if (test_bit(&h->flag, FLAG_D) && test_bit(&h->flag, FLAG_AA))
-	{
 		base64_custom(h, FALSE);
-		h->arg = h->base64.output;
-	}
+	if (test_bit(&h->flag, FLAG_D) && !test_bit(&h->flag, FLAG_V) && h->i == DES)
+		base64_custom(h, FALSE);
 	h->des.turn = 0;
 	h->nb_bytes = 8;
 	h->des.rest = 0;
@@ -15,7 +14,8 @@ void    init_des(t_hash *h)
 	if (test_bit(&h->flag, FLAG_PP))
 		print_salt_key_iv(h);
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1))) // free b64 if needed
-        print_and_quit("Congrats, you broke malloc.\n", 2);
+        freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
+	set_bit2(&h->action, DES, 0);
 	generate_key(h);
 }
 
@@ -68,7 +68,7 @@ void    proceed_block_des(t_hash *h)
 	if (h->rest != h->nb_bytes)
 		h->des.rest = h->rest;
 	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 8, h->nb_bytes + 1))) // free 64 if needed
-        free_and_quit("Congrats, you broke malloc.\n", h->des.output, 2);
+		freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
 	init_buf(h);
     h->des.buf = permut_x_bits(&h->des.buf, g_ip, 64, 64);
     h->des.lpt = (h->des.buf >> 32);
@@ -78,7 +78,7 @@ void    proceed_block_des(t_hash *h)
 		h->des.lpt_next = h->des.rpt;
         h->des.rpt_gen = permut_x_bits(&h->des.rpt, g_e, 32, 48);
         h->des.rpt_gen ^= h->des.keys[i];
-		h->des.rpt_gen = s_box_substitution(&h->des.rpt_gen);
+		h->des.rpt_gen = s_box_substitution(&h->des.rpt_gen, 42, 28);
 		h->des.rpt_gen = permut_x_bits(&h->des.rpt_gen, g_p, 32, 32);
 		h->des.rpt = (h->des.rpt_gen ^ h->des.lpt);
 		h->des.lpt = h->des.lpt_next;

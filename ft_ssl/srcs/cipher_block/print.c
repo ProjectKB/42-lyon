@@ -43,7 +43,8 @@ void	print_des(t_hash *h, int mod)
 	else
 	{
 		if (test_bit(&h->flag, FLAG_PPP))
-			h->des.output = ustrjoin2(h, (unsigned char *)"Salted__"); // secure here
+			if (!(h->des.output = ustrjoin2(h, (unsigned char *)"Salted__")))
+				freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
 		if (test_bit(&h->flag, FLAG_AA))
 		{
 			h->arg = h->des.output;

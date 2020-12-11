@@ -85,4 +85,5 @@ void base64_custom(t_hash *h, int flag)
 		process(h, STRING);
 	set_bit2(&h->action, CHANGE_MOD, 0);
 	h->i = tmp;
+	h->arg = h->base64.output;
 }

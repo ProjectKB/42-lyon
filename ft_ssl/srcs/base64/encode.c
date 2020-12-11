@@ -7,7 +7,8 @@ void    init_encode_base64(t_hash *h)
     h->base64.nb_bytes = 4;
     h->base64.rest_len = 0;
     if (!(h->base64.output = (unsigned char*)malloc(sizeof(char) * h->base64.nb_bytes + 1)))
-        print_and_quit("Congrats, you broke malloc.\n", 2);
+        freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
+    set_bit2(&h->action, B64, 0);
 }
 
 void encode_block_base64(t_hash *h)
@@ -15,7 +16,7 @@ void encode_block_base64(t_hash *h)
     int i;
 
     if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 4, h->base64.nb_bytes + 1)))
-        free_and_quit("Congrats, you broke malloc.\n", h->base64.output, 2);
+        freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
     if (h->rest != h->nb_bytes)
     {
         ++h->base64.turn;
