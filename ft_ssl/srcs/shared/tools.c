@@ -11,10 +11,22 @@ int		test_bit(unsigned int *flag, int flag_value)
 	return (!(*flag & flag_value) ? FALSE : TRUE);
 }
 
+int		test_bit2(unsigned char *flag, int flag_value)
+{
+	return (!(*flag & flag_value) ? FALSE : TRUE);
+}
+
 void	set_bit(unsigned int *flag, int set, int unset)
 {
 	*flag |= set;
 	if (unset && test_bit(flag, unset))
+		*flag ^= unset;
+}
+
+void	set_bit2(unsigned char *flag, int set, int unset)
+{
+	*flag |= set;
+	if (unset && test_bit2(flag, unset))
 		*flag ^= unset;
 }
 

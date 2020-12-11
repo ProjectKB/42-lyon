@@ -49,6 +49,16 @@
 # define FLAG_PPPD 0x2020
 
 /*
+** ACTION
+*/
+# define DES 0x1
+# define B64 0x1
+# define FREE 0x1
+# define PRINT 0x1
+# define CHANGE_MOD 0x1
+
+
+/*
 ** STRUCT
 */
 typedef struct		s_p
@@ -160,7 +170,9 @@ void				init_hash(t_hash *h, int argc, char **argv);
 int					get_fd(void *arg, int mod);
 int					is_illegal_flag(unsigned char *arg);
 void				set_bit(unsigned int *flag, int set, int unset);
+void				set_bit2(unsigned char *flag, int set, int unset);
 int					test_bit(unsigned int *flag, int flag_value);
+int					test_bit2(unsigned char *flag, int flag_value);
 void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
