@@ -20,7 +20,12 @@ static int	read_bytes(t_hash *h, int mod)
 	}
 	while (++i < h->nb_bytes)
 	{
-		if (!h->arg[++j] && (stop = TRUE))
+		if (h->i == MD5)
+		{
+			ft_printf("%d\n", h->nb_bytes);
+			ft_hexstr(h->arg, 8);
+		}
+		if (!h->arg[++j] && (stop = TRUE)) // change here
 			return (i);
 		h->line[i] = h->arg[j];
 	}

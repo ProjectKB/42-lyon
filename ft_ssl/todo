@@ -1,5 +1,10 @@
 TODO
 
+-> salt < 
+
+
+
+
 ERROR -> Moins de 17 -> error reading input file
 ERROR ->  false Salted__  -> bad magic number
 Else -> bad decrypt

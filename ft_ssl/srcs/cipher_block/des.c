@@ -2,7 +2,7 @@
 
 void    init_des(t_hash *h)
 {
-	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_V))
+	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_V) && !test_bit(&h->flag, FLAG_PPP))
 		print_and_quit("iv undefined\n", 2);
 	if (test_bit(&h->flag, FLAG_D) && test_bit(&h->flag, FLAG_AA))
 		base64_custom(h, FALSE);
