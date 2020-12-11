@@ -38,14 +38,13 @@ void	EVP_bytes_to_Key(t_hash *h)
 		else
 		{
 			if (ft_random(8, salt) == -1)
-				freexit_des_base64(h, "Something went wrong while generating random salt.", 2); // secure here
+				freexit_des_base64(h, "Something went wrong while generating random salt.", 2);
 			ft_str_to_uint64(&h->des.salt, salt, 0);
 		}
 	}
-	if (!(h->arg = ustrjoin(h->des.password, salt))) // secure here
+	if (!(h->arg = ustrjoin(h->des.password, salt)))
 		freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
 	md5_custom(h);
-	//ft_printf("yo\n"); exit(0);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
 	if (!test_bit(&h->flag, FLAG_V))
 		ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);
