@@ -1,19 +1,22 @@
 #include "libft.h"
 
-void ft_hexatoi(unsigned char *str, uint64_t *dst)
+int ft_hexatoi(unsigned char *str, uint64_t *dst)
 {
 	int i;
 	int shift;
 	
 	i = -1;
 	shift = 64;
-	while (str[++i] && (shift -= 4) != -1)
+	while (str[++i] && i < 16 && (shift -= 4) != -1)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
-			*dst = (*dst << 4) | (str[i] - 48);
+			*dst |= ((uint64_t)(str[i] - 48) << shift);
 		else if (str[i] >= 'A' && str[i] <= 'Z')
-			*dst = (*dst << 4) | (str[i] - 55);
+			*dst |= ((uint64_t)(str[i] - 55) << shift);
+		else if (str[i] >= 'a' && str[i] <= 'z')
+			*dst |= ((uint64_t)(str[i] - 87) << shift);
 		else
-			*dst = (*dst << 4) | (str[i] - 87);
+			return (FALSE);
 	}
+	return (TRUE);
 }
