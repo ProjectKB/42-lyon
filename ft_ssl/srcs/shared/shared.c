@@ -10,7 +10,7 @@ static int	read_bytes(t_hash *h, int mod)
 	i = -1;
 	j = count * h->nb_bytes - 1;
 	ft_bzero(h->line, h->nb_bytes + 1);
-	if (mod != STRING && !h->change_mod)
+	if (mod != STRING && !test_bit2(&h->action, CHANGE_MOD))
 		return (read(h->fd, h->line, h->nb_bytes));
 	if (!h->arg || stop)
 	{

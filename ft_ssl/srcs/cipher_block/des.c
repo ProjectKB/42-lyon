@@ -6,7 +6,6 @@ void    init_des(t_hash *h)
 	{
 		base64_custom(h, FALSE);
 		h->arg = h->base64.output;
-		h->change_mod = TRUE;
 	}
 	h->des.turn = 0;
 	h->nb_bytes = 8;

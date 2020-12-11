@@ -52,10 +52,10 @@
 ** ACTION
 */
 # define DES 0x1
-# define B64 0x1
-# define FREE 0x1
-# define PRINT 0x1
-# define CHANGE_MOD 0x1
+# define B64 0x2
+# define FREE 0x4
+# define PRINT 0x8
+# define CHANGE_MOD 0x10
 
 
 /*
@@ -80,10 +80,9 @@ typedef struct		s_hash
 	unsigned char	i;
 	unsigned char	name[7];
 	unsigned char	nb_bytes;
-	int				print;
+	unsigned char	action;
 	int				rest;
 	int				fd;
-	int				change_mod;
 }					t_hash;
 
 /*

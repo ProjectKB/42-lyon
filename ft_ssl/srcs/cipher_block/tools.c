@@ -63,10 +63,10 @@ void md5_custom(t_hash *h)
 
 	tmp = h->i;
 	h->i = MD5;
-	h->print = FALSE;
+	set_bit2(&h->action, 0, PRINT);
 	process(h, STRING);
 	h->i = tmp;
-	h->print = TRUE;
+	set_bit2(&h->action, PRINT, 0);
 }
 
 void base64_custom(t_hash *h, int flag)
@@ -77,11 +77,12 @@ void base64_custom(t_hash *h, int flag)
 	h->i = BASE64;
 	if (!flag)
 	{
-		h->print = FALSE;
+		set_bit2(&h->action, 0, PRINT);
 		set_bit(&h->flag, FLAG_D, 0);
 		process(h, STDOUT);
 	}
 	else
 		process(h, STRING);
+	set_bit2(&h->action, CHANGE_MOD, 0);
 	h->i = tmp;
 }

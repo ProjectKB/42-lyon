@@ -68,8 +68,8 @@ void init_hash(t_hash *h, int argc, char **argv)
 {
 	h->arg = 0;
 	h->flag = 0;
-	h->change_mod = FALSE;
-	h->print = TRUE;
+	h->action = 0;
+	set_bit2(&h->action, PRINT, 0);
 	h->nb_bytes = 64;
 	h->args.c = argc;
 	h->args.v = argv;

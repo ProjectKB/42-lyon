@@ -14,7 +14,7 @@ void free_sha256(t_hash *h)
 
 void free_base64(t_hash *h)
 {
-    if (h->print)
+    if (test_bit2(&h->action, PRINT))
         free(h->base64.output);
 }
 
