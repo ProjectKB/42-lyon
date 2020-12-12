@@ -51,12 +51,12 @@ void	print_encrypt_with_pass(t_hash *h)
 	}
 	else
 	{
+		output_len = ft_strlen((char*)h->des.output);
 		if (!(h->des.output = ustrjoin2(h, (unsigned char *)"Salted__")))
 			freexit(h, "Congrats, you broke malloc.\n", 2);
-		output_len = ft_strlen((char*)h->des.output);
 		h->arg = h->des.output;
 		base64_hexa_custom(h, output_len + 16);
-		ft_printf("%s", h->base64.output);
+		ft_printf("%s\n", h->base64.output);
 	}
 }
 
@@ -79,30 +79,4 @@ void	print_des(t_hash *h, int mod)
 		print_encrypt_with_pass(h);
 	else
 		print_encrypt_without_pass(h);
-	exit(0);
 }
-
-
-
-
-/* void	print_des(t_hash *h, int mod)
-{
-	if (test_bit(&h->flag, FLAG_D))
-	{
-		remove_padding(h);
-		ft_printf("%s", h->des.output);
-	}
-	else
-	{
-		if (test_bit(&h->flag, FLAG_PPP))
-			if (!(h->des.output = ustrjoin2(h, (unsigned char *)"Salted__")))
-				freexit(h, "Congrats, you broke malloc.\n", 2);
-		if (test_bit(&h->flag, FLAG_AA))
-		{
-			h->arg = h->des.output;
-			base64_custom(h, TRUE);
-		}
-		else
-			ft_printf("%s", h->des.output);
-	}
-} */

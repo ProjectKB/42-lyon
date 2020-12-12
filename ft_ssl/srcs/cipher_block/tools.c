@@ -93,9 +93,10 @@ void base64_hexa_custom(t_hash *h, int len)
 		ft_ustrcpy(h->line, &(h->arg[h->rest * i]), 3);
 		proceed_block_base64(h);
 	}
+	ft_ustrcpy(h->line, &(h->arg[h->rest * i]), mod);
 	h->rest = mod;
-	ft_ustrcpy(h->line, &(h->arg[h->rest * i]), h->rest);
 	proceed_block_base64(h);
+	h->rest = 0;
 	proceed_last_block_base64(h);
 }
 

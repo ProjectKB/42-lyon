@@ -6,7 +6,7 @@ static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
 
 	if (test_bit(&h->flag, FLAG_AA))
 	{
-		if (ft_strlen((char *)h->arg) < 17)
+		if (h->base64.turn < 6)
 			freexit(h, "Error reading input file.\n", 2);
 		if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
 			freexit(h, "Bad magic number.\n", 2);
