@@ -7,9 +7,9 @@ static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
 	if (test_bit(&h->flag, FLAG_AA))
 	{
 		if (ft_strlen((char *)h->arg) < 17)
-			freexit_des_base64(h, "Error reading input file.\n", 2); // b64
+			freexit(h, "Error reading input file.\n", 2);
 		if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
-			freexit_des_base64(h, "Bad magic number.\n", 2); // b64
+			freexit(h, "Bad magic number.\n", 2);
 		ft_ustrcpy(&(salt[0]), &(h->arg[8]), 8);
 		return (&(h->arg[16]));
 	}
@@ -38,12 +38,12 @@ void	EVP_bytes_to_Key(t_hash *h)
 		else
 		{
 			if (ft_random(8, salt) == -1)
-				freexit_des_base64(h, "Something went wrong while generating random salt.", 2);
+				freexit(h, "Something went wrong while generating random salt.", 2);
 			ft_str_to_uint64(&h->des.salt, salt, 0);
 		}
 	}
 	if (!(h->arg = ustrjoin(h->des.password, salt)))
-		freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
+		freexit(h, "Congrats, you broke malloc.\n", 2);
 	md5_custom(h);
 	//exit(0);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);

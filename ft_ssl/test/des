@@ -124,7 +124,7 @@ echo "0123456789" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a
 echo ""
 
 echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | openssl des -pass "pass:coucou" -S 488843243FBFF7D9 -a -d
-echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a -d
+echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | ./ft_ssl des -p "coucou" -s 488840000FBFF7D9                -a -d
 
 echo ""
 

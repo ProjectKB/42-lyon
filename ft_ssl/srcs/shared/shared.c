@@ -22,8 +22,8 @@ static int	read_bytes(t_hash *h, int mod)
 	{
 		if (h->i == MD5)
 		{
-			ft_printf("%d\n", h->nb_bytes);
-			ft_hexstr(h->arg, 8);
+			//ft_printf("%d\n", h->nb_bytes);
+			//ft_hexstr(h->arg, 8);
 		}
 		if (!h->arg[++j] && (stop = TRUE)) // change here
 			return (i);
@@ -43,7 +43,7 @@ int			process(t_hash *h, int mod)
 	while ((h->rest = read_bytes(h, mod)))
 		g_proceed_block_functions[h->i](h);
 	if (h->rest == -1)
-		read_error(h);
+		freexit(h, "There was a problem while reading.\n", 2);
 	g_proceed_last_block_functions[h->i](h);
 	g_print_functions[h->i](h, mod);
 	g_free_functions[h->i](h);

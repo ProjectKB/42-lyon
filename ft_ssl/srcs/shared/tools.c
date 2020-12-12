@@ -51,7 +51,7 @@ void	write_output(t_hash *h)
 	else
 		len = h->base64.turn * 4;
 	if ((fd = open((const char *)h->base64.output_file_name, O_RDWR | O_CREAT | O_TRUNC, 0666)) == -1)
-		freexit_des_base64(h, "Congrats, you broke malloc.\n", 2);
+		freexit(h, "Congrats, you broke malloc.\n", 2);
     write(fd, h->base64.output, len);
 	if (!test_bit(&h->flag, FLAG_D))
     	write(fd, "\n", 1);
