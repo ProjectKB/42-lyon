@@ -46,7 +46,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 	}
 	if (!(h->arg = ustrjoin(h->des.password, salt)))
 		freexit(h, "Congrats, you broke malloc.\n", 2);
-	md5_custom(h, pass_len + 8);
+	md5_hexa_custom(h, pass_len + 8);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
 	if (!test_bit(&h->flag, FLAG_V))
 		ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);

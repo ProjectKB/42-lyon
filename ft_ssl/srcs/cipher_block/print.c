@@ -33,7 +33,59 @@ static void	remove_padding(t_hash *h)
 	h->des.output[end - pad] = '\0';
 }
 
+void	print_decrypt(t_hash *h)
+{
+	remove_padding(h);
+	ft_printf("%s", h->des.output);
+}
+
+void	print_encrypt_with_pass(t_hash *h)
+{
+	int output_len;
+	unsigned char salt[9];
+
+	if (!test_bit(&h->flag, FLAG_AA))
+	{
+		ft_uint64_to_str(&h->des.salt, salt);
+		ft_printf("Salted__%s%s", salt, h->des.output);
+	}
+	else
+	{
+		if (!(h->des.output = ustrjoin2(h, (unsigned char *)"Salted__")))
+			freexit(h, "Congrats, you broke malloc.\n", 2);
+		output_len = ft_strlen((char*)h->des.output);
+		h->arg = h->des.output;
+		base64_hexa_custom(h, output_len + 16);
+		ft_printf("%s", h->base64.output);
+	}
+}
+
+void	print_encrypt_without_pass(t_hash *h)
+{
+	if (test_bit(&h->flag, FLAG_AA))
+	{
+		h->arg = h->des.output;
+		base64_custom(h, TRUE);
+	}
+	else
+		ft_printf("%s", h->des.output);
+}
+
 void	print_des(t_hash *h, int mod)
+{
+	if (test_bit(&h->flag, FLAG_D))
+		print_decrypt(h);
+	else if (test_bit(&h->flag, FLAG_PPP))
+		print_encrypt_with_pass(h);
+	else
+		print_encrypt_without_pass(h);
+	exit(0);
+}
+
+
+
+
+/* void	print_des(t_hash *h, int mod)
 {
 	if (test_bit(&h->flag, FLAG_D))
 	{
@@ -53,4 +105,4 @@ void	print_des(t_hash *h, int mod)
 		else
 			ft_printf("%s", h->des.output);
 	}
-}
+} */

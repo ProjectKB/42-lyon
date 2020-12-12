@@ -57,7 +57,7 @@ uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
 	return (((x << n) | (x >> (size - n))) & mask);
 }
 
-void md5_custom(t_hash *h, int len)
+void md5_hexa_custom(t_hash *h, int len)
 {
 	int div;
 	int mod;
@@ -69,13 +69,34 @@ void md5_custom(t_hash *h, int len)
 	init_md5(h);
 	while (++i < div && (h->rest = 64))
 	{
-		ft_ustrcpy(h->line, h->arg, h->rest);
+		ft_ustrcpy(h->line, &(h->arg[h->rest * i]), h->rest);
 		proceed_block_md5(h);
 	}
 	h->rest = mod;
-	ft_ustrcpy(h->line, h->arg, h->rest);
+	ft_ustrcpy(h->line, &(h->arg[h->rest * i]), h->rest);
 	proceed_block_md5(h);
 	proceed_last_block_md5(h);
+}
+
+void base64_hexa_custom(t_hash *h, int len)
+{
+	int div;
+	int mod;
+	int i;
+
+	i = -1;
+	div = len / 3;
+	mod = len % 3;
+	init_base64(h);
+	while (++i < div && (h->rest = 3))
+	{
+		ft_ustrcpy(h->line, &(h->arg[h->rest * i]), 3);
+		proceed_block_base64(h);
+	}
+	h->rest = mod;
+	ft_ustrcpy(h->line, &(h->arg[h->rest * i]), h->rest);
+	proceed_block_base64(h);
+	proceed_last_block_base64(h);
 }
 
 void base64_custom(t_hash *h, int flag)

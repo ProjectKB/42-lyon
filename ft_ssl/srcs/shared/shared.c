@@ -42,5 +42,6 @@ int			process(t_hash *h, int mod)
 	g_proceed_last_block_functions[h->i](h);
 	g_print_functions[h->i](h, mod);
 	g_free_functions[h->i](h);
+	close(h->fd);
 	return (0);
 }

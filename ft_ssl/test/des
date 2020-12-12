@@ -143,11 +143,23 @@ echo ""
 
 echo ""
 
-
+echo -n "" | openssl des-ecb -K 0
+echo ""
+echo -n "" | ./ft_ssl des-ecb -k 0
+echo ""
 
 echo ""
 
+echo -n "" | openssl des-ecb -pass "pass:" -S 0
+echo ""
+echo -n "" | ./ft_ssl des-ecb -p "" -s 0
+echo ""
 
+echo ""
+
+echo -n "" | openssl des-ecb -pass "pass:" -S 0 -a
+echo -n "" | ./ft_ssl des-ecb -p "" -s 0 -a
+echo ""
 
 echo ""
 
