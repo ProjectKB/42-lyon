@@ -57,16 +57,25 @@ uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
 	return (((x << n) | (x >> (size - n))) & mask);
 }
 
-void md5_custom(t_hash *h)
+void md5_custom(t_hash *h, int len)
 {
-	int tmp;
+	int div;
+	int mod;
+	int i;
 
-	tmp = h->i;
-	h->i = MD5;
-	set_bit2(&h->action, 0, PRINT);
-	process(h, STRING);
-	h->i = tmp;
-	set_bit2(&h->action, PRINT, 0);
+	i = -1;
+	div = len / 64;
+	mod = len % 64;
+	init_md5(h);
+	while (++i < div && (h->rest = 64))
+	{
+		ft_ustrcpy(h->line, h->arg, h->rest);
+		proceed_block_md5(h);
+	}
+	h->rest = mod;
+	ft_ustrcpy(h->line, h->arg, h->rest);
+	proceed_block_md5(h);
+	proceed_last_block_md5(h);
 }
 
 void base64_custom(t_hash *h, int flag)

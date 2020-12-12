@@ -2,7 +2,6 @@
 
 void print_base64(t_hash *h, int mod)
 {
-	//if (h->print)
 	if (test_bit2(&h->action, PRINT))
 	{
 		if (test_bit(&h->flag, FLAG_O))

@@ -55,6 +55,7 @@
 # define B64 0x2
 # define PRINT 0x4
 # define CHANGE_MOD 0x8
+# define HEXA 0x10
 
 /*
 ** STRUCT
@@ -173,7 +174,7 @@ void				write_output(t_hash *h);
 void				print_and_quit(char *str, int fd);
 void				free_and_quit(char *str, void *to_free, int fd);
 void				EVP_bytes_to_Key(t_hash *h);
-void				md5_custom(t_hash *h);
+void				md5_custom(t_hash *h, int len);
 void				base64_custom(t_hash *h, int flag);
 void 				generate_key(t_hash *h);
 void				print_salt_key_iv(t_hash *h);

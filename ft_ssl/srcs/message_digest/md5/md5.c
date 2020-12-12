@@ -98,4 +98,5 @@ void		proceed_last_block_md5(t_hash *h)
 	h->md5.words[14] = (uint32_t)(h->md5.nb_bits << 3);
 	h->md5.words[15] = (uint32_t)((h->md5.nb_bits << 3) >> 32);
 	transform_block(&h->md5);
+	digest_message(&h->md5);
 }
