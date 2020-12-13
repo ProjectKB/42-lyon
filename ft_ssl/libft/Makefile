@@ -155,6 +155,7 @@ SRC = 	ft_atoi.c\
 		ft_str_to_uint64.c \
 		ft_uint64_to_str.c \
 		ft_ustrncmp.c \
+		ft_strip_str.c \
 
 HEADER = ./libft.h
 

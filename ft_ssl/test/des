@@ -170,9 +170,21 @@ echo ""
 echo "U2FsdGVkX18AAAAAAAAAALIzZ9k1UU1m" | openssl des-ecb -pass "pass:" -a -d
 echo "U2FsdGVkX18AAAAAAAAAALIzZ9k1UU1m" | ./ft_ssl des-ecb -p "" -a -d
 
-echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | openssl des-ecb -pass "pass:make fclean" -a -d
+echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | openssl des-ecb -pass "pass:" -a -d
 echo ""
 echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | ./ft_ssl des-ecb -p "" -a -d
+echo ""
+
+echo ""
+
+echo "U2FsdGVkX19IiEMkP
+7
+/32eW2xH
+JxDMbTrFN3/M
+kYOa4=" | openssl des -pass "pass:coucou" -S 488843243FBFF7D9 -a -d
+echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | ./ft_ssl des -p "coucou" -s 488840000FBFF7D9 -a -d
+echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | openssl des -pass "pass:coucou" -S 488840000FBFF7D9 -a -d
+
 echo ""
 
 echo ""

@@ -98,8 +98,8 @@ extern void			(*g_proceed_block_functions[5])(t_hash *h);
 extern void			(*g_proceed_last_block_functions[5])(t_hash *h);
 extern void			(*g_print_functions[5])(t_hash *h, int mod);
 extern void			(*g_usage_functions[5])(t_hash *h);
-extern void			(*g_flags_action[6])(t_hash *h, int *i);
 extern void			(*g_free_functions[5])(t_hash *h);
+extern void			(*g_flags_action[6])(t_hash *h, int *i);
 
 /*
 ** MATERIALS FOR ARRAY OF FUNCTION POINTERS
@@ -183,11 +183,6 @@ unsigned char		*ustrjoin(unsigned char const *s1, unsigned char const *s2);
 unsigned char		*ustrjoin2(t_hash *h, unsigned char const *s1);
 unsigned char		*ustrjoin3(t_hash *h);
 void				freexit(t_hash *h, char *error, int fd);
-
-
-
-
-
 
 /*
 ** SHARED
