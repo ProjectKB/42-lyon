@@ -159,31 +159,33 @@ SRC = 	ft_atoi.c\
 
 HEADER = ./libft.h
 
+COUNT = 1
+
 all: $(NAME)
+	@if [ $(COUNT) = 1 ]; then \
+		echo "\033[1;34mNothing are changed !\033[0m"; \
+	fi
 
 OBJECT = $(SRC:.c=.o)
 
-#TEXT
-
-		RM_OBJ = "\t\033[1;32mrm objects\t\t\033[1;32m[OK]\033[1m"
-		RM_LIB = "\t\033[1;32mrm libft.a\t\t\033[1;32m[OK]\033[1m"
-		COMPILING = "\t\033[1;34mlibft.a compilation\t\033[1;32m[OK]\033[1m"
 
 $(NAME): $(OBJECT)
 	@ar ruc $(NAME) $(OBJECT)
 	@ranlib $(NAME)
-	@echo $(COMPILING)
+	@echo "\033[JCompilation\033[38;5;326m completed\033[0m"
+	@echo "Compilation \033[34m"$(NAME)"\033[0m"
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $(SRC) -I $<
+	@echo "Compilation from fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
 clean:
 	@rm -rf $(OBJECT)
-	@echo $(RM_OBJ)
+	@echo "Deleting \033[38;5;265mlibft objects\033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo $(RM_LIB)
+	@echo "Deleting \033[38;5;265m"$(NAME) "\033[0m"
 
 re: fclean all
 

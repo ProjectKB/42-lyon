@@ -21,16 +21,14 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 {
 	size_t	len;
 	unsigned char	*s3;
-	unsigned char	salt[8];
 
-	ft_uint64_to_str(&h->des.salt, salt);
 	if (s1 && h->des.output)
 	{
 		len = ft_strlen((char *)h->des.output);
 		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 17))))
 			return (NULL);
 		ft_ustrcpy(s3, s1, 8);
-		ft_ustrcpy(&(s3[8]), salt, 8);
+		ft_ustrcpy(&(s3[8]), h->des.salt_str, 8);
 		ft_ustrcpy(&(s3[16]), h->des.output, len);
 		return (s3);
 	}

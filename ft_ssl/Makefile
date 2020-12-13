@@ -69,7 +69,9 @@ all: $(NAME)
 	fi
 
 $(NAME): $(COBJ)
-	@test ! -f $(LIB) && make -C libft/ all
+	@if [ ! -f $(LIB) ]; then \
+		make -C libft/ all; \
+	fi
 	@echo "\033[JCompilation\033[38;5;326m completed\033[0m"
 	@echo "Compilation \033[34m"$(NAME)"\033[0m"
 	@$(CC) $(CFLAGS) $(COBJ) $(LIB) -o $(NAME)
@@ -82,18 +84,13 @@ $(DOBJ)%.o : $(DSRC)%.c $(CHEADER)
 
 clean:
 	@rm -rf $(DOBJ)
-	@echo "Deleting \033[38;5;265mobjects\033[0m"
+	@echo "Deleting \033[38;5;265mft_ssl objects\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Deleting \033[38;5;265m"$(NAME) "\033[0m"
 
-re:
-	@rm -f $(NAME)
-	@rm -rf $(DOBJ)
-	@echo "Deleting \033[38;5;265m"$(NAME) "\033[0m"
-	@echo "Deleting \033[38;5;265mobjects\033[0m"
-	@make all
+re: fclean all
 
 lib:
 	@make -C libft/ all
@@ -106,5 +103,7 @@ lfclean:
 
 lre:
 	@make -C libft/ re
+
+gre: fclean lfclean
 
 .PHONY: default all fclean clean re

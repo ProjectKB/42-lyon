@@ -49,13 +49,9 @@ void	print_decrypt(t_hash *h)
 void	print_encrypt_with_pass(t_hash *h)
 {
 	int output_len;
-	unsigned char salt[9];
 
 	if (!test_bit(&h->flag, FLAG_AA))
-	{
-		ft_uint64_to_str(&h->des.salt, salt);
-		ft_printf("Salted__%s%s", salt, h->des.output);
-	}
+		ft_printf("Salted__%s%s", h->des.salt_str, h->des.output);
 	else
 	{
 		output_len = ft_strlen((char*)h->des.output);

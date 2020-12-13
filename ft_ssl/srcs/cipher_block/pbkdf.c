@@ -28,23 +28,18 @@ void	EVP_bytes_to_Key(t_hash *h)
 {
 	int pass_len;
 	unsigned char *buf;
-	unsigned char salt[9];
 
 	pass_len = ft_strlen((char*)h->des.password);
 	if (test_bit(&h->flag, FLAG_PPP) && test_bit(&h->flag, FLAG_D))
-		buf = EVP_decrypt_password(h, salt);
+		buf = EVP_decrypt_password(h, h->des.salt_str);
 	else
-	{
-		if (test_bit(&h->flag, FLAG_S))
-			ft_uint64_to_str(&h->des.salt, salt);
-		else
+		if (!test_bit(&h->flag, FLAG_S))
 		{
-			if (ft_random(8, salt) == -1)
+			if (ft_random(8, h->des.salt_str) == -1)
 				freexit(h, "Something went wrong while generating random salt.", 2);
-			ft_str_to_uint64(&h->des.salt, salt, 0);
+			ft_str_to_uint64(&h->des.salt, h->des.salt_str, 0);
 		}
-	}
-	if (!(h->arg = ustrjoin(h->des.password, salt)))
+	if (!(h->arg = ustrjoin(h->des.password, h->des.salt_str)))
 		freexit(h, "Congrats, you broke malloc.\n", 2);
 	md5_hexa_custom(h, pass_len + 8);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);

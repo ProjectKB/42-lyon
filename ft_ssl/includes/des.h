@@ -16,6 +16,7 @@ typedef struct  s_des {
     uint64_t keys[16];
     uint64_t iv;
     uint64_t salt;
+    unsigned char salt_str[8];
     unsigned char *output_file_name;
     unsigned char *password;
     int      turn;
