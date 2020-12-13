@@ -28,7 +28,7 @@ void print_base64(t_hash *h, int mod)
 		if (test_bit(&h->flag, FLAG_O))
 			write_output_b64(h);
 		else if (test_bit(&h->flag, FLAG_D))
-			ft_printf ("%s", h->base64.output);
+			ft_putnstr(h->base64.output, (h->base64.turn - 1) * 3 + h->base64.rest_len);
 		else
 			ft_printf ("%s\n", h->base64.output);
 	}

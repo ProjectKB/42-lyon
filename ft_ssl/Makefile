@@ -104,6 +104,8 @@ lfclean:
 lre:
 	@make -C libft/ re
 
-gre: fclean lfclean
+gfc: fclean lfclean
+
+gre: re lre
 
 .PHONY: default all fclean clean re

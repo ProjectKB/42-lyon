@@ -113,7 +113,7 @@ void				ft_str_to_uint64(uint64_t *dst, unsigned char *src, int start);
 void				ft_uint64_to_str(uint64_t *src, unsigned char *dst);
 int					ft_ustrncmp(const unsigned char *s1, const unsigned char *s2, size_t n);
 void				ft_strip_str(unsigned char *str, char c);
-
+void				ft_putnstr(unsigned char *str, int len);
 
 typedef struct		s_list
 {
