@@ -25,11 +25,18 @@ void print_keys(t_hash *h)
 
 static void	remove_padding(t_hash *h)
 {
+	int i;
 	int pad;
 	int end;
 
+	i = 0;
 	end = (h->des.turn - 1) * 8;
 	pad = h->des.output[end - 1];
+	if (pad > 8)
+		freexit(h, "bad decrypt: wrong final block length\n", 2);
+	while (++i < pad + 1)
+		if (h->des.output[end - i] != pad)
+			freexit(h, "bad decrypt: wrong final block length\n", 2);
 	h->des.output[end - pad] = '\0';
 }
 

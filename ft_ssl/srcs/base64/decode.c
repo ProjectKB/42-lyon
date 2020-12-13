@@ -58,6 +58,7 @@ void    check_char(t_hash *h)
         else if (h->line[3] == '=')
             h->base64.stop = h->base64.turn * 3 + 2;
     }
+
 }
 
 void decode_block_base64(t_hash *h)
@@ -73,7 +74,7 @@ void decode_block_base64(t_hash *h)
     check_new_line(h);
     check_char(h);
     ft_ustrcpy(h->base64.rest, h->line, h->rest);
-    if (h->rest != h->nb_bytes || h->line[3] == '\n')
+    if ((h->rest != h->nb_bytes || h->line[3] == '\n') && (h->base64.rest_len = -1))
         return ;
     if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 3, h->rest + 1)))
         freexit(h, "Congrats, you broke malloc.\n", 2);
@@ -91,10 +92,8 @@ void decode_last_block_base64(t_hash *h)
         h->base64.output[0] = '\0'; 
     else if (h->base64.stop)
         h->base64.output[h->base64.stop] = '\0';
-    else if (h->base64.rest[3] == '=' && h->base64.rest[2] == '=' && (h->base64.rest_len = 1))
+    else if (h->base64.rest[3] == '=' && h->base64.rest[2] == '=')
         h->base64.output[h->base64.turn * 3 - 2] = '\0';
-    else if (h->base64.rest[3] == '=' && (h->base64.rest_len = 2))
+    else if (h->base64.rest[3] == '=')
         h->base64.output[h->base64.turn * 3 - 1] = '\0'; 
-    else
-        h->base64.rest_len = 3;
 }

@@ -111,6 +111,8 @@ void base64_custom(t_hash *h, int flag)
 		set_bit2(&h->action, 0, PRINT);
 		set_bit(&h->flag, FLAG_D, 0);
 		process(h, STDOUT);
+		if (ft_strlen((char*)h->base64.rest))
+			freexit(h, "error reading input file\n", 2);
 	}
 	else
 		process(h, STRING);

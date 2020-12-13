@@ -187,6 +187,9 @@ echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | openssl des -pass "pass:co
 
 echo ""
 
+echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllT" | openssl des-ecb -pass "pass:m" -a -d
+echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllT" | ./ft_ssl des-ecb -p "m" -a -d
+
 echo ""
 
 echo "********************************************************************************************************************"

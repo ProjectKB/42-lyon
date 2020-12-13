@@ -2,9 +2,10 @@ TODO
 
 -> salt < 
 
+echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | openssl des-ecb -pass "pass:makefclean" -a -d
+make; echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY" | ./ft_ssl des-ecb -p "makefclean" -a -d
 
-
-
+ERROR -> len % 4 -> error reading input file
 ERROR -> Moins de 17 -> error reading input file
 ERROR ->  false Salted__  -> bad magic number
 Else -> bad decrypt
