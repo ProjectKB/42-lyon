@@ -170,6 +170,11 @@ echo ""
 echo "U2FsdGVkX18AAAAAAAAAALIzZ9k1UU1m" | openssl des-ecb -pass "pass:" -a -d
 echo "U2FsdGVkX18AAAAAAAAAALIzZ9k1UU1m" | ./ft_ssl des-ecb -p "" -a -d
 
+echo "UFsdGVkX18AAAAAAAAAALIzZ9k1U" | openssl des-ecb -pass "pass:" -a -d
+echo "UFsdGVkX18AAAAAAAAAALIzZ9k1U" | ./ft_ssl des-ecb -p "" -a -d
+
+echo ""
+
 echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | openssl des-ecb -pass "pass:" -a -d
 echo ""
 echo "U2FsdGVkX18AAAAAAAAAAGeLhWVM1djllTlJEvnilZY=" | ./ft_ssl des-ecb -p "" -a -d
