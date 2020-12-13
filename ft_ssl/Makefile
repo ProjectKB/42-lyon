@@ -69,6 +69,7 @@ all: $(NAME)
 	fi
 
 $(NAME): $(COBJ)
+	@test ! -f $(LIB) && make -C libft/ all
 	@echo "\033[JCompilation\033[38;5;326m completed\033[0m"
 	@echo "Compilation \033[34m"$(NAME)"\033[0m"
 	@$(CC) $(CFLAGS) $(COBJ) $(LIB) -o $(NAME)
@@ -93,5 +94,17 @@ re:
 	@echo "Deleting \033[38;5;265m"$(NAME) "\033[0m"
 	@echo "Deleting \033[38;5;265mobjects\033[0m"
 	@make all
+
+lib:
+	@make -C libft/ all
+
+lclean:
+	@make -C libft/ clean
+
+lfclean:
+	@make -C libft/ fclean
+
+lre:
+	@make -C libft/ re
 
 .PHONY: default all fclean clean re
