@@ -1,29 +1,117 @@
 #!/bin/bash
 
-echo "******************************ENCODE******************************"
-echo "Bonjour" | ./ft_ssl base64
-echo "Bonjour" | base64
-echo "Salut" | ./ft_ssl base64 -e
-echo "Salut" | base64
-echo "Saluta" | ./ft_ssl base64
-echo "Saluta" | base64
-echo "" | ./ft_ssl base64 -e
-echo "" | base64
-echo -n "" | ./ft_ssl base64
-echo -n "" | base64
+echo ""
+
+echo "***************************** ENCODE *****************************"
+
+echo ""
+
+echo -n "STDIN:    " ; echo "Bonjour" | ./ft_ssl base64
+echo -n "FILE:     " ; echo "Bonjour" | ./ft_ssl base64 -o tmp; cat tmp
+echo -n "OUTPUT:   " ; echo "Bonjour" > tmp ; ./ft_ssl base64 -i tmp
+echo -n "OPENSSL:  " ; echo "Bonjour" | base64
+
+echo ""
+
+echo -n "STDIN:    " ; echo "Salut" | ./ft_ssl base64 -e
+echo -n "FILE:     " ; echo "Salut" | ./ft_ssl base64 -o tmp; cat tmp
+echo -n "OUTPUT:   " ; echo "Salut" > tmp ; ./ft_ssl base64 -i tmp
+echo -n "OPENSSL:  " ; echo "Salut" | base64
+
+echo ""
+
+echo -n "STDIN:    " ; echo "Saluta" | ./ft_ssl base64
+echo -n "FILE:     " ; echo "Saluta" | ./ft_ssl base64 -o tmp; cat tmp
+echo -n "OUTPUT:   " ; echo "Saluta" > tmp ; ./ft_ssl base64 -i tmp
+echo -n "OPENSSL:  " ; echo "Saluta" | base64
+
+echo ""
+
+echo -n "STDIN:    " ; echo "" | ./ft_ssl base64 -e
+echo -n "FILE:     " ; echo "" | ./ft_ssl base64 -o tmp; cat tmp
+echo -n "OUTPUT:   " ; echo "" > tmp ; ./ft_ssl base64 -i tmp
+echo -n "OPENSSL:  " ; echo "" | base64
+
+echo ""
+
+echo -n "STDIN:    " ; echo -n "" | ./ft_ssl base64
+echo -n "FILE:     " ; echo -n "" | ./ft_ssl base64 -o tmp; cat tmp;
+echo -n "OUTPUT:   " ; echo -n "" > tmp ; ./ft_ssl base64 -i tmp; rm tmp
+echo -n "OPENSSL:  " ; echo -n "" | base64
+
+echo ""
+
 echo "******************************************************************"
 
 echo ""
 
-echo "******************************DECODE******************************"
-echo "Qm9uam91cgo=" | ./ft_ssl base64 -d
-echo "Qm9uam91cgo=" | base64 -D
-echo "U2FsdXQK" | ./ft_ssl base64 -d
-echo "U2FsdXQK" | base64 -D
-echo "U2FsdXRhCg==" | ./ft_ssl base64 -d
-echo "U2FsdXRhCg==" | base64 -D
-echo "" | ./ft_ssl base64 -d
-echo "" | base64 -D
-echo -n "" | ./ft_ssl base64 -d
-echo -n "" | base64 -D
+echo "***************************** DECODE *****************************"
+
+echo ""
+
+echo -n "STDIN:    " ; echo "Qm9uam91cgo=" | ./ft_ssl base64 -d
+echo -n "FILE:     " ; echo "Qm9uam91cgo=" | ./ft_ssl base64 -o tmp -d; cat tmp;
+echo -n "OUTPUT:   " ; echo "Qm9uam91cgo=" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
+echo -n "OPENSSL:  " ; echo "Qm9uam91cgo=" | base64 -D
+
+echo ""
+
+echo -n "STDIN:    " ; echo "U2FsdXQK" | ./ft_ssl base64 -d
+echo -n "FILE:     " ; echo "U2FsdXQK" | ./ft_ssl base64 -o tmp -d; cat tmp;
+echo -n "OUTPUT:   " ; echo "U2FsdXQK" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
+echo -n "OPENSSL:  " ; echo "U2FsdXQK" | base64 -D
+
+echo ""
+
+echo -n "STDIN:    " ; echo "U2FsdXRhCg==" | ./ft_ssl base64 -d
+echo -n "FILE:     " ; echo "U2FsdXRhCg==" | ./ft_ssl base64 -o tmp -d; cat tmp;
+echo -n "OUTPUT:   " ; echo "U2FsdXRhCg==" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
+echo -n "OPENSSL:  " ; echo "U2FsdXRhCg==" | base64 -D
+
+echo ""
+
+echo -n "STDIN:    " ; echo "" | ./ft_ssl base64 -d
+echo ""
+echo -n "FILE:     " ; echo "" | ./ft_ssl base64 -o tmp -d; cat tmp;
+echo ""
+echo -n "OUTPUT:   " ; echo "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
+echo ""
+echo -n "OPENSSL:  " ; echo "" | base64 -D
+echo ""
+
+echo ""
+
+echo -n "STDIN:    " ; echo -n "" | ./ft_ssl base64 -d
+echo ""
+echo -n "FILE:     " ; echo -n "" | ./ft_ssl base64 -o tmp -d; cat tmp;
+echo ""
+echo -n "OUTPUT:   " ; echo -n "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d; rm tmp
+echo ""
+echo -n "OPENSSL:  " ; echo -n "" | base64 -D
+echo ""
+
+echo ""
+
 echo "******************************************************************"
+
+echo ""
+
+echo "******************************* ERROR ****************************"
+
+echo ""
+
+echo "U2FsdX" | ./ft_ssl base64 -d
+echo ""
+echo "U2FsdX" | base64 -D
+echo ""
+
+echo ""
+
+echo "AB#" | ./ft_ssl base64 -d
+echo "AB#" | base64 -D
+
+echo ""
+
+echo "******************************************************************"
+
+echo ""

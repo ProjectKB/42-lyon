@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo ""
+
 echo "************************************************* WITHOUT PASS ECB *************************************************"
 
 echo ""
@@ -8,6 +10,10 @@ echo "0123456789" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9
 echo ""
 echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9
 echo ""
+echo "0123456789" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -i tmp
+echo ""
+echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -o tmp; cat tmp
+echo ""
 
 echo ""
 
@@ -15,27 +21,38 @@ echo -n "" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9
 echo ""
 echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9
 echo ""
+echo -n "" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -i tmp
+echo ""
+echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -o tmp; cat tmp
+echo ""
 
 echo ""
 
 echo "0123456789" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9 -a
 echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a
+echo "0123456789" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a -i tmp
+echo "0123456789" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a -o tmp; cat tmp
+
 
 echo ""
 
 echo -n "" | openssl des-ecb -K 7F7432CA7CCE3D61 -S 488843243FBFF7D9 -a
 echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a
+echo -n "" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a -i tmp
+echo -n "" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -s 488843243FBFF7D9 -a -o tmp; cat tmp
 echo ""
 
 echo "dD5xVzCZYzzCu917bYfy6A==" | openssl des-ecb -K 7F7432CA7CCE3D61 -a -d
 echo "dD5xVzCZYzzCu917bYfy6A==" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d
+echo "dD5xVzCZYzzCu917bYfy6A==" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d -o tmp; cat tmp
+echo "dD5xVzCZYzzCu917bYfy6A==" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d -i tmp
 
 echo ""
 
 echo "z9lsEJe7tJ0=" | openssl des-ecb -K 7F7432CA7CCE3D61 -a -d
 echo "z9lsEJe7tJ0=" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d
-
-echo ""
+echo "z9lsEJe7tJ0=" | ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d -o tmp; cat tmp
+echo "z9lsEJe7tJ0=" > tmp; ./ft_ssl des-ecb -k 7F7432CA7CCE3D61 -a -d -i tmp
 
 echo "********************************************************************************************************************"
 
@@ -115,16 +132,24 @@ echo "0123456789" | openssl des -pass "pass:coucou" -S 488843243FBFF7D9
 echo ""
 echo "0123456789" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9
 echo ""
+echo "0123456789" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -o tmp; cat tmp
+echo ""
+echo "0123456789" > tmp; ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -i tmp
+echo ""
 
 echo ""
 
 echo "0123456789" | openssl des -pass "pass:coucou" -S 488843243FBFF7D9 -a
 echo "0123456789" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a
+echo "0123456789" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a -o tmp; cat tmp
+echo "0123456789" > tmp; ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a -i tmp
 
 echo ""
 
 echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | openssl des -pass "pass:coucou" -S 488843243FBFF7D9 -a -d
 echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | ./ft_ssl des -p "coucou" -s 488840000FBFF7D9 -a -d
+echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" > tmp; ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a -d -i tmp
+echo "U2FsdGVkX19IiEMkP7/32eW2xHJxDMbTrFN3/MkYOa4=" | ./ft_ssl des -p "coucou" -s 488843243FBFF7D9 -a -d -o tmp; cat tmp; rm tmp;
 
 echo ""
 

@@ -1,6 +1,6 @@
 #include "ft_ssl.h"
 
-static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
+static void *EVP_decrypt_password(t_hash *h)
 {
 	unsigned char buf2[16];
 
@@ -10,7 +10,7 @@ static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
 			freexit(h, "error reading input file\n", 2);
 		if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
 			freexit(h, "bad magic number\n", 2);
-		ft_ustrcpy(&(salt[0]), &(h->arg[8]), 8);
+		ft_ustrcpy(h->des.salt_str, &(h->arg[8]), 8);
 		return (&(h->arg[16]));
 	}
 	else
@@ -19,7 +19,7 @@ static void *EVP_decrypt_password(t_hash *h, unsigned char *salt)
 			print_and_quit("error reading input file.\n", 2);
 		if (ft_ustrncmp(&(buf2[0]), (unsigned char *)"Salted__", 8))
 			print_and_quit("bad magic number\n", 2);
-		ft_ustrcpy(&(salt[0]), &(buf2[8]), 8);
+		ft_ustrcpy(h->des.salt_str, &(buf2[8]), 8);
 		return (NULL);
 	}
 }
@@ -31,7 +31,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 
 	pass_len = ft_strlen((char*)h->des.password);
 	if (test_bit(&h->flag, FLAG_PPP) && test_bit(&h->flag, FLAG_D))
-		buf = EVP_decrypt_password(h, h->des.salt_str);
+		buf = EVP_decrypt_password(h);
 	else
 		if (!test_bit(&h->flag, FLAG_S))
 		{

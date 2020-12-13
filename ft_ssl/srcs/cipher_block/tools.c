@@ -96,19 +96,22 @@ void base64_hexa_custom(t_hash *h, int len)
 	proceed_block_base64(h);
 	h->rest = 0;
 	proceed_last_block_base64(h);
+	print_base64(h, 0);
 }
 
 void base64_custom(t_hash *h, int flag)
 {
 	int tmp;
+	int mod;
 
 	tmp = h->i;
 	h->i = BASE64;
 	if (!flag)
 	{
+		mod = test_bit(&h->flag, FLAG_AI) ? FILE : STDOUT;
 		set_bit2(&h->action, 0, PRINT);
 		set_bit(&h->flag, FLAG_D, 0);
-		process(h, STDOUT);
+		process(h, mod);
 		if (ft_strlen((char*)h->base64.rest))
 			freexit(h, "error reading input file\n", 2);
 	}

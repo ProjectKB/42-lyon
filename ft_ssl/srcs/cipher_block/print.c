@@ -40,10 +40,29 @@ static void	remove_padding(t_hash *h)
 	h->des.output[end - pad] = '\0';
 }
 
+static void	write_output(t_hash *h, unsigned char *output, int mod)
+{
+	int fd;
+	int len;
+
+	len = ft_strlen((char*)output);
+	if ((fd = open((const char *)h->des.output_file_name, O_RDWR | O_CREAT | O_TRUNC, 0666)) == -1)
+		freexit(h, "There was a problem while writing output.\n", 2);
+	if (mod)
+		if (write(fd, "Salted__", 8) == -1 || write(fd, h->des.salt_str, 8) == -1)
+			freexit(h, "There was a problem while writing output.\n", 2);
+    if (write(fd, h->des.output, len) == -1)
+		freexit(h, "There was a problem while writing output.\n", 2);
+	close(fd);
+}
+
 void	print_decrypt(t_hash *h)
 {
 	remove_padding(h);
-	ft_printf("%s", h->des.output);
+	if (test_bit(&h->flag, FLAG_O))
+		write_output(h, h->des.output, FALSE);
+	else
+		ft_printf("%s", h->des.output);
 }
 
 void	print_encrypt_with_pass(t_hash *h)
@@ -51,7 +70,12 @@ void	print_encrypt_with_pass(t_hash *h)
 	int output_len;
 
 	if (!test_bit(&h->flag, FLAG_AA))
-		ft_printf("Salted__%s%s", h->des.salt_str, h->des.output);
+	{
+		if (test_bit(&h->flag, FLAG_O))
+			write_output(h, h->des.output, TRUE);
+		else
+			ft_printf("Salted__%s%s", h->des.salt_str, h->des.output);
+	}
 	else
 	{
 		output_len = ft_strlen((char*)h->des.output);
@@ -59,7 +83,6 @@ void	print_encrypt_with_pass(t_hash *h)
 			freexit(h, "Congrats, you broke malloc.\n", 2);
 		h->arg = h->des.output;
 		base64_hexa_custom(h, output_len + 16);
-		ft_printf("%s\n", h->base64.output);
 	}
 }
 
@@ -71,7 +94,12 @@ void	print_encrypt_without_pass(t_hash *h)
 		base64_custom(h, TRUE);
 	}
 	else
-		ft_printf("%s", h->des.output);
+	{
+		if (test_bit(&h->flag, FLAG_O))
+			write_output(h, h->des.output, FALSE);
+		else
+			ft_printf("%s", h->des.output);
+	}
 }
 
 void	print_des(t_hash *h, int mod)

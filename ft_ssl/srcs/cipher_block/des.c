@@ -9,6 +9,7 @@ void    init_des(t_hash *h)
 	h->des.turn = 0;
 	h->nb_bytes = 8;
 	h->des.rest = 0;
+	h->des.salt_str[8] = '\0';
 	if (!test_bit(&h->flag, FLAG_K))
 		EVP_bytes_to_Key(h);
 	if (test_bit(&h->flag, FLAG_PP))
