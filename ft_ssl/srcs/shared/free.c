@@ -21,6 +21,9 @@ void free_base64(t_hash *h)
 void free_des(t_hash *h)
 {
     free(h->des.output);
+    h->des.output = NULL;
+    if (test_bit2(&h->action, FREE_B64))
+		free(h->base64.output);
 }
 
 void freexit(t_hash *h, char *error, int fd)
@@ -32,6 +35,6 @@ void freexit(t_hash *h, char *error, int fd)
     else if (test_bit(&h->flag, FLAG_P) && h->i == MD5)
         free(h->md5.stdin);
     else if (test_bit(&h->flag, FLAG_P) && h->i == SHA256)
-        free(&h->sha256.stdin);
+        free(h->sha256.stdin);
    	print_and_quit(error, fd);
 }

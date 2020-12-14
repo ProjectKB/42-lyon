@@ -41,9 +41,9 @@ void encode_last_block_base64(t_hash *h)
     {
         i = (h->base64.turn - 1) * 4;
         h->base64.buf = (h->base64.rest_len == 1) ? h->base64.rest[0] << 4 : h->base64.rest[0] << 10 | h->base64.rest[1] << 2;
-        h->base64.output[i] = (h->base64.rest_len == 1) ? g_base64_table[(h->base64.buf >> 6) & 0b00111111] : g_base64_table[(h->base64.buf >> 12) & 0b00111111];
-        h->base64.output[i + 1] = (h->base64.rest_len == 1) ? g_base64_table[h->base64.buf & 0b00111111] : g_base64_table[(h->base64.buf >> 6) & 0b00111111];
-        h->base64.output[i + 2] = (h->base64.rest_len == 1) ? '=' : g_base64_table[h->base64.buf & 0b00111111];
+        h->base64.output[i] = (h->base64.rest_len == 1) ? g_base64_table[(h->base64.buf >> 6) & 0x3F] : g_base64_table[(h->base64.buf >> 12) & 0x3F];
+        h->base64.output[i + 1] = (h->base64.rest_len == 1) ? g_base64_table[h->base64.buf & 0x3F] : g_base64_table[(h->base64.buf >> 6) & 0x3F];
+        h->base64.output[i + 2] = (h->base64.rest_len == 1) ? '=' : g_base64_table[h->base64.buf & 0x3F];
         h->base64.output[i + 3] = '=';
     }
 }

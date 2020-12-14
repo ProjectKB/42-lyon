@@ -50,6 +50,7 @@ void init_hash(t_hash *h, int argc, char **argv)
 	h->nb_bytes = 64;
 	h->args.c = argc;
 	h->args.v = argv;
+	h->base64.output = NULL;
 }
 
 int	define_algo(char *algo_name)

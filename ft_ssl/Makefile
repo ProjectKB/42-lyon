@@ -11,9 +11,10 @@ CFLAGS= -Wall -Wextra -Werror
 SRC = shared/main.c \
 	  shared/shared.c \
 	  shared/globals.c \
-	  shared/errors.c \
 	  shared/tools.c \
 	  shared/free.c \
+	  shared/usage.c \
+	  shared/errors.c \
 	  message_digest/md5/tools.c \
 	  message_digest/md5/md5.c \
 	  message_digest/md5/globals.c \
@@ -23,23 +24,19 @@ SRC = shared/main.c \
 	  message_digest/sha256/globals.c \
 	  message_digest/shared/print.c \
 	  message_digest/shared/pre_process.c \
-	  message_digest/shared/errors.c \
 	  base64/encode.c \
 	  base64/decode.c \
 	  base64/base64.c \
 	  base64/globals.c \
 	  base64/print.c \
 	  base64/pre_process.c \
-	  base64/errors.c \
 	  cipher_block/globals.c \
 	  cipher_block/tools.c \
 	  cipher_block/des.c \
 	  cipher_block/print.c \
 	  cipher_block/pre_process.c \
-	  cipher_block/errors.c \
 	  cipher_block/keys.c \
-	  cipher_block/flags_action1.c \
-	  cipher_block/flags_action2.c \
+	  cipher_block/flags_action.c \
 	  cipher_block/pbkdf.c \
 
 OBJ = $(SRC:.c=.o)

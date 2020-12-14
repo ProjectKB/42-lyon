@@ -55,7 +55,7 @@
 # define B64 0x2
 # define PRINT 0x4
 # define CHANGE_MOD 0x8
-# define HEXA 0x10
+# define FREE_B64 0x10
 
 /*
 ** STRUCT
@@ -66,6 +66,7 @@ typedef struct		s_p
 	char **v;
 }
 					t_p;
+					
 typedef struct		s_hash
 {
 	t_md5			md5;

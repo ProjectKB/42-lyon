@@ -68,9 +68,8 @@ void decode_block_base64(t_hash *h)
 
     shift = 24;
     i = h->base64.turn * 3;
-    if (h->rest == 4)
-        if (check_new_line(h) == -1)
-        	freexit(h, "There was a problem while reading.\n", 2);
+    if (h->rest == 4 && check_new_line(h) == -1)
+        freexit(h, "There was a problem while reading.\n", 2);
     check_new_line(h);
     check_char(h);
     ft_ustrcpy(h->base64.rest, h->line, h->rest);
@@ -82,7 +81,6 @@ void decode_block_base64(t_hash *h)
     h->base64.output[i] = h->base64.buf >> 16 & 0b11111111;
     h->base64.output[i + 1] = (h->base64.buf >> 8) & 0b11111111;
     h->base64.output[i + 2] = h->base64.buf & 0b11111111;
-    i = -1;
     ++h->base64.turn;
 }
 

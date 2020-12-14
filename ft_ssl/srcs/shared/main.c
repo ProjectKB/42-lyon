@@ -20,9 +20,9 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 		process(h, STDOUT);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_hash	h;
+	t_hash	 h;
 	uint64_t test;
 
 	check_minimum(argc, argv, &h);

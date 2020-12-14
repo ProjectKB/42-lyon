@@ -35,7 +35,7 @@ int			process(t_hash *h, int mod)
 	if ((h->fd = get_fd(h->arg, mod)) == -1 && mod == FILE)
 		return (no_such_file(h));
 	g_init_functions[h->i](h);
-	while ((h->rest = read_bytes(h, mod)))
+	while ((h->rest = read_bytes(h, mod)) > 0)
 		g_proceed_block_functions[h->i](h);
 	if (h->rest == -1)
 		freexit(h, "There was a problem while reading.\n", 2);

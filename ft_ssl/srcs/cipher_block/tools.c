@@ -97,6 +97,7 @@ void base64_hexa_custom(t_hash *h, int len)
 	h->rest = 0;
 	proceed_last_block_base64(h);
 	print_base64(h, 0);
+	free_base64(h);
 }
 
 void base64_custom(t_hash *h, int flag)
@@ -108,6 +109,7 @@ void base64_custom(t_hash *h, int flag)
 	h->i = BASE64;
 	if (!flag)
 	{
+		set_bit2(&h->action, FREE_B64, 0);
 		mod = test_bit(&h->flag, FLAG_AI) ? FILE : STDOUT;
 		set_bit2(&h->action, 0, PRINT);
 		set_bit(&h->flag, FLAG_D, 0);
