@@ -85,7 +85,7 @@ echo -n "STDIN:    " ; echo -n "" | ./ft_ssl base64 -d
 echo ""
 echo -n "FILE:     " ; echo -n "" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo ""
-echo -n "OUTPUT:   " ; echo -n "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d; rm tmp
+echo -n "OUTPUT:   " ; echo -n "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
 echo ""
 echo -n "OPENSSL:  " ; echo -n "" | base64 -D
 echo ""
@@ -122,7 +122,7 @@ echo ""
 
 echo "ABCR" > tmp; cat tmp | openssl base64 -d
 echo ""
-cat tmp | ./ft_ssl base64 -d
+cat tmp | ./ft_ssl base64 -d; rm tmp
 echo ""
 
 echo ""
