@@ -15,17 +15,17 @@ void		init_sha256(t_hash *h)
 		h->sha256.stdin = ft_strdup("");
 }
 
-uint32_t	rotr(uint32_t x, uint32_t n)
+__uint32_t	rotr(__uint32_t x, __uint32_t n)
 {
 	return (x >> n) | (x << (32 - n));
 }
 
-uint32_t	ch(uint32_t x, uint32_t y, uint32_t z)
+__uint32_t	ch(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (x & y) ^ (~x & z);
 }
 
-uint32_t	maj(uint32_t x, uint32_t y, uint32_t z)
+__uint32_t	maj(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (x & y) ^ (x & z) ^ (y & z);
 }

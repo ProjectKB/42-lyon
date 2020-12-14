@@ -23,7 +23,7 @@ static void	main_loop(int argc, char **argv, t_hash *h)
 int	main(int argc, char **argv)
 {
 	t_hash	 h;
-	uint64_t test;
+	__uint64_t test;
 
 	check_minimum(argc, argv, &h);
 	main_loop(argc, argv, &h);

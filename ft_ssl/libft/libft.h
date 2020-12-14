@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   libft.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: loiberti <loiberti@student.42.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/03 18:22:33 by loiberti     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/09 18:17:23 by loiberti    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: loiberti <loiberti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/03 18:22:33 by loiberti          #+#    #+#             */
+/*   Updated: 2020/12/14 11:55:11 by loiberti         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 
@@ -106,11 +106,11 @@ unsigned char		*ft_realloc(void *s1, size_t len1, size_t len2);
 int					ft_random(int bytes_len, unsigned char *buf);
 void				ft_ustrncat(unsigned char *dst, const unsigned char *src, int len, int start);
 void				ft_hexstr(unsigned char *str, int len);
-void				ft_print_bits(uint64_t to_print, int len, int x);
-void				ft_print_bits_to_hexa(uint64_t buf, int len);
-int					ft_hexatoi(unsigned char *str, uint64_t *dst, int len);
-void				ft_str_to_uint64(uint64_t *dst, unsigned char *src, int start);
-void				ft_uint64_to_str(uint64_t *src, unsigned char *dst);
+void				ft_print_bits(__uint64_t to_print, int len, int x);
+void				ft_print_bits_to_hexa(__uint64_t buf, int len);
+int					ft_hexatoi(unsigned char *str, __uint64_t *dst, int len);
+void				ft_str_to_uint64(__uint64_t *dst, unsigned char *src, int start);
+void				ft_uint64_to_str(__uint64_t *src, unsigned char *dst);
 int					ft_ustrncmp(const unsigned char *s1, const unsigned char *s2, size_t n);
 void				ft_strip_str(unsigned char *str, char c);
 void				ft_putnstr(unsigned char *str, int len);

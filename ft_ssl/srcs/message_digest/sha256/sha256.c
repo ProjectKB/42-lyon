@@ -1,9 +1,9 @@
 #include "ft_ssl.h"
 
-static void	transform_buffer(t_sha256 *sha256, uint32_t *buf, int i)
+static void	transform_buffer(t_sha256 *sha256, __uint32_t *buf, int i)
 {
-	uint32_t	t1;
-	uint32_t	t2;
+	__uint32_t	t1;
+	__uint32_t	t2;
 
 	t1 = buf[7] + Σ1(buf[4]) + ch(buf[4], buf[5], buf[6]) + \
 													g_k[i] + sha256->words[i];
@@ -23,7 +23,7 @@ static void	transform_block(t_sha256 *sha256)
 	int			i;
 	int			j;
 	int			k;
-	uint32_t	buf[8];
+	__uint32_t	buf[8];
 
 	i = -1;
 	j = -1;
@@ -67,7 +67,7 @@ void		proceed_block_sha256(t_hash *h)
 	j = -4;
 	k = 0;
 	i = -1;
-	h->sha256.nb_bits += (uint64_t)h->rest;
+	h->sha256.nb_bits += (__uint64_t)h->rest;
 	while (++i < h->rest)
 		h->sha256.input[i] = h->line[i];
 	if (i == 64)
@@ -106,8 +106,8 @@ void		proceed_last_block_sha256(t_hash *h)
 		h->sha256.words[i] = h->sha256.input[j] << 24 | \
 		h->sha256.input[j + 1] << 16 | h->sha256.input[j + 2] << 8 | \
 		h->sha256.input[j + 3];
-	h->sha256.words[14] = (uint32_t)((h->sha256.nb_bits << 3) >> 32);
-	h->sha256.words[15] = (uint32_t)(h->sha256.nb_bits << 3);
+	h->sha256.words[14] = (__uint32_t)((h->sha256.nb_bits << 3) >> 32);
+	h->sha256.words[15] = (__uint32_t)(h->sha256.nb_bits << 3);
 	i = 15;
 	while (++i < 64)
 		h->sha256.words[i] = σ1(h->sha256.words[i - 2]) + \

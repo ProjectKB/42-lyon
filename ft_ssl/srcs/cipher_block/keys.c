@@ -22,13 +22,13 @@ void generate_key(t_hash *h)
 	}
 }
 
-uint64_t s_box_substitution(uint64_t *to_substitute, unsigned char shift1, unsigned char shift2)
+__uint64_t s_box_substitution(__uint64_t *to_substitute, unsigned char shift1, unsigned char shift2)
 {
 	int i;
 	int x;
 	int y;
 	int block;
-	uint64_t substituted;
+	__uint64_t substituted;
 
 	i = -1;
 	substituted = 0;

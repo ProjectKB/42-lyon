@@ -35,12 +35,12 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 	return (NULL);
 }
 
-uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
+__uint64_t permut_x_bits(__uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
 {
 	int i;
     int tmp;
     int pos;
-	uint64_t dst;
+	__uint64_t dst;
 
 	i = -1;
 	dst = 0;
@@ -50,7 +50,7 @@ uint64_t permut_x_bits(uint64_t *src, const unsigned char *permut_table, int inp
 	return (dst);
 }
 
-uint64_t	rotl_x(uint64_t x, uint64_t n, int size, int mask)
+__uint64_t	rotl_x(__uint64_t x, __uint64_t n, int size, int mask)
 {
 	return (((x << n) | (x >> (size - n))) & mask);
 }

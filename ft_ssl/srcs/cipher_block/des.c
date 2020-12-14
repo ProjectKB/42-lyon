@@ -47,10 +47,10 @@ void	init_buf(t_hash *h)
 		h->des.iv = h->des.buf;
 	h->des.buf = 0;
 	while (i < h->rest && (shift -= 8) != -1)
-		h->des.buf |= ((uint64_t)h->line[i++] << shift);
+		h->des.buf |= ((__uint64_t)h->line[i++] << shift);
 	if (h->rest != h->nb_bytes && (pad = h->nb_bytes - h->rest) != -1)
 		while (i++ < h->nb_bytes && (shift -= 8) != -1)
-			h->des.buf |= ((uint64_t)pad << shift);
+			h->des.buf |= ((__uint64_t)pad << shift);
 	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_D)) // CBC ENCRYPT
 		h->des.buf ^= h->des.iv;
 	else if (h->i == DES_CBC && test_bit(&h->flag, FLAG_D)) // CBC DECRYPT

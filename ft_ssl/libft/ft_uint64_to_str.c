@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	ft_uint64_to_str(uint64_t *src, unsigned char *dst)
+void	ft_uint64_to_str(__uint64_t *src, unsigned char *dst)
 {
 	int i;
 	int shift;

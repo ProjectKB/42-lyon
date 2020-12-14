@@ -1,8 +1,8 @@
 #include "ft_ssl.h"
 
-static void	transform_buffer(t_md5 *md5, uint32_t *buf, uint32_t e, int i)
+static void	transform_buffer(t_md5 *md5, __uint32_t *buf, __uint32_t e, int i)
 {
-	uint32_t	tmp;
+	__uint32_t	tmp;
 
 	tmp = buf[3];
 	buf[3] = buf[2];
@@ -17,8 +17,8 @@ static void	transform_block(t_md5 *md5)
 	int			i;
 	int			j;
 	int			k;
-	uint32_t	e;
-	uint32_t	buf[4];
+	__uint32_t	e;
+	__uint32_t	buf[4];
 
 	i = -1;
 	j = -1;
@@ -60,7 +60,7 @@ void		proceed_block_md5(t_hash *h)
 	j = h->md5.nb_bits % 64 - 1;
 	k = -1;
 	l = -4;
-	h->md5.nb_bits += (uint64_t)h->rest;
+	h->md5.nb_bits += (__uint64_t)h->rest;
 	while (++i < h->rest)
 		h->md5.input[++j] = h->line[i];
 	if (i == 64)
@@ -95,8 +95,8 @@ void		proceed_last_block_md5(t_hash *h)
 	while (++k < 14 && (j += 4) < 56)
 		h->md5.words[k] = h->md5.input[j + 3] << 24 | \
 		h->md5.input[j + 2] << 16 | h->md5.input[j + 1] << 8 | h->md5.input[j];
-	h->md5.words[14] = (uint32_t)(h->md5.nb_bits << 3);
-	h->md5.words[15] = (uint32_t)((h->md5.nb_bits << 3) >> 32);
+	h->md5.words[14] = (__uint32_t)(h->md5.nb_bits << 3);
+	h->md5.words[15] = (__uint32_t)((h->md5.nb_bits << 3) >> 32);
 	transform_block(&h->md5);
 	digest_message(&h->md5);
 }

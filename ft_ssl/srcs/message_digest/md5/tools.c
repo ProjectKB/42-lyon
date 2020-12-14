@@ -27,7 +27,7 @@ void		digest_message(t_md5 *md5)
 	}
 }
 
-uint32_t	rotl(uint32_t x, uint32_t n)
+__uint32_t	rotl(__uint32_t x, __uint32_t n)
 {
 	return (x << n) | (x >> (32 - n));
 }

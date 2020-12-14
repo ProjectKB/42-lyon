@@ -13,7 +13,7 @@ typedef struct  s_base64 {
     unsigned char rest[5];
     unsigned char *output;
     unsigned char *output_file_name;
-    uint32_t buf;
+    __uint32_t buf;
 }               t_base64;
 
 /*

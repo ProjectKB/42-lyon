@@ -1,6 +1,6 @@
 #include "ft_ssl.h"
 
-const uint32_t		g_shift[64] = {
+const __uint32_t		g_shift[64] = {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 	5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
 	4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -14,7 +14,7 @@ const unsigned char	g_wi[64] = {
 	0, 7, 14, 5, 12, 3, 10, 1, 8, 15, 6, 13, 4, 11, 2, 9
 };
 
-const uint32_t		g_sin[64] = {
+const __uint32_t		g_sin[64] = {
 	0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 	0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
 	0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
@@ -33,27 +33,27 @@ const uint32_t		g_sin[64] = {
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-static uint32_t		f_round(uint32_t x, uint32_t y, uint32_t z)
+static __uint32_t		f_round(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (x & y) | (~x & z);
 }
 
-static uint32_t		g_round(uint32_t x, uint32_t y, uint32_t z)
+static __uint32_t		g_round(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (x & z) | (y & ~z);
 }
 
-static uint32_t		h_round(uint32_t x, uint32_t y, uint32_t z)
+static __uint32_t		h_round(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (x ^ y ^ z);
 }
 
-static uint32_t		i_round(uint32_t x, uint32_t y, uint32_t z)
+static __uint32_t		i_round(__uint32_t x, __uint32_t y, __uint32_t z)
 {
 	return (y ^ (x | ~z));
 }
 
-uint32_t			(*g_round_functions[4]) \
-									(uint32_t x, uint32_t y, uint32_t z) = {
+__uint32_t			(*g_round_functions[4]) \
+									(__uint32_t x, __uint32_t y, __uint32_t z) = {
 	f_round, g_round, h_round, i_round
 };

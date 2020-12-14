@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	ft_print_bits(uint64_t to_print, int len, int x)
+void	ft_print_bits(__uint64_t to_print, int len, int x)
 {
 	while (--len > -1)
 	{

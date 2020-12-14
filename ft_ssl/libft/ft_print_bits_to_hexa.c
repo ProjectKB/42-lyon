@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void ft_print_bits_to_hexa(uint64_t buf, int len)
+void ft_print_bits_to_hexa(__uint64_t buf, int len)
 {
 	int t;
 
