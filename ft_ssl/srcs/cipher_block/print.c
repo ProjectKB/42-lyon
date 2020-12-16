@@ -11,7 +11,6 @@ void	print_salt_key_iv(t_hash *h)
 		ft_printf("iv:   ");
 		ft_print_bits_to_hexa(h->des.iv, 64);
 	}
-	exit(0);
 }
 
 void print_keys(t_hash *h)

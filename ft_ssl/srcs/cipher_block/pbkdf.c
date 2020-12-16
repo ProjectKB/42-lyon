@@ -11,6 +11,7 @@ static void *EVP_decrypt_password(t_hash *h)
 		if (ft_ustrncmp(h->arg, (unsigned char *)"Salted__", 8))
 			freexit(h, "bad magic number\n", 2);
 		ft_ustrcpy(h->des.salt_str, &(h->arg[8]), 8);
+		ft_str_to_uint64(&h->des.salt, h->des.salt_str, 0);
 		return (&(h->arg[16]));
 	}
 	else
@@ -20,6 +21,7 @@ static void *EVP_decrypt_password(t_hash *h)
 		if (ft_ustrncmp(&(buf2[0]), (unsigned char *)"Salted__", 8))
 			print_and_quit("bad magic number\n", 2);
 		ft_ustrcpy(h->des.salt_str, &(buf2[8]), 8);
+		ft_str_to_uint64(&h->des.salt, h->des.salt_str, 0);
 		return (NULL);
 	}
 }
