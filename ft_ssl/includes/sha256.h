@@ -34,9 +34,9 @@ extern const	__uint32_t g_k[64];
 __uint32_t	rotr(__uint32_t x, __uint32_t n);
 __uint32_t	ch(__uint32_t x, __uint32_t y, __uint32_t z);
 __uint32_t	maj(__uint32_t x, __uint32_t y, __uint32_t z);
-__uint32_t	Σ0(__uint32_t x);
-__uint32_t	Σ1(__uint32_t x);
-__uint32_t	σ0(__uint32_t x);
-__uint32_t	σ1(__uint32_t x);
+__uint32_t	sig0(__uint32_t x);
+__uint32_t	sig1(__uint32_t x);
+__uint32_t	lsig0(__uint32_t x);
+__uint32_t	lsig1(__uint32_t x);
 
 #endif

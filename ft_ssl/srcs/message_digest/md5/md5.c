@@ -17,7 +17,6 @@ static void	transform_block(t_md5 *md5)
 	int			i;
 	int			j;
 	int			k;
-	__uint32_t	e;
 	__uint32_t	buf[4];
 
 	i = -1;

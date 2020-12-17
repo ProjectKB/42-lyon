@@ -6,7 +6,7 @@ INCLUDE = -I includes -I libft/
 
 CC = gcc
 
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -g
 
 SRC = shared/main.c \
 	  shared/shared.c \
@@ -30,6 +30,7 @@ SRC = shared/main.c \
 	  base64/globals.c \
 	  base64/print.c \
 	  base64/pre_process.c \
+	  base64/tools.c \
 	  cipher_block/globals.c \
 	  cipher_block/tools.c \
 	  cipher_block/des.c \
@@ -76,7 +77,7 @@ $(NAME): $(COBJ)
 $(DOBJ)%.o : $(DSRC)%.c $(CHEADER)
 	@$(eval COUNT = 0)
 	@mkdir -p $(DOBJ) $(SUB_DOBJ)
-	@$(CC) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "Compilation from fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
 clean:

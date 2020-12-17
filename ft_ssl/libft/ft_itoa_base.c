@@ -53,10 +53,8 @@ static char		convert_char_to_base(size_t n)
 
 char			*ft_itoa_base(size_t nb, int base)
 {
-	size_t	i;
 	char	*str;
 
-	i = 0;
 	str = ft_strdup("\0");
 	if (!nb)
 	{

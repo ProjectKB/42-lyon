@@ -1,44 +1,8 @@
 #include "ft_ssl.h"
 
-unsigned char	*ustrjoin(unsigned char const *s1, unsigned char const *s2)
-{
-	size_t	len;
-	unsigned char	*s3;
-
-	if (s1 && s2)
-	{
-		len = ft_strlen((char *)s1);
-		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 9))))
-			return (NULL);
-		ft_ustrcpy(s3, s1, len);
-		ft_ustrcpy(&(s3[len]), s2, 8);
-		return (s3);
-	}
-	return (NULL);
-}
-
-unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
-{
-	size_t	len;
-	unsigned char	*s3;
-
-	if (s1 && h->des.output)
-	{
-		len = ft_strlen((char *)h->des.output);
-		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 17))))
-			return (NULL);
-		ft_ustrcpy(s3, s1, 8);
-		ft_ustrcpy(&(s3[8]), h->des.salt_str, 8);
-		ft_ustrcpy(&(s3[16]), h->des.output, len);
-		return (s3);
-	}
-	return (NULL);
-}
-
 __uint64_t permut_x_bits(__uint64_t *src, const unsigned char *permut_table, int input_len, int output_len)
 {
 	int i;
-    int tmp;
     int pos;
 	__uint64_t dst;
 
@@ -122,4 +86,70 @@ void base64_custom(t_hash *h, int flag)
 	set_bit2(&h->action, CHANGE_MOD, 0);
 	h->i = tmp;
 	h->arg = h->base64.output;
+}
+
+unsigned char	*ustrjoin(unsigned char const *s1, unsigned char const *s2)
+{
+	size_t	len;
+	unsigned char	*s3;
+
+	if (s1 && s2)
+	{
+		len = ft_strlen((char *)s1);
+		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 9))))
+			return (NULL);
+		ft_ustrcpy(s3, s1, len);
+		ft_ustrcpy(&(s3[len]), s2, 8);
+		return (s3);
+	}
+	return (NULL);
+}
+
+unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
+{
+	size_t	len;
+	unsigned char	*s3;
+
+	if (h->des.output)
+	{
+		len = h->des.turn * 8;
+		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 17))))
+			return (NULL);
+		ft_ustrcpy(s3, s1, 8);
+		ft_ustrcpy(&(s3[8]), h->des.salt_str, 8);
+		ft_ustrcpy(&(s3[16]), h->des.output, len);
+		free(h->des.output);
+		return (s3);
+	}
+	return (NULL);
+}
+
+/* static void read_pass(t_hash *h)
+{
+	if (!(h->des.password = (unsigned char*)malloc(sizeof(char) * 129)))
+        freexit(h, "Congrats, you broke malloc.\n", 2);
+	readpassphrase("enter des encryption password:", (char*)h->des.password, 128, RPP_REQUIRE_TTY);
+	set_bit2(&h->action, FREE_PASS, 0);
+} */
+
+void initial_check(t_hash *h)
+{
+	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_V) && !test_bit(&h->flag, FLAG_PPP))
+		print_and_quit("iv undefined\n", 2);
+	else if (h->des.rest > 16 && test_bit(&h->flag, FLAG_PPP))
+		print_and_quit("hex string is too long\ninvalid hex salt value\n", 2);
+	//else if (!test_bit(&h->flag, FLAG_K) && !test_bit(&h->flag, FLAG_PPP))
+	//	read_pass(h);
+}
+
+unsigned char *ft_realloc_des(void *s1, size_t len1, size_t len2)
+{
+	unsigned char	*str;
+
+	if (!(str = (unsigned char *)malloc(len1 + len2 + 1)))
+		return (NULL);
+	ft_memcpy(str, s1, len1);
+	free(s1);
+	s1 = NULL;
+	return (str);
 }

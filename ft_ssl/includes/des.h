@@ -41,8 +41,10 @@ extern const unsigned char g_ep[64];
 ** TOOLS
 */
 __uint64_t    permut_x_bits(__uint64_t *src, const unsigned char *permut_table, int input_len, int output_len);
-__uint64_t	rotl_x(__uint64_t x, __uint64_t n, int size, int mask);
+__uint64_t	  rotl_x(__uint64_t x, __uint64_t n, int size, int mask);
 __uint64_t    s_box_substitution(__uint64_t *to_substitute, unsigned char shift1, unsigned char shift2);
+unsigned char *ft_realloc_des(void *s1, size_t len1, size_t len2);
+
 
 
 

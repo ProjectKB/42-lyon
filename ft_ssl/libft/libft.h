@@ -115,6 +115,7 @@ int					ft_ustrncmp(const unsigned char *s1, const unsigned char *s2, size_t n);
 void				ft_strip_str(unsigned char *str, char c);
 void				ft_putnstr(unsigned char *str, int len);
 void				ft_strip_whitespaces(unsigned char *str);
+void				ft_putstrnchar(unsigned char *str, int nb);
 
 
 typedef struct		s_list

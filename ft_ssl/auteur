@@ -1,6 +1,1 @@
 loiberti
-
-echo "0123456789" | openssl des-ecb -K 0 -S 488098098098098098098 -pass "pass:bonjour"
-
-Pass -> dans tout les cas trop grand
-Key  -> ignore

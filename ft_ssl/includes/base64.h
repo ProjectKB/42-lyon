@@ -9,7 +9,6 @@ typedef struct  s_base64 {
     int turn;
     int nb_bytes;
     int rest_len;
-    int stop;
     unsigned char rest[5];
     unsigned char *output;
     unsigned char *output_file_name;
@@ -21,5 +20,10 @@ typedef struct  s_base64 {
 */
 extern const unsigned char g_base64_table[64];
 extern const unsigned char g_base64_dec[123];
+
+/*
+** TOOLS
+*/
+unsigned char *ft_realloc_base64(void *s1, size_t len1, size_t len2);
 
 #endif

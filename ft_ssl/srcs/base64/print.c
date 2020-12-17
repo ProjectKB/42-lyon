@@ -15,7 +15,7 @@ static void	write_output_b64(t_hash *h)
 		freexit(h, "There was a problem while writing output.\n", 2);
     if (write(fd, h->base64.output, len) == -1)
 		freexit(h, "There was a problem while writing output.\n", 2);
-	if (!test_bit(&h->flag, FLAG_D))
+	if (len && !test_bit(&h->flag, FLAG_D))
     	if (write(fd, "\n", 1) == -1)
 			freexit(h, "There was a problem while writing output.\n", 2);
 	close(fd);
@@ -23,13 +23,18 @@ static void	write_output_b64(t_hash *h)
 
 void print_base64(t_hash *h, int mod)
 {
+
+	(void)mod;
 	if (test_bit2(&h->action, PRINT))
 	{
 		if (test_bit(&h->flag, FLAG_O))
 			write_output_b64(h);
-		else if (test_bit(&h->flag, FLAG_D))
-			ft_putnstr(h->base64.output, (h->base64.turn - 1) * 3 + h->base64.rest_len);
-		else
-			ft_printf ("%s\n", h->base64.output);
+		else if (h->base64.output)
+		{
+			if (test_bit(&h->flag, FLAG_D))
+				ft_putnstr(h->base64.output, (h->base64.turn - 1) * 3 + h->base64.rest_len);
+			else
+				ft_printf("%s\n", h->base64.output);
+		}
 	}
 }

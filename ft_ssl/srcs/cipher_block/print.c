@@ -77,7 +77,7 @@ void	print_encrypt_with_pass(t_hash *h)
 	}
 	else
 	{
-		output_len = ft_strlen((char*)h->des.output);
+		output_len = h->des.turn * 8;
 		if (!(h->des.output = ustrjoin2(h, (unsigned char *)"Salted__")))
 			freexit(h, "Congrats, you broke malloc.\n", 2);
 		h->arg = h->des.output;
@@ -103,6 +103,7 @@ void	print_encrypt_without_pass(t_hash *h)
 
 void	print_des(t_hash *h, int mod)
 {
+	(void)mod;
 	if (test_bit(&h->flag, FLAG_D))
 		print_decrypt(h);
 	else if (test_bit(&h->flag, FLAG_PPP))

@@ -31,6 +31,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 	int pass_len;
 	unsigned char *buf;
 
+	buf = NULL;
 	pass_len = ft_strlen((char*)h->des.password);
 	if (test_bit(&h->flag, FLAG_PPP) && test_bit(&h->flag, FLAG_D))
 		buf = EVP_decrypt_password(h);
@@ -44,6 +45,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 	if (!(h->arg = ustrjoin(h->des.password, h->des.salt_str)))
 		freexit(h, "Congrats, you broke malloc.\n", 2);
 	md5_hexa_custom(h, pass_len + 8);
+	free(h->arg);
 	ft_str_to_uint64(&h->des.key, h->md5.digest, 0);
 	if (!test_bit(&h->flag, FLAG_V))
 		ft_str_to_uint64(&h->des.iv, h->md5.digest, 8);

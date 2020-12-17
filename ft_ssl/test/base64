@@ -35,9 +35,13 @@ echo -n "OPENSSL:  " ; echo "" | base64
 echo ""
 
 echo -n "STDIN:    " ; echo -n "" | ./ft_ssl base64
+echo ""
 echo -n "FILE:     " ; echo -n "" | ./ft_ssl base64 -o tmp; cat tmp;
+echo ""
 echo -n "OUTPUT:   " ; echo -n "" > tmp ; ./ft_ssl base64 -i tmp; rm tmp
+echo ""
 echo -n "OPENSSL:  " ; echo -n "" | base64
+echo ""
 
 echo ""
 
@@ -52,21 +56,21 @@ echo ""
 echo -n "STDIN:    " ; echo "Qm9uam91cgo=" | ./ft_ssl base64 -d
 echo -n "FILE:     " ; echo "Qm9uam91cgo=" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo -n "OUTPUT:   " ; echo "Qm9uam91cgo=" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
-echo -n "OPENSSL:  " ; echo "Qm9uam91cgo=" | base64 -D
+echo -n "OPENSSL:  " ; echo "Qm9uam91cgo=" | base64 -d
 
 echo ""
 
 echo -n "STDIN:    " ; echo "U2FsdXQK" | ./ft_ssl base64 -d
 echo -n "FILE:     " ; echo "U2FsdXQK" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo -n "OUTPUT:   " ; echo "U2FsdXQK" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
-echo -n "OPENSSL:  " ; echo "U2FsdXQK" | base64 -D
+echo -n "OPENSSL:  " ; echo "U2FsdXQK" | base64 -d
 
 echo ""
 
 echo -n "STDIN:    " ; echo "U2FsdXRhCg==" | ./ft_ssl base64 -d
 echo -n "FILE:     " ; echo "U2FsdXRhCg==" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo -n "OUTPUT:   " ; echo "U2FsdXRhCg==" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
-echo -n "OPENSSL:  " ; echo "U2FsdXRhCg==" | base64 -D
+echo -n "OPENSSL:  " ; echo "U2FsdXRhCg==" | base64 -d
 
 echo ""
 
@@ -76,7 +80,7 @@ echo -n "FILE:     " ; echo "" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo ""
 echo -n "OUTPUT:   " ; echo "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
 echo ""
-echo -n "OPENSSL:  " ; echo "" | base64 -D
+echo -n "OPENSSL:  " ; echo "" | base64 -d
 echo ""
 
 echo ""
@@ -87,7 +91,7 @@ echo -n "FILE:     " ; echo -n "" | ./ft_ssl base64 -o tmp -d; cat tmp;
 echo ""
 echo -n "OUTPUT:   " ; echo -n "" > tmp ; cat tmp | ./ft_ssl base64 -i tmp -d;
 echo ""
-echo -n "OPENSSL:  " ; echo -n "" | base64 -D
+echo -n "OPENSSL:  " ; echo -n "" | base64 -d
 echo ""
 
 echo ""
@@ -102,13 +106,13 @@ echo ""
 
 echo "U2FsdX" | ./ft_ssl base64 -d
 echo ""
-echo "U2FsdX" | base64 -D
+echo "U2FsdX" | base64 -d
 echo ""
 
 echo ""
 
 echo "AB#" | ./ft_ssl base64 -d
-echo "AB#" | base64 -D
+echo "AB#" | base64 -d
 
 echo ""
 

@@ -10,12 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = libft.a
 
 CC= gcc
 
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -g
 
 SRC = 	ft_atoi.c\
 		ft_utoi.c\
@@ -156,11 +155,13 @@ SRC = 	ft_atoi.c\
 		ft_uint64_to_str.c \
 		ft_ustrncmp.c \
 		ft_strip_str.c \
-		ft_putnstr.c \
 		ft_strip_whitespaces.c \
+		ft_putnstr.c \
+		ft_putstrnchar.c \
 
+OBJ = $(SRC:.c=.o)
 
-HEADER = ./libft.h
+HEADER = libft.h
 
 COUNT = 1
 
@@ -169,21 +170,19 @@ all: $(NAME)
 		echo "\033[1;34mNothing are changed !\033[0m"; \
 	fi
 
-OBJECT = $(SRC:.c=.o)
-
-
-$(NAME): $(OBJECT)
-	@ar ruc $(NAME) $(OBJECT)
+$(NAME): $(OBJ)
+	@ar ruc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\033[JCompilation\033[38;5;326m completed\033[0m"
 	@echo "Compilation \033[34m"$(NAME)"\033[0m"
 
 %.o: %.c $(HEADER)
-	@$(CC) $(CFLAGS) -c $(SRC) -I $<
+	@$(eval COUNT = 0)
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compilation from fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
 clean:
-	@rm -rf $(OBJECT)
+	@rm -rf $(OBJ)
 	@echo "Deleting \033[38;5;265mlibft objects\033[0m"
 
 fclean: clean
