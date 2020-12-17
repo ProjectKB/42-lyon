@@ -50,6 +50,7 @@ void init_hash(t_hash *h, int argc, char **argv)
 	h->nb_bytes = 64;
 	h->args.c = argc;
 	h->args.v = argv;
+	h->des.rest = 0;
 	h->base64.output = NULL;
 }
 

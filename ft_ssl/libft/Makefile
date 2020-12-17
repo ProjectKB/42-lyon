@@ -157,6 +157,8 @@ SRC = 	ft_atoi.c\
 		ft_ustrncmp.c \
 		ft_strip_str.c \
 		ft_putnstr.c \
+		ft_strip_whitespaces.c \
+
 
 HEADER = ./libft.h
 

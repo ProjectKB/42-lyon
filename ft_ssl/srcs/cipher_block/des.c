@@ -4,14 +4,16 @@ void    init_des(t_hash *h)
 {
 	if (h->i == DES_CBC && !test_bit(&h->flag, FLAG_V) && !test_bit(&h->flag, FLAG_PPP))
 		print_and_quit("iv undefined\n", 2);
+	else if (h->des.rest > 16 && test_bit(&h->flag, FLAG_PPP))
+		freexit(h, "hex string is too long\ninvalid hex salt value\n", 2);
 	if (test_bit(&h->flag, FLAG_D) && test_bit(&h->flag, FLAG_AA))
 		base64_custom(h, FALSE);
 	h->des.turn = 0;
 	h->nb_bytes = 8;
-	h->des.rest = 0;
 	h->des.salt_str[8] = '\0';
 	if (!test_bit(&h->flag, FLAG_K))
 		EVP_bytes_to_Key(h);
+	h->des.rest = 0;
 	if (test_bit(&h->flag, FLAG_PP))
 		print_salt_key_iv(h);
 	if (!(h->des.output = (unsigned char*)malloc(sizeof(char) * h->nb_bytes + 1)))

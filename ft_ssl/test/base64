@@ -120,10 +120,31 @@ echo "****************************** TRICKY ****************************"
 
 echo ""
 
-echo "ABCR" > tmp; cat tmp | openssl base64 -d
+echo "ABCR" > tmp;
+cat tmp | openssl base64 -d
 echo ""
 cat tmp | ./ft_ssl base64 -d; rm tmp
 echo ""
+
+echo "CCC" | ./ft_ssl base64 -d
+echo "CCC" | base64 -d
+echo ""
+
+python -c 'print("\x00\x00\x00\x00")' | base64 -d
+python -c 'print("\x00\x00\x00\x00")' | ./ft_ssl base64 -d
+
+python -c 'print("\xFF\x00\x00\x00")' | base64 -d
+python -c 'print("\xFF\x00\x00\x00")' | ./ft_ssl base64 -d
+
+python -c 'print("\x00\xFF\x00\x00")' | base64 -d
+python -c 'print("\x00\xFF\x00\x00")' | ./ft_ssl base64 -d
+
+python -c 'print("\x0A\x00\xFF\x00")' | base64 -d
+python -c 'print("\x0A\x00\xFF\x00")' | base64 -d
+echo ""
+
+python -c 'print("\x0A\x0A\xFF\x00")' | ./ft_ssl base64 -d
+python -c 'print("\x0A\x0A\xFF\x00")' | ./ft_ssl base64 -d
 
 echo ""
 

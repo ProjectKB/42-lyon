@@ -38,7 +38,7 @@ void	EVP_bytes_to_Key(t_hash *h)
 		if (!test_bit(&h->flag, FLAG_S))
 		{
 			if (ft_random(8, h->des.salt_str) == -1)
-				freexit(h, "Something went wrong while generating random salt.", 2);
+				freexit(h, "Something went wrong while generating random salt.\n", 2);
 			ft_str_to_uint64(&h->des.salt, h->des.salt_str, 0);
 		}
 	if (!(h->arg = ustrjoin(h->des.password, h->des.salt_str)))
