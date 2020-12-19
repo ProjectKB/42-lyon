@@ -124,13 +124,13 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 	return (NULL);
 }
 
-/* static void read_pass(t_hash *h)
+static void read_pass(t_hash *h)
 {
-	if (!(h->des.password = ft_memalloc(sizeof(char) * 129))
+	if (!(h->des.password = ft_memalloc(sizeof(char) * 129)))
         freexit(h, "Congrats, you broke malloc.\n", 2);
 	readpassphrase("enter des encryption password:", (char*)h->des.password, 128, RPP_REQUIRE_TTY);
 	set_bit2(&h->action, FREE_PASS, 0);
-} */
+}
 
 void initial_check(t_hash *h)
 {
@@ -138,18 +138,6 @@ void initial_check(t_hash *h)
 		print_and_quit("iv undefined\n", 2);
 	else if (h->des.rest > 16 && test_bit(&h->flag, FLAG_PPP))
 		print_and_quit("hex string is too long\ninvalid hex salt value\n", 2);
-	//else if (!test_bit(&h->flag, FLAG_K) && !test_bit(&h->flag, FLAG_PPP))
-	//	read_pass(h);
-}
-
-unsigned char *ft_realloc_des(void *s1, size_t len1, size_t len2)
-{
-	unsigned char	*str;
-
-	if (!(str = ft_memalloc(len1 + len2 + 1)))
-		return (NULL);
-	ft_memcpy(str, s1, len1);
-	free(s1);
-	s1 = NULL;
-	return (str);
+	else if (!test_bit(&h->flag, FLAG_K) && !test_bit(&h->flag, FLAG_PPP))
+		read_pass(h);
 }

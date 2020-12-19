@@ -65,7 +65,7 @@ void    proceed_block_des(t_hash *h)
 	i = -1;
 	if (h->rest != h->nb_bytes)
 		h->des.rest = h->rest;
-	if (!(h->des.output = ft_realloc_des(h->des.output, h->des.turn * 8, h->nb_bytes + 1)))
+	if (!(h->des.output = ft_realloc(h->des.output, h->des.turn * 8, h->nb_bytes + 1)))
 		freexit(h, "Congrats, you broke malloc.\n", 2);
 	init_buf(h);
     h->des.buf = permut_x_bits(&h->des.buf, g_ip, 64, 64);

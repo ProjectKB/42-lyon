@@ -1,5 +1,20 @@
 #include "ft_ssl.h"
 
+static int welcome_to_hell(t_hash *h)
+{
+	int rt;
+	int rt2;
+
+	rt2 = 0;
+	rt = read(h->fd, h->line, h->nb_bytes);
+	if (rt != h->nb_bytes)
+	{
+		rt2 = read(h->fd, &(h->line[rt]), h->nb_bytes - rt);
+		return (rt + rt2);
+	}
+	return (rt);
+}
+
 static int	read_bytes(t_hash *h, int mod)
 {
 	int			i;
@@ -11,7 +26,7 @@ static int	read_bytes(t_hash *h, int mod)
 	j = count * h->nb_bytes - 1;
 	ft_bzero(h->line, h->nb_bytes + 1);
 	if (mod != STRING && !test_bit2(&h->action, CHANGE_MOD))
-		return (read(h->fd, h->line, h->nb_bytes));
+		return (welcome_to_hell(h));
 	if (!h->arg || stop)
 	{
 		stop = FALSE;

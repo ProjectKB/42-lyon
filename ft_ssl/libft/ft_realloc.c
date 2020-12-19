@@ -17,14 +17,12 @@ unsigned char *ft_realloc(void *s1, size_t len1, size_t len2)
 {
 	unsigned char	*str;
 
-	if (len2)
+	if (!(str = ft_memalloc(len1 + len2 + 1)))
+		return (NULL);
+	if (len1)
 	{
-		if (!(str = (unsigned char *)malloc(len1 + len2 + 1)))
-			return (NULL);
 		ft_memcpy(str, s1, len1);
 		free(s1);
-		return (str);
 	}
-	else
-		return (s1);
+	return (str);
 }

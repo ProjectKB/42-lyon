@@ -6,12 +6,6 @@
 #diff <(echo -n abc | openssl base64) <(echo -n abc | ./ft_ssl base64)
 #echo "All your base are belong to us. You have no chance make your time." | ./ft_ssl base64 | ./ft_ssl base64 -d
 
-echo "All your base are belong to us. You have no chance make your time." | openssl base64 | ./ft_ssl base64 -d 
-#echo "All your base are belong to us. You have no chance make your time." | openssl base64 | openssl base64 -d 
-#echo "All your base are belong to us. You have no chance make your time." | ./ft_ssl base64 | ./a.out #hexdump output > hex
-#hexdump output2 > hex2
-#diff output output2
-#diff hex hex2
 
 
 # Do they have a flag in their base?
@@ -32,10 +26,10 @@ echo "All your base are belong to us. You have no chance make your time." | open
 
 
 # YOU SHALL NOT PASS(word)!
-#echo "$(curl 'https://www.peereboom.us/assl/assl/html/openssl.html')" > original.html
 #echo "password" > password_file
+#echo "$(curl 'https://www.peereboom.us/assl/assl/html/openssl.html')" > original.html
 #openssl des-ecb -p -in original.html -out ciphertext.html -pass "pass:$(cat password_file)"
-#./ft_ssl des-ecb -d -i ciphertext.html -o decrypted.html -p "$(cat password_file)" -s #(Copy the salt used by OpenSSL here!)
+#./ft_ssl des-ecb -d -i ciphertext.html -o decrypted.html -p "$(cat password_file)" -s 76136A16B76E27E7 #(Copy the salt used by OpenSSL here!)
 #open *.html
 #rm ciphertext.html decrypted.html original.html password_file
 

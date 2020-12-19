@@ -30,7 +30,6 @@ SRC = shared/main.c \
 	  base64/globals.c \
 	  base64/print.c \
 	  base64/pre_process.c \
-	  base64/tools.c \
 	  cipher_block/globals.c \
 	  cipher_block/tools.c \
 	  cipher_block/des.c \

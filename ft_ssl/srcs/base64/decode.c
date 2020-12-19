@@ -8,7 +8,6 @@ void    init_decode_base64(t_hash *h)
     h->base64.rest_len = 0;
     ft_bzero(h->base64.rest, 5);
     h->base64.output = NULL;
-    set_bit2(&h->action, B64, 0);
 }
 
 static int    check_new_line(t_hash *h)
@@ -67,8 +66,9 @@ void decode_block_base64(t_hash *h)
     ft_ustrcpy(h->base64.rest, h->line, h->rest);
     if (h->rest != h->nb_bytes)
         return ;
-    if (!(h->base64.output = ft_realloc_base64(h->base64.output, h->base64.turn * 3, h->rest + 1)))
+    if (!(h->base64.output = ft_realloc(h->base64.output, h->base64.turn * 3, h->rest + 1)))
         freexit(h, "Congrats, you broke malloc.\n", 2);
+    set_bit2(&h->action, B64, 0);
     h->base64.buf = g_base64_dec[h->line[0]] << 18 | g_base64_dec[h->line[1]] << 12 | g_base64_dec[h->line[2]] << 6 | g_base64_dec[h->line[3]];
     h->base64.output[i] = h->base64.buf >> 16 & 0xFF;
     h->base64.output[i + 1] = (h->base64.buf >> 8) & 0xFF;

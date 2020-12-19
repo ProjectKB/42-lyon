@@ -21,9 +21,4 @@ typedef struct  s_base64 {
 extern const unsigned char g_base64_table[64];
 extern const unsigned char g_base64_dec[123];
 
-/*
-** TOOLS
-*/
-unsigned char *ft_realloc_base64(void *s1, size_t len1, size_t len2);
-
 #endif

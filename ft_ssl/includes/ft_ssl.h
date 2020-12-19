@@ -8,7 +8,7 @@
 # include "base64.h"
 # include "des.h" 
 # include <fcntl.h>
-//# include <readpassphrase.h>
+# include <readpassphrase.h>
 
 # define FILE 0
 # define STDOUT 1
