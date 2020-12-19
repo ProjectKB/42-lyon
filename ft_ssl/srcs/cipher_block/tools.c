@@ -96,7 +96,7 @@ unsigned char	*ustrjoin(unsigned char const *s1, unsigned char const *s2)
 	if (s1 && s2)
 	{
 		len = ft_strlen((char *)s1);
-		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 9))))
+		if (!(s3 = ft_memalloc(len + 9)))
 			return (NULL);
 		ft_ustrcpy(s3, s1, len);
 		ft_ustrcpy(&(s3[len]), s2, 8);
@@ -113,7 +113,7 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 	if (h->des.output)
 	{
 		len = h->des.turn * 8;
-		if (!(s3 = (unsigned char*)malloc(sizeof(unsigned char) * (len + 17))))
+		if (!(s3 = ft_memalloc(len + 17)))
 			return (NULL);
 		ft_ustrcpy(s3, s1, 8);
 		ft_ustrcpy(&(s3[8]), h->des.salt_str, 8);
@@ -126,7 +126,7 @@ unsigned char	*ustrjoin2(t_hash *h, unsigned char const *s1)
 
 /* static void read_pass(t_hash *h)
 {
-	if (!(h->des.password = (unsigned char*)malloc(sizeof(char) * 129)))
+	if (!(h->des.password = ft_memalloc(sizeof(char) * 129))
         freexit(h, "Congrats, you broke malloc.\n", 2);
 	readpassphrase("enter des encryption password:", (char*)h->des.password, 128, RPP_REQUIRE_TTY);
 	set_bit2(&h->action, FREE_PASS, 0);
@@ -146,7 +146,7 @@ unsigned char *ft_realloc_des(void *s1, size_t len1, size_t len2)
 {
 	unsigned char	*str;
 
-	if (!(str = (unsigned char *)malloc(len1 + len2 + 1)))
+	if (!(str = ft_memalloc(len1 + len2 + 1)))
 		return (NULL);
 	ft_memcpy(str, s1, len1);
 	free(s1);
