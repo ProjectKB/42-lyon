@@ -179,7 +179,7 @@ $(NAME): $(OBJ)
 %.o: %.c $(HEADER)
 	@$(eval COUNT = 0)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compilation from fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
+	@echo "Compilation from function \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
 clean:
 	@rm -rf $(OBJ)

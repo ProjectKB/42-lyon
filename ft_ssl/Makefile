@@ -77,7 +77,7 @@ $(DOBJ)%.o : $(DSRC)%.c $(CHEADER)
 	@$(eval COUNT = 0)
 	@mkdir -p $(DOBJ) $(SUB_DOBJ)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@echo "Compilation from fonction \033[38;5;326m"$< "\033[0m\033[K\033[1A"
+	@echo "Compilation from function \033[38;5;326m"$< "\033[0m\033[K\033[1A"
 
 clean:
 	@rm -rf $(DOBJ)
