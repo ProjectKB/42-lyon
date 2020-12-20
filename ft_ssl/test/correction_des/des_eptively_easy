@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# DES-eptively easy!
+export DES_KEY="C0FFEE69DEADBEEF"
+echo "foo bar" | ./ft_ssl des-ecb -k "$DES_KEY" | openssl des-ecb -d -K "$DES_KEY"
+echo "foo bar" | openssl des-ecb -K "$DES_KEY" | ./ft_ssl des-ecb -d -k "$DES_KEY"
+echo "smol" | ./ft_ssl des-ecb -k "$DES_KEY" | openssl des-ecb -d -K "$DES_KEY"
+echo "smol" | openssl des-ecb -K "$DES_KEY" | ./ft_ssl des-ecb -d -k "$DES_KEY"
+echo "testing the key now" | openssl des-ecb -K "ABCD" | ./ft_ssl des-ecb -d -k "ABCD"
+echo "More key tests" | openssl des-ecb -K "FFFFFFFFFFFFFFFF" | ./ft_ssl des-ecb -d -k "FFFFFFFFFFFFFFFF"
+echo "what kind of lock takes no key?" | openssl des-ecb -K "00000000" | ./ft_ssl des-ecb -d -k "00000000"

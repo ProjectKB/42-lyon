@@ -6,8 +6,8 @@ void    init_decode_base64(t_hash *h)
     h->base64.turn = 0;
     h->base64.nb_bytes = 3;
     h->base64.rest_len = 0;
-    ft_bzero(h->base64.rest, 5);
     h->base64.output = NULL;
+    ft_bzero(h->base64.rest, 5);
 }
 
 static int    check_new_line(t_hash *h)
@@ -51,7 +51,7 @@ void    check_char(t_hash *h)
         if (h->line[i] > 123 || g_base64_dec[h->line[i]] == 64)
             freexit(h, "Invalid character in input stream.\n", 2);
     }
-    if ((h->rest == 4 && h->line[0] == '=') || h->line[1] == '=' || (h->line[2] == '=' && h->line[3] != '='))
+    if (h->rest == 4 && (h->line[0] == '=' || h->line[1] == '=' || (h->line[2] == '=' && h->line[3] != '=')))
         freexit(h, "Invalid characters in input stream.\n", 2);
 }
 

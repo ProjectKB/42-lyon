@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Do they have a flag in their base?
+echo "best game in the franchise" | ./ft_ssl base64 -e -o "halo1" 
+./ft_ssl base64 -d -i "halo1"
+rm halo1

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Is BASE64 working?
+echo "repeat after me 'encoding is not encryption'" | base64
+echo "repeat after me 'encoding is not encryption'" | ./ft_ssl base64
+diff <(echo -n abc | openssl base64) <(echo -n abc | ./ft_ssl base64)
+echo "All your base are belong to us. You have no chance make your time." | ./ft_ssl base64 | ./ft_ssl base64 -d

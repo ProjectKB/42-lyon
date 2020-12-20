@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# YOU SHALL NOT PASS(word)!
+
+# first uncomment this block, recomment it just after
+#echo "password" > password_file
+#echo "$(curl 'https://www.peereboom.us/assl/assl/html/openssl.html')" > original.html
+#openssl des-ecb -p -in original.html -out ciphertext.html -pass "pass:$(cat password_file)"
+
+
+# then here
+#./ft_ssl des-ecb -d -i ciphertext.html -o decrypted.html -p "$(cat password_file)" -s 76136A16B76E27E7 #(Copy the salt used by OpenSSL here!)
+
+
+# finally here
+#open *.html
+#rm ciphertext.html decrypted.html original.html password_file
