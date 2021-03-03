@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+}
+
+#mainContainer {
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    position: relative;
+    left: 34%;
+    top: 100px;
+}
+
+#screenContainer {
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#numberOnScreen {
+    font-size: 42px;
+    margin-right: 8px;;
+}
+
+#buttonContainer {
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.calcButton {
+    width: 80px;
+    height: 28px;
+}
